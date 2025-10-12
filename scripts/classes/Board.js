@@ -5,7 +5,7 @@ export default class Board extends Element {
   _backgroundColor = "#fafafa";
   _borderAlign = "outside";
   _borderColor = "rgba(180, 180, 180, 1)";
-  _borderWidth = 100;
+  _borderWidth = 2;
   _elements = [];
   _grid = new Grid();
 
@@ -79,6 +79,22 @@ export default class Board extends Element {
   }
 
   draw(canvas) {
+    canvas.context.shadowColor = "rgba(0,0,0,0.5)";
+    canvas.context.shadowBlur = 8;
+    canvas.context.shadowOffsetX = 1;
+    canvas.context.shadowOffsetY = 1;
+    const borderRect = this.getBorderRect();
+    canvas.context.fillRect(
+      borderRect.originX,
+      borderRect.originY,
+      borderRect.width,
+      borderRect.height
+    );
+    canvas.context.shadowColor = "rgba(0,0,0,0)";
+    canvas.context.shadowBlur = 0;
+    canvas.context.shadowOffsetX = 0;
+    canvas.context.shadowOffsetY = 0;
+
     canvas.context.fillStyle = this.backgroundColor;
     canvas.context.fillRect(this.originX, this.originY, this.width, this.height);
 
