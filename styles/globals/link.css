@@ -1,0 +1,26 @@
+a {
+  position: relative;
+  display: inline-block;
+
+  color: var(--link-color);
+  background-color: var(--link-background-color);
+  border: var(--border-width) solid var(--link-border-color);
+  padding: var(--link-padding-y) var(--link-padding-x);
+  padding-right: calc(1rem + var(--link-padding-x));
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--primary);
+  background-color: var(--link-background-color-hover);
+  border: var(--border-width) solid var(--link-border-color-hover);
+  box-shadow: var(--shadow-std);
+}
+
+a::after {
+  content: "↗";
+  position: absolute;
+  top: 50%;
+  right: var(--link-padding-x);
+  transform: translateY(-50%);
+}

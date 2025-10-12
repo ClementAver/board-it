@@ -1,0 +1,23 @@
+@import url(../reset.css);
+@import url(../config.css);
+@import url(../globals/button.css);
+@import url(../globals/link.css);
+@import url(../globals/svg.css);
+@import url(../components/main-header.css);
+@import url(../components/logo.css);
+@import url(../components/menu-left-drawer.css);
+@import url(../components/main-board.css);
+
+@import url(../utils.css);
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+  background-color: var(--secondary);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+}

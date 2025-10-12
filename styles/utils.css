@@ -1,0 +1,43 @@
+.flex-left {
+  display: flex;
+  place-items: center;
+  justify-content: start;
+}
+.flex-center {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+.gap-xs {
+  gap: var(--spacing-xs);
+}
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+.gap-md {
+  gap: var(--spacing-md);
+}
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+.p-xs {
+  padding: var(--spacing-xs);
+}
+.p-sm {
+  padding: var(--spacing-sm);
+}
+.p-md {
+  gap: var(--spacing-md);
+}
+.p-lg {
+  gap: var(--spacing-lg);
+}
+
+.rounded {
+  border-radius: var(--border-radius);
+}
+.rounded-full {
+  border-radius: calc(infinity * 1px);
+}
