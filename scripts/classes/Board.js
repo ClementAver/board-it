@@ -92,7 +92,7 @@ export default class Board extends Element {
 
     if (this.elements.length) {
       this.elements.forEach((element) => {
-        element.draw(canvas);
+        element.draw(canvas, this.getUsableRect());
       });
     }
   }

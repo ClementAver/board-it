@@ -11,8 +11,8 @@ const main = document.querySelector("main.board__wrapper");
 const hightlightBeta = getComputedStyle(main).getPropertyValue("--highlight-beta");
 
 const picture = new Picture({
-  x: 100,
-  y: 100,
+  x: 0,
+  y: 0,
   w: 200,
   h: 200,
   src: "./assets/pictures/image-1.jpg",
@@ -27,6 +27,7 @@ const canvas = new Canvas({ boards });
 const resizeObserver = new ResizeObserver((entries) => {
   for (const _ of entries) {
     canvas.resizeCanvas();
+    canvas.centerCamera()
   }
 });
 resizeObserver.observe(leftDrawer);

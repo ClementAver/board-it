@@ -36,13 +36,27 @@ export default class Picture extends Element {
     this._source = source;
   }
 
-  draw(canvas) {
+  draw(canvas, rect) {
     canvas.context.fillStyle = this.backgroundColor;
-    canvas.context.fillRect(this.originX, this.originY, this.width, this.height);
+
+    rect = {
+      originX: this.originX + rect.originX,
+      originY: this.originY + rect.originY,
+      width: this.width,
+      height: this.height,
+    };
+
+    canvas.context.fillRect(rect.originX, rect.originY, rect.width, rect.height);
 
     const img = new Image();
     img.src = this.source;
     img.onload = () =>
-      canvas.context.drawImage(img, this.originX, this.originY, this.width, this.height);
+      canvas.context.drawImage(
+        img,
+        rect.originX,
+        rect.originY,
+        rect.width,
+        rect.height
+      );
   }
 }
