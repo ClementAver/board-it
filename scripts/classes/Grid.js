@@ -1,21 +1,37 @@
 import Element from "./Element.js";
 
 export default class Grid extends Element {
-  _borderColor = "rgba(180, 180, 180, 1)";
+  _borderColor = "rgba(115, 225, 255, 1)";
+  _borderWidth = 1;
   _dashes = [5, 5];
   _isEnabled = true;
   _spacing = 50;
 
-  constructor(originX = 100, originY = 100, width = 1600, height = 900, options = {}) {
-    super(originX, originY, width, height);
-    this.borderColor = options.borderColor ?? this.borderColor;
-    this.dashes = options.dashes ?? this.dashes;
-    this.isEnabled = options.isEnabled ?? this.isEnabled;
-    this.spacing = options.spacing ?? this.spacing;
+  constructor({
+    x = 100,
+    y = 100,
+    w = 1600,
+    h = 900,
+    borderColor,
+    borderWidth,
+    dashes,
+    isEnabled,
+    spacing,
+  } = {}) {
+    super(x, y, w, h);
+    this.borderColor = borderColor ?? this.borderColor;
+    this.borderWidth = borderWidth ?? this.borderWidth;
+    this.dashes = dashes ?? this.dashes;
+    this.isEnabled = isEnabled ?? this.isEnabled;
+    this.spacing = spacing ?? this.spacing;
   }
 
   get borderColor() {
     return this._borderColor;
+  }
+
+  get borderWidth() {
+    return this._borderWidth;
   }
 
   get dashes() {
@@ -34,6 +50,10 @@ export default class Grid extends Element {
     this._borderColor = borderColor;
   }
 
+  set borderWidth(borderWidth) {
+    this._borderWidth = borderWidth;
+  }
+
   set dashes(dashes) {
     this._dashes = dashes;
   }
@@ -48,18 +68,21 @@ export default class Grid extends Element {
 
   draw(canvas, rect) {
     canvas.context.strokeStyle = this.borderColor;
+    canvas.context.lineWidth = this.borderWidth / canvas.camera.scale;
     canvas.context.setLineDash(
       this.dashes.map((dash) => {
         const nb = dash / canvas.camera.scale;
         return nb < 5 ? nb : 5;
       })
     );
-    canvas.context.lineWidth = 1 / canvas.camera.scale;
+
+    const startX = Math.abs(rect.width % this.spacing) / 2;
+    const startY = Math.abs(rect.height % this.spacing) / 2;
 
     // Draws y lines:
     for (
-      let x = rect.originX + this.spacing;
-      x <= rect.originX + rect.width - this.spacing;
+      let x = rect.originX + startX;
+      x <= rect.originX + rect.width;
       x += this.spacing
     ) {
       canvas.context.beginPath();
@@ -70,8 +93,8 @@ export default class Grid extends Element {
 
     // Draws x lines:
     for (
-      let y = rect.originY + this.spacing;
-      y <= rect.originY + rect.height - this.spacing;
+      let y = rect.originY + startY;
+      y <= rect.originY + rect.height;
       y += this.spacing
     ) {
       canvas.context.beginPath();
@@ -79,5 +102,9 @@ export default class Grid extends Element {
       canvas.context.lineTo(rect.originX + rect.width, y);
       canvas.context.stroke();
     }
+
+    canvas.context.strokeStyle = "rgba(0, 0, 0, 0)";
+    canvas.context.lineWidth = 1;
+    canvas.context.setLineDash([]);
   }
 }

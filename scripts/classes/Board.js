@@ -4,10 +4,10 @@ import Grid from "./Grid.js";
 export default class Board extends Element {
   _backgroundColor = "#fafafa";
   _borderAlign = "outside";
-  _borderColor = "rgba(180, 180, 180, 1)";
+  _borderColor = "rgba(100, 100, 100, 1)";
   _borderWidth = 2;
   _elements = [];
-  _grid = new Grid();
+  _grids = [new Grid()];
 
   constructor({
     x = 100,
@@ -19,7 +19,7 @@ export default class Board extends Element {
     borderColor,
     borderWidth,
     elements,
-    grid,
+    grids,
   } = {}) {
     super(x, y, w, h);
     this.backgroundColor = backgroundColor ?? this.backgroundColor;
@@ -27,7 +27,7 @@ export default class Board extends Element {
     this.borderColor = borderColor ?? this.borderColor;
     this.borderWidth = borderWidth ?? this.borderWidth;
     this.elements = elements ?? this.elements;
-    this.grid = grid ?? this.grid;
+    this.grids = grids ?? this.grids;
   }
 
   get backgroundColor() {
@@ -50,8 +50,8 @@ export default class Board extends Element {
     return this._elements;
   }
 
-  get grid() {
-    return this._grid;
+  get grids() {
+    return this._grids;
   }
 
   set backgroundColor(backgroundColor) {
@@ -74,43 +74,75 @@ export default class Board extends Element {
     this._elements = elements;
   }
 
-  set grid(grid) {
-    this._grid = grid;
+  set grids(grids) {
+    this._grids = grids;
   }
 
   draw(canvas) {
-    canvas.context.shadowColor = "rgba(0,0,0,0.5)";
-    canvas.context.shadowBlur = 8;
-    canvas.context.shadowOffsetX = 1;
-    canvas.context.shadowOffsetY = 1;
-    const borderRect = this.getBorderRect();
-    canvas.context.fillRect(
-      borderRect.originX,
-      borderRect.originY,
-      borderRect.width,
-      borderRect.height
-    );
-    canvas.context.shadowColor = "rgba(0,0,0,0)";
-    canvas.context.shadowBlur = 0;
-    canvas.context.shadowOffsetX = 0;
-    canvas.context.shadowOffsetY = 0;
+    this.drawShadow(canvas, this.getBorderRect());
 
-    canvas.context.fillStyle = this.backgroundColor;
-    canvas.context.fillRect(this.originX, this.originY, this.width, this.height);
+    this.drawBackground(canvas, this.getUsableRect(), this.backgroundColor);
 
-    canvas.context.strokeStyle = this.borderColor;
-    canvas.context.lineWidth = this.borderWidth;
-    canvas.context.setLineDash([]);
-    const rect = this.getBorderPathRect();
-    canvas.context.strokeRect(rect.originX, rect.originY, rect.width, rect.height);
+    if (this.borderWidth) {
+      this.drawBorder(canvas, this.getBorderPathRect(), this.borderWidth, {
+        color: this.borderColor,
+      });
+    }
 
-    if (this.grid.isEnabled) this.grid.draw(canvas, this.getUsableRect());
+    if (this.grids.length) {
+      this.grids.forEach((grid) => {
+        if (grid.isEnabled) {
+          grid.draw(canvas, this.getUsableRect());
+        }
+      });
+    }
 
     if (this.elements.length) {
       this.elements.forEach((element) => {
         element.draw(canvas, this.getUsableRect());
       });
     }
+  }
+
+  drawBackground(canvas, rect, background) {
+    canvas.context.fillStyle = background;
+    canvas.context.fillRect(
+      rect.originX,
+      rect.originY,
+      rect.width,
+      rect.height
+    );
+    canvas.context.fillStyle = "rgba(0,0,0,0)";
+  }
+
+  drawBorder(canvas, rect, width, options = { color: "rgba(0,0,0,0.5)" }) {
+    canvas.context.strokeStyle = options.color;
+    canvas.context.lineWidth = width;
+    canvas.context.strokeRect(
+      rect.originX,
+      rect.originY,
+      rect.width,
+      rect.height
+    );
+    canvas.context.strokeStyle = "rgba(0,0,0,0)";
+    canvas.context.lineWidth = 1;
+  }
+
+  drawShadow(canvas, rect, options = { color: "rgba(0,0,0,0.5)", blur: 10 }) {
+    canvas.context.shadowColor = options.color;
+    canvas.context.shadowBlur = options.blur;
+    canvas.context.shadowOffsetX = 1;
+    canvas.context.shadowOffsetY = 1;
+    canvas.context.fillRect(
+      rect.originX,
+      rect.originY,
+      rect.width,
+      rect.height
+    );
+    canvas.context.shadowColor = "rgba(0,0,0,0)";
+    canvas.context.shadowBlur = 0;
+    canvas.context.shadowOffsetX = 0;
+    canvas.context.shadowOffsetY = 0;
   }
 
   getBorderRect({ borderAlign = this.borderAlign } = {}) {

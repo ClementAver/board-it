@@ -5,7 +5,15 @@ export default class Picture extends Element {
   _image = new Image();
   _source = "";
 
-  constructor({ x = 100, y = 100, w = 1600, h = 900, backgroundColor, img, src } = {}) {
+  constructor({
+    x = 100,
+    y = 100,
+    w = 1600,
+    h = 900,
+    backgroundColor,
+    img,
+    src,
+  } = {}) {
     super(x, y, w, h);
     this.backgroundColor = backgroundColor ?? this.backgroundColor;
     this.image = img ?? this.image;
@@ -36,7 +44,7 @@ export default class Picture extends Element {
     this._source = source;
   }
 
-  draw(canvas, rect) {
+  draw(canvas, rect = { originX: 0, originY: 0 }) {
     canvas.context.fillStyle = this.backgroundColor;
 
     rect = {
@@ -46,7 +54,12 @@ export default class Picture extends Element {
       height: this.height,
     };
 
-    canvas.context.fillRect(rect.originX, rect.originY, rect.width, rect.height);
+    canvas.context.fillRect(
+      rect.originX,
+      rect.originY,
+      rect.width,
+      rect.height
+    );
 
     const img = new Image();
     img.src = this.source;
@@ -58,5 +71,7 @@ export default class Picture extends Element {
         rect.width,
         rect.height
       );
+
+    canvas.context.fillStyle = "rgba(0,0,0,0)";
   }
 }

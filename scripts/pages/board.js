@@ -2,13 +2,15 @@ import useLeftDrawer from "../hooks/useLeftDrawer.js";
 import Canvas from "../classes/Canvas.js";
 import Board from "../classes/Board.js";
 import Picture from "../classes/Picture.js";
+import Grid from "../classes/Grid.js";
 
 const { toggleLeftDrawerBtn, leftDrawer, updateIcon, toggle } = useLeftDrawer();
 toggleLeftDrawerBtn.addEventListener("click", toggle);
 updateIcon();
 
 const main = document.querySelector("main.board__wrapper");
-const hightlightBeta = getComputedStyle(main).getPropertyValue("--highlight-beta");
+const hightlightBeta =
+  getComputedStyle(main).getPropertyValue("--highlight-beta");
 
 const picture = new Picture({
   x: 0,
@@ -21,13 +23,33 @@ const picture = new Picture({
 
 const elements = [picture];
 
-const boards = [new Board({ elements })];
+const boards = [
+  new Board({
+    elements,
+    borderAlign: "outside",
+    borderWidth: 20,
+    grids: [
+      new Grid({ spacing: 50, borderWidth: 1.25, borderColor: "lightgreen" }),
+      new Grid({ spacing: 25 }),
+    ],
+  }),
+  new Board({
+    y: 1100,
+    borderAlign: "inside",
+    borderWidth: 20,
+    elements,
+    grids: [
+      new Grid({ spacing: 50, borderWidth: 1.25, borderColor: "magenta" }),
+      new Grid({ spacing: 25 }),
+    ],
+  }),
+];
 const canvas = new Canvas({ boards });
 
 const resizeObserver = new ResizeObserver((entries) => {
   for (const _ of entries) {
     canvas.resizeCanvas();
-    canvas.centerCamera()
+    canvas.centerCamera();
   }
 });
 resizeObserver.observe(leftDrawer);
