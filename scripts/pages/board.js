@@ -9,8 +9,7 @@ toggleLeftDrawerBtn.addEventListener("click", toggle);
 updateIcon();
 
 const main = document.querySelector("main.board__wrapper");
-const hightlightBeta =
-  getComputedStyle(main).getPropertyValue("--highlight-beta");
+const hightlightBeta = getComputedStyle(main).getPropertyValue("--highlight-beta");
 
 const picture = new Picture({
   x: 0,
