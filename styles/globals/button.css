@@ -29,8 +29,8 @@ button.border-none:hover {
 }
 
 button.active {
-  color: var(--btn-color-hover);
-  background-color: var(--btn-background-color-hover);
+  color: var(--btn-color-active);
+  background-color: var(--btn-background-color-active);
   box-shadow: var(--shadow-std);
 }
 

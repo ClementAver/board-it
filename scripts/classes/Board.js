@@ -4,8 +4,8 @@ import Grid from "./Grid.js";
 export default class Board extends Element {
   _backgroundColor = "#fafafa";
   _borderAlign = "outside";
-  _borderColor = "rgba(100, 100, 100, 1)";
-  _borderWidth = 2;
+  _borderColor = "rgba(255, 255, 255, 1)";
+  _borderWidth = 10;
   _elements = [];
   _grids = [new Grid()];
 
@@ -106,39 +106,27 @@ export default class Board extends Element {
 
   drawBackground(canvas, rect, background) {
     canvas.context.fillStyle = background;
-    canvas.context.fillRect(
-      rect.originX,
-      rect.originY,
-      rect.width,
-      rect.height
-    );
+    canvas.context.fillRect(rect.originX, rect.originY, rect.width, rect.height);
     canvas.context.fillStyle = "rgba(0,0,0,0)";
   }
 
-  drawBorder(canvas, rect, width, options = { color: "rgba(0,0,0,0.5)" }) {
+  drawBorder(canvas, rect, width, options = { color: "rgba(255, 255, 255, 1)" }) {
     canvas.context.strokeStyle = options.color;
     canvas.context.lineWidth = width;
-    canvas.context.strokeRect(
-      rect.originX,
-      rect.originY,
-      rect.width,
-      rect.height
-    );
+    canvas.context.strokeRect(rect.originX, rect.originY, rect.width, rect.height);
     canvas.context.strokeStyle = "rgba(0,0,0,0)";
     canvas.context.lineWidth = 1;
   }
 
-  drawShadow(canvas, rect, options = { color: "rgba(0,0,0,0.5)", blur: 10 }) {
+  drawShadow(canvas, rect, options = { color: "rgba(0, 0, 0, 0.5)", blur: 10 }) {
+    canvas.context.fillStyle = options.color;
     canvas.context.shadowColor = options.color;
     canvas.context.shadowBlur = options.blur;
     canvas.context.shadowOffsetX = 1;
     canvas.context.shadowOffsetY = 1;
-    canvas.context.fillRect(
-      rect.originX,
-      rect.originY,
-      rect.width,
-      rect.height
-    );
+    canvas.context.fillRect(rect.originX, rect.originY, rect.width, rect.height);
+    canvas.context.clearRect(rect.originX, rect.originY, rect.width, rect.height);
+    canvas.context.fillStyle = "rgba(0,0,0,0)";
     canvas.context.shadowColor = "rgba(0,0,0,0)";
     canvas.context.shadowBlur = 0;
     canvas.context.shadowOffsetX = 0;

@@ -19,9 +19,12 @@
   --btn-color: var(--ternary);
   --btn-background-color: var(--secondary);
   --btn-border-color: var(--secondary);
-  --btn-color-hover: var(--ternary);
-  --btn-background-color-hover: var(--primary);
-  --btn-border-color-hover: var(--primary);
+  --btn-color-hover: var(--highlight-alpha);
+  --btn-background-color-hover: var(--highlight-beta);
+  --btn-border-color-hover: var(--highlight-beta);
+  --btn-color-active: var(--ternary);
+  --btn-background-color-active: var(--primary);
+  --btn-border-color-active: var(--primary);
 
   --link-padding-x: 0.5rem;
   --link-padding-y: 0;

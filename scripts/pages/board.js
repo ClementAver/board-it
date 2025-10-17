@@ -3,11 +3,7 @@ import Canvas from "../classes/Canvas.js";
 import Grid from "../classes/Grid.js";
 import Picture from "../classes/Picture.js";
 import Toolbox from "../classes/Toolbox.js";
-
-const debugBtn = document.getElementById("btn-debug");
-debugBtn.addEventListener("click", () => {
-  Canvas.debug(), Toolbox.debug();
-});
+import debug from "../utils/debug.js";
 
 const picture = new Picture({
   x: 0,
@@ -26,7 +22,7 @@ const boards = [
     borderWidth: 20,
     grids: [
       new Grid({ spacing: 50, borderWidth: 1.25, borderColor: "lightgreen" }),
-      new Grid({ spacing: 25 }),
+      new Grid({ spacing: 25, borderWidth: 0.5 }),
     ],
   }),
   new Board({
@@ -42,4 +38,6 @@ const boards = [
 
 Canvas.boards = boards;
 Canvas.resizeWith(Toolbox.leftDrawer);
-Toolbox.grab("camera").frameAll(Canvas);
+Toolbox.grab("camera", true).frameAll(Canvas);
+
+debug(Canvas);
