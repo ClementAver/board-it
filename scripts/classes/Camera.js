@@ -24,7 +24,6 @@ export default class Camera extends Tool {
     startPan,
   } = {}) {
     super({ cursor, label });
-
     this.isPanning = isPanning ?? this.isPanning;
     this.originX = originX ?? this.originX;
     this.originY = originY ?? this.originY;
@@ -98,9 +97,6 @@ export default class Camera extends Tool {
   initZoom(canvas) {
     canvas.wrapper.addEventListener("wheel", (e) => {
       if (!Toolbox.authorise(this.label)) return;
-      // if (e.ctrlKey) {
-      // e.preventDefault();
-
       const zoomIntensity = 0.1;
       /*
        * Scroll up (deltaY < 0) -> zoom in;
@@ -131,13 +127,11 @@ export default class Camera extends Tool {
       this.originY = mouseY - sceneY * this.scale;
 
       canvas.draw();
-      // }
     });
   }
 
   frameAll(canvas, padding = 40) {
     if (!canvas.boards.length) return;
-
     // Find the rectangle encompassing all content
     let minX = Infinity,
       minY = Infinity,

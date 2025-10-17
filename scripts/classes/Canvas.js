@@ -13,11 +13,15 @@ class Canvas {
     this.canvas.textContent = "Désolé, votre navigateur ne prend pas en charge les canvas.";
     this.wrapper.appendChild(this.canvas);
 
-    this.resizeCanvas();
+    this.resize();
+
+    const camera = Toolbox.grab("camera");
+    camera.initPan(this);
+    camera.initZoom(this);
 
     // Window listeners:
     window.addEventListener("resize", () => {
-      this.resizeCanvas();
+      this.resize();
     });
     window.addEventListener("grab", (e) => {
       if (this.canvas) this.canvas.style.cursor = e.detail.cursor;
@@ -56,6 +60,10 @@ class Canvas {
     this._wrapper = wrapper;
   }
 
+  debug() {
+    console.debug(this);
+  }
+
   draw() {
     /*
      * Resets the camera state to draw background...
@@ -79,20 +87,24 @@ class Canvas {
     }
   }
 
-  resizeCanvas() {
+  resize() {
     const rect = this.wrapper.getBoundingClientRect();
     this.canvas.width = rect.width;
     this.canvas.height = rect.height;
     this.draw();
   }
 
+  resizeWith(element) {
+    new ResizeObserver((entries) => {
+      for (const _ of entries) {
+        this.resize();
+      }
+    }).observe(element);
+  }
+
   toCanvasCoords(clientX, clientY) {
     const rect = this.canvas.getBoundingClientRect();
     return { x: clientX - rect.left, y: clientY - rect.top };
-  }
-
-  debug() {
-    console.debug(this);
   }
 }
 
