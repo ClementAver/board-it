@@ -38,17 +38,22 @@ class Toolbox {
   }
 
   grab(label, emit = false) {
+    // Already handled:
     if (this.handled?.label === label) {
       if (emit) this.emit();
       return this.handled;
-    } else {
-      const tool = this.tools.find((tool) => tool.label === label) ?? null;
-      if (tool instanceof Tool) {
-        this.handled = tool;
-        if (emit) this.emit();
-        return this.handled;
-      }
     }
+    // else:
+    const tool = this.tools.find((tool) => tool.label === label) ?? null;
+    if (tool instanceof Tool) {
+      this.handled = tool;
+      if (emit) this.emit();
+      return this.handled;
+    }
+  }
+
+  authorise(label) {
+    return this.handled.label === label;
   }
 
   emit() {

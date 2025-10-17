@@ -1,4 +1,5 @@
 import Tool from "./Tool.js";
+import Toolbox from "./Toolbox.js";
 
 export default class Camera extends Tool {
   /*
@@ -73,13 +74,15 @@ export default class Camera extends Tool {
 
   initPan(canvas) {
     canvas.canvas.addEventListener("mousedown", (e) => {
+      if (!Toolbox.authorise(this.label)) return;
       this.isPanning = true;
       const p = canvas.toCanvasCoords(e.clientX, e.clientY);
       this.startPan.x = p.x - this.originX;
       this.startPan.y = p.y - this.originY;
     });
 
-    window.addEventListener("mousemove", (e) => {
+    canvas.canvas.addEventListener("mousemove", (e) => {
+      if (!Toolbox.authorise(this.label)) return;
       if (!this.isPanning) return;
       const p = canvas.toCanvasCoords(e.clientX, e.clientY);
       this.originX = p.x - this.startPan.x;
@@ -94,40 +97,41 @@ export default class Camera extends Tool {
 
   initZoom(canvas) {
     canvas.wrapper.addEventListener("wheel", (e) => {
-      if (e.ctrlKey) {
-        e.preventDefault();
+      if (!Toolbox.authorise(this.label)) return;
+      // if (e.ctrlKey) {
+      // e.preventDefault();
 
-        const zoomIntensity = 0.1;
-        /*
-         * Scroll up (deltaY < 0) -> zoom in;
-         * scroll down (deltaY > 0) -> zoom out.
-         */
-        const zoom = e.deltaY < 0 ? 1 + zoomIntensity : 1 - zoomIntensity;
+      const zoomIntensity = 0.1;
+      /*
+       * Scroll up (deltaY < 0) -> zoom in;
+       * scroll down (deltaY > 0) -> zoom out.
+       */
+      const zoom = e.deltaY < 0 ? 1 + zoomIntensity : 1 - zoomIntensity;
 
-        const rect = canvas.canvas.getBoundingClientRect();
+      const rect = canvas.canvas.getBoundingClientRect();
 
-        // Converts the mouse position from viewport coordinates to canvas coordinates.
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+      // Converts the mouse position from viewport coordinates to canvas coordinates.
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-        /*
-         * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
-         * ↳i.e. "unproject" the screen point to the scene before scaling.
-         * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
-         */
-        const sceneX = (mouseX - this.originX) / this.scale;
-        const sceneY = (mouseY - this.originY) / this.scale;
+      /*
+       * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
+       * ↳i.e. "unproject" the screen point to the scene before scaling.
+       * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
+       */
+      const sceneX = (mouseX - this.originX) / this.scale;
+      const sceneY = (mouseY - this.originY) / this.scale;
 
-        // Applies the zoom multiplier to the camera scale.
-        this.scale *= zoom;
+      // Applies the zoom multiplier to the camera scale.
+      this.scale *= zoom;
 
-        // Adjust the camera origin so that the world point (x, y) remains at the same screen position
-        // (Keeps the point under the cursor fixed while zooming).
-        this.originX = mouseX - sceneX * this.scale;
-        this.originY = mouseY - sceneY * this.scale;
+      // Adjust the camera origin so that the world point (x, y) remains at the same screen position
+      // (Keeps the point under the cursor fixed while zooming).
+      this.originX = mouseX - sceneX * this.scale;
+      this.originY = mouseY - sceneY * this.scale;
 
-        canvas.draw();
-      }
+      canvas.draw();
+      // }
     });
   }
 
