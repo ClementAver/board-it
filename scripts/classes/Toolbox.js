@@ -1,17 +1,23 @@
-import Displacer from "./Displacer.js";
+import Camera from "./Camera.js";
 import Selector from "./Selector.js";
+import Tool from "./Tool.js";
 
 class Toolbox {
   _handled = null;
-  _tools = [new Displacer(), new Selector()];
+  _previous = null;
+  _tools = [new Camera(), new Selector()];
 
   constructor({ handled, tools } = {}) {
-    this._handled = handled ?? this._handled;
-    this._tools = tools ?? this._tools;
+    this.handled = handled ?? this._handled;
+    this.tools = tools ?? this._tools;
   }
 
   get handled() {
     return this._handled;
+  }
+
+  get previous() {
+    return this._previous;
   }
 
   get tools() {
@@ -19,15 +25,42 @@ class Toolbox {
   }
 
   set handled(handled) {
+    this.previous = this.handled;
     this._handled = handled;
+  }
+
+  set previous(previous) {
+    this._previous = previous;
   }
 
   set tools(tools) {
     this._tools = tools;
   }
 
-  grab(label) {
-    this.handled = this.tools.find((tool) => tool.label === label) ?? null;
+  grab(label, emit = false) {
+    if (this.handled?.label === label) {
+      if (emit) this.emit();
+      return this.handled;
+    } else {
+      const tool = this.tools.find((tool) => tool.label === label) ?? null;
+      if (tool instanceof Tool) {
+        this.handled = tool;
+        if (emit) this.emit();
+        return this.handled;
+      }
+    }
+  }
+
+  emit() {
+    window.dispatchEvent(
+      new CustomEvent("grab", {
+        detail: { cursor: this.handled.cursor, label: this.handled.label },
+      })
+    );
+  }
+
+  debug() {
+    console.debug(this);
   }
 }
 

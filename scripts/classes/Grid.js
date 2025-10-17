@@ -1,4 +1,5 @@
 import Element from "./Element.js";
+import Toolbox from "./Toolbox.js";
 
 export default class Grid extends Element {
   _borderColor = "rgba(115, 225, 255, 1)";
@@ -67,11 +68,12 @@ export default class Grid extends Element {
   }
 
   draw(canvas, rect) {
+    const camera = Toolbox.grab("camera");
     canvas.context.strokeStyle = this.borderColor;
-    canvas.context.lineWidth = this.borderWidth / canvas.camera.scale;
+    canvas.context.lineWidth = this.borderWidth / camera.scale;
     canvas.context.setLineDash(
       this.dashes.map((dash) => {
-        const nb = dash / canvas.camera.scale;
+        const nb = dash / camera.scale;
         return nb < 5 ? nb : 5;
       })
     );
@@ -80,11 +82,7 @@ export default class Grid extends Element {
     const startY = Math.abs(rect.height % this.spacing) / 2;
 
     // Draws y lines:
-    for (
-      let x = rect.originX + startX;
-      x <= rect.originX + rect.width;
-      x += this.spacing
-    ) {
+    for (let x = rect.originX + startX; x <= rect.originX + rect.width; x += this.spacing) {
       canvas.context.beginPath();
       canvas.context.moveTo(x, rect.originY);
       canvas.context.lineTo(x, rect.originY + rect.height);
@@ -92,11 +90,7 @@ export default class Grid extends Element {
     }
 
     // Draws x lines:
-    for (
-      let y = rect.originY + startY;
-      y <= rect.originY + rect.height;
-      y += this.spacing
-    ) {
+    for (let y = rect.originY + startY; y <= rect.originY + rect.height; y += this.spacing) {
       canvas.context.beginPath();
       canvas.context.moveTo(rect.originX, y);
       canvas.context.lineTo(rect.originX + rect.width, y);

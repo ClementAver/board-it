@@ -3,8 +3,8 @@ export default class Tool {
   _label = undefined;
 
   constructor({ cursor, label } = {}) {
-    this._cursor = cursor ?? this._cursor;
-    this._label = label ?? this._label;
+    this.cursor = cursor ?? this._cursor;
+    this.label = label ?? this._label;
   }
 
   get cursor() {

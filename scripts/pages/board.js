@@ -1,15 +1,22 @@
-import useLeftDrawer from "../hooks/useLeftDrawer.js";
-import Canvas from "../classes/Canvas.js";
 import Board from "../classes/Board.js";
-import Picture from "../classes/Picture.js";
+import Canvas from "../classes/Canvas.js";
 import Grid from "../classes/Grid.js";
+import Picture from "../classes/Picture.js";
+import Toolbox from "../classes/Toolbox.js";
 
-const { toggleLeftDrawerBtn, leftDrawer, updateIcon, toggle } = useLeftDrawer();
+import useLeftDrawer from "../hooks/useLeftDrawer.js";
+
+const { toggleLeftDrawerBtn, leftDrawer, updateToggleIcon, toggle } = useLeftDrawer();
 toggleLeftDrawerBtn.addEventListener("click", toggle);
-updateIcon();
+updateToggleIcon();
 
 const main = document.querySelector("main.board__wrapper");
 const hightlightBeta = getComputedStyle(main).getPropertyValue("--highlight-beta");
+
+const debugBtn = document.getElementById("btn-debug");
+debugBtn.addEventListener("click", () => {
+  Canvas.debug(), Toolbox.debug();
+});
 
 const picture = new Picture({
   x: 0,
@@ -43,12 +50,17 @@ const boards = [
     ],
   }),
 ];
-const canvas = new Canvas({ boards });
+
+Canvas.boards = boards;
+
+const camera = Toolbox.grab("camera");
+camera.initPan(Canvas);
+camera.initZoom(Canvas);
+camera.frameAll(Canvas);
 
 const resizeObserver = new ResizeObserver((entries) => {
   for (const _ of entries) {
-    canvas.resizeCanvas();
-    canvas.centerCamera();
+    Canvas.resizeCanvas();
   }
 });
 resizeObserver.observe(leftDrawer);
