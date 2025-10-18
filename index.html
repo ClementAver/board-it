@@ -10,31 +10,36 @@
 
 <body>
   <header class="main-header">
-    <div class="logo"></div>
+    <img style="width: 3rem; height: 1.45rem; object-fit: cover; margin-right: auto;" src="./favicon.ico"
+      alt="A cat pokes its head through a square cut out of the ceiling.">
+      
     <nav>
       <ul>
-        <li><a href="/index.html" class="rounded-full nav">Boards</a></li>
-        <li><a href="./pages/contact.html" class="rounded-full nav">Contact</a></li>
+        <li><a href="/index.html" class="rounded-full">Boards</a></li>
+        <li><a href="./pages/contact.html" class="rounded-full">Contact</a></li>
       </ul>
     </nav>
   </header>
-  <menu class="left-drawer open">
+
+  <menu data-open="true" id="left-drawer">
     <li>
-      <button type="button" class="camera rounded flex-left gap-lg border-none"><svg xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-icon lucide-move">
+      <button type="button" data-tool="camera" class="flex-left gap-lg rounded bd-transparent w-full"><svg
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-move-icon lucide-move">
           <path d="M12 2v20" />
           <path d="m15 19-3 3-3-3" />
           <path d="m19 9 3 3-3 3" />
           <path d="M2 12h20" />
           <path d="m5 9-3 3 3 3" />
           <path d="m9 5 3-3 3 3" />
-        </svg><span class="label">Caméra</span></button>
+        </svg><span class="label truncate">Caméra</span></button>
     </li>
     <li>
-      <button type="button" class="selector rounded flex-left gap-lg border-none"><svg xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-dashed-icon lucide-square-dashed">
+      <button type="button" data-tool="selector" class="flex-left gap-lg rounded bd-transparent w-full"><svg
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-square-dashed-icon lucide-square-dashed">
           <path d="M5 3a2 2 0 0 0-2 2" />
           <path d="M19 3a2 2 0 0 1 2 2" />
           <path d="M21 19a2 2 0 0 1-2 2" />
@@ -47,12 +52,14 @@
           <path d="M21 9v1" />
           <path d="M3 14v1" />
           <path d="M21 14v1" />
-        </svg><span class="label">Sélectionner</span></button>
+        </svg><span class="label truncate">Sélectionner</span></button>
     </li>
   </menu>
-  <main class="board__wrapper">
-    <button type="button" class="toggle-left-drawer-btn rounded-full flex-center bg-none border-none"
-      aria-label="Déploie / repli le tiroir de gauche."></button>
+
+  <main id="canvas-wrapper">
+    <button id="left-drawer-switch" type="button"
+      class="rounded-full flex-center bd-transparent bg-transparent text-secondary"
+      aria-label="Extend/retract left drawer."></button>
   </main>
 </body>
 

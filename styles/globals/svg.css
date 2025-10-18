@@ -1,5 +1,6 @@
 svg {
-  width: var(--icons-width);
-  height: auto;
   aspect-ratio: 1/1;
+  height: auto;
+  width: var(--icons-width);
+  min-width: var(--icons-width);
 }

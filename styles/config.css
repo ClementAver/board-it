@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
 
 :root {
-  font-size: 16px;
   font-family: "Commissioner";
+  font-size: 16px;
   color: var(--text);
 
   --icons-width: 1.2rem;
@@ -22,9 +22,9 @@
   --btn-color-hover: var(--highlight-alpha);
   --btn-background-color-hover: var(--highlight-beta);
   --btn-border-color-hover: var(--highlight-beta);
-  --btn-color-active: var(--ternary);
-  --btn-background-color-active: var(--primary);
-  --btn-border-color-active: var(--primary);
+  --btn-color-selected: var(--ternary);
+  --btn-background-color-selected: var(--primary);
+  --btn-border-color-selected: var(--primary);
 
   --link-padding-x: 0.5rem;
   --link-padding-y: 0;
@@ -35,8 +35,7 @@
   --link-background-color-hover: var(--highlight-beta);
   --link-border-color-hover: var(--highlight-beta);
 
-  --shadow-std: 1px 1px 4px 2px rgba(0, 0, 0, 0.2);
-  --shadow-std: unset;
+  --shadow-std: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   --left-drawer-padding: 0.5rem;
   --main-header-background-color: var(--secondary-darker);

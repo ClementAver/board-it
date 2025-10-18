@@ -1,0 +1,115 @@
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.text-ternary {
+  color: var(--ternary);
+}
+.text-hl-alpha {
+  color: var(--highlight-alpha);
+}
+.text-hl-beta {
+  color: var(--highlight-beta);
+}
+.text-transparent {
+  color: transparent;
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-secondary {
+  background-color: var(--secondary);
+}
+.bg-ternary {
+  background-color: var(--ternary);
+}
+.bg-hl-alpha {
+  background-color: var(--highlight-alpha);
+}
+.bg-hl-beta {
+  background-color: var(--highlight-beta);
+}
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bd-primary {
+  border: var(--border-width) solid var(--primary);
+}
+.bd-secondary {
+  border: var(--border-width) solid var(--secondary);
+}
+.bd-ternary {
+  border: var(--border-width) solid var(--ternary);
+}
+.bd-hl-alpha {
+  border: var(--border-width) solid var(--highlight-alpha);
+}
+.bd-hl-beta {
+  border: var(--border-width) solid var(--highlight-beta);
+}
+.bd-transparent {
+  border: var(--border-width) solid transparent;
+}
+
+/* ⇊ Hover ⇊ */
+
+.text-primary--hov:hover {
+  color: var(--primary);
+}
+.text-secondary--hov:hover {
+  color: var(--secondary);
+}
+.text-ternary--hov:hover {
+  color: var(--ternary);
+}
+.text-hl-alpha--hov:hover {
+  color: var(--highlight-alpha);
+}
+.text-hl-beta--hov:hover {
+  color: var(--highlight-beta);
+}
+.text-transparent--hov:hover {
+  color: transparent;
+}
+
+.bg-primary--hov:hover {
+  background-color: var(--primary);
+}
+.bg-secondary--hov:hover {
+  background-color: var(--secondary);
+}
+.bg-ternary--hov:hover {
+  background-color: var(--ternary);
+}
+.bg-hl-alpha--hov:hover {
+  background-color: var(--highlight-alpha);
+}
+.bg-hl-beta--hov:hover {
+  background-color: var(--highlight-beta);
+}
+.bg-transparent--hov:hover {
+  background-color: transparent;
+}
+
+.bd-primary--hov:hover {
+  border: var(--border-width) solid var(--primary);
+}
+.bd-secondary--hov:hover {
+  border: var(--border-width) solid var(--secondary);
+}
+.bd-ternary--hov:hover {
+  border: var(--border-width) solid var(--ternary);
+}
+.bd-hl-alpha--hov:hover {
+  border: var(--border-width) solid var(--highlight-alpha);
+}
+.bd-hl-beta--hov:hover {
+  border: var(--border-width) solid var(--highlight-beta);
+}
+.bd-transparent--hov:hover {
+  border: var(--border-width) solid transparent;
+}

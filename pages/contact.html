@@ -4,19 +4,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Board-It | Home</title>
+  <title>Board-It | Contact</title>
+  <link rel="stylesheet" href="../styles/pages/contact.css">
 </head>
 
 <body>
   <header class="main-header">
     <nav>
       <ul>
-        <li><a href="/index.html">Boards</a></li>
-        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="/index.html" class="rounded-full">Boards</a></li>
+        <li><a href="./contact.html" class="rounded-full">Contact</a></li>
       </ul>
     </nav>
   </header>
 
+  <main>
+    <form action="">
+      <h2>Contact</h2>
+      <label>
+        Prénom
+        <input type="text" name="firstname" id="firstname" minlength="1" required></label>
+
+      <label>
+        Nom
+        <input type="text" name="lastname" id="lastname" minlength="1" required></label>
+      <button type="submit" class="rounded bd-none bold">Envoyer</button>
+    </form>
+  </main>
 </body>
+
+
 
 </html>

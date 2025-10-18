@@ -1,24 +1,22 @@
-main.board__wrapper {
+main#canvas-wrapper {
+  align-items: center;
   background-color: var(--ternary);
-  position: relative;
-
   display: flex;
   justify-content: center;
-  align-items: center;
-
   overflow: hidden;
-}
-
-main.board__wrapper .toggle-left-drawer-btn {
-  position: absolute;
-  top: var(--left-drawer-padding);
-  left: var(--left-drawer-padding);
-}
-
-main.board__wrapper .toggle-left-drawer-btn:hover {
-  box-shadow: unset;
+  position: relative;
 }
 
 canvas {
   background-color: var(--ternary);
 }
+
+
+#left-drawer-switch {
+  left: var(--left-drawer-padding);
+  position: absolute;
+  top: var(--left-drawer-padding);
+}
+
+
+

@@ -4,7 +4,7 @@ class Canvas {
   _boards = [];
   _canvas = document.createElement("canvas");
   _context = this.canvas.getContext("2d");
-  _wrapper = document.querySelector("main.board__wrapper");
+  _wrapper = document.getElementById("canvas-wrapper");
 
   constructor({ boards, wrapper } = {}) {
     this.boards = boards ?? this.boards;

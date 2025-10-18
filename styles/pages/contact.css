@@ -16,7 +16,7 @@
 @import url(../utils/miscellaneous.css);
 
 body {
-  background-color: var(--secondary);
+  background-color: var(--ternary);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
