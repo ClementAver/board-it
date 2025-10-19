@@ -1,0 +1,14 @@
+textarea {
+  resize: vertical;
+}
+
+textarea {
+  border-bottom: var(--border-width) solid var(--highlight-alpha);
+  border-left: none;
+  border-right: var(--border-width) solid var(--highlight-alpha);
+  border-top: none;
+  border-radius: var(--border-radius);
+  font-weight: 400;
+  padding: 0.125rem 2rem 0.125rem 0.25rem;
+  width: 100%;
+}

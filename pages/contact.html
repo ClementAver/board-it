@@ -18,16 +18,51 @@
     </nav>
   </header>
 
-  <main>
-    <form action="">
-      <h2>Contact</h2>
-      <label>
-        Prénom
-        <input type="text" name="firstname" id="firstname" minlength="1" required></label>
+  <main class="w-screen flex justify-center items-center">
+    <form action="" class="flex-col gap-md w-full max-w-512 h-fit m-lg">
+      <h2 class="text-center">Contact</h2>
+      <fieldset class="flex wrap gap-lg p-md">
+        <legend>Identité</legend>
+        <label class="flex-col grow">
+          Pseudonyme
+          <div class="validated"><input type="text" name="username" minlength="3" placeholder="Doe" required></div>
+        </label>
+        <label class="flex-col grow">
+          Prénom
+          <div class="validated"><input type="text" name="firstname" minlength="1" placeholder="John"></div>
+        </label>
 
-      <label>
-        Nom
-        <input type="text" name="lastname" id="lastname" minlength="1" required></label>
+        <label class="flex-col grow">
+          Nom
+          <div class="validated"><input type="text" name="lastname" minlength="1" placeholder="Doe"></div>
+        </label>
+
+      </fieldset>
+      <fieldset class="flex wrap gap-lg p-md mb-md">
+        <legend>Coordonnées</legend>
+        <label class="flex-col grow">
+          Courriel
+          <div class="validated"><input type="email" name="email" placeholder="john-doe@email.me" required></div>
+        </label>
+
+        <label class="flex-col grow">
+          <span> N° de téléphone <small class="light">(ITU-T E.123)</small></span>
+          <div class="validated"><input type="tel" name="tel" pattern="^\+[1-9][0-9]{5,14}$" placeholder="+33611223344">
+          </div>
+        </label>
+      </fieldset>
+
+      <label class="flex-col grow">
+        Votre message
+        <div class="validated"><textarea name="message" minlength="3" maxlength="1024"
+            placeholder="Comment puis-je vous aider ?" spellcheck="true" required></textarea></div>
+      </label>
+
+      <article>
+        <span>Le champ est valide.</span>
+        <span>Le champ est requis.</span>
+        <span>Le champ est invalide.</span>
+      </article>
       <button type="submit" class="rounded bd-none bold">Envoyer</button>
     </form>
   </main>

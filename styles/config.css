@@ -83,6 +83,18 @@
   initial-value: rgb(230, 159, 103);
 }
 
+@property --valid {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(56, 182, 51);
+}
+
+@property --invalid {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(207, 59, 59);
+}
+
 /* Firefox do not support rem for properties ATM. */
 /* @property --border-width {
   syntax: "<length>";

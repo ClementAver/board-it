@@ -1,0 +1,62 @@
+.validated {
+  position: relative;
+}
+
+.validated > :invalid {
+  border-right: var(--border-width) solid crimson;
+  border-bottom: var(--border-width) solid crimson;
+}
+.validated > :valid {
+  border-right: var(--border-width) solid limegreen;
+  border-bottom: var(--border-width) solid limegreen;
+}
+.validated > :placeholder-shown {
+  border-color: var(--highlight-alpha);
+}
+.validated > :focus-within {
+  border-color: var(--highlight-alpha);
+}
+
+.validated:has(> input:invalid):after {
+  background-image: url("../../assets/icons/octagon-x.svg");
+  bottom: 0.25rem;
+  content: " ";
+  display: block;
+  height: 1.1rem;
+  position: absolute;
+  right: 0.25rem;
+  width: 1.1rem;
+}
+.validated:has(> input:valid):after {
+  background-image: url("../../assets/icons/circle-check.svg");
+  bottom: 0.25rem;
+  content: " ";
+  display: block;
+  height: 1.1rem;
+  position: absolute;
+  right: 0.25rem;
+  width: 1.1rem;
+}
+
+.validated:has(> textarea:invalid):after {
+  background-image: url("../../assets/icons/octagon-x.svg");
+  background-position: bottom left;
+  top: 0;
+  content: " ";
+  display: block;
+  height: 1.1rem;
+  position: absolute;
+  right: 0.25rem;
+  width: 1.1rem;
+}
+.validated:has(> textarea:valid):after {
+  background-image: url("../../assets/icons/circle-check.svg");
+  background-position: bottom left;
+  top: 0;
+  content: " ";
+  display: block;
+  height: 1.1rem;
+  position: absolute;
+  right: 0.25rem;
+  width: 1.1rem;
+}

@@ -2,8 +2,11 @@
 @import url(../config.css);
 
 @import url(../globals/button.css);
+@import url(../globals/input.css);
+@import url(../globals/label.css);
 @import url(../globals/link.css);
 @import url(../globals/svg.css);
+@import url(../globals/textarea.css);
 
 @import url(../components/main-header.css);
 @import url(../components/menu-left-drawer.css);
@@ -14,6 +17,7 @@
 @import url(../utils/font.css);
 @import url(../utils/spacing.css);
 @import url(../utils/miscellaneous.css);
+@import url(../utils/validated.css);
 
 body {
   background-color: var(--ternary);
