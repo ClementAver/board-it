@@ -16,19 +16,19 @@
 
   --btn-padding-x: 0.5rem;
   --btn-padding-y: 0.5rem;
-  --btn-color: var(--ternary);
+  --btn-color: var(--text);
   --btn-background-color: var(--secondary);
   --btn-border-color: var(--secondary);
   --btn-color-hover: var(--highlight-alpha);
   --btn-background-color-hover: var(--highlight-beta);
   --btn-border-color-hover: var(--highlight-beta);
-  --btn-color-selected: var(--ternary);
+  --btn-color-selected: var(--text);
   --btn-background-color-selected: var(--primary);
   --btn-border-color-selected: var(--primary);
 
   --link-padding-x: 0.5rem;
   --link-padding-y: 0;
-  --link-color: var(--highlight-alpha);
+  --link-color: var(--text);
   --link-background-color: var(--ternary);
   --link-border-color: var(--ternary);
   --link-color-hover: var(--highlight-alpha);
@@ -44,55 +44,61 @@
 @property --text {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(43, 43, 43);
+  initial-value: rgb(220, 220, 220);
+}
+
+@property --input-background {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(60, 90, 120);
 }
 
 @property --primary {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(59, 46, 42);
+  initial-value: rgb(60, 90, 120);
 }
 
 @property --secondary {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(94, 110, 95);
+  initial-value: rgb(100, 120, 140);
 }
 
 @property --secondary-darker {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(62, 75, 63);
+  initial-value: rgb(70, 80, 90);
 }
 
 @property --ternary {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(225, 225, 219);
+  initial-value: rgb(30, 30, 40);
 }
 
 @property --highlight-alpha {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(43, 121, 162);
+  initial-value: rgb(40, 120, 160);
 }
 
 @property --highlight-beta {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(230, 159, 103);
+  initial-value: rgb(230, 160, 100);
 }
 
 @property --valid {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(56, 182, 51);
+  initial-value: rgb(50, 180, 50);
 }
 
 @property --invalid {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(207, 59, 59);
+  initial-value: rgb(210, 60, 60);
 }
 
 /* Firefox do not support rem for properties ATM. */

@@ -1,9 +1,11 @@
 input {
+  background-color: var(--input-background);
   border-bottom: var(--border-width) solid var(--highlight-alpha);
   border-left: none;
   border-radius: var(--border-radius);
   border-right: var(--border-width) solid var(--highlight-alpha);
   border-top: none;
+  color: var(--text);
   font-weight: 400;
   overflow: hidden;
   padding: 0.125rem 2rem 0.125rem 0.25rem;
