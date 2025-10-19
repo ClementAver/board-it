@@ -1,0 +1,5 @@
+fieldset {
+  border: none;
+  border-left: var(--border-width) solid var(--highlight-beta);
+  min-height: auto;
+}

@@ -2,8 +2,10 @@
 @import url(../config.css);
 
 @import url(../globals/button.css);
+@import url(../globals/fieldset.css);
 @import url(../globals/input.css);
 @import url(../globals/label.css);
+@import url(../globals/legend.css);
 @import url(../globals/link.css);
 @import url(../globals/svg.css);
 @import url(../globals/textarea.css);

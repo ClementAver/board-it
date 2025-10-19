@@ -25,3 +25,7 @@
 .black {
   font-weight: 900;
 }
+
+.whitespace-nowrap {
+white-space: nowrap;
+}
