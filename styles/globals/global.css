@@ -1,0 +1,4 @@
+:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}

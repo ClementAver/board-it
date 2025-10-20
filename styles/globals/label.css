@@ -2,3 +2,7 @@ label {
   color: var(--highlight-alpha);
   font-weight: 500;
 }
+
+label:has(:disabled) {
+  opacity: var(--disabled-opacity);
+}

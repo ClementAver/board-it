@@ -1,7 +1,8 @@
 @import url(../reset.css);
-@import url(../config--dark.css);
+@import url(../config.css);
 
 @import url(../globals/button.css);
+@import url(../globals/global.css);
 @import url(../globals/link.css);
 @import url(../globals/svg.css);
 

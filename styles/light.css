@@ -1,0 +1,43 @@
+@media (prefers-color-scheme: light) {
+  @property --text {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(40, 40, 40);
+  }
+
+  @property --text-swath {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(220, 220, 220);
+  }
+
+  @property --input-background {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(240, 240, 240);
+  }
+
+  @property --primary {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(60, 50, 40);
+  }
+
+  @property --secondary {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(90, 110, 90);
+  }
+
+  @property --secondary-darker {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(60, 70, 60);
+  }
+
+  @property --ternary {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgb(220, 220, 220);
+  }
+}
