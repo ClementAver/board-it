@@ -27,5 +27,5 @@ button.selected {
   padding: 0;
   position: fixed;
   right: 0.2rem;
-  top: 2.5rem;
+  bottom: 0.4rem;
 }
