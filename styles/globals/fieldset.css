@@ -1,5 +1,5 @@
 fieldset {
   border: none;
-  border-left: var(--border-width) solid var(--highlight-beta);
+  border-left: var(--border-width) solid var(--accent-beta);
   min-height: auto;
 }

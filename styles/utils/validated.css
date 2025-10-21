@@ -11,10 +11,10 @@
   border-bottom: var(--border-width) solid limegreen;
 }
 .validated > :placeholder-shown {
-  border-color: var(--highlight-alpha);
+  border-color: var(--accent-alpha);
 }
 .validated > :focus-within {
-  border-color: var(--highlight-alpha);
+  border-color: var(--accent-alpha);
 }
 
 .validated:has(> input:invalid):after {

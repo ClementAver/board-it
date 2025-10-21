@@ -2,42 +2,42 @@
   @property --text {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(40, 40, 40);
+    initial-value: hsl(0, 0%, 10%);
   }
 
   @property --text-swath {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(220, 220, 220);
+    initial-value: hsl(0, 0%, 90%);
   }
 
   @property --input-background {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(240, 240, 240);
+    initial-value: hsl(0, 0%, 95%);
   }
 
   @property --primary {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(60, 50, 40);
+    initial-value: hsl(30, 20%, 20%);
   }
 
   @property --secondary {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(90, 110, 90);
+    initial-value: hsl(120, 10%, 40%);
   }
 
   @property --secondary-darker {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(60, 70, 60);
+    initial-value: hsl(120, 10%, 25%);
   }
 
   @property --ternary {
     syntax: "<color>";
     inherits: false;
-    initial-value: rgb(220, 220, 220);
+    initial-value: hsl(0, 0%, 90%);
   }
 }

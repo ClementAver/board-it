@@ -23,21 +23,21 @@
   --btn-color: var(--text-swath);
   --btn-background-color: var(--secondary);
   --btn-border-color: var(--secondary);
-  --btn-color-hover: var(--highlight-alpha);
-  --btn-background-color-hover: var(--highlight-beta);
-  --btn-border-color-hover: var(--highlight-beta);
-  --btn-color-selected: var(--highlight-beta);
+  --btn-color-hover: var(--primary);
+  --btn-background-color-hover: var(--accent-beta);
+  --btn-border-color-hover: var(--accent-beta);
+  --btn-color-selected: var(--accent-beta);
   --btn-background-color-selected: var(--primary);
   --btn-border-color-selected: var(--primary);
 
   --link-padding-x: 0.5rem;
   --link-padding-y: 0;
-  --link-color: var(--highlight-alpha);
+  --link-color: var(--text);
   --link-background-color: var(--ternary);
   --link-border-color: var(--ternary);
-  --link-color-hover: var(--highlight-alpha);
-  --link-background-color-hover: var(--highlight-beta);
-  --link-border-color-hover: var(--highlight-beta);
+  --link-color-hover: var(--primary);
+  --link-background-color-hover: var(--accent-beta);
+  --link-border-color-hover: var(--accent-beta);
 
   --shadow-std: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --disabled-opacity: 0.5;
@@ -46,26 +46,26 @@
   --main-header-background-color: var(--secondary-darker);
 }
 
-@property --highlight-alpha {
+@property --accent-alpha {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(40, 120, 160);
+  initial-value: hsl(200, 60%, 50%);
 }
 
-@property --highlight-beta {
+@property --accent-beta {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(230, 160, 100);
+  initial-value: hsl(30, 70%, 60%);
 }
 
 @property --valid {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(50, 180, 50);
+  initial-value: limegreen;
 }
 
 @property --invalid {
   syntax: "<color>";
   inherits: false;
-  initial-value: rgb(210, 60, 60);
+  initial-value: crimson;
 }
