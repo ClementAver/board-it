@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
-@import url(./light.css);
-@import url(./dark.css);
 
 :root {
   color-scheme: light dark;
@@ -44,7 +42,24 @@
 
   --left-drawer-padding: 0.5rem;
   --main-header-background-color: var(--secondary-darker);
+
+  --text: light-dark(hsl(0, 0%, 10%), hsl(0, 0%, 90%));
+  --text-swath: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 90%));
+  --input-background: light-dark(hsl(0, 0%, 95%), hsl(0, 0%, 20%));
+  --primary: light-dark(hsl(30, 20%, 20%), hsl(30, 90%, 20%));
+  --secondary: light-dark(hsl(120, 10%, 40%), hsl(240, 10%, 40%));
+  --secondary-darker: light-dark(hsl(120, 10%, 25%), hsl(240, 10%, 25%));
+  --ternary: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 10%));
 }
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Commons */
 
 @property --accent-alpha {
   syntax: "<color>";

@@ -1,0 +1,22 @@
+[data-theme-switch-btn] {
+  align-items: center;
+  background-color: var(--secondary);
+  border-radius: 9999px;
+  display: flex;
+  justify-content: start;
+  margin-right: 1rem;
+  padding: calc(0.5rem - 2px);
+  width: 2.5rem;
+}
+
+[data-theme-switch-btn] div {
+  background-color: var(--secondary-darker);
+  border-radius: 9999px;
+  height: 0.45rem;
+  min-width: 0.45rem;
+  width: 0.45rem;
+}
+
+[data-theme="dark"] [data-theme-switch-btn] {
+  justify-content: end;
+}
