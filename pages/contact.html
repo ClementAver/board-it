@@ -15,7 +15,7 @@
       alt="A cat pokes its head through a square cut out of the ceiling.">
 
     <button data-theme-switch-btn type="button" aria-label="Toggles Dark theme.">
-      <div></div>
+      <div data-theme-switch-handle></div>
     </button>
 
     <nav>
@@ -44,7 +44,7 @@
 
         <label class="flex-col grow">
           Nom
-          <div class="validated"><input type="text" name="lastname" minlength="1" placeholder="Doe"></div>
+          <div class="validated"><input type="text" name="lastname" minlength="1" placeholder="Doe" disabled></div>
         </label>
       </fieldset>
 
@@ -67,10 +67,10 @@
       <label class="flex-col grow">
         Votre message
         <div class="validated"><textarea name="message" minlength="3" maxlength="1024"
-            placeholder="Comment puis-je vous aider ?" spellcheck="true" required></textarea></div>
+            placeholder="Comment puis-je vous aider ?" spellcheck="true" required disabled></textarea></div>
       </label>
 
-      <button type="submit" class="rounded bd-none bold">Envoyer</button>
+      <button type="submit" class="rounded bd-none bold" disabled>Envoyer</button>
     </form>
 
     <script>

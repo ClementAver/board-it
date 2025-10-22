@@ -3,20 +3,32 @@
   background-color: var(--secondary);
   border-radius: 9999px;
   display: flex;
+  height: 1.45rem;
   justify-content: start;
   margin-right: 1rem;
-  padding: calc(0.5rem - 2px);
+  padding-inline: 0;
+  --theme-switch-btn-translate: 0;
   width: 2.5rem;
 }
 
-[data-theme-switch-btn] div {
-  background-color: var(--secondary-darker);
-  border-radius: 9999px;
-  height: 0.45rem;
-  min-width: 0.45rem;
-  width: 0.45rem;
+[data-theme-switch-btn]:hover {
+  color: var(--btn-background-color-hover) !important;
 }
 
 [data-theme="dark"] [data-theme-switch-btn] {
-  justify-content: end;
+  --theme-switch-btn-translate: 1.05rem;
+}
+
+[data-theme-switch-handle] {
+  background-color: var(--secondary-darker);
+  border-radius: 9999px;
+  height: 1.2rem;
+  min-width: 1.2rem;
+  transform: translateX(var(--theme-switch-btn-translate));
+  transition: transform 0.3s ease-in-out;
+  width: 1.2rem;
+}
+
+[data-theme-switch-handle] svg {
+  transform: scale(0.75);
 }
