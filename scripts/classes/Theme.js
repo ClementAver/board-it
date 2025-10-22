@@ -1,14 +1,18 @@
 class Theme {
   _currentTheme = null;
+  _moon = document.getElementById("theme-moon");
   _prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  _sun = document.getElementById("theme-sun");
   _switchBtn = document.querySelector("[data-theme-switch-btn]");
   _switchHandle = document.querySelector("[data-theme-switch-handle]");
 
-  constructor({ currentTheme, prefersDark, switchBtn, switchHandle } = {}) {
-    this.currentTheme = currentTheme ?? this._currentTheme;
-    this.prefersDark = prefersDark ?? this._prefersDark;
-    this.switchBtn = switchBtn ?? this._switchBtn;
-    this.switchHandle = switchHandle ?? this._switchHandle;
+  constructor({ currentTheme, moon, prefersDark, sun, switchBtn, switchHandle } = {}) {
+    this.currentTheme = currentTheme ?? this.currentTheme;
+    this.moon = moon ?? this.moon;
+    this.prefersDark = prefersDark ?? this.prefersDark;
+    this.sun = sun ?? this.sun;
+    this.switchBtn = switchBtn ?? this.switchBtn;
+    this.switchHandle = switchHandle ?? this.switchHandle;
 
     this.switchBtn.addEventListener("click", () => {
       this.currentTheme =
@@ -26,8 +30,16 @@ class Theme {
     return this._currentTheme;
   }
 
+  get moon() {
+    return this._moon;
+  }
+
   get prefersDark() {
     return this._prefersDark;
+  }
+
+  get sun() {
+    return this._sun;
   }
 
   get switchBtn() {
@@ -42,8 +54,16 @@ class Theme {
     this._currentTheme = currentTheme;
   }
 
+  set moon(moon) {
+    this._moon = moon;
+  }
+
   set prefersDark(prefersDark) {
     this._prefersDark = prefersDark;
+  }
+
+  set sun(sun) {
+    this._sun = sun;
   }
 
   set switchBtn(switchBtn) {
@@ -73,19 +93,15 @@ class Theme {
     this.updateIcon(theme);
   }
 
-  // TODO : XSS -> to be refactored.
   updateIcon(theme) {
     const pressed = theme === "dark" ? true : false;
+
     if (pressed) {
-      this.switchHandle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon-icon lucide-moon" viewBox="0 0 24 24">
-  <path d="M21 12a9 9 0 1 1-9-9v1a6 6 0 0 0 8 8z"/>
-</svg>`;
+      this.sun.style.display = "none";
+      this.moon.style.display = "block";
     } else {
-      this.switchHandle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun-icon lucide-sun" viewBox="0 0 24 24">
-  <circle cx="12" cy="12" r="4"/>
-  <path d="M12 2v2M12 20v2M5 5l1 1M18 18l1 1M2 12h2M20 12h2M6 18l-1 1M19 5l-1 1"/>
-</svg>
-`;
+      this.sun.style.display = "block";
+      this.moon.style.display = "none";
     }
   }
 }

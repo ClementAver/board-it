@@ -30,5 +30,14 @@
 }
 
 [data-theme-switch-handle] svg {
-  transform: scale(0.75);
+  animation: fade-in 0.3s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(0.75);
+  }
 }
