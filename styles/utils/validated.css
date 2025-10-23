@@ -22,20 +22,20 @@
   bottom: 0.25rem;
   content: " ";
   display: block;
-  height: 1.1rem;
+  height: 1.125rem;
   position: absolute;
   right: 0.25rem;
-  width: 1.1rem;
+  width: 1.125rem;
 }
 .validated:has(> input:valid):after {
   background-image: url("../../assets/icons/circle-check.svg");
   bottom: 0.25rem;
   content: " ";
   display: block;
-  height: 1.1rem;
+  height: 1.125rem;
   position: absolute;
   right: 0.25rem;
-  width: 1.1rem;
+  width: 1.125rem;
 }
 
 .validated:has(> textarea:invalid):after {
@@ -44,10 +44,10 @@
   top: 0;
   content: " ";
   display: block;
-  height: 1.1rem;
+  height: 1.125rem;
   position: absolute;
   right: 0.25rem;
-  width: 1.1rem;
+  width: 1.125rem;
 }
 .validated:has(> textarea:valid):after {
   background-image: url("../../assets/icons/circle-check.svg");
@@ -55,8 +55,8 @@
   top: 0;
   content: " ";
   display: block;
-  height: 1.1rem;
+  height: 1.125rem;
   position: absolute;
   right: 0.25rem;
-  width: 1.1rem;
+  width: 1.125rem;
 }

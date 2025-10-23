@@ -34,6 +34,6 @@ button.selected {
   border: none;
   padding: 0;
   position: fixed;
-  right: 0.2rem;
-  bottom: 0.4rem;
+  right: 0.25rem;
+  bottom: 0.5rem;
 }

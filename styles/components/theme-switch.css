@@ -20,24 +20,20 @@
 }
 
 [data-theme-switch-handle] {
+  align-items: center;
   background-color: var(--secondary-darker);
   border-radius: 9999px;
-  height: 1.2rem;
-  min-width: 1.2rem;
+  display: flex;
+  height: 1.125rem;
+  justify-content: center;
+  min-width: 1.125rem;
   transform: translateX(var(--theme-switch-btn-translate));
   transition: transform 0.3s ease-in-out;
-  width: 1.2rem;
+  width: 1.125rem;
 }
 
 [data-theme-switch-handle] svg {
-  animation: fade-in 0.3s ease-in-out forwards;
-}
-
-@keyframes fade-in {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(0.75);
-  }
+  min-width: 0;
+  width: 100%;
+  animation: scale-0-75 0.3s ease-in-out forwards;
 }

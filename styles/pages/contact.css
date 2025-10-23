@@ -1,6 +1,7 @@
 @import url(../reset.css);
 @import url(../config.css);
 @import url(../theme.css);
+@import url(../animation.css);
 
 @import url(../globals/button.css);
 @import url(../globals/fieldset.css);
@@ -17,6 +18,7 @@
 @import url(../components/main-board.css);
 @import url(../components/theme-switch.css);
 
+@import url(../utils/animated.css);
 @import url(../utils/border.css);
 @import url(../utils/color.css);
 @import url(../utils/font.css);

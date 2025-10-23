@@ -1,0 +1,28 @@
+@keyframes scale-0-75 {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(0.75);
+  }
+}
+
+@keyframes bounce-up {
+  0% {
+    transform: translateY(0.5rem);
+    opacity: 0;
+  }
+
+  75% {
+    transform: translateY(-0.125rem);
+  }
+
+  85% {
+    transform: translateY(-0.125rem);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
