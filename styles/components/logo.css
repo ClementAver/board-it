@@ -1,0 +1,10 @@
+#logo {
+  color: var(--text-swath);
+  margin-left: 0.6rem;
+  margin-right: auto;
+  transform: scale(1.25);
+}
+
+#logo:hover {
+  color: var(--accent-beta);
+}

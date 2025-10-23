@@ -13,6 +13,7 @@
 @import url(../globals/svg.css);
 @import url(../globals/textarea.css);
 
+@import url(../components/logo.css);
 @import url(../components/main-header.css);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
