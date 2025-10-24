@@ -12,6 +12,7 @@
 @import url(../components/main-header.css);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
+@import url(../components/push-to-move.css);
 @import url(../components/theme-switch.css);
 
 @import url(../utils/animated.css);
