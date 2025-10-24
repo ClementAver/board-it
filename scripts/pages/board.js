@@ -5,6 +5,7 @@ import Picture from "../classes/Picture.js";
 import Toolbox from "../classes/Toolbox.js";
 import debug from "../utils/debug.js";
 import Theme from "../classes/Theme.js";
+import PushToMove from "../classes/PushToMove.js";
 
 Theme.initTheme();
 

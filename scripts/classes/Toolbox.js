@@ -112,6 +112,8 @@ class Toolbox {
   }
 
   grab(label, emit = false) {
+    if (!label) return;
+
     // Already handled:
     if (this.handled?.label === label) {
       if (emit) this.emit();
