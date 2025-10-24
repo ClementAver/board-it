@@ -1,10 +1,13 @@
 a:has(#logo-header) {
   color: var(--text-swath);
-  margin-left: 0.55rem;
+  margin-left: 0.6rem;
   margin-right: auto;
-  transform: scale(1.25);
 }
 
 a:has(#logo-header:hover) {
   color: var(--accent-beta);
+}
+
+#logo-header {
+    transform: scale(1.5) translateY(2px);
 }
