@@ -68,7 +68,7 @@ export default class Grid extends Element {
   }
 
   draw(canvas, rect) {
-    const camera = Toolbox.grab("camera");
+    const camera = Toolbox.useSilent("camera");
     canvas.context.strokeStyle = this.borderColor;
     canvas.context.lineWidth = this.borderWidth / camera.scale;
     canvas.context.setLineDash(

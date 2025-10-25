@@ -120,16 +120,32 @@ class Toolbox {
       return this.handled;
     }
     // else:
-    const tool = this.tools.find((tool) => tool.label === label) ?? null;
-    if (tool instanceof Tool) {
+    const tool = this.tools.find((tool) => tool.label === label);
+    if (tool) {
       this.handled = tool;
       if (emit) this.emit();
       return this.handled;
     }
   }
 
-  authorise(label) {
-    return this.handled.label === label;
+  grabPrevious(emit = false) {
+    if (!this.previous) return;
+    this.handled = this.previous;
+    if (emit) this.emit();
+    return this.handled;
+  }
+
+  useSilent(label) {
+    if (!label) return;
+
+    const tool = this.tools.find((tool) => tool.label === label);
+    if (tool) {
+      return tool;
+    }
+  }
+
+  isHandled(label) {
+    return this.handled?.label === label;
   }
 
   emit() {

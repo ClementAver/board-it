@@ -15,7 +15,7 @@ class Canvas {
 
     this.resize();
 
-    const camera = Toolbox.grab("camera");
+    const camera = Toolbox.useSilent("camera");
     camera.initPan(this);
     camera.initZoom(this);
 
@@ -76,9 +76,9 @@ class Canvas {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     // Applies the camera state (zoom + pan).
-    const camera = Toolbox.grab("camera");
-
+    const camera = Toolbox.useSilent("camera");
     this.context.setTransform(camera.scale, 0, 0, camera.scale, camera.originX, camera.originY);
+ 
 
     if (this.boards.length) {
       this.boards.forEach((board) => {

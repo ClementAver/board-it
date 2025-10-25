@@ -13,7 +13,7 @@ class PushToMove {
     });
 
     window.addEventListener("keyup", (e) => {
-      if (e.key === " ") Toolbox.grab(Toolbox.previous?.label, true);
+      if (e.key === " ") Toolbox.grabPrevious(true);
     });
   }
 
@@ -26,4 +26,4 @@ class PushToMove {
   }
 }
 
-export default new PushToMove()
+export default new PushToMove();

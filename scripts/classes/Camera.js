@@ -73,7 +73,7 @@ export default class Camera extends Tool {
 
   initPan(canvas) {
     canvas.canvas.addEventListener("mousedown", (e) => {
-      if (!Toolbox.authorise(this.label)) return;
+      if (!Toolbox.isHandled(this.label)) return;
       this.isPanning = true;
       const p = canvas.toCanvasCoords(e.clientX, e.clientY);
       this.startPan.x = p.x - this.originX;
@@ -81,7 +81,7 @@ export default class Camera extends Tool {
     });
 
     canvas.canvas.addEventListener("mousemove", (e) => {
-      if (!Toolbox.authorise(this.label)) return;
+      if (!Toolbox.isHandled(this.label)) return;
       if (!this.isPanning) return;
       const p = canvas.toCanvasCoords(e.clientX, e.clientY);
       this.originX = p.x - this.startPan.x;
@@ -96,7 +96,7 @@ export default class Camera extends Tool {
 
   initZoom(canvas) {
     canvas.wrapper.addEventListener("wheel", (e) => {
-      if (!Toolbox.authorise(this.label)) return;
+      if (!Toolbox.isHandled(this.label)) return;
       const zoomIntensity = 0.1;
       /*
        * Scroll up (deltaY < 0) -> zoom in;
