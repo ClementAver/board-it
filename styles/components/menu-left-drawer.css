@@ -12,6 +12,7 @@ menu#left-drawer[data-open="true"] {
     var(--icons-width) + (var(--left-drawer-padding) + var(--btn-padding-x) + var(--border-width)) *
       2
   );
+  padding: var(--left-drawer-padding);
   width: calc(
     var(--icons-width) + (var(--left-drawer-padding) + var(--btn-padding-x) + var(--border-width)) *
       2
@@ -28,8 +29,8 @@ menu#left-drawer[data-open="true"] > * {
   transform: translateX(0);
 }
 
-menu#left-drawer li {
-  padding: 0 var(--left-drawer-padding) var(--left-drawer-padding);
+menu#left-drawer li:not(:last-of-type) {
+  margin-bottom: var(--spacing-sm);
 }
 
 menu#left-drawer .label {
@@ -37,7 +38,7 @@ menu#left-drawer .label {
 }
 
 @media (min-width: 1536px) {
-  menu#left-drawer[data-open="true"]  {
+  menu#left-drawer[data-open="true"] {
     max-width: 16rem;
     width: 16rem;
   }

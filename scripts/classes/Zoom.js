@@ -10,7 +10,11 @@ class Zoom {
     this.zoomInBtn = zoomInBtn ?? this.zoomInBtn;
     this.zoomOutBtn = zoomOutBtn ?? this.zoomOutBtn;
 
-    this.zoomBtn.addEventListener("click", () => Toolbox.grab("camera"));
+    this.zoomBtn.addEventListener("click", () => {
+      Toolbox.useSilent("camera").cursor = "zoom-in";
+      Toolbox.grab("camera");
+    });
+
     this.zoomInBtn.addEventListener("click", () => Toolbox.useSilent("camera").zoomIn(Canvas));
     this.zoomOutBtn.addEventListener("click", () => Toolbox.useSilent("camera").zoomOut(Canvas));
   }

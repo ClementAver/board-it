@@ -6,8 +6,11 @@ class Pan {
 
   constructor({ panBtn } = {}) {
     this.panBtn = panBtn ?? this.panBtn;
-    
-    this.panBtn.addEventListener("click", () => Toolbox.grab("camera"));
+
+    this.panBtn.addEventListener("click", () => {
+      Toolbox.useSilent("camera").cursor = "move";
+      Toolbox.grab("camera");
+    });
   }
 
   get panBtn() {
