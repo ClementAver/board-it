@@ -145,7 +145,7 @@ export default class Camera extends Tool {
 
       switch (e.code) {
         case "ControlLeft":
-          this.cursor = "zoom-in";
+          e.altKey ? (this.cursor = "zoom-out") : (this.cursor = "zoom-in");
           Toolbox.grab(this.label, { skipPrevious: true });
           break;
 
@@ -185,9 +185,13 @@ export default class Camera extends Tool {
           break;
 
         case "AltLeft":
-          if (Toolbox.isHandled(this.label) && this.cursor === "zoom-out") {
-            this.cursor = "zoom-in";
-            Toolbox.grab(this.label, { skipPrevious: true });
+          if (Toolbox.isHandled(this.label)) {
+            if (this.cursor === "zoom-out") {
+              this.cursor = "zoom-in";
+              Toolbox.grab(this.label, { skipPrevious: true });
+            } else if (!e.ctrlKey) {
+              if (!this.isLocked) Toolbox.grabPrevious();
+            }
           }
           break;
 
