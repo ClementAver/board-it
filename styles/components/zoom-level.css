@@ -1,0 +1,21 @@
+#zoom-level {
+  display: grid;
+  gap: inherit;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr 1fr;
+}
+
+[data-widget="zoom-in"],
+[data-widget="zoom-out"] {
+  height: 0.75rem;
+}
+
+#zoom-level > div {
+  align-items: center;
+  display: flex;
+  grid-column-start: 1;
+  grid-row-end: span 2;
+  grid-row-start: 1;
+  justify-content: center;
+  padding-inline: var(--spacing-sm);
+}

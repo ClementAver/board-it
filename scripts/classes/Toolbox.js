@@ -16,11 +16,12 @@ class Toolbox {
     this.tools = tools ?? this._tools;
 
     this.cameraBtn.addEventListener("click", () => {
-      this.grab("camera", true);
+      this.grab("camera").isLocked = true;
     });
 
     this.selectorBtn.addEventListener("click", () => {
-      this.grab("selector", true);
+      this.grab("camera").isLocked = false;
+      this.grab("selector");
     });
 
     this.toggleLeftDrawerBtn.addEventListener("click", () => {
@@ -111,27 +112,29 @@ class Toolbox {
     }
   }
 
-  grab(label, emit = false) {
+  grab(label, { skipPrevious = false } = {}) {
     if (!label) return;
 
     // Already handled:
     if (this.handled?.label === label) {
-      if (emit) this.emit();
+      if (!skipPrevious) this.previous = this.handled;
+      this.emit();
       return this.handled;
     }
+
     // else:
     const tool = this.tools.find((tool) => tool.label === label);
     if (tool) {
       this.handled = tool;
-      if (emit) this.emit();
+      this.emit();
       return this.handled;
     }
   }
 
-  grabPrevious(emit = false) {
+  grabPrevious() {
     if (!this.previous) return;
     this.handled = this.previous;
-    if (emit) this.emit();
+    this.emit();
     return this.handled;
   }
 

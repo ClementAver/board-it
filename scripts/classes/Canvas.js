@@ -15,9 +15,7 @@ class Canvas {
 
     this.resize();
 
-    const camera = Toolbox.useSilent("camera");
-    camera.initPan(this);
-    camera.initZoom(this);
+    Toolbox.useSilent("camera").initKeyboardActions(this);
 
     // Window listeners:
     window.addEventListener("resize", () => {

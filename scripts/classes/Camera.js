@@ -13,6 +13,8 @@ export default class Camera extends Tool {
   _originY = 0;
   _scale = 1;
   _startPan = { x: 0, y: 0 };
+  _zoomIntensity = 0.1;
+  _isLocked = false;
 
   constructor({
     cursor = "move",
@@ -22,13 +24,21 @@ export default class Camera extends Tool {
     originY,
     scale,
     startPan,
+    zoomIntensity,
+    isLocked,
   } = {}) {
     super({ cursor, label });
+    this.isLocked = isLocked ?? this.isLocked;
     this.isPanning = isPanning ?? this.isPanning;
     this.originX = originX ?? this.originX;
     this.originY = originY ?? this.originY;
     this.scale = scale ?? this.scale;
     this.startPan = startPan ?? this.startPan;
+    this.zoomIntensity = zoomIntensity ?? this.zoomIntensity;
+  }
+
+  get isLocked() {
+    return this._isLocked;
   }
 
   get isPanning() {
@@ -51,6 +61,14 @@ export default class Camera extends Tool {
     return this._startPan;
   }
 
+  get zoomIntensity() {
+    return this._zoomIntensity;
+  }
+
+  set isLocked(isLocked) {
+    this._isLocked = isLocked;
+  }
+
   set isPanning(isPanning) {
     this._isPanning = isPanning;
   }
@@ -64,6 +82,8 @@ export default class Camera extends Tool {
   }
 
   set scale(scale) {
+    if (scale < 0.05) scale = 0.05;
+    if (scale > 5) scale = 5;
     this._scale = scale;
   }
 
@@ -71,63 +91,8 @@ export default class Camera extends Tool {
     this._startPan = startPan;
   }
 
-  initPan(canvas) {
-    canvas.canvas.addEventListener("mousedown", (e) => {
-      if (!Toolbox.isHandled(this.label)) return;
-      this.isPanning = true;
-      const p = canvas.toCanvasCoords(e.clientX, e.clientY);
-      this.startPan.x = p.x - this.originX;
-      this.startPan.y = p.y - this.originY;
-    });
-
-    canvas.canvas.addEventListener("mousemove", (e) => {
-      if (!Toolbox.isHandled(this.label)) return;
-      if (!this.isPanning) return;
-      const p = canvas.toCanvasCoords(e.clientX, e.clientY);
-      this.originX = p.x - this.startPan.x;
-      this.originY = p.y - this.startPan.y;
-      canvas.draw();
-    });
-
-    window.addEventListener("mouseup", () => {
-      this.isPanning = false;
-    });
-  }
-
-  initZoom(canvas) {
-    canvas.wrapper.addEventListener("wheel", (e) => {
-      if (!Toolbox.isHandled(this.label)) return;
-      const zoomIntensity = 0.1;
-      /*
-       * Scroll up (deltaY < 0) -> zoom in;
-       * scroll down (deltaY > 0) -> zoom out.
-       */
-      const zoom = e.deltaY < 0 ? 1 + zoomIntensity : 1 - zoomIntensity;
-
-      const rect = canvas.canvas.getBoundingClientRect();
-
-      // Converts the mouse position from viewport coordinates to canvas coordinates.
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      /*
-       * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
-       * ↳i.e. "unproject" the screen point to the scene before scaling.
-       * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
-       */
-      const sceneX = (mouseX - this.originX) / this.scale;
-      const sceneY = (mouseY - this.originY) / this.scale;
-
-      // Applies the zoom multiplier to the camera scale.
-      this.scale *= zoom;
-
-      // Adjust the camera origin so that the world point (x, y) remains at the same screen position
-      // (Keeps the point under the cursor fixed while zooming).
-      this.originX = mouseX - sceneX * this.scale;
-      this.originY = mouseY - sceneY * this.scale;
-
-      canvas.draw();
-    });
+  set zoomIntensity(zoomIntensity) {
+    this._zoomIntensity = zoomIntensity;
   }
 
   frameAll(canvas, padding = 40) {
@@ -164,6 +129,177 @@ export default class Camera extends Tool {
     this.originX = cw / 2 - centerX * this.scale;
     this.originY = ch / 2 - centerY * this.scale;
 
+    canvas.draw();
+  }
+
+  initKeyboardActions(canvas) {
+    function logKeys(e) {
+      console.log(`${e.type} → ${e.code} [altKey: ${e.altKey}] [ctrlKey: ${e.ctrlKey}]`);
+    }
+
+    let isSpaceKey = false;
+
+    window.addEventListener("keydown", (e) => {
+      e.preventDefault();
+      logKeys(e);
+
+      switch (e.code) {
+        case "ControlLeft":
+          this.cursor = "zoom-in";
+          Toolbox.grab(this.label, { skipPrevious: true });
+          break;
+
+        case "AltLeft":
+          if (Toolbox.isHandled(this.label) && this.cursor === "zoom-in") {
+            this.cursor = "zoom-out";
+            Toolbox.grab(this.label, { skipPrevious: true });
+          }
+          break;
+
+        case "Space":
+          isSpaceKey = true;
+          this.cursor = "move";
+          Toolbox.grab(this.label, { skipPrevious: true });
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      e.preventDefault();
+      logKeys(e);
+
+      switch (e.code) {
+        case "ControlLeft":
+          if (Toolbox.isHandled(this.label)) {
+            if (isSpaceKey) {
+              this.cursor = "move";
+              Toolbox.grab(this.label, { skipPrevious: true });
+            } else {
+              if (!this.isLocked) Toolbox.grabPrevious();
+              else Toolbox.grab(this.label, { skipPrevious: true });
+            }
+          }
+          break;
+
+        case "AltLeft":
+          if (Toolbox.isHandled(this.label) && this.cursor === "zoom-out") {
+            this.cursor = "zoom-in";
+            Toolbox.grab(this.label, { skipPrevious: true });
+          }
+          break;
+
+        case "Space":
+          isSpaceKey = false;
+          if (Toolbox.isHandled(this.label)) {
+            if (e.ctrlKey) {
+              e.altKey ? (this.cursor = "zoom-out") : (this.cursor = "zoom-in");
+              Toolbox.grab(this.label, { skipPrevious: true });
+            } else {
+              if (!this.isLocked) Toolbox.grabPrevious();
+              else Toolbox.grab(this.label, { skipPrevious: true });
+            }
+          }
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    canvas.canvas.addEventListener("mousedown", (e) => {
+      if (!Toolbox.isHandled(this.label)) return;
+
+      switch (this.cursor) {
+        case "move":
+          this.isPanning = true;
+          const p = canvas.toCanvasCoords(e.clientX, e.clientY);
+          this.startPan.x = p.x - this.originX;
+          this.startPan.y = p.y - this.originY;
+          break;
+
+        case "zoom-in":
+          this.zoomIn(canvas);
+          break;
+
+        case "zoom-out":
+          this.zoomOut(canvas);
+          break;
+
+        default:
+          console.log(e);
+          break;
+      }
+    });
+
+    canvas.canvas.addEventListener("mousemove", (e) => {
+      if (!Toolbox.isHandled(this.label)) return;
+
+      switch (this.cursor) {
+        case "move":
+          if (!this.isPanning) return;
+          const p = canvas.toCanvasCoords(e.clientX, e.clientY);
+          this.originX = p.x - this.startPan.x;
+          this.originY = p.y - this.startPan.y;
+          canvas.draw();
+          break;
+
+        default:
+          console.log(e);
+          break;
+      }
+    });
+
+    window.addEventListener("mouseup", () => {
+      this.isPanning = false;
+    });
+
+    // canvas.wrapper.addEventListener("wheel", (e) => {
+    //   if (e.ctrlKey) {
+    //     e.preventDefault();
+    //     if (!Toolbox.isHandled(this.label)) return;
+    //     /*
+    //      * Scroll up (deltaY < 0) -> zoom in;
+    //      * scroll down (deltaY > 0) -> zoom out.
+    //      */
+    //     const zoom = e.deltaY < 0 ? 1 + this.zoomIntensity : 1 - this.zoomIntensity;
+
+    //     const rect = canvas.canvas.getBoundingClientRect();
+
+    //     // Converts the mouse position from viewport coordinates to canvas coordinates.
+    //     const mouseX = e.clientX - rect.left;
+    //     const mouseY = e.clientY - rect.top;
+
+    //     /*
+    //      * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
+    //      * ↳i.e. "unproject" the screen point to the scene before scaling.
+    //      * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
+    //      */
+    //     const sceneX = (mouseX - this.originX) / this.scale;
+    //     const sceneY = (mouseY - this.originY) / this.scale;
+
+    //     // Applies the zoom multiplier to the camera scale.
+    //     this.scale *= zoom;
+
+    //     // Adjust the camera origin so that the world point (x, y) remains at the same screen position
+    //     // (Keeps the point under the cursor fixed while zooming).
+    //     this.originX = mouseX - sceneX * this.scale;
+    //     this.originY = mouseY - sceneY * this.scale;
+
+    //     canvas.draw();
+    //   }
+    // });
+  }
+
+  zoomIn(canvas) {
+    this.scale *= 1 + this.zoomIntensity;
+    canvas.draw();
+  }
+
+  zoomOut(canvas) {
+    this.scale *= 1 - this.zoomIntensity;
     canvas.draw();
   }
 }

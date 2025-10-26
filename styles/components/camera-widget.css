@@ -1,0 +1,15 @@
+@import url(../components/zoom-level.css);
+
+#camera-widget {
+  bottom: 1rem;
+  display: flex;
+  margin-left: 1rem;
+  opacity: 0.5;
+  position: absolute;
+  right: 1rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#camera-widget:hover {
+  opacity: 1;
+}

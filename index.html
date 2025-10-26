@@ -70,23 +70,19 @@
 
   <menu data-open="true" id="left-drawer">
     <li>
-      <button type="button" data-tool="camera" class="flex gap-lg rounded bd-transparent w-full"><svg
-          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      <button type="button" data-tool="camera" class="flex gap-lg rounded bd-transparent w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-move-icon lucide-move">
-          <path d="M12 2v20" />
-          <path d="m15 19-3 3-3-3" />
-          <path d="m19 9 3 3-3 3" />
-          <path d="M2 12h20" />
-          <path d="m5 9-3 3 3 3" />
-          <path d="m9 5 3-3 3 3" />
-        </svg><span class="label truncate">Caméra</span></button>
+          style="transform: translateX(0.05rem);">
+          <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
+          <rect x="2" y="6" width="14" height="12" rx="2" />
+        </svg>
+        <span class="label truncate">Caméra</span></button>
     </li>
     <li>
       <button type="button" data-tool="selector" class="flex gap-lg rounded bd-transparent w-full"><svg
           xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-square-dashed-icon lucide-square-dashed">
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 3a2 2 0 0 0-2 2" />
           <path d="M19 3a2 2 0 0 1 2 2" />
           <path d="M21 19a2 2 0 0 1-2 2" />
@@ -105,12 +101,12 @@
 
   <main id="canvas-wrapper">
     <button id="left-drawer-switch" type="button" class="rounded-full bd-transparent bg-transparent text-secondary"
-      aria-label="Extend/retract left drawer."></button>
+      aria-label="Extend/retract the left drawer."></button>
 
-    <menu data-widget="push-to-move" aria-label="Camera widget." class="flex gap-xs max-w-full wrap">
-      <button type="button" class="flex gap-md rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" class="lucide lucide-move-icon lucide-move"
+    <menu id="camera-widget" aria-label="Camera widget" class="widget max-w-full wrap">
+      <button type="button" data-widget="pan" class="rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           aira-label="Allows the user to select the camera and view the zoom level (%).">
           <path d="M12 2v20" />
           <path d="m15 19-3 3-3-3" />
@@ -118,20 +114,48 @@
           <path d="M2 12h20" />
           <path d="m5 9-3 3 3 3" />
           <path d="m9 5 3-3 3 3" />
-        </svg><small class="medium">100&nbsp;%</small></button>
+        </svg>
+      </button>
+
+      <button type="button" data-widget="zoom" class="rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-search-icon lucide-search">
+          <path d="m21 21-4.34-4.34" />
+          <circle cx="11" cy="11" r="8" />
+        </svg>
+      </button>
+
+      <div id="zoom-level">
+        <button type="button" data-widget="zoom-in" class="rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </button>
+
+        <button type="button" data-widget="zoom-out" class="rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            style="transform: rotate(180deg);">
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </button>
+        <div><small class="medium">100&nbsp;%</small></div>
+      </div>
+
+      <button type="button" data-widget="frame-all" class="rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          aria-label="Allows the user to reframe the camera to show the entire content.">
+          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+          <rect width="10" height="8" x="7" y="8" rx="1" />
+        </svg>
+      </button>
     </menu>
-
-    <!-- <button type="button" class="flex gap-md rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" class="lucide lucide-fullscreen-icon lucide-fullscreen"
-        aria-label="Allows the user to reframe the camera to show the entire content.">
-        <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-        <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-        <rect width="10" height="8" x="7" y="8" rx="1" />
-      </svg></button> -->
-
   </main>
 </body>
 

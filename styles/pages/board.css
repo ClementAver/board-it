@@ -7,12 +7,13 @@
 @import url(../globals/global.css);
 @import url(../globals/link.css);
 @import url(../globals/svg.css);
+@import url(../globals/widget.css);
 
+@import url(../components/camera-widget.css);
 @import url(../components/logo.css);
 @import url(../components/main-header.css);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
-@import url(../components/push-to-move.css);
 @import url(../components/theme-switch.css);
 
 @import url(../utils/animated.css);

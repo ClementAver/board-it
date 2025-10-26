@@ -14,6 +14,10 @@
   white-space: nowrap;
 }
 
+.aspect-square {
+  aspect-ratio: 1/1;
+}
+
 /* ⇊ Text alignment ⇊ */
 
 .overflow-hidden {

@@ -9,5 +9,5 @@ a:has(#logo-header:hover) {
 }
 
 #logo-header {
-    transform: scale(1.5) translateY(2px);
+  transform: scale(1.25) translateY(2px);
 }

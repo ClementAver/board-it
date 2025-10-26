@@ -1,0 +1,17 @@
+.widget {
+  background-color: var(--secondary-darker);
+  border-radius: var(--border-radius);
+  color: var(--text-swath);
+  display: flex;
+  gap: var(--spacing-xs);
+  line-height: var(--icons-width);
+  padding: var(--spacing-xs);
+}
+
+.widget button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-block: var(--spacing-xs);
+  padding-inline: var(--spacing-sm);
+}

@@ -5,7 +5,9 @@ import Picture from "../classes/Picture.js";
 import Toolbox from "../classes/Toolbox.js";
 import debug from "../utils/debug.js";
 import Theme from "../classes/Theme.js";
-import PushToMove from "../classes/PushToMove.js";
+import Pan from "../classes/Pan.js";
+import Zoom from "../classes/Zoom.js";
+import FrameAll from "../classes/FrameAll.js";
 
 Theme.initTheme();
 
@@ -42,6 +44,6 @@ const boards = [
 
 Canvas.boards = boards;
 Canvas.resizeWith(Toolbox.leftDrawer);
-Toolbox.grab("camera", true).frameAll(Canvas);
+Toolbox.grab("camera").frameAll(Canvas);
 
 debug(Canvas);

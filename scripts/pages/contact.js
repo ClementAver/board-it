@@ -4,4 +4,4 @@ import delay from "../utils/delay.js";
 Theme.initTheme();
 
 const inputs = document.querySelectorAll("div.bounce-up");
-delay(inputs, { property: "animation", delay: 300 });
+delay(inputs, { property: "animation", delay: 100 });
