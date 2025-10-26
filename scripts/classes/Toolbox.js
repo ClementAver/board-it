@@ -20,7 +20,6 @@ class Toolbox {
     });
 
     this.selectorBtn.addEventListener("click", () => {
-      this.grab("camera").isLocked = false;
       this.grab("selector");
     });
 
@@ -123,9 +122,15 @@ class Toolbox {
     }
 
     // else:
-    const tool = this.tools.find((tool) => tool.label === label);
-    if (tool) {
-      this.handled = tool;
+    let matched;
+
+    this.tools.forEach((tool) => {
+      if (tool.label === label) matched = tool;
+      if (tool.isLocked) tool.isLocked = false;
+    });
+
+    if (matched) {
+      this.handled = matched;
       this.emit();
       return this.handled;
     }

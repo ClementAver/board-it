@@ -9,7 +9,7 @@ class Pan {
 
     this.panBtn.addEventListener("click", () => {
       Toolbox.useSilent("camera").cursor = "move";
-      Toolbox.grab("camera");
+      Toolbox.grab("camera").isLocked = true;
     });
   }
 

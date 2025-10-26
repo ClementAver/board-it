@@ -12,7 +12,7 @@ class Zoom {
 
     this.zoomBtn.addEventListener("click", () => {
       Toolbox.useSilent("camera").cursor = "zoom-in";
-      Toolbox.grab("camera");
+      Toolbox.grab("camera").isLocked = true;
     });
 
     this.zoomInBtn.addEventListener("click", () => Toolbox.useSilent("camera").zoomIn(Canvas));
