@@ -46,4 +46,4 @@ Canvas.boards = boards;
 Canvas.resizeWith(Toolbox.leftDrawer);
 Toolbox.grab("camera").frameAll(Canvas);
 
-debug(Canvas);
+debug(Toolbox.useSilent("camera"));

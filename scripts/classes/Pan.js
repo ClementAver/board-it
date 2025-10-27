@@ -1,4 +1,3 @@
-import Canvas from "./Canvas.js";
 import Toolbox from "./Toolbox.js";
 
 class Pan {

@@ -1,31 +1,23 @@
-import Toolbox from "./Toolbox.js";
 import Canvas from "./Canvas.js";
+import Toolbox from "./Toolbox.js";
 
 class Zoom {
   _zoomBtn = document.querySelector("[data-widget='zoom']");
-  _zoomInBtn = document.querySelector("[data-widget='zoom-in']");
-  _zoomOutBtn = document.querySelector("[data-widget='zoom-out']");
   _zoomIndicator = document.querySelector("[data-widget='zoom-indicator']");
 
-  constructor({ zoomInBtn, zoomOutBtn } = {}) {
-    this.zoomInBtn = zoomInBtn ?? this.zoomInBtn;
-    this.zoomOutBtn = zoomOutBtn ?? this.zoomOutBtn;
+  constructor({ zoomBtn, zoomIndicator } = {}) {
+    this.zoomBtn = zoomBtn ?? this.zoomBtn;
+    this.zoomIndicator = zoomIndicator ?? this.zoomIndicator;
 
-    this.updateZoomIndicator();
 
     this.zoomBtn.addEventListener("click", () => {
       Toolbox.useSilent("camera").cursor = "zoom-in";
       Toolbox.grab("camera").isLocked = true;
-      this.updateZoomIndicator();
     });
 
-    this.zoomInBtn.addEventListener("click", () => {
-      Toolbox.useSilent("camera").zoomIn(Canvas)
-      this.updateZoomIndicator();
-    });
-    this.zoomOutBtn.addEventListener("click", () => {
-      Toolbox.useSilent("camera").zoomOut(Canvas)
-      this.updateZoomIndicator();
+    this.zoomIndicator.addEventListener("change", (e) => {
+      const newZoom = Toolbox.useSilent("camera").updateZoom(Canvas, e.target.value);
+      this.updateZoomIndicator(newZoom);
     });
   }
 
@@ -33,36 +25,21 @@ class Zoom {
     return this._zoomBtn;
   }
 
-  get zoomInBtn() {
-    return this._zoomInBtn;
-  }
-
   get zoomIndicator() {
     return this._zoomIndicator;
-  }
-
-  get zoomOutBtn() {
-    return this._zoomOutBtn;
   }
 
   set zoomBtn(zoomBtn) {
     this._zoomBtn = zoomBtn;
   }
 
-  set zoomInBtn(zoomInBtn) {
-    this._zoomInBtn = zoomInBtn;
-  }
-
   set zoomIndicator(zoomIndicator) {
     this._zoomIndicator = zoomIndicator;
   }
 
-  set zoomOutBtn(zoomOutBtn) {
-    this._zoomOutBtn = zoomOutBtn;
-  }
-
-  updateZoomIndicator() {
-    this.zoomIndicator.value = `${Toolbox.useSilent("camera").zoom} %`;
+  updateZoomIndicator(zoom) {
+    if (!zoom) zoom = Toolbox.useSilent("camera").zoom;
+    this.zoomIndicator.value = zoom;
   }
 }
 

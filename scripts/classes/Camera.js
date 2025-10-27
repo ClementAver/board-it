@@ -1,3 +1,4 @@
+import preventKeys from "../../styles/utils/preventKeys.js";
 import Tool from "./Tool.js";
 import Toolbox from "./Toolbox.js";
 
@@ -8,24 +9,28 @@ export default class Camera extends Tool {
    * originX -> pan offset x
    * originY -> pan offset y
    */
+  _isLocked = false;
   _isPanning = false;
   _originX = 0;
   _originY = 0;
   _scale = 1;
   _startPan = { x: 0, y: 0 };
   _zoomIntensity = 0.1;
-  _isLocked = false;
+  _zoomMax = 500;
+  _zoomMin = 5;
 
   constructor({
     cursor = "move",
-    label = "camera",
+    isLocked,
     isPanning,
+    label = "camera",
     originX,
     originY,
     scale,
     startPan,
     zoomIntensity,
-    isLocked,
+    zoomMax,
+    zoomMin,
   } = {}) {
     super({ cursor, label });
     this.isLocked = isLocked ?? this.isLocked;
@@ -35,6 +40,8 @@ export default class Camera extends Tool {
     this.scale = scale ?? this.scale;
     this.startPan = startPan ?? this.startPan;
     this.zoomIntensity = zoomIntensity ?? this.zoomIntensity;
+    this.zoomMax = zoomMax ?? this.zoomMax;
+    this.zoomMin = zoomMin ?? this.zoomMin;
   }
 
   get isLocked() {
@@ -61,12 +68,20 @@ export default class Camera extends Tool {
     return this._startPan;
   }
 
+  get zoom() {
+    return Math.round(this.scale * 100);
+  }
+
   get zoomIntensity() {
     return this._zoomIntensity;
   }
 
-  get zoom() {
-    return Math.round(this.scale * 100);
+  get zoomMax() {
+    return this._zoomMax;
+  }
+
+  get zoomMin() {
+    return this._zoomMin;
   }
 
   set isLocked(isLocked) {
@@ -86,8 +101,8 @@ export default class Camera extends Tool {
   }
 
   set scale(scale) {
-    if (scale < 0.05) scale = 0.05;
-    if (scale > 5) scale = 5;
+    if (scale < this.zoomMin / 100) scale = this.zoomMin;
+    if (scale > this.zoomMax / 100) scale = this.zoomMax;
     this._scale = scale;
   }
 
@@ -99,13 +114,23 @@ export default class Camera extends Tool {
     this._zoomIntensity = zoomIntensity;
   }
 
+  set zoomMax(zoomMax) {
+    this._zoomMax = zoomMax;
+  }
+
+  set zoomMin(zoomMin) {
+    this._zoomMin = zoomMin;
+  }
+
   frameAll(canvas, padding = 40) {
     if (!canvas.boards.length) return;
+
     // Find the rectangle encompassing all content
     let minX = Infinity,
       minY = Infinity,
       maxX = -Infinity,
       maxY = -Infinity;
+
     canvas.boards.forEach((b) => {
       const rect = b.getBorderRect();
       minX = Math.min(minX, rect.originX);
@@ -137,15 +162,10 @@ export default class Camera extends Tool {
   }
 
   initKeyboardActions(canvas) {
-    function logKeys(e) {
-      console.log(`${e.type} → ${e.code} [altKey: ${e.altKey}] [ctrlKey: ${e.ctrlKey}]`);
-    }
-
     let isSpaceKey = false;
 
     window.addEventListener("keydown", (e) => {
-      e.preventDefault();
-      logKeys(e);
+      preventKeys(e, ["space", "ControlLeft", "AltLeft"]);
 
       switch (e.code) {
         case "ControlLeft":
@@ -173,7 +193,6 @@ export default class Camera extends Tool {
 
     window.addEventListener("keyup", (e) => {
       e.preventDefault();
-      logKeys(e);
 
       switch (e.code) {
         case "ControlLeft":
@@ -237,7 +256,6 @@ export default class Camera extends Tool {
           break;
 
         default:
-          console.log(e);
           break;
       }
     });
@@ -255,7 +273,6 @@ export default class Camera extends Tool {
           break;
 
         default:
-          console.log(e);
           break;
       }
     });
@@ -301,13 +318,26 @@ export default class Camera extends Tool {
     // });
   }
 
-  zoomIn(canvas) {
-    this.scale *= 1 + this.zoomIntensity;
+  updateZoom(canvas, zoom) {
+    if (zoom < this.zoomMin) zoom = this.zoomMin;
+    else if (zoom > this.zoomMax) zoom = this.zoomMax;
+    this.scale = zoom / 100;
+    canvas.draw();
+
+    return this.zoom;
+  }
+
+  zoomIn(canvas, zoomIntensity = this.zoomIntensity) {
+    let newScale = this.scale * (1 + zoomIntensity);
+    if (newScale > this.zoomMax / 100) newScale = this.zoomMax / 100;
+    this.scale = newScale;
     canvas.draw();
   }
 
-  zoomOut(canvas) {
-    this.scale *= 1 - this.zoomIntensity;
+  zoomOut(canvas, zoomIntensity = this.zoomIntensity) {
+    let newScale = this.scale * (1 - zoomIntensity);
+    if (newScale < this.zoomMin / 100) newScale = this.zoomMin / 100;
+    this.scale = newScale;
     canvas.draw();
   }
 }

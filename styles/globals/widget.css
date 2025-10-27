@@ -15,3 +15,31 @@
   padding-block: var(--spacing-xs);
   padding-inline: var(--spacing-sm);
 }
+
+.widget input {
+  background-color: var(--secondary-darker);
+  border: var(--border-width) solid var(--secondary);
+  border-radius: var(--border-radius);
+  color: var(--text-swath);
+  padding-inline: var(--spacing-sm);
+}
+
+.widget div:has(.unit) {
+  align-items: center;
+  background-color: var(--secondary);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.widget .unit {
+  padding-inline: var(--spacing-sm);
+}
+
+.widget .unit + input {
+  border-left: 0;
+}
+
+.widget input:has(+ .unit) {
+  border-right: 0;
+}

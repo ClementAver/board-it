@@ -1,5 +1,3 @@
-@import url(../components/zoom-level.css);
-
 #camera-widget {
   bottom: 1rem;
   display: flex;
