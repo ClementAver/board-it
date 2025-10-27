@@ -65,6 +65,10 @@ export default class Camera extends Tool {
     return this._zoomIntensity;
   }
 
+  get zoom() {
+    return Math.round(this.scale * 100);
+  }
+
   set isLocked(isLocked) {
     this._isLocked = isLocked;
   }
