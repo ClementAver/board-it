@@ -1,6 +1,6 @@
-import preventKeys from "../../styles/utils/preventKeys.js";
-import Tool from "./Tool.js";
-import Toolbox from "./Toolbox.js";
+import preventKeys from '../../styles/utils/preventKeys.js';
+import Tool from './Tool.js';
+import Toolbox from './Toolbox.js';
 
 export default class Camera extends Tool {
   /*
@@ -20,10 +20,10 @@ export default class Camera extends Tool {
   _zoomMin = 5;
 
   constructor({
-    cursor = "move",
+    cursor = 'move',
     isLocked,
     isPanning,
-    label = "camera",
+    label = 'camera',
     originX,
     originY,
     scale,
@@ -125,7 +125,6 @@ export default class Camera extends Tool {
   frameAll(canvas, padding = 40) {
     if (!canvas.boards.length) return;
 
-    // Find the rectangle encompassing all content
     let minX = Infinity,
       minY = Infinity,
       maxX = -Infinity,
@@ -142,11 +141,11 @@ export default class Camera extends Tool {
     const boardsWidth = maxX - minX || 1;
     const boardsHeight = maxY - minY || 1;
 
-    const cw = canvas.canvas.clientWidth || canvas.canvas.width;
-    const ch = canvas.canvas.clientHeight || canvas.canvas.height;
+    const canvasW = canvas.canvas.clientWidth || canvas.canvas.width;
+    const canvasH = canvas.canvas.clientHeight || canvas.canvas.height;
 
-    const availW = Math.max(1, cw - padding * 2);
-    const availH = Math.max(1, ch - padding * 2);
+    const availW = Math.max(1, canvasW - padding * 2);
+    const availH = Math.max(1, canvasH - padding * 2);
 
     const scale = Math.min(availW / boardsWidth, availH / boardsHeight);
 
@@ -155,8 +154,8 @@ export default class Camera extends Tool {
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
 
-    this.originX = cw / 2 - centerX * this.scale;
-    this.originY = ch / 2 - centerY * this.scale;
+    this.originX = canvasW / 2 - centerX * this.scale;
+    this.originY = canvasH / 2 - centerY * this.scale;
 
     canvas.draw();
   }
@@ -164,25 +163,25 @@ export default class Camera extends Tool {
   initKeyboardActions(canvas) {
     let isSpaceKey = false;
 
-    window.addEventListener("keydown", (e) => {
-      preventKeys(e, ["space", "ControlLeft", "AltLeft"]);
+    window.addEventListener('keydown', (e) => {
+      preventKeys(e, ['space', 'ControlLeft', 'AltLeft']);
 
       switch (e.code) {
-        case "ControlLeft":
-          e.altKey ? (this.cursor = "zoom-out") : (this.cursor = "zoom-in");
+        case 'ControlLeft':
+          e.altKey ? (this.cursor = 'zoom-out') : (this.cursor = 'zoom-in');
           Toolbox.grab(this.label, { skipPrevious: true });
           break;
 
-        case "AltLeft":
-          if (Toolbox.isHandled(this.label) && this.cursor === "zoom-in") {
-            this.cursor = "zoom-out";
+        case 'AltLeft':
+          if (Toolbox.isHandled(this.label) && this.cursor === 'zoom-in') {
+            this.cursor = 'zoom-out';
             Toolbox.grab(this.label, { skipPrevious: true });
           }
           break;
 
-        case "Space":
+        case 'Space':
           isSpaceKey = true;
-          this.cursor = "move";
+          this.cursor = 'move';
           Toolbox.grab(this.label, { skipPrevious: true });
           break;
 
@@ -191,14 +190,14 @@ export default class Camera extends Tool {
       }
     });
 
-    window.addEventListener("keyup", (e) => {
+    window.addEventListener('keyup', (e) => {
       e.preventDefault();
 
       switch (e.code) {
-        case "ControlLeft":
+        case 'ControlLeft':
           if (Toolbox.isHandled(this.label)) {
             if (isSpaceKey) {
-              this.cursor = "move";
+              this.cursor = 'move';
               Toolbox.grab(this.label, { skipPrevious: true });
             } else {
               if (!this.isLocked) Toolbox.grabPrevious();
@@ -207,10 +206,10 @@ export default class Camera extends Tool {
           }
           break;
 
-        case "AltLeft":
+        case 'AltLeft':
           if (Toolbox.isHandled(this.label)) {
-            if (this.cursor === "zoom-out") {
-              this.cursor = "zoom-in";
+            if (this.cursor === 'zoom-out') {
+              this.cursor = 'zoom-in';
               Toolbox.grab(this.label, { skipPrevious: true });
             } else if (!e.ctrlKey) {
               if (!this.isLocked) Toolbox.grabPrevious();
@@ -218,11 +217,11 @@ export default class Camera extends Tool {
           }
           break;
 
-        case "Space":
+        case 'Space':
           isSpaceKey = false;
           if (Toolbox.isHandled(this.label)) {
             if (e.ctrlKey) {
-              e.altKey ? (this.cursor = "zoom-out") : (this.cursor = "zoom-in");
+              e.altKey ? (this.cursor = 'zoom-out') : (this.cursor = 'zoom-in');
               Toolbox.grab(this.label, { skipPrevious: true });
             } else {
               if (!this.isLocked) Toolbox.grabPrevious();
@@ -240,19 +239,19 @@ export default class Camera extends Tool {
       if (!Toolbox.isHandled(this.label)) return;
 
       switch (this.cursor) {
-        case "move":
+        case 'move':
           this.isPanning = true;
           const p = canvas.toCanvasCoords(e.clientX, e.clientY);
           this.startPan.x = p.x - this.originX;
           this.startPan.y = p.y - this.originY;
           break;
 
-        case "zoom-in":
-          this.zoomIn(canvas);
+        case 'zoom-in':
+          this.zoomIn(canvas, { event: e });
           break;
 
-        case "zoom-out":
-          this.zoomOut(canvas);
+        case 'zoom-out':
+          this.zoomOut(canvas, { event: e });
           break;
 
         default:
@@ -277,11 +276,11 @@ export default class Camera extends Tool {
       }
     });
 
-    window.addEventListener("mouseup", () => {
+    window.addEventListener('mouseup', () => {
       this.isPanning = false;
     });
 
-    canvas.wrapper.addEventListener("wheel", (e) => {
+    canvas.wrapper.addEventListener('wheel', (e) => {
       if (e.ctrlKey) {
         e.preventDefault();
         if (!Toolbox.isHandled(this.label)) return;
@@ -289,36 +288,14 @@ export default class Camera extends Tool {
          * Scroll up (deltaY < 0) -> zoom in;
          * scroll down (deltaY > 0) -> zoom out.
          */
-        const zoom = e.deltaY < 0 ? 1 + this.zoomIntensity : 1 - this.zoomIntensity;
-
-        const rect = canvas.canvas.getBoundingClientRect();
-
-        // Converts the mouse position from viewport coordinates to canvas coordinates.
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        /*
-         * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
-         * ↳i.e. "unproject" the screen point to the scene before scaling.
-         * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
-         */
-        const sceneX = (mouseX - this.originX) / this.scale;
-        const sceneY = (mouseY - this.originY) / this.scale;
-
-        // Applies the zoom multiplier to the camera scale.
-        this.scale *= zoom;
-
-        // Adjust the camera origin so that the world point (x, y) remains at the same screen position
-        // (Keeps the point under the cursor fixed while zooming).
-        this.originX = mouseX - sceneX * this.scale;
-        this.originY = mouseY - sceneY * this.scale;
-
-        canvas.draw();
+        e.deltaY < 0
+          ? this.zoomIn(canvas, { event: e })
+          : this.zoomOut(canvas, { event: e });
       }
     });
   }
 
-  setZoom(canvas, zoom) {
+  setZoom(canvas, { zoom, event } = {}) {
     if (zoom < this.zoomMin) zoom = this.zoomMin;
     else if (zoom > this.zoomMax) zoom = this.zoomMax;
 
@@ -330,6 +307,12 @@ export default class Camera extends Tool {
      */
     let canvasX = rect.width / 2;
     let canvasY = rect.height / 2;
+
+    // Centers the zoom on the cursor if we pass the event.
+    if (event) {
+      canvasX = event.clientX - rect.left;
+      canvasY = event.clientY - rect.top;
+    }
 
     /*
      * Converts the canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
@@ -369,8 +352,7 @@ export default class Camera extends Tool {
     // 3. Assigns the new scale (zoom 10% <-> 0.1 scale).
     this.scale = zoom / 100;
 
-    // Adjust the camera origin so that the world point (x, y) remains at the same screen position
-    // (Keeps the point under the cursor fixed while zooming).
+    // 4. Applies the new scale to the camera origin coordinates.
     this.originX = canvasX - sceneX * this.scale;
     this.originY = canvasY - sceneY * this.scale;
 
@@ -379,17 +361,23 @@ export default class Camera extends Tool {
     return this.zoom;
   }
 
-  zoomIn(canvas, zoomIntensity = this.zoomIntensity) {
-    let newScale = this.scale * (1 + zoomIntensity);
-    if (newScale > this.zoomMax / 100) newScale = this.zoomMax / 100;
-    this.scale = newScale;
+  zoomIn(canvas, { factor, event } = {}) {
+    let processedZoom;
+
+    if (factor) processedZoom = this.zoom + factor * 100;
+    else processedZoom = this.zoom + this.zoomIntensity * 100;
+
+    this.setZoom(canvas, { zoom: processedZoom, event });
     canvas.draw();
   }
 
-  zoomOut(canvas, zoomIntensity = this.zoomIntensity) {
-    let newScale = this.scale * (1 - zoomIntensity);
-    if (newScale < this.zoomMin / 100) newScale = this.zoomMin / 100;
-    this.scale = newScale;
+  zoomOut(canvas, { factor, event } = {}) {
+    let processedZoom;
+
+    if (factor) processedZoom = this.zoom - factor * 100;
+    else processedZoom = this.zoom - this.zoomIntensity * 100;
+
+    this.setZoom(canvas, { zoom: processedZoom, event });
     canvas.draw();
   }
 }
