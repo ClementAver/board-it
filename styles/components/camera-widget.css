@@ -8,6 +8,6 @@
   transition: opacity 0.2s ease-in-out;
 }
 
-#camera-widget:hover {
+#camera-widget:hover, #camera-widget:has(:focus-visible) {
   opacity: 1;
 }

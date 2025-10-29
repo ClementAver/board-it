@@ -281,47 +281,99 @@ export default class Camera extends Tool {
       this.isPanning = false;
     });
 
-    // canvas.wrapper.addEventListener("wheel", (e) => {
-    //   if (e.ctrlKey) {
-    //     e.preventDefault();
-    //     if (!Toolbox.isHandled(this.label)) return;
-    //     /*
-    //      * Scroll up (deltaY < 0) -> zoom in;
-    //      * scroll down (deltaY > 0) -> zoom out.
-    //      */
-    //     const zoom = e.deltaY < 0 ? 1 + this.zoomIntensity : 1 - this.zoomIntensity;
+    canvas.wrapper.addEventListener("wheel", (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        if (!Toolbox.isHandled(this.label)) return;
+        /*
+         * Scroll up (deltaY < 0) -> zoom in;
+         * scroll down (deltaY > 0) -> zoom out.
+         */
+        const zoom = e.deltaY < 0 ? 1 + this.zoomIntensity : 1 - this.zoomIntensity;
 
-    //     const rect = canvas.canvas.getBoundingClientRect();
+        const rect = canvas.canvas.getBoundingClientRect();
 
-    //     // Converts the mouse position from viewport coordinates to canvas coordinates.
-    //     const mouseX = e.clientX - rect.left;
-    //     const mouseY = e.clientY - rect.top;
+        // Converts the mouse position from viewport coordinates to canvas coordinates.
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
 
-    //     /*
-    //      * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
-    //      * ↳i.e. "unproject" the screen point to the scene before scaling.
-    //      * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
-    //      */
-    //     const sceneX = (mouseX - this.originX) / this.scale;
-    //     const sceneY = (mouseY - this.originY) / this.scale;
+        /*
+         * Converts canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
+         * ↳i.e. "unproject" the screen point to the scene before scaling.
+         * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
+         */
+        const sceneX = (mouseX - this.originX) / this.scale;
+        const sceneY = (mouseY - this.originY) / this.scale;
 
-    //     // Applies the zoom multiplier to the camera scale.
-    //     this.scale *= zoom;
+        // Applies the zoom multiplier to the camera scale.
+        this.scale *= zoom;
 
-    //     // Adjust the camera origin so that the world point (x, y) remains at the same screen position
-    //     // (Keeps the point under the cursor fixed while zooming).
-    //     this.originX = mouseX - sceneX * this.scale;
-    //     this.originY = mouseY - sceneY * this.scale;
+        // Adjust the camera origin so that the world point (x, y) remains at the same screen position
+        // (Keeps the point under the cursor fixed while zooming).
+        this.originX = mouseX - sceneX * this.scale;
+        this.originY = mouseY - sceneY * this.scale;
 
-    //     canvas.draw();
-    //   }
-    // });
+        canvas.draw();
+      }
+    });
   }
 
-  updateZoom(canvas, zoom) {
+  setZoom(canvas, zoom) {
     if (zoom < this.zoomMin) zoom = this.zoomMin;
     else if (zoom > this.zoomMax) zoom = this.zoomMax;
+
+    const rect = canvas.canvas.getBoundingClientRect();
+
+    /*
+     * Raw coordinates of the canvas that we will target as the new centre of the camera.
+     * Default : center of the canvas.
+     */
+    let canvasX = rect.width / 2;
+    let canvasY = rect.height / 2;
+
+    /*
+     * Converts the canvas coordinates to scene coordinates using the current camera settings (pan + zoom).
+     * ↳i.e. "unproject" the screen points to the scene before scaling.
+     * ⓘ unproject : going from screen coordinates (or canvas) to the original scene coordinates by applying the inverse of the camera settings.
+     *
+     * 1. Compensate for drift:
+     * 
+     * Given a screen [|0 |1 |2 |3 |4] with line 2 as its centre,
+     * dragging the scene to the right is equivalent to dragging the camera to the left <-[|-1 |0 |1 |2 |3->].
+     * The new centre remains halfway across the frame (i.e. 2 units out of 4).
+     * The X origin of the scene has been moved one unit to the right: line 0 is now old line 1.
+     * So the new scene center would be 2 - 1 = 1.
+     * 
+     * If we had decided to drag the scene to the left (a.k.a. dragging the camera to the right): |0 [<-|1 |2 |3 |4 |5]->,
+     * then the X origin would have been at position -1, and so: 2 - (-1) = 3.
+     *
+     * N.B.: The originX of the scene moves when we pan, but not the originX of our canvas.
+     * -> Scene coordinates = canvas coordinate - scene offset (drift)
+     *
+     * 2. Adjust to the scene coordinates to the current scale:
+     * 
+     * When we compensated for the drift, we have to adjust the result to the zoom multiplier.
+     * We do so by dividing it by the scale :
+     * 3 / 0.5 (zoom: 50%) = 6
+     * 3 / 2 (zoom: 200%) = 1.5
+     */
+
+    /*
+     * - canvasX -> the x position we target;
+     * - this.originX -> the drift that we must compensate for;
+     * - this.scale -> the proportion we must apply to adjust the zoom factor.
+     */
+    const sceneX = (canvasX - this.originX) / this.scale;
+    const sceneY = (canvasY - this.originY) / this.scale;
+
+    // 3. Assigns the new scale (zoom 10% <-> 0.1 scale).
     this.scale = zoom / 100;
+
+    // Adjust the camera origin so that the world point (x, y) remains at the same screen position
+    // (Keeps the point under the cursor fixed while zooming).
+    this.originX = canvasX - sceneX * this.scale;
+    this.originY = canvasY - sceneY * this.scale;
+
     canvas.draw();
 
     return this.zoom;

@@ -9,15 +9,14 @@ class Zoom {
     this.zoomBtn = zoomBtn ?? this.zoomBtn;
     this.zoomIndicator = zoomIndicator ?? this.zoomIndicator;
 
-
     this.zoomBtn.addEventListener("click", () => {
       Toolbox.useSilent("camera").cursor = "zoom-in";
       Toolbox.grab("camera").isLocked = true;
     });
 
     this.zoomIndicator.addEventListener("change", (e) => {
-      const newZoom = Toolbox.useSilent("camera").updateZoom(Canvas, e.target.value);
-      this.updateZoomIndicator(newZoom);
+      const newZoom = Toolbox.useSilent("camera").setZoom(Canvas, e.target.value);
+      this.setZoomIndicator(newZoom);
     });
   }
 
@@ -37,7 +36,7 @@ class Zoom {
     this._zoomIndicator = zoomIndicator;
   }
 
-  updateZoomIndicator(zoom) {
+  setZoomIndicator(zoom) {
     if (!zoom) zoom = Toolbox.useSilent("camera").zoom;
     this.zoomIndicator.value = zoom;
   }

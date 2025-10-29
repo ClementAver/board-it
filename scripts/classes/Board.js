@@ -10,8 +10,8 @@ export default class Board extends Element {
   _grids = [new Grid()];
 
   constructor({
-    x = 100,
-    y = 100,
+    x = 0,
+    y = 0,
     w = 1600,
     h = 900,
     backgroundColor,
