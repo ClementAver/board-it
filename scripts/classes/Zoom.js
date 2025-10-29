@@ -15,7 +15,9 @@ class Zoom {
     });
 
     this.zoomIndicator.addEventListener("change", (e) => {
-      const newZoom = Toolbox.useSilent("camera").setZoom(Canvas, e.target.value);
+      const newZoom = Toolbox.useSilent("camera").setZoom(Canvas, {
+        zoom: e.target.value,
+      });
       this.setZoomIndicator(newZoom);
     });
   }
