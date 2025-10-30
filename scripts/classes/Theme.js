@@ -1,4 +1,4 @@
-class Theme {
+export default class Theme {
   _currentTheme = null;
   _moon = document.getElementById("theme-moon");
   _prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -13,6 +13,8 @@ class Theme {
     this.sun = sun ?? this.sun;
     this.switchBtn = switchBtn ?? this.switchBtn;
     this.switchHandle = switchHandle ?? this.switchHandle;
+
+    this.initTheme();
 
     this.switchBtn.addEventListener("click", () => {
       this.currentTheme =
@@ -105,5 +107,3 @@ class Theme {
     }
   }
 }
-
-export default new Theme();

@@ -1,7 +1,7 @@
 import Toolbox from "./Toolbox.js";
 import Canvas from "./Canvas.js";
 
-class FrameAll {
+export default class FrameAll {
   _frameAllBtn = document.querySelector("[data-widget='frame-all']");
 
   constructor({ frameAllBtn } = {}) {
@@ -18,5 +18,3 @@ class FrameAll {
     this._frameAllBtn = frameAllBtn;
   }
 }
-
-export default new FrameAll();

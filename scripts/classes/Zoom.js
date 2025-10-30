@@ -1,7 +1,7 @@
 import Canvas from "./Canvas.js";
 import Toolbox from "./Toolbox.js";
 
-class Zoom {
+export default class Zoom {
   _zoomBtn = document.querySelector("[data-widget='zoom']");
   _zoomIndicator = document.querySelector("[data-widget='zoom-indicator']");
 
@@ -43,5 +43,3 @@ class Zoom {
     this.zoomIndicator.value = zoom;
   }
 }
-
-export default new Zoom();

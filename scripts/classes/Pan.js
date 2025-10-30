@@ -1,6 +1,6 @@
 import Toolbox from "./Toolbox.js";
 
-class Pan {
+export default class Pan {
   _panBtn = document.querySelector("[data-widget='pan']");
 
   constructor({ panBtn } = {}) {
@@ -20,5 +20,3 @@ class Pan {
     this._panBtn = panBtn;
   }
 }
-
-export default new Pan();

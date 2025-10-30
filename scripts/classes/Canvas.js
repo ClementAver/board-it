@@ -76,7 +76,6 @@ class Canvas {
     // Applies the camera state (zoom + pan).
     const camera = Toolbox.useSilent("camera");
     this.context.setTransform(camera.scale, 0, 0, camera.scale, camera.originX, camera.originY);
- 
 
     if (this.boards.length) {
       this.boards.forEach((board) => {
