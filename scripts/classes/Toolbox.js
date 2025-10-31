@@ -1,16 +1,27 @@
 import Camera from "./Camera.js";
 import Selector from "./Selector.js";
+import FrameAll from "../classes/FrameAll.js";
+import LeftDrawer from "../classes/LeftDrawer.js";
+import Pan from "../classes/Pan.js";
+import Theme from "../classes/Theme.js";
+import Zoom from "../classes/Zoom.js";
 
 class Toolbox {
   _handled = null;
   _previous = null;
   _tools = [new Camera(), new Selector()];
-  _widgets = [];
+  _widgets = {};
 
   constructor({ handled, tools, widgets } = {}) {
     this.handled = handled ?? this._handled;
     this.tools = tools ?? this._tools;
     this.widgets = widgets ?? this._widgets;
+
+    this.widgets = { leftDrawer: new LeftDrawer() };
+    this.widgets = { theme: new Theme() };
+    this.widgets = { pan: new Pan() };
+    this.widgets = { zoom: new Zoom() };
+    this.widgets = { frameAll: new FrameAll() };
   }
 
   get handled() {
@@ -44,7 +55,7 @@ class Toolbox {
   }
 
   set widgets(widgets) {
-    this._widgets = widgets;
+    this._widgets = { ...this.widgets, ...widgets };
   }
 
   emit() {

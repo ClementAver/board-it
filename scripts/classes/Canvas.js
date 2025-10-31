@@ -13,10 +13,6 @@ class Canvas {
     this.canvas.textContent = "Désolé, votre navigateur ne prend pas en charge les canvas.";
     this.wrapper.appendChild(this.canvas);
 
-    this.resize();
-
-    Toolbox.useSilent("camera").initKeyboardActions(this);
-
     // Window listeners:
     window.addEventListener("resize", () => {
       this.resize();

@@ -1,20 +1,9 @@
 import Board from "../classes/Board.js";
 import debug from "../utils/debug.js";
 import Canvas from "../classes/Canvas.js";
-import FrameAll from "../classes/FrameAll.js";
 import Grid from "../classes/Grid.js";
-import LeftDrawer from "../classes/LeftDrawer.js";
-import Pan from "../classes/Pan.js";
 import Picture from "../classes/Picture.js";
-import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
-import Zoom from "../classes/Zoom.js";
-
-const leftDrawer = new LeftDrawer();
-new Theme();
-new Pan();
-new Zoom();
-new FrameAll();
 
 const picture = new Picture({
   x: 0,
@@ -51,9 +40,12 @@ const boards = [
   }),
 ];
 
+Canvas.resize();
+Canvas.resizeWith(Toolbox.widgets.leftDrawer.leftDrawerMenu);
 Canvas.boards = boards;
-Canvas.resizeWith(leftDrawer.leftDrawerMenu);
 
-Toolbox.grab("camera").frameAll(Canvas);
+const camera = Toolbox.grab("camera");
+camera.frameAll(Canvas);
+camera.initKeyboardActions(Canvas);
 
 debug(Canvas);
