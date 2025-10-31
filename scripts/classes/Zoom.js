@@ -10,12 +10,12 @@ export default class Zoom {
     this.zoomIndicator = zoomIndicator ?? this.zoomIndicator;
 
     this.zoomBtn.addEventListener("click", () => {
-      Toolbox.useSilent("camera").cursor = "zoom-in";
+      Toolbox.tools.camera.cursor = "zoom-in";
       Toolbox.grab("camera").isLocked = true;
     });
 
     this.zoomIndicator.addEventListener("change", (e) => {
-      const newZoom = Toolbox.useSilent("camera").setZoom(Canvas, {
+      const newZoom = Toolbox.tools.camera.setZoom(Canvas, {
         zoom: e.target.value,
       });
       this.setZoomIndicator(newZoom);
@@ -39,7 +39,7 @@ export default class Zoom {
   }
 
   setZoomIndicator(zoom) {
-    if (!zoom) zoom = Toolbox.useSilent("camera").zoom;
+    if (!zoom) zoom = Toolbox.tools.camera.zoom;
     this.zoomIndicator.value = zoom;
   }
 }

@@ -9,13 +9,15 @@ import Zoom from "../classes/Zoom.js";
 class Toolbox {
   _handled = null;
   _previous = null;
-  _tools = [new Camera(), new Selector()];
+  _tools = {};
   _widgets = {};
 
   constructor({ handled, tools, widgets } = {}) {
     this.handled = handled ?? this._handled;
     this.tools = tools ?? this._tools;
     this.widgets = widgets ?? this._widgets;
+
+    this.tools = { camera: new Camera(), selector: new Selector() };
 
     this.widgets = { leftDrawer: new LeftDrawer() };
     this.widgets = { theme: new Theme() };
@@ -51,7 +53,7 @@ class Toolbox {
   }
 
   set tools(tools) {
-    this._tools = tools;
+    this._tools = { ...this.tools, ...tools };
   }
 
   set widgets(widgets) {
@@ -67,28 +69,21 @@ class Toolbox {
   }
 
   grab(label, { skipPrevious = false } = {}) {
-    if (!label) return;
+    const requested = this.tools[`${label}`];
+    if (!requested) return;
 
     // Already handled:
-    if (this.handled?.label === label) {
+    if (this.handled === requested) {
       if (!skipPrevious) this.previous = this.handled;
       this.emit();
       return this.handled;
     }
 
-    // else:
-    let matched;
+    if (requested.label !== "camera") this.tools.camera.isLocked = false;
 
-    this.tools.forEach((tool) => {
-      if (tool.label === label) matched = tool;
-      if (tool.isLocked) tool.isLocked = false;
-    });
-
-    if (matched) {
-      this.handled = matched;
-      this.emit();
-      return this.handled;
-    }
+    this.handled = requested;
+    this.emit();
+    return this.handled;
   }
 
   grabPrevious() {
@@ -100,15 +95,6 @@ class Toolbox {
 
   isHandled(label) {
     return this.handled?.label === label;
-  }
-
-  useSilent(label) {
-    if (!label) return;
-
-    const tool = this.tools.find((tool) => tool.label === label);
-    if (tool) {
-      return tool;
-    }
   }
 }
 

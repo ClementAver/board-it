@@ -7,7 +7,7 @@ export default class Pan {
     this.panBtn = panBtn ?? this.panBtn;
 
     this.panBtn.addEventListener("click", () => {
-      Toolbox.useSilent("camera").cursor = "move";
+      Toolbox.tools.camera.cursor = "move";
       Toolbox.grab("camera").isLocked = true;
     });
   }

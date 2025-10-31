@@ -7,7 +7,7 @@ export default class FrameAll {
   constructor({ frameAllBtn } = {}) {
     this.frameAllBtn = frameAllBtn ?? this.frameAllBtn;
 
-    this.frameAllBtn.addEventListener("click", () => Toolbox.useSilent("camera").frameAll(Canvas));
+    this.frameAllBtn.addEventListener("click", () => Toolbox.tools.camera.frameAll(Canvas));
   }
 
   get frameAllBtn() {
