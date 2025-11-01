@@ -17,12 +17,27 @@ class Toolbox {
     this.tools = tools ?? this._tools;
     this.widgets = widgets ?? this._widgets;
 
-    this.tools = { camera: new Camera(), selector: new Selector() };
+    const camera = new Camera();
+    const zoom = new Zoom();
+
+    /* ⇊ Camera Proxy ⇊ */
+    const cameraProxyTarget = camera;
+    const cameraProxyHandler = {
+      get(_, prop) {
+        if (prop === "scale") zoom.zoomIndicator.value = camera.zoom;
+
+        return Reflect.get(...arguments);
+      },
+    };
+    const cameraProxy = new Proxy(cameraProxyTarget, cameraProxyHandler);
+    /* ⇈ Camera Proxy ⇈ */
+
+    this.tools = { camera: cameraProxy, selector: new Selector() };
 
     this.widgets = { leftDrawer: new LeftDrawer() };
     this.widgets = { theme: new Theme() };
     this.widgets = { pan: new Pan() };
-    this.widgets = { zoom: new Zoom() };
+    this.widgets = { zoom };
     this.widgets = { frameAll: new FrameAll() };
   }
 

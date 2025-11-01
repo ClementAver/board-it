@@ -10,11 +10,13 @@ export default class Zoom {
     this.zoomIndicator = zoomIndicator ?? this.zoomIndicator;
 
     this.zoomBtn.addEventListener("click", () => {
+      if (!Toolbox.tools.camera) return;
       Toolbox.tools.camera.cursor = "zoom-in";
       Toolbox.grab("camera").isLocked = true;
     });
 
     this.zoomIndicator.addEventListener("change", (e) => {
+      if (!Toolbox.tools.camera) return;
       const newZoom = Toolbox.tools.camera.setZoom(Canvas, {
         zoom: e.target.value,
       });

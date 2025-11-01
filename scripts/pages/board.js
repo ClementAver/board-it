@@ -48,4 +48,4 @@ const camera = Toolbox.grab("camera");
 camera.frameAll(Canvas);
 camera.initKeyboardActions(Canvas);
 
-debug(Canvas);
+debug(Toolbox);

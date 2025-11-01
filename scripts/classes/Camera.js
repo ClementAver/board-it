@@ -17,7 +17,7 @@ export default class Camera extends Tool {
   _startPan = { x: 0, y: 0 };
   _zoomIntensity = 0.1;
   _zoomMax = 500;
-  _zoomMin = 5;
+  _zoomMin = 10;
 
   constructor({
     cursor = "move",
