@@ -6,6 +6,7 @@
   height: 1.45rem;
   justify-content: start;
   margin-right: 1rem;
+  min-width: 2.5rem;
   padding-inline: 0;
   --theme-switch-btn-translate: 0;
   width: 2.5rem;

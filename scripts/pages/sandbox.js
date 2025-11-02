@@ -7,12 +7,12 @@ new Theme();
 const count = new reactive(0);
 
 const countBtn = document.getElementById("count-btn");
-countBtn.textContent = `clicked ${count.value} x.`;
+countBtn.textContent = `Cliqué ${count.value} fois`;
 countBtn.onclick = () => {
   count.value = count.value + 1;
 };
 
 count.addAction = (v) => console.log("click #" + v);
-count.addAction = (v) => (countBtn.textContent = `clicked ${v} x.`);
+count.addAction = (v) => (countBtn.textContent = `Cliqué ${v} fois`);
 
 debug(count);

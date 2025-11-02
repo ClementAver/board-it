@@ -1,7 +1,7 @@
 a:has(#logo-header) {
   color: var(--text-swath);
   margin-left: 0.6rem;
-  margin-right: auto;
+  margin-right: var(--spacing-lg);
 }
 
 a:has(#logo-header:hover) {
