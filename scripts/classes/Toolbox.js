@@ -3,7 +3,6 @@ import Selector from "./Selector.js";
 import FrameAll from "../classes/FrameAll.js";
 import LeftDrawer from "../classes/LeftDrawer.js";
 import Pan from "../classes/Pan.js";
-import Theme from "../classes/Theme.js";
 import Zoom from "../classes/Zoom.js";
 
 class Toolbox {
@@ -35,7 +34,6 @@ class Toolbox {
     this.tools = { camera: cameraProxy, selector: new Selector() };
 
     this.widgets = { leftDrawer: new LeftDrawer() };
-    this.widgets = { theme: new Theme() };
     this.widgets = { pan: new Pan() };
     this.widgets = { zoom };
     this.widgets = { frameAll: new FrameAll() };

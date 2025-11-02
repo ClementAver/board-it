@@ -4,6 +4,9 @@ import Canvas from "../classes/Canvas.js";
 import Grid from "../classes/Grid.js";
 import Picture from "../classes/Picture.js";
 import Toolbox from "../classes/Toolbox.js";
+import Theme from "../classes/Theme.js";
+
+new Theme();
 
 const picture = new Picture({
   x: 0,

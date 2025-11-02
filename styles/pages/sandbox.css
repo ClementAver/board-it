@@ -1,1 +1,39 @@
+@import url(../reset.css);
+@import url(../config.css);
+@import url(../theme.css);
+@import url(../animation.css);
+
 @import url(../globals/button.css);
+@import url(../globals/fieldset.css);
+@import url(../globals/global.css);
+@import url(../globals/input.css);
+@import url(../globals/label.css);
+@import url(../globals/legend.css);
+@import url(../globals/link.css);
+@import url(../globals/svg.css);
+@import url(../globals/textarea.css);
+
+@import url(../components/logo.css);
+@import url(../components/main-header.css);
+@import url(../components/menu-left-drawer.css);
+@import url(../components/main-board.css);
+@import url(../components/theme-switch.css);
+
+@import url(../utils/animated.css);
+@import url(../utils/border.css);
+@import url(../utils/color.css);
+@import url(../utils/font.css);
+@import url(../utils/spacing.css);
+@import url(../utils/miscellaneous.css);
+@import url(../utils/validated.css);
+
+body {
+  background-color: var(--ternary);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+}
