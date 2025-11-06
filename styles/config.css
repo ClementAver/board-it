@@ -24,6 +24,9 @@
   --btn-color-hover: var(--primary);
   --btn-background-color-hover: var(--accent-beta);
   --btn-border-color-hover: var(--accent-beta);
+  --btn-color-active: var(--accent-beta);
+  --btn-background-color-active: var(--primary);
+  --btn-border-color-active: var(--primary);
   --btn-color-selected: var(--accent-beta);
   --btn-background-color-selected: var(--primary);
   --btn-border-color-selected: var(--primary);

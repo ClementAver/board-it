@@ -4,7 +4,8 @@ a:has(#logo-header) {
   margin-right: var(--spacing-lg);
 }
 
-a:has(#logo-header:hover) {
+a:has(#logo-header:hover),
+a:has(#logo-header:focus-visible) {
   color: var(--accent-beta);
 }
 

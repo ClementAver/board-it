@@ -16,7 +16,8 @@ nav a {
   position: relative;
 }
 
-nav a:hover {
+nav a:hover,
+nav a:focus-visible {
   background-color: var(--link-background-color-hover);
   border: var(--border-width) solid var(--link-border-color-hover);
   box-shadow: var(--shadow-std);

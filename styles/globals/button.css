@@ -7,19 +7,29 @@ button {
   padding: var(--btn-padding-y) var(--btn-padding-x);
 }
 
-button:hover {
+button:hover,
+button:focus-visible {
   background-color: var(--btn-background-color-hover);
   border: var(--border-width) solid var(--btn-border-color-hover);
   box-shadow: var(--shadow-std);
   color: var(--btn-color-hover);
 }
 
-button:hover:disabled {
+button:hover:active,
+button:focus-visible:active {
+  background-color: var(--btn-background-color-active);
+  border: var(--border-width) solid var(--btn-border-color-active);
+  box-shadow: var(--shadow-std);
+  color: var(--btn-color-active);
+}
+
+button:hover:disabled,
+button:focus-visible:disabled {
   background-color: var(--btn-background-color);
   border: var(--border-width) solid var(--btn-border-color);
+  box-shadow: unset;
   color: var(--btn-color);
   cursor: default;
-  box-shadow: unset;
 }
 
 button.selected {
@@ -31,9 +41,9 @@ button.selected {
 
 #btn-debug {
   background-color: transparent;
+  bottom: 0.5rem;
   border: none;
   padding: 0;
   position: fixed;
   right: 0.25rem;
-  bottom: 0.5rem;
 }

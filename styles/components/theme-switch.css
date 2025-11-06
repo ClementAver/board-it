@@ -12,7 +12,8 @@
   width: 2.5rem;
 }
 
-[data-theme-switch-btn]:hover {
+[data-theme-switch-btn]:hover,
+[data-theme-switch-btn]:focus-visible {
   color: var(--btn-background-color-hover) !important;
 }
 
