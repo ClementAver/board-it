@@ -11,6 +11,7 @@ select {
   color: var(--btn-color);
   cursor: pointer;
   line-height: 1rem;
+  height: 1.5rem;
   padding: var(--btn-padding-y) var(--btn-padding-x);
   display: inline-block;
 }
@@ -73,6 +74,7 @@ option {
   cursor: pointer;
   line-height: 1rem;
   padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-family: "Commissioner", "Arial", sans-serif;
 }
 
 option:hover,
