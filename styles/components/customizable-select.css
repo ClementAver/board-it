@@ -4,10 +4,6 @@ select,
   border: none;
 }
 
-select:open::picker-icon {
-  rotate: 180deg;
-}
-
 select {
   align-items: center;
   background-color: var(--btn-background-color);
@@ -16,9 +12,10 @@ select {
   cursor: pointer;
   line-height: 1rem;
   padding: var(--btn-padding-y) var(--btn-padding-x);
+  display: inline-block;
 }
 
-select:hover,
+/* select:hover,
 select:focus-visible {
   background-color: var(--btn-background-color-hover);
   border: var(--border-width) solid var(--btn-border-color-hover);
@@ -32,7 +29,7 @@ select:focus-visible:active {
   border: var(--border-width) solid var(--btn-border-color-active);
   box-shadow: var(--shadow-std);
   color: var(--btn-color-active);
-}
+} */
 
 select:hover:disabled,
 select:focus-visible:disabled {
@@ -40,6 +37,10 @@ select:focus-visible:disabled {
   border: var(--border-width) solid var(--btn-border-color);
   color: var(--btn-color);
   cursor: default;
+}
+
+select:open::picker-icon {
+  rotate: 180deg;
 }
 
 selectedcontent {
