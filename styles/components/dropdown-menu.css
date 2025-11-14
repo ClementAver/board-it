@@ -26,13 +26,8 @@
 
 button:has(+ .dropdown-menu) {
   border-radius: var(--border-radius);
-  max-width: 150px;
-  overflow: hidden;
   padding-right: var(--spacing-lg);
   position: relative;
-  text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 button:has(+ .dropdown-menu):after {
@@ -48,7 +43,6 @@ button:has(+ .dropdown-menu):after {
   display: flex;
   flex-flow: column nowrap;
   gap: var(--spacing-xs);
-  max-width: 150px;
   padding: var(--spacing-xs);
 }
 
@@ -56,10 +50,7 @@ button:has(+ .dropdown-menu):after {
   border-radius: var(--border-radius);
   display: flex;
   gap: var(--spacing-sm);
-  overflow: hidden;
   text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .dropdown-menu button svg {
@@ -67,6 +58,18 @@ button:has(+ .dropdown-menu):after {
   margin-block: auto;
   stroke-width: 1px;
   width: 0.9rem;
+}
+
+button:has(+ .dropdown-menu),
+.dropdown-menu button {
+  max-width: 150px;
+}
+
+button:has(+ .dropdown-menu),
+.dropdown-menu span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Not supported in the current configuration as of 2025/11/14. */
