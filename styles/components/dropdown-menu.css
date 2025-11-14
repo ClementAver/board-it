@@ -28,9 +28,17 @@ button:has(+ .dropdown-menu) {
   border-radius: var(--border-radius);
   max-width: 150px;
   overflow: hidden;
+  padding-right: var(--spacing-lg);
+  position: relative;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+button:has(+ .dropdown-menu):after {
+  content: "↴";
+  position: absolute;
+  right: var(--spacing-sm);
 }
 
 .dropdown-menu {
@@ -46,10 +54,19 @@ button:has(+ .dropdown-menu) {
 
 .dropdown-menu button {
   border-radius: var(--border-radius);
+  display: flex;
+  gap: var(--spacing-sm);
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.dropdown-menu button svg {
+  margin-block: auto;
+  height: 0.9rem;
+  width: 0.9rem;
+  stroke-width: 1px;
 }
 
 /* Not supported in the current configuration as of 2025/11/14. */
