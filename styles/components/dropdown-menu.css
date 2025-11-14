@@ -63,10 +63,10 @@ button:has(+ .dropdown-menu):after {
 }
 
 .dropdown-menu button svg {
-  margin-block: auto;
   height: 0.9rem;
-  width: 0.9rem;
+  margin-block: auto;
   stroke-width: 1px;
+  width: 0.9rem;
 }
 
 /* Not supported in the current configuration as of 2025/11/14. */
