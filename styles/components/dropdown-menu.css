@@ -1,0 +1,70 @@
+.anchor-dropdown {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  position-area: bottom span-right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}
+
+.anchor-dropdown.dropdown-menu {
+  margin-left: calc(-1 * var(--spacing-xs));
+}
+
+.anchor-dropright {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  position-area: span-bottom right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}
+
+.anchor-dropright.dropdown-menu {
+  margin-top: calc(-1 * var(--spacing-xs));
+}
+
+button:has(+ .dropdown-menu) {
+  border-radius: var(--border-radius);
+  max-width: 150px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  background-color: var(--secondary-darker);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-std);
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--spacing-xs);
+  max-width: 150px;
+  padding: var(--spacing-xs);
+}
+
+.dropdown-menu button {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Not supported in the current configuration as of 2025/11/14. */
+/*
+position-try: --menu-bottom-left, --menu-top-right, menu-top-left;
+
+@position-try --menu-bottom-left {
+  position-area: bottom span-left;
+}
+
+@position-try --menu-top-right {
+  position-area: top span-right;
+}
+
+@position-try --menu-top-left {
+  position-area: top span-left;
+} 
+*/

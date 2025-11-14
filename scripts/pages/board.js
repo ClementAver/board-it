@@ -5,6 +5,9 @@ import Grid from "../classes/Grid.js";
 import Picture from "../classes/Picture.js";
 import Toolbox from "../classes/Toolbox.js";
 import Theme from "../classes/Theme.js";
+import initDropdownMenus from "../utils/dropdowns.js";
+
+initDropdownMenus();
 
 new Theme();
 
@@ -13,7 +16,7 @@ const picture = new Picture({
   y: 0,
   w: 460,
   h: 460,
-  src: "./assets/pictures/image-1.jpg",
+  src: "../assets/pictures/image-1.jpg",
 });
 
 const elements = [picture];
