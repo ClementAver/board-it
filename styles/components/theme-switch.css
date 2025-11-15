@@ -14,7 +14,14 @@
 
 [data-theme-switch-btn]:hover,
 [data-theme-switch-btn]:focus-visible {
-  color: var(--btn-background-color-hover) !important;
+  color: var(--btn-background-color-hover);
+}
+
+button[data-theme-switch-btn]:active,
+button[data-theme-switch-btn]:focus-visible:active {
+  background-color: var(--btn-background-color-hover);
+  border: var(--border-width) solid var(--btn-border-color-hover);
+  color: var(--btn-background-color-hover);
 }
 
 [data-theme="dark"] [data-theme-switch-btn] {
