@@ -1,6 +1,6 @@
 export default function initDropdownMenus() {
-  const anchors = document.querySelectorAll("[anchor]");
-  const targets = document.querySelectorAll("[target]");
+  const anchors = document.querySelectorAll("[data-anchor]");
+  const targets = document.querySelectorAll("[data-target]");
 
   for (let i = 0; i < anchors.length; i++) {
     const anchor = anchors[i];

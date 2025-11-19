@@ -1,4 +1,5 @@
 import Board from "../classes/Board.js";
+import Dropzone from "../classes/DropZone.js";
 import debug from "../utils/debug.js";
 import Canvas from "../classes/Canvas.js";
 import Grid from "../classes/Grid.js";
@@ -10,6 +11,8 @@ import initDropdownMenus from "../utils/dropdowns.js";
 initDropdownMenus();
 
 new Theme();
+
+new Dropzone();
 
 const picture = new Picture({
   x: 0,

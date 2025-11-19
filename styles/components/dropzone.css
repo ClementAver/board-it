@@ -1,0 +1,45 @@
+[data-dropzone] {
+  background-color: var(--ternary);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-std);
+  margin: auto;
+  padding: var(--spacing-lg);
+}
+
+[data-dropzone]::backdrop {
+  backdrop-filter: blur(var(--spacing-xs));
+}
+
+[data-dropzone] article {
+  align-items: center;
+  background-color: var(--ternary);
+  border: var(--border-width) dashed var(--primary);
+  border-radius: var(--border-radius);
+  display: flex;
+  height: 500px;
+  justify-content: center;
+  max-height: 75vh;
+  max-height: 75dvh;
+  max-width: 75vw;
+  max-width: 75dvw;
+  overflow: hidden;
+  position: relative;
+  padding: var(--spacing-lg);
+  width: 500px;
+}
+
+[data-dropzone] article > svg {
+  bottom: -30%;
+  color: var(--secondary);
+  height: 125%;
+  left: -25%;
+  opacity: 0.15;
+  position: absolute;
+  width: 125%;
+}
+
+[data-dropzone] article > p {
+  text-align: center;
+  z-index: 10;
+}
