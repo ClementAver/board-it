@@ -69,6 +69,7 @@ button:has(+ .dropdown-menu):after {
   display: flex;
   font-weight: 500;
   gap: var(--spacing-sm);
+  padding-left: var(--spacing-xs);
   text-align: left;
 }
 

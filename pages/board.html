@@ -44,12 +44,11 @@
         </g>
       </svg></a>
 
-    <button data-anchor type="button" class="ml-md mr-auto">Fichier</button>
+    <button data-anchor type="button" class="ml-md mr-xs">Fichier</button>
     <div data-target class="anchor-dropdown dropdown-menu">
       <button data-dropzone-trigger type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-file-up-icon lucide-file-up">
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path
             d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
           <path d="M14 2v5a1 1 0 0 0 1 1h5" />
@@ -61,8 +60,7 @@
 
       <button data-anchor type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-file-down-icon lucide-file-down">
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path
             d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
           <path d="M14 2v5a1 1 0 0 0 1 1h5" />
@@ -76,6 +74,20 @@
       </div>
     </div>
 
+    <button data-anchor type="button" class="mr-auto">Image</button>
+    <div data-target class="anchor-dropdown dropdown-menu">
+      <button type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+          <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+          <circle cx="10" cy="12" r="2" />
+          <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
+        </svg>
+        <span>Importer</span>
+      </button>
+    </div>
 
     <button data-theme-switch-btn type="button" aria-label="Toggles Dark theme.">
       <div data-theme-switch-handle>
@@ -109,11 +121,12 @@
           <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
           <rect x="2" y="6" width="14" height="12" rx="2" />
         </svg>
-        <span class="label truncate">Caméra</span></button>
+        <span class="label truncate">Caméra</span>
+      </button>
     </li>
     <li>
-      <button type="button" data-tool="selector" class="flex gap-lg rounded bd-transparent w-full"><svg
-          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      <button type="button" data-tool="selector" class="flex gap-lg rounded bd-transparent w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 3a2 2 0 0 0-2 2" />
           <path d="M19 3a2 2 0 0 1 2 2" />
@@ -127,7 +140,9 @@
           <path d="M21 9v1" />
           <path d="M3 14v1" />
           <path d="M21 14v1" />
-        </svg><span class="label truncate">Sélectionner</span></button>
+        </svg>
+        <span class="label truncate">Sélectionner</span>
+      </button>
     </li>
   </menu>
 
@@ -151,8 +166,7 @@
 
       <button type="button" data-widget="zoom" class="rounded">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-search-icon lucide-search">
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m21 21-4.34-4.34" />
           <circle cx="11" cy="11" r="8" />
         </svg>
@@ -179,21 +193,25 @@
 
   <dialog data-dropzone closedby="any">
     <article>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-file-image-icon lucide-file-image">
-        <path
-          d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-        <circle cx="10" cy="12" r="2" />
-        <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
-      </svg>
+
 
       <p class="flex-col items-center">
-        <span class="mb-sm">Vous pouvez glisser-déposer vos fichiers ou&nbsp;images ici.</span>
-        <span>Vous pouvez également <button class="rounded py-sm ml-xs">Sélectionner un ficher.</button></span>
-      </p>
+        <button type="button" class="rounded py-sm ml-xs flex gap-sm mb-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+            <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+            <circle cx="10" cy="12" r="2" />
+            <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
+          </svg>
+          Sélectionner un ficher.
+        </button>
 
+        <span class="text-ternary mb-lg">Vous pouvez également glisser-déposer vos fichiers ici</span>
+
+        <button data-dropzone-btn-close type="button" class="rounded py-sm">Fermer</button>
+      </p>
     </article>
 
   </dialog>
