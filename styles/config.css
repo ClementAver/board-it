@@ -40,11 +40,14 @@
   --link-background-color-hover: var(--accent-beta);
   --link-border-color-hover: var(--accent-beta);
 
-  --shadow-std: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --shadow-std: var(--shadow) 0px 1px 4px;
+  --shadow-adaptative-std: var(--shadow-adaptative) 0px 1px 4px;
   --disabled-opacity: 0.5;
 
   --left-drawer-padding: 0.5rem;
   --main-header-background-color: var(--secondary-darker);
+
+  --dialog-border-radius: var(--spacing-lg);
 
   /* ⇊  Default theme colours ⇊ */
 
@@ -55,6 +58,9 @@
   --secondary: hsl(120, 10%, 40%);
   --secondary-darker: hsl(120, 10%, 25%);
   --ternary: hsl(0, 0%, 90%);
+  --shadow: rgba(0, 0, 0, 0.125);
+  --shadow-adaptative: rgba(0, 0, 0, 0.25);
+  --backdrop-color: rgba(0, 0, 0, 0.25);
 }
 
 /* Commons */

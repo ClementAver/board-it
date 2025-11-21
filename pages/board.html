@@ -46,7 +46,7 @@
 
     <button data-anchor type="button" class="ml-md mr-xs">Fichier</button>
     <div data-target class="anchor-dropdown dropdown-menu">
-      <button data-dropzone-trigger type="button">
+      <button data-dropzone-dialog-trigger data-action="showModal" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path
@@ -191,29 +191,22 @@
     </menu>
   </main>
 
-  <dialog data-dropzone closedby="any">
-    <article>
+  <dialog data-dropzone-dialog autofocus closedby="any">
+    <button data-dropzone-dialog-trigger data-action="close" type="button"
+      class="rounded-full bd-transparent bg-transparent text-secondary ml-auto"
+      aria-label="Fermer la boîte de dialogue modale.">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m14 10 7-7" />
+        <path d="M20 10h-6V4" />
+        <path d="m3 21 7-7" />
+        <path d="M4 14h6v6" />
+      </svg>
+    </button>
 
+    <article data-dropzone>
 
-      <p class="flex-col items-center">
-        <button type="button" class="rounded py-sm ml-xs flex gap-sm mb-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-            <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-            <circle cx="10" cy="12" r="2" />
-            <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
-          </svg>
-          Sélectionner un ficher.
-        </button>
-
-        <span class="text-ternary mb-lg">Vous pouvez également glisser-déposer vos fichiers ici</span>
-
-        <button data-dropzone-btn-close type="button" class="rounded py-sm">Fermer</button>
-      </p>
     </article>
-
   </dialog>
 </body>
 

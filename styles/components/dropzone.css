@@ -1,38 +1,24 @@
-[data-dropzone] {
+dialog:has([data-dropzone]) {
   background-color: transparent;
   border: none;
   height: 100vh;
   height: 100dvh;
   margin: auto;
-  position: relative;
+  max-width: 75vw;
+  max-width: 75dvw;
+  max-height: 75vh;
+  max-height: 75dvh;
   width: 100vw;
   width: 100dvw;
 }
 
-[data-dropzone]::backdrop {
-  backdrop-filter: blur(var(--spacing-lg));
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-[data-dropzone] article {
-  align-items: center;
-  background-color: transparent;
+article[data-dropzone] {
+  background-color: var(--ternary);
   border-radius: var(--border-radius);
   bottom: 0rem;
   display: flex;
-  justify-content: center;
   left: 0rem;
-  overflow: hidden;
   position: absolute;
   right: 0rem;
   top: 0rem;
-}
-
-[data-dropzone] article svg {
-  transform: scale(0.9);
-}
-
-[data-dropzone] article > p {
-  text-align: center;
-  z-index: 10;
 }

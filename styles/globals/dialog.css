@@ -1,0 +1,19 @@
+dialog {
+  border-radius: var(--dialog-border-radius);
+  box-shadow: var(--shadow-std);
+  padding: 0;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(var(--spacing-lg));
+  background-color: var(--backdrop-color);
+  position: relative;
+}
+
+dialog > button:first-of-type {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(0.75);
+  z-index: 10;
+}

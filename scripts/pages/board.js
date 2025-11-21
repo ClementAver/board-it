@@ -1,5 +1,5 @@
 import Board from "../classes/Board.js";
-import Dropzone from "../classes/DropZone.js";
+import Dialog from "../classes/Dialog.js";
 import debug from "../utils/debug.js";
 import Canvas from "../classes/Canvas.js";
 import Grid from "../classes/Grid.js";
@@ -12,7 +12,9 @@ initDropdownMenus();
 
 new Theme();
 
-new Dropzone();
+const dropzoneDialog = document.querySelector("[data-dropzone-dialog]");
+const dropzoneDialogTriggers = document.querySelectorAll("[data-dropzone-dialog-trigger]");
+new Dialog({ dialog: dropzoneDialog, triggers: dropzoneDialogTriggers });
 
 const picture = new Picture({
   x: 0,
