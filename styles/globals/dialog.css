@@ -1,13 +1,27 @@
 dialog {
   border-radius: var(--dialog-border-radius);
   box-shadow: var(--shadow-std);
+  opacity: 1;
   padding: 0;
+  transform: translateY(0px);
+  transition: opacity 0.3s, transform 0.3s;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
 }
 
 dialog::backdrop {
   backdrop-filter: blur(var(--spacing-lg));
   background-color: var(--backdrop-color);
+  opacity: 1;
   position: relative;
+  transition: opacity 0.3s;
+
+  @starting-style {
+    opacity: 0;
+  }
 }
 
 dialog > button:first-of-type {
