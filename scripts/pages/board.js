@@ -2,6 +2,7 @@ import Board from "../classes/Board.js";
 import Dialog from "../classes/Dialog.js";
 import debug from "../utils/debug.js";
 import Canvas from "../classes/Canvas.js";
+import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import Grid from "../classes/Grid.js";
 import Picture from "../classes/Picture.js";
 import Toolbox from "../classes/Toolbox.js";
@@ -11,6 +12,10 @@ import initDropdownMenus from "../utils/dropdowns.js";
 initDropdownMenus();
 
 new Theme();
+
+const uploadJSONInput = document.getElementById("json-input");
+const uploadJSONLabel = document.querySelector("json-input + label");
+new CustomizableFileInput({ input: uploadJSONInput, label: uploadJSONLabel });
 
 const dropzoneDialog = document.querySelector("[data-dropzone-dialog]");
 const dropzoneDialogTriggers = document.querySelectorAll("[data-dropzone-dialog-trigger]");

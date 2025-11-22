@@ -8,7 +8,6 @@ export default class Dialog {
 
     this.triggers.forEach((element) => {
       element.addEventListener("click", (event) => {
-        console.log(event.target.closest("[data-action]").dataset.action);
         switch (event.target.closest("[data-action]").dataset.action) {
           case "showModal":
             this.dialog.showModal();
