@@ -11,6 +11,7 @@
 @import url(../globals/widget.css);
 
 @import url(../components/camera-widget.css);
+@import url(../components/customizable-file-input.css);
 @import url(../components/dropdown-menu.css);
 @import url(../components/dropzone.css);
 @import url(../components/logo.css);
@@ -21,6 +22,7 @@
 
 @import url(../utils/animated.css);
 @import url(../utils/border.css);
+@import url(../utils/button-chameleon.css);
 @import url(../utils/color.css);
 @import url(../utils/font.css);
 @import url(../utils/spacing.css);

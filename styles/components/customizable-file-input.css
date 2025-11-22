@@ -1,0 +1,17 @@
+input[type="file"] {
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  z-index: -1;
+}
+
+input[type="file"] + label {
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  display: flex;
+  font-weight: 500;
+  gap: var(--spacing-sm);
+  padding-left: var(--spacing-xs);
+}

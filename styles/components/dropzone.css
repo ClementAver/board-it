@@ -4,12 +4,15 @@ dialog:has([data-dropzone]) {
   height: 100vh;
   height: 100dvh;
   margin: auto;
-  max-width: 75vw;
-  max-width: 75dvw;
-  max-height: 75vh;
-  max-height: 75dvh;
   width: 100vw;
   width: 100dvw;
+
+  @media screen and (min-width: 900px) {
+    max-width: 75vw;
+    max-width: 75dvw;
+    max-height: 75vh;
+    max-height: 75dvh;
+  }
 }
 
 article[data-dropzone] {

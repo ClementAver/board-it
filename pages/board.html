@@ -44,9 +44,11 @@
         </g>
       </svg></a>
 
+    <!-- 🚧🚧🚧🚧🚧 -->
     <button data-anchor type="button" class="ml-md mr-xs">Fichier</button>
     <div data-target class="anchor-dropdown dropdown-menu">
-      <button data-dropzone-dialog-trigger data-action="showModal" type="button">
+      <input type="file" accept="application/JSON" name="file" id="file" />
+      <label for="file" class="button-chameleon" tabindex="0">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path
@@ -56,7 +58,8 @@
           <path d="m15 15-3-3-3 3" />
         </svg>
         <span>Téléverser</span>
-      </button>
+      </label>
+      <!-- 🚧🚧🚧🚧🚧 -->
 
       <button data-anchor type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -76,7 +79,7 @@
 
     <button data-anchor type="button" class="mr-auto">Image</button>
     <div data-target class="anchor-dropdown dropdown-menu">
-      <button type="button">
+      <button data-dropzone-dialog-trigger data-action="showModal" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path

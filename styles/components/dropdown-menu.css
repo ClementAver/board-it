@@ -70,18 +70,17 @@ button:has(+ .dropdown-menu):after {
   font-weight: 500;
   gap: var(--spacing-sm);
   padding-left: var(--spacing-xs);
-  text-align: left;
 }
 
-.dropdown-menu button svg {
-  height: 0.9rem;
+.dropdown-menu svg {
   margin-block: auto;
   stroke-width: 2px;
-  width: 0.9rem;
+  transform: scale(0.75);
 }
 
 button:has(+ .dropdown-menu),
-.dropdown-menu button {
+.dropdown-menu button,
+.dropdown-menu label {
   max-width: 150px;
 }
 
