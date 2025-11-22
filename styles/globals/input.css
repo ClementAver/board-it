@@ -2,7 +2,7 @@ input {
   background-color: var(--input-background);
   border-bottom: var(--border-width) solid var(--accent-alpha);
   border-left: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--spacing-xs);
   border-right: var(--border-width) solid var(--accent-alpha);
   border-top: none;
   color: var(--text);

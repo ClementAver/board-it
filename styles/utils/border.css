@@ -1,5 +1,5 @@
 .rounded {
-  border-radius: var(--border-radius);
+  border-radius: var(--spacing-xs);
 }
 .rounded-full {
   border-radius: calc(infinity * 1px);

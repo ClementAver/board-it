@@ -17,11 +17,49 @@ dialog:has([data-dropzone]) {
 
 article[data-dropzone] {
   background-color: var(--ternary);
-  border-radius: var(--border-radius);
   bottom: 0rem;
   display: flex;
+  flex-flow: column nowrap;
   left: 0rem;
   position: absolute;
   right: 0rem;
   top: 0rem;
+}
+
+article[data-dropzone] p {
+  margin: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm);
+  font-weight: 500;
+}
+
+article[data-dropzone] > div:nth-child(2) {
+  background-color: var(--secondary);
+  border-radius: var(--spacing-md);
+  flex-grow: 1;
+  margin: 0 var(--spacing-md) var(--spacing-md);
+  padding: var(--spacing-lg);
+}
+
+article[data-dropzone] > div:nth-child(3) {
+  background-color: var(--secondary-darker);
+  border-radius: var(--spacing-xs);
+  margin: 0 var(--spacing-md) calc(var(--spacing-lg) * 1.125);
+  padding: var(--spacing-xs);
+}
+
+article[data-dropzone] label {
+  max-width: 100%;
+  width: fit-content;
+  padding-block: var(--spacing-xs);
+  padding-left: var(--spacing-sm);
+}
+
+article[data-dropzone] label svg {
+  transform: scale(0.75);
+}
+
+article[data-dropzone] label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

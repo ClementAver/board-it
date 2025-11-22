@@ -8,10 +8,7 @@ input[type="file"] {
 }
 
 input[type="file"] + label {
-  cursor: pointer;
-  border-radius: var(--border-radius);
   display: flex;
   font-weight: 500;
   gap: var(--spacing-sm);
-  padding-left: var(--spacing-xs);
 }

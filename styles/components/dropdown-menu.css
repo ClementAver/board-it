@@ -25,7 +25,7 @@
 }
 
 button:has(+ .dropdown-menu) {
-  border-radius: var(--border-radius);
+  border-radius: var(--spacing-xs);
   font-weight: 500;
   padding-right: var(--spacing-lg);
   position: relative;
@@ -41,7 +41,7 @@ button:has(+ .dropdown-menu):after {
 .dropdown-menu {
   background-color: var(--secondary-darker);
   --before-width: 1px;
-  border-radius: var(--border-radius);
+  border-radius: var(--spacing-xs);
   box-shadow: var(--shadow-std);
   display: flex;
   flex-flow: column nowrap;
@@ -64,8 +64,9 @@ button:has(+ .dropdown-menu):after {
   background-color: var(--accent-alpha);
 }
 
-.dropdown-menu button {
-  border-radius: var(--border-radius);
+.dropdown-menu button,
+.dropdown-menu .button-chameleon {
+  border-radius: var(--spacing-xs);
   display: flex;
   font-weight: 500;
   gap: var(--spacing-sm);
@@ -80,7 +81,7 @@ button:has(+ .dropdown-menu):after {
 
 button:has(+ .dropdown-menu),
 .dropdown-menu button,
-.dropdown-menu label {
+.dropdown-menu .button-chameleon {
   max-width: 150px;
 }
 

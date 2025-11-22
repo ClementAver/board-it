@@ -50,7 +50,7 @@ selectedcontent {
 
 ::picker(select) {
   background-color: var(--secondary-darker);
-  border-radius: var(--border-radius);
+  border-radius: var(--spacing-xs);
   display: flex;
   flex-flow: column nowrap;
   gap: var(--spacing-xs);

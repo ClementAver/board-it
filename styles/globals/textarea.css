@@ -8,7 +8,7 @@ textarea {
   border-left: none;
   border-right: var(--border-width) solid var(--accent-alpha);
   border-top: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--spacing-xs);
   color: var(--text);
   font-weight: 400;
   padding: 0.125rem 2rem 0.125rem 0.25rem;
