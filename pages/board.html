@@ -44,7 +44,6 @@
         </g>
       </svg></a>
 
-    <!-- 🚧🚧🚧🚧🚧 -->
     <button data-anchor type="button" class="ml-md mr-xs">Fichier</button>
     <div data-target class="anchor-dropdown dropdown-menu">
       <input type="file" accept="application/JSON" name="file" id="json-input" tabindex="-1" />
@@ -59,7 +58,6 @@
         </svg>
         <span>Téléverser</span>
       </label>
-      <!-- 🚧🚧🚧🚧🚧 -->
 
       <button data-anchor type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -207,11 +205,12 @@
       </svg>
     </button>
 
+    <!-- 🚧🚧🚧🚧🚧 -->
     <article data-dropzone>
       <p>Importer une image</p>
       <div></div>
       <div>
-        <input type="file" accept="image/png" name="file" id="png-input" tabindex="-1" />
+        <input type="file" accept="image/png" name="file" id="png-input" tabindex="-1" multiple />
         <label for="png-input" class="button-chameleon rounded" tabindex="0">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -223,8 +222,10 @@
           </svg>
           <span>Importer une image <small>(.png)</small></span>
         </label>
+        <p><small></small></p>
       </div>
     </article>
+    <!-- 🚧🚧🚧🚧🚧 -->
   </dialog>
 </body>
 
