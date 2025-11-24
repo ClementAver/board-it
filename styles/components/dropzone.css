@@ -15,6 +15,15 @@ dialog:has([data-dropzone]) {
   }
 }
 
+dialog:has([data-dropzone]) > p {
+  font-weight: 500;
+  margin: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm);
+  padding-right: calc(var(--spacing-lg) * 2);
+  position: absolute;
+  z-index: 10;
+}
+
 article[data-dropzone] {
   background-color: var(--ternary);
   bottom: 0rem;
@@ -26,49 +35,26 @@ article[data-dropzone] {
   top: 0rem;
 }
 
-article[data-dropzone] > p {
-  margin: var(--spacing-xs) var(--spacing-md);
-  padding: var(--spacing-sm);
-  font-weight: 500;
-}
-
-article[data-dropzone] > div:nth-child(2) {
-  background-color: var(--secondary);
+article[data-dropzone] > div {
+  align-items: center;
+  background-color: var(--ternary);
   border-radius: var(--spacing-md);
+  display: flex;
+  flex-flow: column nowrap;
   flex-grow: 1;
+  justify-content: center;
   margin: 0 var(--spacing-md) var(--spacing-md);
   padding: var(--spacing-lg);
 }
 
-article[data-dropzone] > div:nth-child(3) {
-  background-color: var(--secondary-darker);
-  border-radius: var(--spacing-xs);
-  display: flex;
-  gap: var(--spacing-md);
-  margin: 0 var(--spacing-md) calc(var(--spacing-lg) * 1.125);
-  padding: var(--spacing-xs);
+article[data-dropzone] > div > svg {
+  color: var(--secondary);
+  height: 4rem;
+  width: 4rem;
 }
 
-article[data-dropzone] label {
-  max-width: 100%;
-  padding-block: var(--spacing-xs);
-  padding-left: var(--spacing-sm);
-  width: fit-content;
-}
-
-article[data-dropzone] label svg {
-  transform: scale(0.75);
-}
-
-article[data-dropzone] label span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-article[data-dropzone] label + p {
-  color: var(--text-swath);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+article[data-dropzone] > div > span {
+  color: var(--secondary);
+  font-weight: 600;
+  text-align: center;
 }

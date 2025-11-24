@@ -14,7 +14,7 @@ initDropdownMenus();
 new Theme();
 
 new CustomizableFileInput({ input: document.getElementById("json-input") });
-new CustomizableFileInput({ input: document.getElementById("png-input"), hasIndicator: true });
+new CustomizableFileInput({ input: document.getElementById("png-input") });
 
 const dropzoneDialog = document.querySelector("[data-dropzone-dialog]");
 const dropzoneDialogTriggers = document.querySelectorAll("[data-dropzone-dialog-trigger]");

@@ -205,24 +205,37 @@
       </svg>
     </button>
 
+    <p>Importer une image</p>
+
     <!-- 🚧🚧🚧🚧🚧 -->
     <article data-dropzone>
-      <p>Importer une image</p>
-      <div></div>
       <div>
-        <input type="file" accept="image/png" name="file" id="png-input" tabindex="-1" multiple />
-        <label for="png-input" class="button-chameleon rounded" tabindex="0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-            <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-            <path d="M12 12v6" />
-            <path d="m15 15-3-3-3 3" />
-          </svg>
-          <span>Importer une image <small>(.png)</small></span>
-        </label>
-        <p><small></small></p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+          <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+          <circle cx="10" cy="12" r="2" />
+          <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
+        </svg>
+        <span class="mb-md">Glissez-déposez vos images ici.</span>
+        <span class="mb-lg">— ou —</span>
+        <div>
+          <input type="file" accept="image/png" name="file" id="png-input" tabindex="-1" data-indicator="true"
+            multiple />
+          <label for="png-input" class="button-chameleon" tabindex="0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+              <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+              <path d="M12 12v6" />
+              <path d="m15 15-3-3-3 3" />
+            </svg>
+            <span>Importer une image <small>(.png)</small></span>
+          </label>
+          <p><small>–</small></p>
+        </div>
       </div>
     </article>
     <!-- 🚧🚧🚧🚧🚧 -->

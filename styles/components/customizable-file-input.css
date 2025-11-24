@@ -8,7 +8,46 @@ input[type="file"] {
 }
 
 input[type="file"] + label {
+  border-radius: var(--spacing-xs);
   display: flex;
   font-weight: 500;
   gap: var(--spacing-sm);
+  max-width: 100%;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  width: fit-content;
+}
+
+input[type="file"] + label svg {
+  transform: scale(0.75);
+}
+
+input[type="file"] + label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div:has( > input[type="file"][data-indicator="true"]) {
+  display: flex;
+  flex-flow: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+input[type="file"][data-indicator="true"] + label {
+  border-radius: var(--spacing-xs) 0 0 var(--spacing-xs);
+  max-width: 100%;
+}
+
+input[type="file"][data-indicator="true"] + label + p {
+  background-color: var(--secondary-darker);
+  border: var(--border-width) solid var(--secondary-darker);
+  border-radius: 0 var(--spacing-xs) var(--spacing-xs) 0;
+  color: var(--text-swath);
+  line-height: 1rem;
+  max-width: 100%;
+  overflow: hidden;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
