@@ -44,51 +44,56 @@
         </g>
       </svg></a>
 
-    <button data-anchor type="button" class="ml-md mr-xs">Fichier</button>
-    <div data-target class="anchor-dropdown dropdown-menu">
-      <input type="file" accept="application/JSON" name="file" id="json-input" tabindex="-1" />
-      <label for="json-input" class="button-chameleon" tabindex="0">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-          <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-          <path d="M12 12v6" />
-          <path d="m15 15-3-3-3 3" />
-        </svg>
-        <span>Téléverser</span>
-      </label>
+    <menu>
+      <li>
+        <button data-anchor type="button">Fichier</button>
+        <div data-target class="anchor-dropdown dropdown-menu">
+          <input type="file" accept="application/JSON" name="file" id="json-input" tabindex="-1" />
+          <label for="json-input" class="button-chameleon" tabindex="0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+              <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+              <path d="M12 12v6" />
+              <path d="m15 15-3-3-3 3" />
+            </svg>
+            <span>Téléverser</span>
+          </label>
 
-      <button data-anchor type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-          <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-          <path d="M12 18v-6" />
-          <path d="m9 15 3 3 3-3" />
-        </svg>
-        <span>Enregistrer</span>
-      </button>
-      <div data-target class="anchor-dropright dropdown-menu">
-        <button type="button"><span>Local</span></button>
-      </div>
-    </div>
+          <button data-anchor type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+              <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+              <path d="M12 18v-6" />
+              <path d="m9 15 3 3 3-3" />
+            </svg>
+            <span>Enregistrer</span>
+          </button>
+          <div data-target class="anchor-dropright dropdown-menu">
+            <button type="button"><span>Local</span></button>
+          </div>
+        </div>
+      </li>
 
-    <button data-anchor type="button" class="mr-auto">Image</button>
-    <div data-target class="anchor-dropdown dropdown-menu">
-      <button data-dropzone-dialog-trigger data-action="showModal" type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-          <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-          <circle cx="10" cy="12" r="2" />
-          <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
-        </svg>
-        <span>Importer</span>
-      </button>
-    </div>
+      <li> <button data-anchor type="button" class="mr-auto">Image</button>
+        <div data-target class="anchor-dropdown dropdown-menu">
+          <button data-dropzone-dialog-trigger data-action="showModal" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+              <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+              <circle cx="10" cy="12" r="2" />
+              <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
+            </svg>
+            <span>Importer</span>
+          </button>
+        </div>
+      </li>
+    </menu>
 
     <button data-theme-switch-btn type="button" aria-label="Toggles Dark theme.">
       <div data-theme-switch-handle>
@@ -107,8 +112,8 @@
 
     <nav>
       <ul>
-        <li><a href="../pages/board.html" class="rounded-full medium">Board</a></li>
-        <li><a href="../pages/contact.html" class="rounded-full medium">Contact</a></li>
+        <li><a href="./board.html" class="rounded-full medium">Board</a></li>
+        <li><a href="./contact.html" class="rounded-full medium">Contact</a></li>
       </ul>
     </nav>
   </header>

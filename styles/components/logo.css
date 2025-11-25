@@ -1,14 +1,8 @@
-a:has(#logo-header) {
-  color: var(--text-swath);
-  margin-left: 0.6rem;
-  margin-right: var(--spacing-lg);
-}
-
-a:has(#logo-header:hover),
-a:has(#logo-header:focus-visible) {
-  color: var(--accent-beta);
-}
-
 #logo-header {
-  transform: scale(1.25) translateY(2px);
+  color: var(--text-swath);
+}
+
+#logo-header:hover,
+#logo-header:focus-visible {
+  color: var(--accent-beta);
 }
