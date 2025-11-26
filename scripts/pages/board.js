@@ -1,15 +1,18 @@
 import Board from "../classes/Board.js";
-import Dialog from "../classes/Dialog.js";
-import debug from "../utils/debug.js";
 import Canvas from "../classes/Canvas.js";
 import CustomizableFileInput from "../classes/CustomizableFileInput.js";
+import debug from "../utils/debug.js";
+import Dialog from "../classes/Dialog.js";
 import Grid from "../classes/Grid.js";
-import Picture from "../classes/Picture.js";
-import Toolbox from "../classes/Toolbox.js";
-import Theme from "../classes/Theme.js";
 import initDropdownMenus from "../utils/dropdowns.js";
+import MainHeader from "../classes/MainHeader.js";
+import Picture from "../classes/Picture.js";
+import Theme from "../classes/Theme.js";
+import Toolbox from "../classes/Toolbox.js";
 
 initDropdownMenus();
+
+new MainHeader();
 
 new Theme();
 

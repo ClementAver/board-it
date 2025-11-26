@@ -10,8 +10,9 @@
 </head>
 
 <body>
-  <header class="main-header">
-    <a href="../index.html"><svg id="logo-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
+  <header class="main-header" data-open="false">
+    <a href="../index.html">
+      <svg id="logo-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
         <defs>
           <style>
             .cls-1 {
@@ -45,8 +46,11 @@
       </svg>
     </a>
 
-    <button data-theme-switch-btn type="button" aria-label="Toggles Dark theme.">
-      <div data-theme-switch-handle>
+    <button id="main-header-switch" type="button" aria-label="Shows/hides the menu on smaller screen widths."
+      class="rounded-full bd-transparent bg-transparent text-secondary"></button>
+
+    <button id="data-theme-switch-btn" type="button" aria-label="Toggles Dark theme.">
+      <div id="data-theme-switch-handle">
         <svg id="theme-sun" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
           stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="4" />
@@ -67,6 +71,7 @@
       </ul>
     </nav>
   </header>
+  <div id="main-header-placeholder"></div>
 
   <main class="w-screen flex justify-center items-center">
     <form class="flex-col gap-md w-full max-w-1024 h-fit m-lg">

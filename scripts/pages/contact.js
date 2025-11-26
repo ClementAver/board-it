@@ -1,5 +1,8 @@
-import Theme from "../classes/Theme.js";
 import delay from "../utils/delay.js";
+import MainHeader from "../classes/MainHeader.js";
+import Theme from "../classes/Theme.js";
+
+new MainHeader();
 
 new Theme();
 

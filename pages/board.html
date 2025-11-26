@@ -10,8 +10,9 @@
 </head>
 
 <body>
-  <header class="main-header">
-    <a href="../index.html"><svg id="logo-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
+  <header class="main-header" data-open="false">
+    <a href="../index.html">
+      <svg id="logo-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
         <defs>
           <style>
             .cls-1 {
@@ -42,7 +43,11 @@
             <path class="cls-3" d="M127.11,386.31c27.65,1.6,42-48.39,17.66-61.71A65.61,65.61,0,0,1,127.11,386.31Z" />
           </g>
         </g>
-      </svg></a>
+      </svg>
+    </a>
+
+    <button id="main-header-switch" type="button" aria-label="Shows/hides the menu on smaller screen widths."
+      class="rounded-full bd-transparent bg-transparent text-secondary"></button>
 
     <menu>
       <li>
@@ -78,7 +83,8 @@
         </div>
       </li>
 
-      <li> <button data-anchor type="button" class="mr-auto">Image</button>
+      <li>
+        <button data-anchor type="button" class="mr-auto">Image</button>
         <div data-target class="anchor-dropdown dropdown-menu">
           <button data-dropzone-dialog-trigger data-action="showModal" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -95,8 +101,8 @@
       </li>
     </menu>
 
-    <button data-theme-switch-btn type="button" aria-label="Toggles Dark theme.">
-      <div data-theme-switch-handle>
+    <button id="data-theme-switch-btn" type="button" aria-label="Toggles Dark theme.">
+      <div id="data-theme-switch-handle">
         <svg id="theme-sun" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
           stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="4" />
@@ -117,6 +123,7 @@
       </ul>
     </nav>
   </header>
+  <div id="main-header-placeholder"></div>
 
   <menu data-open="true" id="left-drawer">
     <li>
@@ -130,6 +137,7 @@
         <span class="label truncate">Caméra</span>
       </button>
     </li>
+
     <li>
       <button type="button" data-tool="selector" class="flex gap-lg rounded bd-transparent w-full">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -154,7 +162,7 @@
 
   <main id="canvas-wrapper">
     <button id="left-drawer-switch" type="button" class="rounded-full bd-transparent bg-transparent text-secondary"
-      aria-label="Extend/retract the left drawer."></button>
+      aria-label="Extends/retracts the left drawer."></button>
 
     <menu id="camera-widget" aria-label="Camera widget" class="widget max-w-full wrap">
       <button type="button" data-widget="pan" class="rounded">

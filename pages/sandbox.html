@@ -10,8 +10,9 @@
 </head>
 
 <body>
-  <header class="main-header">
-    <a href="../index.html"><svg id="logo-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
+  <header class="main-header" data-open="false">
+    <a href="../index.html">
+      <svg id="logo-header" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
         <defs>
           <style>
             .cls-1 {
@@ -45,6 +46,36 @@
       </svg>
     </a>
 
+    <button id="main-header-switch" type="button" aria-label="Shows/hides the menu on smaller screen widths."
+      class="rounded-full bd-transparent bg-transparent text-secondary"></button>
+
+    <button id="data-theme-switch-btn" type="button" aria-label="Toggles Dark theme.">
+      <div id="data-theme-switch-handle">
+        <svg id="theme-sun" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M5 5l1 1M18 18l1 1M2 12h2M20 12h2M6 18l-1 1M19 5l-1 1" />
+        </svg>
+
+        <svg id="theme-moon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 12a9 9 0 1 1-9-9v1a6 6 0 0 0 8 8z" />
+        </svg>
+      </div>
+    </button>
+
+    <nav>
+      <ul>
+        <li><a href="./board.html" class="rounded-full medium">Board</a></li>
+        <li><a href="./contact.html" class="rounded-full medium">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="main-header-placeholder"></div>
+
+  <main class="p-lg">
+    <button type="button" class="h-32 py-0 rounded" id="count-btn"></button>
+
     <form class="ml-auto mr-lg">
       <p>
         <label for="pet-select" class="sr-only">Select pet:</label>
@@ -75,31 +106,7 @@
         </select>
       </p>
     </form>
-
-    <button data-theme-switch-btn type="button" aria-label="Toggles Dark theme.">
-      <div data-theme-switch-handle>
-        <svg id="theme-sun" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M5 5l1 1M18 18l1 1M2 12h2M20 12h2M6 18l-1 1M19 5l-1 1" />
-        </svg>
-
-        <svg id="theme-moon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M21 12a9 9 0 1 1-9-9v1a6 6 0 0 0 8 8z" />
-        </svg>
-      </div>
-    </button>
-
-    <nav>
-      <ul>
-        <li><a href="./board.html" class="rounded-full medium">Board</a></li>
-        <li><a href="./contact.html" class="rounded-full medium">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <button type="button" class="h-32 py-0 rounded" id="count-btn"></button>
+  </main>
 </body>
 
 <script type="module" src="../scripts/pages/sandbox.js"></script>

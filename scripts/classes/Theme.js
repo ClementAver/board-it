@@ -3,8 +3,8 @@ export default class Theme {
   _moon = document.getElementById("theme-moon");
   _prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
   _sun = document.getElementById("theme-sun");
-  _switchBtn = document.querySelector("[data-theme-switch-btn]");
-  _switchHandle = document.querySelector("[data-theme-switch-handle]");
+  _switchBtn = document.getElementById("data-theme-switch-btn");
+  _switchHandle = document.getElementById("data-theme-switch-handle");
 
   constructor({ currentTheme, moon, prefersDark, sun, switchBtn, switchHandle } = {}) {
     this.currentTheme = currentTheme ?? this.currentTheme;
