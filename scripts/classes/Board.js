@@ -21,7 +21,7 @@ export default class Board extends Element {
     elements,
     grids,
   } = {}) {
-    super(x, y, w, h);
+    super({ x, y, w, h, elementType: "board" });
     this.backgroundColor = backgroundColor ?? this.backgroundColor;
     this.borderAlign = borderAlign ?? this.borderAlign;
     this.borderColor = borderColor ?? this.borderColor;

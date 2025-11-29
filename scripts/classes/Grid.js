@@ -19,7 +19,7 @@ export default class Grid extends Element {
     isEnabled,
     spacing,
   } = {}) {
-    super(x, y, w, h);
+    super({ x, y, w, h, elementType: "grid" });
     this.borderColor = borderColor ?? this.borderColor;
     this.borderWidth = borderWidth ?? this.borderWidth;
     this.dashes = dashes ?? this.dashes;
@@ -68,7 +68,7 @@ export default class Grid extends Element {
   }
 
   draw(canvas, rect) {
-    const camera = Toolbox.tools.camera;;
+    const camera = Toolbox.tools.camera;
     canvas.context.strokeStyle = this.borderColor;
     canvas.context.lineWidth = this.borderWidth / camera.scale;
     canvas.context.setLineDash(

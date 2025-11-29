@@ -12,16 +12,33 @@ import Toolbox from "../classes/Toolbox.js";
 
 initDropdownMenus();
 
-new MainHeader();
-
-new Theme();
-
-new CustomizableFileInput({ input: document.getElementById("json-input") });
-new CustomizableFileInput({ input: document.getElementById("png-input") });
-
+const uploadWorkFileForm = document.querySelector("form:has(#json-input)");
+const jsonInput = document.getElementById("json-input");
 const dropzoneDialog = document.querySelector("[data-dropzone-dialog]");
 const dropzoneDialogTriggers = document.querySelectorAll("[data-dropzone-dialog-trigger]");
+
+new MainHeader();
+new Theme();
+new CustomizableFileInput({ input: jsonInput });
+new CustomizableFileInput({ input: document.getElementById("png-input") });
 new Dialog({ dialog: dropzoneDialog, triggers: dropzoneDialogTriggers });
+
+jsonInput.addEventListener("change", () => {
+  const submitEvent = new SubmitEvent("submit");
+  uploadWorkFileForm.dispatchEvent(submitEvent);
+});
+
+uploadWorkFileForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  console.log("submitted !");
+
+  const data = new FormData(uploadWorkFileForm);
+
+  for (var [key, value] of data.entries()) {
+    console.log(key, value);
+  }
+});
 
 const picture = new Picture({
   x: 0,

@@ -14,7 +14,7 @@ export default class Picture extends Element {
     img,
     src,
   } = {}) {
-    super(x, y, w, h);
+    super({ x, y, w, h, elementType: "picture" });
     this.backgroundColor = backgroundColor ?? this.backgroundColor;
     this.image = img ?? this.image;
     this.source = src ?? this.source;

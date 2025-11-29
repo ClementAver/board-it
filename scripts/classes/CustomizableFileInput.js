@@ -11,8 +11,6 @@ export default class CustomizableFileInput {
     if (this.hasIndicator) this.paragraph = paragraph ?? this.label.nextElementSibling;
 
     this.input.addEventListener("change", (event) => {
-      console.log(event.target.files);
-
       if (this.paragraph) {
         const count = event.target.files.length ?? 0;
         this.paragraph.firstChild.textContent = `${count} fichier${
