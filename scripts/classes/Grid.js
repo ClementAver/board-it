@@ -101,4 +101,28 @@ export default class Grid extends Element {
     canvas.context.lineWidth = 1;
     canvas.context.setLineDash([]);
   }
+
+  static mapperIn({
+    _height: h,
+    _originX: x,
+    _originY: y,
+    _width: w,
+    _borderColor: borderColor,
+    _borderWidth: borderWidth,
+    _dashes: dashes,
+    _isEnabled: isEnabled,
+    _spacing: spacing,
+  }) {
+    return new Grid({
+      x,
+      y,
+      w,
+      h,
+      borderColor,
+      borderWidth,
+      dashes,
+      isEnabled,
+      spacing,
+    });
+  }
 }

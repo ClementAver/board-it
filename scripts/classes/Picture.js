@@ -1,19 +1,10 @@
 import Element from "./Element.js";
-
 export default class Picture extends Element {
   _backgroundColor = "transparent";
   _image = new Image();
   _source = "";
 
-  constructor({
-    x = 100,
-    y = 100,
-    w = 1600,
-    h = 900,
-    backgroundColor,
-    img,
-    src,
-  } = {}) {
+  constructor({ x = 100, y = 100, w = 1600, h = 900, backgroundColor, img, src } = {}) {
     super({ x, y, w, h, elementType: "picture" });
     this.backgroundColor = backgroundColor ?? this.backgroundColor;
     this.image = img ?? this.image;
@@ -54,24 +45,25 @@ export default class Picture extends Element {
       height: this.height,
     };
 
-    canvas.context.fillRect(
-      rect.originX,
-      rect.originY,
-      rect.width,
-      rect.height
-    );
+    canvas.context.fillRect(rect.originX, rect.originY, rect.width, rect.height);
 
     const img = new Image();
     img.src = this.source;
     img.onload = () =>
-      canvas.context.drawImage(
-        img,
-        rect.originX,
-        rect.originY,
-        rect.width,
-        rect.height
-      );
+      canvas.context.drawImage(img, rect.originX, rect.originY, rect.width, rect.height);
 
     canvas.context.fillStyle = "rgba(0,0,0,0)";
+  }
+
+  static mapperIn({
+    _height: h,
+    _originX: x,
+    _originY: y,
+    _width: w,
+    _backgroundColor: backgroundColor,
+    _image: img,
+    _source: src,
+  }) {
+    return new Picture({ h, x, y, w, backgroundColor, img, src });
   }
 }

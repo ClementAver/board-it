@@ -1,5 +1,6 @@
 import Element from "./Element.js";
 import Grid from "./Grid.js";
+import Picture from "./Picture.js";
 
 export default class Board extends Element {
   _backgroundColor = "#fafafa";
@@ -228,5 +229,48 @@ export default class Board extends Element {
         height: this.height - this.borderWidth,
       };
     }
+  }
+
+  static mapperIn({
+    _height: h,
+    _originX: x,
+    _originY: y,
+    _width: w,
+    _backgroundColor: backgroundColor,
+    _borderAlign: borderAlign,
+    _borderColor: borderColor,
+    _borderWidth: borderWidth,
+    _elements: elements,
+    _grids: grids,
+  }) {
+    elements = elements.map((element) => {
+      switch (element._elementType) {
+        case "picture":
+          element = Picture.mapperIn(element);
+          break;
+
+        default:
+          break;
+      }
+
+      return element;
+    });
+
+    grids = grids.map((grid) => {
+      return Grid.mapperIn(grid);
+    });
+
+    return new Board({
+      x,
+      y,
+      w,
+      h,
+      backgroundColor,
+      borderAlign,
+      borderColor,
+      borderWidth,
+      elements,
+      grids,
+    });
   }
 }

@@ -9,7 +9,7 @@ export default class BrowserStorage {
     if (["session", "local"].includes(mode)) {
       this._mode = mode;
     } else {
-      console.warn("🟡 Wrong argument given.");
+      console.warn(`'${mode}' n'est pas un mode de stockage valide.`);
     }
   }
 
@@ -21,7 +21,7 @@ export default class BrowserStorage {
       storage.setItem(key, value);
     } catch (error) {
       console.warn(
-        `Failed to set ${this.mode} storage key: '${key}', value passed was: `,
+        `Impossible d'assigner le '${this.mode}' storage pour la clé : '${key}', la valeur passée était : `,
         value,
         error
       );
