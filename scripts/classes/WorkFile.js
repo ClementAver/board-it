@@ -11,7 +11,6 @@ class WorkFile {
     this.file = file ?? this.file;
 
     window.addEventListener("workfileupload", (event) => {
-      console.log(event.detail);
       this.upload(event.detail);
     });
   }
