@@ -71,6 +71,7 @@ button:has(+ .dropdown-menu):after {
   font-weight: 500;
   gap: var(--spacing-sm);
   padding-left: var(--spacing-xs);
+  width: 100%;
 }
 
 .dropdown-menu svg {

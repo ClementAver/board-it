@@ -1,6 +1,15 @@
 export default class History {
+  _head = 24;
   _limit = 25;
   _snapshots = [];
+
+  constructor({ limit } = {}) {
+    this.limit = limit ?? this.limit;
+  }
+
+  get head() {
+    return this._head;
+  }
 
   get limit() {
     return this._limit;
@@ -8,6 +17,13 @@ export default class History {
 
   get snapshots() {
     return this._snapshots;
+  }
+
+  set head(head) {
+    if (head < 0) head = 0;
+    if (head >= this.limit) head = this.limit - 1;
+
+    this._head = Math.round(head);
   }
 
   set limit(limit) {

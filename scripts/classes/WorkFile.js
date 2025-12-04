@@ -1,28 +1,56 @@
 import Board from "./Board.js";
+import Canvas from "./Canvas.js";
+import History from "./History.js";
+import Toolbox from "./Toolbox.js";
 
-// 🚧🚧🚧🚧🚧
-export default class WorkFile {
+class WorkFile {
   _file = {};
-  _history;
+  _history = new History();
 
   constructor({ file } = {}) {
     this.file = file ?? this.file;
+
+    window.addEventListener("workfileupload", (event) => {
+      console.log(event.detail);
+      this.upload(event.detail);
+    });
   }
 
   get file() {
     return this._file;
   }
 
+  get history() {
+    return this._history;
+  }
+
   set file(file) {
     this._file = file;
   }
 
-  static jsonToFile(json) {
-    try {
-      const js = JSON.parse(json);
+  set history(history) {
+    this._history = history;
+  }
 
-      return js.map((element) => {
-        return Board.mapperIn(element);
+  save(file) {
+    this.history.addSnapshot(file);
+    this.file = file;
+  }
+
+  upload(json) {
+    const file = this.jsonToFile(json);
+    this.history.addSnapshot(file);
+    this.file = file;
+    Canvas.boards = file;
+
+    const camera = Toolbox.grab("camera");
+    camera.frameAll(Canvas);
+  }
+
+  jsonToFile(json) {
+    try {
+      return JSON.parse(json).map((board) => {
+        return Board.mapperIn(board);
       });
     } catch (error) {
       console.error(
@@ -32,4 +60,5 @@ export default class WorkFile {
     }
   }
 }
-// 🚧🚧🚧🚧🚧
+
+export default new WorkFile();
