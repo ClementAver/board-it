@@ -122,7 +122,7 @@ export default class Camera extends Tool {
     this._zoomMin = zoomMin;
   }
 
-  frameAll(canvas, padding = 40) {
+  async frameAll(canvas, padding = 40) {
     if (!canvas.boards.length) return;
 
     const { minX, minY, maxX, maxY } = this.getTotalRect(canvas.boards);
@@ -146,7 +146,7 @@ export default class Camera extends Tool {
     this.originX = canvasW / 2 - centerX * this.scale;
     this.originY = canvasH / 2 - centerY * this.scale;
 
-    canvas.draw();
+    await canvas.draw();
   }
 
   getTotalRect(elements) {

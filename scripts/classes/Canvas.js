@@ -58,26 +58,32 @@ class Canvas {
     console.debug(this);
   }
 
-  draw() {
-    /*
-     * Resets the camera state to draw background...
-     * Parameters : (scaleX, skewY, skewX, scaleY, translateX, translateY)
-     */
-    this.context.setTransform(1, 0, 0, 1, 0, 0);
-    /*
-     * ...then clears all the pixels of the canvas.
-     */
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  async draw() {
+    const promise = new Promise((resolve) => {
+      /*
+       * Resets the camera state to draw background...
+       * Parameters : (scaleX, skewY, skewX, scaleY, translateX, translateY)
+       */
+      this.context.setTransform(1, 0, 0, 1, 0, 0);
+      /*
+       * ...then clears all the pixels of the canvas.
+       */
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Applies the camera state (zoom + pan).
-    const camera = Toolbox.tools.camera;
-    this.context.setTransform(camera.scale, 0, 0, camera.scale, camera.originX, camera.originY);
+      // Applies the camera state (zoom + pan).
+      const camera = Toolbox.tools.camera;
+      this.context.setTransform(camera.scale, 0, 0, camera.scale, camera.originX, camera.originY);
 
-    if (this.boards.length) {
-      this.boards.forEach((board) => {
-        board.draw(this);
-      });
-    }
+      if (this.boards.length) {
+        this.boards.forEach((board) => {
+          board.draw(this);
+        });
+      }
+
+      resolve(true);
+    });
+
+    await promise;
   }
 
   resize() {

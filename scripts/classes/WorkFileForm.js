@@ -12,12 +12,13 @@ export default class WorkFileForm {
       event.preventDefault();
 
       const data = new FormData(this.form);
-      let reader = new FileReader();
 
       const files = [];
       for (var [key, value] of data.entries()) {
         if (key === "json") files.push(value);
       }
+
+      let reader = new FileReader();
 
       files.forEach((file) => {
         reader.readAsText(file);

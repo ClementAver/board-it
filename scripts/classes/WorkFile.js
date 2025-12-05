@@ -10,6 +10,9 @@ class WorkFile {
   constructor({ file } = {}) {
     this.file = file ?? this.file;
 
+    const storedWorkFile = localStorage.getItem("workfile");
+    if (storedWorkFile) this.upload(storedWorkFile);
+
     window.addEventListener("workfileupload", (event) => {
       this.upload(event.detail);
     });
@@ -36,14 +39,18 @@ class WorkFile {
     this.file = file;
   }
 
-  upload(json) {
+  async upload(json) {
     const file = this.jsonToFile(json);
     this.history.addSnapshot(file);
     this.file = file;
+
     Canvas.boards = file;
+    await Canvas.draw();
 
     const camera = Toolbox.grab("camera");
     camera.frameAll(Canvas);
+
+    localStorage.setItem("workfile", json);
   }
 
   jsonToFile(json) {
