@@ -35,7 +35,7 @@ class WorkFile {
 
     reader.onload = () => {
       localStorage.setItem("workfile/metadata", this.persistFileData(file));
-      this.load(reader.result);
+      this.load(JSON.parse(reader.result));
     };
 
     reader.onerror = () => {

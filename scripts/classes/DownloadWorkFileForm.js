@@ -30,12 +30,14 @@ export default class DownloadWorkFileForm {
   download = (event) => {
     event.preventDefault();
 
-    const blob = new Blob([JSON.stringify(WorkFile.history.snapshots.slice(-1)[0], null, 2)], {
+    const blob = new Blob([JSON.stringify(WorkFile.history.snapshots.slice(-1)[0])], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);
     this.anchor.href = url;
-    this.anchor.download = `${JSON.parse(localStorage.getItem("workfile/metadata")).name ?? "boards"}`;
+    this.anchor.download = `${
+      JSON.parse(localStorage.getItem("workfile/metadata")).name ?? "boards"
+    }`;
     this.anchor.click();
     URL.revokeObjectURL(url);
   };
