@@ -77,8 +77,9 @@ export default class Theme {
   }
 
   initTheme() {
-    if (localStorage.getItem("theme")) {
-      this.currentTheme = localStorage.getItem("theme");
+    const storedThemePreset = localStorage.getItem("theme");
+    if (storedThemePreset) {
+      this.currentTheme = storedThemePreset;
     } else if (this.prefersDark.matches) {
       this.currentTheme = "dark";
     } else {

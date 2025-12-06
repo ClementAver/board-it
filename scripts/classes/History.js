@@ -5,6 +5,7 @@ export default class History {
 
   constructor({ limit } = {}) {
     this.limit = limit ?? this.limit;
+    this.head = this.limit - 1;
   }
 
   get head() {

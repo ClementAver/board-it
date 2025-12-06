@@ -86,6 +86,12 @@ button:has(+ .dropdown-menu),
   max-width: 150px;
 }
 
+button:has(+ .dropdown-menu) span:first-child,
+.dropdown-menu button span:first-child,
+.dropdown-menu .button-chameleon span:first-child {
+  margin-left: var(--spacing-sm);
+}
+
 button:has(+ .dropdown-menu),
 .dropdown-menu span {
   overflow: hidden;

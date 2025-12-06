@@ -7,7 +7,6 @@
 }
 
 .sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
@@ -21,8 +20,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* ⇊ Text alignment ⇊ */
 
 .overflow-hidden {
   overflow: hidden;

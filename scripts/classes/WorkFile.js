@@ -4,56 +4,64 @@ import History from "./History.js";
 import Toolbox from "./Toolbox.js";
 
 class WorkFile {
-  _file = {};
   _history = new History();
+  _instanciated = {};
 
-  constructor({ file } = {}) {
-    this.file = file ?? this.file;
-
-    const storedWorkFile = localStorage.getItem("workfile");
-    if (storedWorkFile) this.upload(storedWorkFile);
-
-    window.addEventListener("workfileupload", (event) => {
-      this.upload(event.detail);
-    });
-  }
-
-  get file() {
-    return this._file;
+  constructor({ snapshot } = {}) {
+    if (!snapshot) snapshot = localStorage.getItem("workfile/snapshot");
+    if (!snapshot) localStorage.removeItem("workfile/metadata");
+    if (snapshot) this.load(snapshot);
   }
 
   get history() {
     return this._history;
   }
 
-  set file(file) {
-    this._file = file;
+  get instanciated() {
+    return this._instanciated;
   }
 
   set history(history) {
     this._history = history;
   }
 
-  save(file) {
-    this.history.addSnapshot(file);
-    this.file = file;
+  set instanciated(instanciated) {
+    this._instanciated = instanciated;
   }
 
-  async upload(json) {
-    const file = this.jsonToFile(json);
-    this.history.addSnapshot(file);
-    this.file = file;
+  async read(file) {
+    let reader = new FileReader();
+    reader.readAsText(file);
 
-    Canvas.boards = file;
+    reader.onload = () => {
+      localStorage.setItem("workfile/metadata", this.persistFileData(file));
+      this.load(reader.result);
+    };
+
+    reader.onerror = () => {
+      alert("Une erreur est survenue lors de la lecture des données: ", reader.error);
+      console.error(reader.error);
+    };
+  }
+
+  async load(snapshot) {
+    this.instanciated = this.instanciateAll(snapshot);
+    this.toCanvas(snapshot);
+  }
+
+  async toCanvas(snapshot) {
+    Canvas.boards = this.instanciated;
     await Canvas.draw();
 
     const camera = Toolbox.grab("camera");
     camera.frameAll(Canvas);
 
-    localStorage.setItem("workfile", json);
+    snapshot = snapshot ?? JSON.stringify(this.instanciated);
+    this.history.addSnapshot(snapshot);
+    localStorage.setItem("workfile/snapshot", snapshot);
   }
 
-  jsonToFile(json) {
+  instanciateAll(json) {
     try {
       return JSON.parse(json).map((board) => {
         return Board.mapperIn(board);
@@ -64,6 +72,10 @@ class WorkFile {
         error
       );
     }
+  }
+
+  persistFileData(file) {
+    return JSON.stringify({ name: file.name });
   }
 }
 
