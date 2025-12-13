@@ -2,6 +2,8 @@
   header.main-header {
     transition: inset 0.2s;
     inset: 0 0 90%;
+    position: sticky;
+    z-index: 10;
   }
 
   header.main-header a:has(#logo-header) {

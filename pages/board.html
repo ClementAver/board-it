@@ -276,77 +276,89 @@
     <div id="main-header-placeholder"></div>
 
     <menu data-open="true" id="left-drawer">
-      <li>
-        <button
-          data-anchor
-          type="button"
-          data-tool="camera"
-          aria-describedby="camera-btn-description"
-          class="flex gap-lg rounded bd-transparent w-full"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            style="transform: translateX(0.05rem)"
+      <div class="fixed">
+        <li>
+          <button
+            data-anchor
+            type="button"
+            data-tool="camera"
+            aria-describedby="camera-btn-description"
+            class="flex gap-lg rounded bd-transparent w-full"
           >
-            <path
-              d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"
-            />
-            <rect x="2" y="6" width="14" height="12" rx="2" />
-          </svg>
-          <span class="sr-only">Caméra</span>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="transform: translateX(0.05rem)"
+            >
+              <path
+                d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"
+              />
+              <rect x="2" y="6" width="14" height="12" rx="2" />
+            </svg>
+            <span class="sr-only">Caméra</span>
+          </button>
 
-        <div data-target id="camera-btn-description" role="tooltip">
-          <small>Caméra</small>
-        </div>
-      </li>
-
-      <li>
-        <button
-          data-anchor
-          type="button"
-          data-tool="selector"
-          aria-describedby="selector-btn-description"
-          class="flex gap-lg rounded bd-transparent w-full"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <div
+            data-target
+            id="camera-btn-description"
+            role="tooltip"
+            class="ml-sm"
           >
-            <path d="M5 3a2 2 0 0 0-2 2" />
-            <path d="M19 3a2 2 0 0 1 2 2" />
-            <path d="M21 19a2 2 0 0 1-2 2" />
-            <path d="M5 21a2 2 0 0 1-2-2" />
-            <path d="M9 3h1" />
-            <path d="M9 21h1" />
-            <path d="M14 3h1" />
-            <path d="M14 21h1" />
-            <path d="M3 9v1" />
-            <path d="M21 9v1" />
-            <path d="M3 14v1" />
-            <path d="M21 14v1" />
-          </svg>
-          <span class="sr-only">Sélectionner</span>
-        </button>
-        <div data-target id="selector-btn-description" role="tooltip">
-          <small>Sélectionner</small>
-        </div>
-      </li>
+            <small>Caméra</small>
+          </div>
+        </li>
+
+        <li>
+          <button
+            data-anchor
+            type="button"
+            data-tool="selector"
+            aria-describedby="selector-btn-description"
+            class="flex gap-lg rounded bd-transparent w-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 3a2 2 0 0 0-2 2" />
+              <path d="M19 3a2 2 0 0 1 2 2" />
+              <path d="M21 19a2 2 0 0 1-2 2" />
+              <path d="M5 21a2 2 0 0 1-2-2" />
+              <path d="M9 3h1" />
+              <path d="M9 21h1" />
+              <path d="M14 3h1" />
+              <path d="M14 21h1" />
+              <path d="M3 9v1" />
+              <path d="M21 9v1" />
+              <path d="M3 14v1" />
+              <path d="M21 14v1" />
+            </svg>
+            <span class="sr-only">Sélectionner</span>
+          </button>
+          <div
+            data-target
+            id="selector-btn-description"
+            role="tooltip"
+            class="ml-sm"
+          >
+            <small>Sélectionner</small>
+          </div>
+        </li>
+      </div>
     </menu>
 
     <main id="canvas-wrapper">

@@ -1,20 +1,23 @@
 [role="tooltip"] {
-  background-color: var(--secondary);
-  border: var(--border-width) solid var(--text);
+  align-items: center;
+  background-color: var(--accent-beta);
   border-radius: var(--border-width);
-  color: var(--text-swath);
+  box-shadow: var(--shadow-std);
+  color: var(--primary);
+  display: flex;
+  line-height: 1.5;
+  opacity: 0;
   padding: var(--spacing-xs) var(--spacing-md);
   position: fixed;
   position-area: right;
   position-try: flip-block, flip-inline, flip-block flip-inline;
   position-visibility: anchors-visible;
-  /* visibility: hidden; */
-  z-index: 1;
+  transition: opacity 0.1s 0.5s ease-in-out;
+  visibility: hidden;
 }
 
 [aria-describedby]:hover + [role="tooltip"],
-[aria-describedby]:focus + [role="tooltip"],
-[role="tooltip"]:hover,
-[role="tooltip"]:focus {
+[role="tooltip"]:hover {
+  opacity: 1;
   visibility: visible;
 }

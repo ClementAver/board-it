@@ -10,6 +10,21 @@
   display: flex;
   flex-direction: column;
 }
+.hidden {
+  display: none;
+}
+
+/* ⇊ Position ⇊ */
+
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.relative {
+  position: relative;
+}
 
 /* ⇊ Flexbox ⇊ */
 
