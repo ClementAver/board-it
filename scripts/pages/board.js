@@ -3,21 +3,27 @@ import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utils/debug.js";
 import Dialog from "../classes/Dialog.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
-import initDropdownMenus from "../utils/dropdowns.js";
+import initAnchors from "../utils/initAnchors.js";
 import MainHeader from "../classes/MainHeader.js";
 import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
-initDropdownMenus();
+initAnchors();
 
-const downloadWorkFileForm = document.querySelector("form:has(#download-workfile-anchor)");
-const uploadWorkFileForm = document.querySelector("form:has(#upload-workfile-input)");
+const downloadWorkFileForm = document.querySelector(
+  "form:has(#download-workfile-anchor)"
+);
+const uploadWorkFileForm = document.querySelector(
+  "form:has(#upload-workfile-input)"
+);
 const jsonInput = document.getElementById("upload-workfile-input");
 const pictureInput = document.getElementById("picture-input");
 const dropzoneDialog = document.querySelector("[data-dropzone-dialog]");
-const dropzoneDialogTriggers = document.querySelectorAll("[data-dropzone-dialog-trigger]");
+const dropzoneDialogTriggers = document.querySelectorAll(
+  "[data-dropzone-dialog-trigger]"
+);
 
 new MainHeader();
 new Theme();
