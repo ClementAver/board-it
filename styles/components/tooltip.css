@@ -1,0 +1,20 @@
+[role="tooltip"] {
+  background-color: var(--secondary);
+  border: var(--border-width) solid var(--text);
+  border-radius: var(--border-width);
+  color: var(--text-swath);
+  padding: var(--spacing-xs) var(--spacing-md);
+  position: fixed;
+  position-area: right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+  /* visibility: hidden; */
+  z-index: 1;
+}
+
+[aria-describedby]:hover + [role="tooltip"],
+[aria-describedby]:focus + [role="tooltip"],
+[role="tooltip"]:hover,
+[role="tooltip"]:focus {
+  visibility: visible;
+}

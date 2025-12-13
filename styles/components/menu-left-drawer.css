@@ -1,4 +1,5 @@
 menu#left-drawer {
+  z-index: 1;
   background-color: var(--secondary);
   max-width: 0;
   overflow-x: hidden;
@@ -9,12 +10,14 @@ menu#left-drawer {
 }
 menu#left-drawer[data-open="true"] {
   max-width: calc(
-    var(--icons-width) + (var(--left-drawer-padding) + var(--btn-padding-x) + var(--border-width)) *
+    var(--icons-width) +
+      (var(--left-drawer-padding) + var(--btn-padding-x) + var(--border-width)) *
       2
   );
   padding: var(--left-drawer-padding);
   width: calc(
-    var(--icons-width) + (var(--left-drawer-padding) + var(--btn-padding-x) + var(--border-width)) *
+    var(--icons-width) +
+      (var(--left-drawer-padding) + var(--btn-padding-x) + var(--border-width)) *
       2
   );
 }
@@ -33,17 +36,6 @@ menu#left-drawer li:not(:last-of-type) {
   margin-bottom: var(--spacing-sm);
 }
 
-menu#left-drawer .label {
-  display: none;
-}
-
-@media (min-width: 1536px) {
-  menu#left-drawer[data-open="true"] {
-    max-width: 16rem;
-    width: 16rem;
-  }
-
-  menu#left-drawer .label {
-    display: inline;
-  }
+menu#left-drawer li {
+  list-style-type: none;
 }
