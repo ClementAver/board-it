@@ -1,23 +1,29 @@
 [role="tooltip"] {
-  align-items: center;
   background-color: var(--accent-beta);
   border-radius: var(--border-width);
   box-shadow: var(--shadow-std);
   color: var(--primary);
-  display: flex;
-  line-height: 1.5;
-  opacity: 0;
-  padding: var(--spacing-xs) var(--spacing-md);
+  line-height: 1.2;
+  padding: var(--spacing-xs) var(--spacing-md) var(--spacing-sm);
   position: fixed;
   position-area: right;
   position-try: flip-block, flip-inline, flip-block flip-inline;
   position-visibility: anchors-visible;
-  transition: opacity 0.1s 0.5s ease-in-out;
-  visibility: hidden;
 }
 
-[aria-describedby]:hover + [role="tooltip"],
-[role="tooltip"]:hover {
-  opacity: 1;
-  visibility: visible;
-}
+/*
+ * ⇊ Kept as legacy example ⇊
+ * Replaced by a combination of 'interestfor' and 'popover="hint"'.
+ *
+ * [role="tooltip"] {
+ *   opacity: 0;
+ *   visibility: hidden;
+ *   transition: opacity 0.1s 0.5s ease-in-out;
+ * }
+ * 
+ * [aria-describedby]:hover + [role="tooltip"],
+ * [role="tooltip"]:hover {
+ *   opacity: 1;
+ *   visibility: visible;
+ * } 
+ */

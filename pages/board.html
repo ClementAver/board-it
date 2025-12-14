@@ -161,7 +161,7 @@
               data-anchor
               type="button"
               popovertarget="file-menu-more"
-              popovertargetaction="toggle"
+              interestfor="file-menu-more"
             >
               <span>Plus d'options</span>
             </button>
@@ -316,6 +316,7 @@
             type="button"
             data-tool="camera"
             aria-describedby="camera-btn-description"
+            interestfor="camera-btn-description"
             class="flex gap-lg rounded bd-transparent w-full"
           >
             <svg
@@ -342,6 +343,7 @@
             data-target
             id="camera-btn-description"
             role="tooltip"
+            popover="hint"
             class="ml-sm"
           >
             <small>Caméra</small>
@@ -354,6 +356,7 @@
             type="button"
             data-tool="selector"
             aria-describedby="selector-btn-description"
+            interestfor="selector-btn-description"
             class="flex gap-lg rounded bd-transparent w-full"
           >
             <svg
@@ -386,6 +389,7 @@
             data-target
             id="selector-btn-description"
             role="tooltip"
+            popover="hint"
             class="ml-sm"
           >
             <small>Sélectionner</small>
