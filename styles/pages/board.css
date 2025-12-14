@@ -7,6 +7,7 @@
 @import url(../globals/dialog.css);
 @import url(../globals/global.css);
 @import url(../globals/link.css);
+@import url(../globals/popover.css);
 @import url(../globals/svg.css);
 @import url(../globals/widget.css);
 
@@ -21,6 +22,7 @@
 @import url(../components/theme-switch.css);
 @import url(../components/tooltip.css);
 
+@import url(../utils/anchor-positioning.css);
 @import url(../utils/animated.css);
 @import url(../utils/border.css);
 @import url(../utils/button-chameleon.css);

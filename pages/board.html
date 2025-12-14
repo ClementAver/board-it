@@ -77,8 +77,20 @@
 
       <menu>
         <li>
-          <button data-anchor data-anchor-toggle type="button">Fichier</button>
-          <div data-target class="anchor-dropdown dropdown-menu hidden">
+          <button
+            data-anchor
+            type="button"
+            popovertarget="file-menu"
+            popovertargetaction="toggle"
+          >
+            Fichier
+          </button>
+          <div
+            id="file-menu"
+            popover
+            data-target
+            class="dropdown-menu anchor-bottom"
+          >
             <form enctype="multipart/form-data">
               <input
                 type="file"
@@ -145,10 +157,20 @@
               </button>
             </form>
 
-            <button data-anchor data-anchor-toggle type="button">
+            <button
+              data-anchor
+              type="button"
+              popovertarget="file-menu-more"
+              popovertargetaction="toggle"
+            >
               <span>Plus d'options</span>
             </button>
-            <div data-target class="anchor-dropright dropdown-menu hidden">
+            <div
+              id="file-menu-more"
+              popover
+              data-target
+              class="dropdown-menu anchor-right"
+            >
               <button type="submit">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -194,10 +216,21 @@
         </li>
 
         <li>
-          <button data-anchor data-anchor-toggle type="button" class="mr-auto">
+          <button
+            popovertarget="picture-menu"
+            popovertargetaction="toggle"
+            data-anchor
+            type="button"
+            class="mr-auto"
+          >
             Image
           </button>
-          <div data-target class="anchor-dropdown dropdown-menu hidden">
+          <div
+            id="picture-menu"
+            popover
+            data-target
+            class="dropdown-menu anchor-bottom"
+          >
             <button
               data-dropzone-dialog-trigger
               data-action="showModal"

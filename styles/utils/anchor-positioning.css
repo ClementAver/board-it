@@ -1,0 +1,11 @@
+.anchor-bottom {
+  position-area: bottom span-right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}
+
+.anchor-right {
+  position-area: span-bottom right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}

@@ -1,26 +1,14 @@
-.anchor-dropdown {
+.dropdown-menu {
   display: flex;
   flex-flow: column nowrap;
   position: fixed;
-  position-area: bottom span-right;
-  position-try: flip-block, flip-inline, flip-block flip-inline;
-  position-visibility: anchors-visible;
 }
 
-.anchor-dropdown.dropdown-menu {
+.dropdown-menu.anchor-bottom {
   margin-left: calc(-1 * var(--spacing-xs));
 }
 
-.anchor-dropright {
-  display: flex;
-  flex-flow: column nowrap;
-  position: fixed;
-  position-area: span-bottom right;
-  position-try: flip-block, flip-inline, flip-block flip-inline;
-  position-visibility: anchors-visible;
-}
-
-.anchor-dropright.dropdown-menu {
+.dropdown-menu.anchor-right {
   margin-top: calc(-1 * var(--spacing-xs));
 }
 

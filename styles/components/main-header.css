@@ -41,7 +41,7 @@
     list-style-type: none;
   }
 
-  header.main-header .anchor-dropdown.dropdown-menu {
+  header.main-header .anchor-bottom.dropdown-menu {
     z-index: 10;
   }
 
@@ -151,7 +151,7 @@
     margin-right: auto;
   }
 
-  header.main-header .anchor-dropdown.dropdown-menu {
+  header.main-header .anchor-bottom.dropdown-menu {
     margin-top: calc(1.5 * var(--spacing-sm));
     z-index: 10;
   }
