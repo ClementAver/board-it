@@ -1,3 +1,7 @@
+:has(+ [role="tooltip"]) {
+  cursor: help;
+}
+
 [role="tooltip"] {
   background-color: var(--accent-beta);
   border-radius: var(--border-width);

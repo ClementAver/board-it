@@ -24,7 +24,7 @@ menu#left-drawer[data-open="true"] {
 
 menu#left-drawer > * {
   opacity: 0.1;
-  transform: translateX(-10px);
+  transform: translateX(-100%);
   transition: all 200ms ease-in-out;
 }
 menu#left-drawer[data-open="true"] > * {

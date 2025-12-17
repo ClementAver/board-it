@@ -55,7 +55,7 @@ export class ToastGenerator {
     this._toasts = toasts;
   }
 
-  generate(text) {
+  generate(text, { type = "" } = {}) {
     const toast = document.createElement("article");
     toast.classList.add("toast");
     toast.classList.add(`${this.position}`);
@@ -63,7 +63,7 @@ export class ToastGenerator {
     toast.id = this.toasts.length;
     toast.popover = "manual";
     toast.style.display = "flex";
-    toast.textContent = text;
+    toast.textContent = this.formatText(text, type);
 
     this.toasts.unshift(toast);
     document.body.appendChild(toast);
@@ -101,6 +101,21 @@ export class ToastGenerator {
     }, 500);
 
     this.placeToasts();
+  }
+
+  formatText(text, type) {
+    switch (type) {
+      case "check":
+        text = "✔ | " + text;
+        break;
+      case "cross":
+        text = "✘ | " + text;
+        break;
+      default:
+        break;
+    }
+
+    return text;
   }
 }
 

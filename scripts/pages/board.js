@@ -36,28 +36,13 @@ new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
 
 /* 🚧🚧🚧🚧🚧 */
-ToastGenerator.right.generate("Agathe");
+ToastGenerator.center.generate("Agathe", { type: "check" });
+ToastGenerator.right.generate("Clément ", { type: "cross" });
 
 setTimeout(() => {
-  ToastGenerator.center.generate("Clément");
+  ToastGenerator.right.generate("Clément ", { type: "cross" });
+  ToastGenerator.right.generate("Agathe", { type: "check" });
 }, 1000);
-
-setTimeout(() => {
-  ToastGenerator.right.generate(
-    "Ut tempus purus ut justo efficitur sagittis. Mauris lorem felis, imperdiet vel porta et, posuere non nibh. Mauris imperdiet, nibh sed molestie mattis, sem ligula congue lorem, in consectetur nisi quam a enim. Sed dapibus lectus euismod tortor finibus faucibus. Nulla ipsum risus, scelerisque ut felis et, feugiat facilisis arcu. Cras non nisi a lacus pharetra varius in a magna. Vestibulum at sapien nec enim venenatis vestibulum."
-  );
-}, 2000);
-
-setTimeout(() => {
-  ToastGenerator.center.generate("Nicolas");
-  ToastGenerator.center.generate("Nicolas");
-  ToastGenerator.center.generate("Nicolas");
-  ToastGenerator.center.generate("Nicolas");
-}, 3000);
-
-setTimeout(() => {
-  ToastGenerator.right.generate("Matias");
-}, 4000);
 /* 🚧🚧🚧🚧🚧 */
 
 Canvas.resize();
