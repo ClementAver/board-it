@@ -1,3 +1,4 @@
+import handleError from "../utils/handleError.js";
 import Toolbox from "./Toolbox.js";
 
 class Canvas {
@@ -10,7 +11,8 @@ class Canvas {
     this.boards = boards ?? this.boards;
     this.wrapper = wrapper ?? this.wrapper;
 
-    this.canvas.textContent = "Désolé, votre navigateur ne prend pas en charge les canvas.";
+    this.canvas.textContent =
+      "Désolé, votre navigateur ne prend pas en charge les canvas.";
     this.wrapper.appendChild(this.canvas);
 
     // Window listeners:
@@ -58,8 +60,12 @@ class Canvas {
     console.debug(this);
   }
 
+  /**
+   * Main drawing function, which will invoke all internal drawing methods of the elements.
+   * @returns { Promise<boolean> }
+   */
   async draw() {
-    const promise = new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       /*
        * Resets the camera state to draw background...
        * Parameters : (scaleX, skewY, skewX, scaleY, translateX, translateY)
@@ -70,27 +76,46 @@ class Canvas {
        */
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-      // Applies the camera state (zoom + pan).
+      /* Applies the camera state (zoom + pan). */
       const camera = Toolbox.tools.camera;
-      this.context.setTransform(camera.scale, 0, 0, camera.scale, camera.originX, camera.originY);
-
-      if (this.boards.length) {
-        this.boards.forEach((board) => {
-          board.draw(this);
+      this.context.setTransform(
+        camera.scale,
+        0,
+        0,
+        camera.scale,
+        camera.originX,
+        camera.originY
+      );
+      try {
+        if (this.boards.length) {
+          this.boards.forEach((board) => {
+            board.draw(this);
+          });
+        }
+      } catch (error) {
+        handleError({
+          text: "Une erreur est survenue lors du tracé du canvas.",
+          error,
         });
+
+        reject(false);
+        return;
       }
 
       resolve(true);
     });
-
-    await promise;
   }
 
   resize() {
     const rect = this.wrapper.getBoundingClientRect();
     this.canvas.width = rect.width;
     this.canvas.height = rect.height;
-    this.draw();
+    this.draw().catch((error) =>
+      handleError({
+        text: "Une erreur est survenue lors du tracé du canvas à l'occasion d'un recadrage.",
+        error,
+      })
+    );
   }
 
   resizeWith(element) {

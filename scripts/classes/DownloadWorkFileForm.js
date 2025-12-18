@@ -30,7 +30,7 @@ export default class DownloadWorkFileForm {
   download = (event) => {
     event.preventDefault();
 
-    const blob = new Blob([JSON.stringify(WorkFile.history.snapshots.slice(-1)[0])], {
+    const blob = new Blob([WorkFile.history.snapshots.slice(-1)[0]], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);

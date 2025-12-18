@@ -9,7 +9,6 @@ import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
-import ToastGenerator from "../classes/ToastGenerator.js";
 
 initAnchors();
 
@@ -34,16 +33,6 @@ new Dialog({ dialog: dropzoneDialog, triggers: dropzoneDialogTriggers });
 
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
-
-/* 🚧🚧🚧🚧🚧 */
-ToastGenerator.center.generate("Agathe", { type: "check" });
-ToastGenerator.right.generate("Clément ", { type: "cross" });
-
-setTimeout(() => {
-  ToastGenerator.right.generate("Clément ", { type: "cross" });
-  ToastGenerator.right.generate("Agathe", { type: "check" });
-}, 1000);
-/* 🚧🚧🚧🚧🚧 */
 
 Canvas.resize();
 Canvas.resizeWith(Toolbox.widgets.leftDrawer.leftDrawerMenu);

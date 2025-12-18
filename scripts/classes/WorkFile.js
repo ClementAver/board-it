@@ -1,3 +1,4 @@
+import handleError from "../utils/handleError.js";
 import Board from "./Board.js";
 import Canvas from "./Canvas.js";
 import History from "./History.js";
@@ -10,7 +11,11 @@ class WorkFile {
   constructor({ snapshot } = {}) {
     if (!snapshot) snapshot = localStorage.getItem("workfile/snapshot");
     if (!snapshot) localStorage.removeItem("workfile/metadata");
-    if (snapshot) this.load(snapshot);
+    if (snapshot)
+      this.load(JSON.parse(snapshot)).catch(() => {
+        localStorage.removeItem("workfile/metadata");
+        localStorage.removeItem("workfile/snapshot");
+      });
   }
 
   get history() {
@@ -29,48 +34,73 @@ class WorkFile {
     this._instanciated = instanciated;
   }
 
-  async read(file) {
+  read(file) {
     let reader = new FileReader();
     reader.readAsText(file);
 
     reader.onload = () => {
-      localStorage.setItem("workfile/metadata", this.persistFileData(file));
-      this.load(JSON.parse(reader.result));
+      this.load(reader.result)
+        .then(() => {
+          localStorage.setItem("workfile/metadata", this.persistFileData(file));
+        })
+        .catch((e) => console.debug(e)); // TODO : Take a look at all the channels available for the console and their roles
     };
 
     reader.onerror = () => {
-      alert("Une erreur est survenue lors de la lecture des données: ", reader.error);
-      console.error(reader.error);
+      handleError({
+        text: "Une erreur est survenue lors de la lecture des données.",
+        error: reader.error,
+      });
     };
   }
 
+  /**
+   *
+   * @param { string } snapshot - A JavaScript Object Notation (JSON) string.
+   */
   async load(snapshot) {
-    this.instanciated = this.instanciateAll(snapshot);
-    this.toCanvas(snapshot);
+    let parsed;
+
+    try {
+      parsed = JSON.parse(snapshot);
+    } catch (error) {
+      handleError({
+        text: "Une erreur est survenue lors de la transciption des données",
+        error,
+      });
+
+      throw error;
+    }
+
+    this.instanciated = this.instanciateAll(parsed);
+
+    await this.toCanvas();
+
+    this.history.addSnapshot(snapshot);
+    localStorage.setItem("workfile/snapshot", JSON.stringify(snapshot));
   }
 
-  async toCanvas(snapshot) {
+  async toCanvas() {
     Canvas.boards = this.instanciated;
+
     await Canvas.draw();
 
     const camera = Toolbox.grab("camera");
     camera.frameAll(Canvas);
-
-    snapshot = snapshot ?? JSON.stringify(this.instanciated);
-    this.history.addSnapshot(snapshot);
-    localStorage.setItem("workfile/snapshot", snapshot);
   }
 
   instanciateAll(json) {
     try {
-      return JSON.parse(json).map((board) => {
+      return json.map((board) => {
         return Board.mapperIn(board);
       });
     } catch (error) {
-      console.error(
-        "Une erreur est survenue lors de la transformation du fichier JSON en objet de travail : ",
-        error
-      );
+      handleError({
+        text: "Une erreur est survenue lors de la création des instances à partir du fichier de travail.",
+        error,
+      });
+
+      throw error;
     }
   }
 
