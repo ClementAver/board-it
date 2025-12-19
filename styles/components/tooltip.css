@@ -2,6 +2,10 @@
   cursor: help;
 }
 
+:has(+ [role="tooltip"]):not(.no-dash) {
+  border-bottom: var(--border-width) dashed var(--text);
+}
+
 [role="tooltip"] {
   background-color: var(--accent-beta);
   border-radius: var(--border-width);

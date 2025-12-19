@@ -2,6 +2,7 @@ import handleError from "../utils/handleError.js";
 import Board from "./Board.js";
 import Canvas from "./Canvas.js";
 import History from "./History.js";
+import ToastGenerator from "./ToastGenerator.js";
 import Toolbox from "./Toolbox.js";
 
 class WorkFile {
@@ -12,10 +13,16 @@ class WorkFile {
     if (!snapshot) snapshot = localStorage.getItem("workfile/snapshot");
     if (!snapshot) localStorage.removeItem("workfile/metadata");
     if (snapshot)
-      this.load(JSON.parse(snapshot)).catch(() => {
-        localStorage.removeItem("workfile/metadata");
-        localStorage.removeItem("workfile/snapshot");
-      });
+      this.load(JSON.parse(snapshot))
+        .then(() => {
+          ToastGenerator.center.generate("Fichier de travail chargé !", {
+            type: "check",
+          });
+        })
+        .catch(() => {
+          localStorage.removeItem("workfile/metadata");
+          localStorage.removeItem("workfile/snapshot");
+        });
   }
 
   get history() {
@@ -42,6 +49,9 @@ class WorkFile {
       this.load(reader.result)
         .then(() => {
           localStorage.setItem("workfile/metadata", this.persistFileData(file));
+          ToastGenerator.center.generate("Fichier de travail chargé !", {
+            type: "check",
+          });
         })
         .catch((e) => console.debug(e)); // TODO : Take a look at all the channels available for the console and their roles
     };
