@@ -31,7 +31,9 @@
               }
             </style>
           </defs>
-          <title>quest_for_game_logo_dark</title>
+          <title>
+            Point d'exclamation dans un encadré stylisé
+          </title>
           <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">
               <polygon
@@ -67,6 +69,9 @@
           </g>
         </svg>
       </a>
+      <article role="tooltip" class="m-sm anchor-right">
+        <small>Page d'accueil</small>
+      </article>
 
       <button
         id="main-header-switch"
@@ -89,7 +94,7 @@
             id="file-menu"
             popover
             data-target
-            class="dropdown-menu anchor-bottom"
+            class="dropdown-menu anchor-bottom-sr"
           >
             <form enctype="multipart/form-data">
               <input
@@ -169,7 +174,7 @@
               id="file-menu-more"
               popover
               data-target
-              class="dropdown-menu anchor-right"
+              class="dropdown-menu anchor-right-sb"
             >
               <button type="submit">
                 <svg
@@ -229,7 +234,7 @@
             id="picture-menu"
             popover
             data-target
-            class="dropdown-menu anchor-bottom"
+            class="dropdown-menu anchor-bottom-sr"
           >
             <button
               data-dropzone-dialog-trigger
@@ -264,6 +269,7 @@
         id="data-theme-switch-btn"
         type="button"
         aria-label="Toggles Dark theme."
+        class="no-dash"
       >
         <div id="data-theme-switch-handle">
           <svg
@@ -296,6 +302,9 @@
           </svg>
         </div>
       </button>
+      <article role="tooltip" class="m-sm anchor-bottom">
+        <small>Thème sombre</small>
+      </article>
 
       <nav>
         <ul>
@@ -312,11 +321,8 @@
       <div class="fixed">
         <li>
           <button
-            data-anchor
             type="button"
             data-tool="camera"
-            aria-describedby="camera-btn-description"
-            interestfor="camera-btn-description"
             class="flex gap-lg rounded bd-transparent w-full no-dash"
           >
             <svg
@@ -339,24 +345,15 @@
             <span class="sr-only">Caméra</span>
           </button>
 
-          <div
-            data-target
-            id="camera-btn-description"
-            role="tooltip"
-            popover="hint"
-            class="ml-sm"
-          >
+          <article role="tooltip" class="m-sm anchor-right">
             <small>Caméra</small>
-          </div>
+          </article>
         </li>
 
         <li>
           <button
-            data-anchor
             type="button"
             data-tool="selector"
-            aria-describedby="selector-btn-description"
-            interestfor="selector-btn-description"
             class="flex gap-lg rounded bd-transparent w-full no-dash"
           >
             <svg
@@ -385,15 +382,9 @@
             </svg>
             <span class="sr-only">Sélectionner</span>
           </button>
-          <div
-            data-target
-            id="selector-btn-description"
-            role="tooltip"
-            popover="hint"
-            class="ml-sm"
-          >
+          <article role="tooltip" class="m-sm anchor-right">
             <small>Sélectionner</small>
-          </div>
+          </article>
         </li>
       </div>
     </menu>
@@ -402,16 +393,19 @@
       <button
         id="left-drawer-switch"
         type="button"
-        class="rounded-full bd-transparent bg-transparent text-secondary"
+        class="rounded-full bd-transparent bg-transparent text-secondary no-dash"
         aria-label="Extends/retracts the left drawer."
       ></button>
+      <article role="tooltip" class="m-sm anchor-right">
+        <small>Afficher&thinsp;/&thinsp;masquer le tiroir de gauche</small>
+      </article>
 
       <menu
         id="camera-widget"
         aria-label="Camera widget"
         class="widget max-w-full wrap"
       >
-        <button type="button" data-widget="pan" class="rounded">
+        <button type="button" data-widget="pan" class="rounded no-dash">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -432,8 +426,11 @@
             <path d="m9 5 3-3 3 3" />
           </svg>
         </button>
+        <article role="tooltip" class="m-sm anchor-bottom">
+          <small>Déplacer la caméra</small>
+        </article>
 
-        <button type="button" data-widget="zoom" class="rounded">
+        <button type="button" data-widget="zoom" class="rounded no-dash">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -449,6 +446,9 @@
             <circle cx="11" cy="11" r="8" />
           </svg>
         </button>
+        <article role="tooltip" class="m-sm anchor-bottom">
+          <small>Zoomer</small>
+        </article>
 
         <div>
           <input
@@ -462,7 +462,7 @@
           <span class="unit">%</span>
         </div>
 
-        <button type="button" data-widget="frame-all" class="rounded">
+        <button type="button" data-widget="frame-all" class="rounded no-dash">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -482,6 +482,9 @@
             <rect width="10" height="8" x="7" y="8" rx="1" />
           </svg>
         </button>
+        <article role="tooltip" class="m-sm anchor-bottom-sr">
+          <small>Plan d'ensemble</small>
+        </article>
       </menu>
     </main>
 

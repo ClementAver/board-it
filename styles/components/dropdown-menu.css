@@ -4,11 +4,11 @@
   position: fixed;
 }
 
-.dropdown-menu.anchor-bottom {
+.dropdown-menu.anchor-bottom-sr {
   margin-left: calc(-1 * var(--spacing-xs));
 }
 
-.dropdown-menu.anchor-right {
+.dropdown-menu.anchor-right-sb {
   margin-top: calc(-1 * var(--spacing-xs));
 }
 

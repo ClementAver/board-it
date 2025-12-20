@@ -4,6 +4,7 @@ import debug from "../utils/debug.js";
 import Dialog from "../classes/Dialog.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
 import initAnchors from "../utils/initAnchors.js";
+import initTooltips from "../utils/initTooltips.js";
 import MainHeader from "../classes/MainHeader.js";
 import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
@@ -11,6 +12,7 @@ import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
 initAnchors();
+initTooltips();
 
 const downloadWorkFileForm = document.querySelector(
   "form:has(#download-workfile-anchor)"
