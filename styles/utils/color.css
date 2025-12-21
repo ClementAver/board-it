@@ -13,6 +13,9 @@
 .text-secondary {
   color: var(--secondary);
 }
+.text-secondary-darker {
+  color: var(--secondary-darker);
+}
 .text-ternary {
   color: var(--ternary);
 }
@@ -32,6 +35,9 @@
 .bg-secondary {
   background-color: var(--secondary);
 }
+.bg-secondary-darker {
+  background-color: var(--secondary-darker);
+}
 .bg-ternary {
   background-color: var(--ternary);
 }
@@ -50,6 +56,9 @@
 }
 .bd-secondary {
   border: var(--border-width) solid var(--secondary);
+}
+.bd-secondary-darker {
+  border: var(--border-width) solid var(--secondary-darker);
 }
 .bd-ternary {
   border: var(--border-width) solid var(--ternary);
@@ -72,6 +81,9 @@
 .text-secondary--hov:hover {
   color: var(--secondary);
 }
+.text-secondary-darker--hov:hover {
+  color: var(--secondary-darker);
+}
 .text-ternary--hov:hover {
   color: var(--ternary);
 }
@@ -91,6 +103,9 @@
 .bg-secondary--hov:hover {
   background-color: var(--secondary);
 }
+.bg-secondary-darker--hov:hover {
+  background-color: var(--secondary-darker);
+}
 .bg-ternary--hov:hover {
   background-color: var(--ternary);
 }
@@ -109,6 +124,9 @@
 }
 .bd-secondary--hov:hover {
   border: var(--border-width) solid var(--secondary);
+}
+.bd-secondary-darker--hov:hover {
+  border: var(--border-width) solid var(--secondary-darker);
 }
 .bd-ternary--hov:hover {
   border: var(--border-width) solid var(--ternary);
