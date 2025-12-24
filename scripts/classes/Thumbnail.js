@@ -4,7 +4,7 @@ class Thumbnail extends HTMLElement {
   _article = document.createElement("article");
   _figure = document.createElement("figure");
   _image = document.createElement("img");
-  _legend = document.createElement("legend");
+  _caption = document.createElement("figcaption");
   _loader = document.createElement("div");
   _shadow = this.attachShadow({ mode: "open" });
 
@@ -28,8 +28,8 @@ class Thumbnail extends HTMLElement {
     this.setAlternateText();
     this._figure.append(this._image);
 
-    this.setLegend();
-    this._figure.append(this._legend);
+    this.setCaption();
+    this._figure.append(this._caption);
 
     const style = document.createElement("style");
     style.textContent = this.style;
@@ -47,8 +47,8 @@ class Thumbnail extends HTMLElement {
       case "alt":
         this.setAlternateText(newValue);
         break;
-      case "legend":
-        this.setLegend(newValue);
+      case "caption":
+        this.setCaption(newValue);
         break;
       case "src":
         this.setSource(newValue);
@@ -62,8 +62,8 @@ class Thumbnail extends HTMLElement {
     this._image.alt = alternateText ?? this.getAttribute("alt") ?? "";
   }
 
-  setLegend(text) {
-    this._legend.textContent = text ?? this.getAttribute("legend") ?? "";
+  setCaption(caption) {
+    this._caption.textContent = caption ?? this.getAttribute("caption") ?? "";
   }
 
   setSource(source) {
@@ -74,7 +74,6 @@ class Thumbnail extends HTMLElement {
   article {
     background-color: var(--secondary);
     border-radius: var(--spacing-sm);
-  
     height: 100%;
     max-height: 150px;
     max-width: 150px;
@@ -97,9 +96,10 @@ class Thumbnail extends HTMLElement {
     width: 100%;
   }
 
-  legend {
+  figcaption {
     background-color: var(--accent-beta);
     border-radius: var(--spacing-sm);
+    box-shadow: var(--shadow-std);  
     box-sizing: border-box;
     color: var(--primary);
     grid-area: main;
@@ -131,6 +131,7 @@ class Thumbnail extends HTMLElement {
   .loader.error::after {
     background-color: var(--invalid);
     border-radius: var(--spacing-sm);
+    box-shadow: var(--shadow-std);  
     box-sizing: border-box;
     color: var(--text-swath);
     content: "Erreur";
