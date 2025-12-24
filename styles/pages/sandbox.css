@@ -20,6 +20,7 @@
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
 @import url(../components/theme-switch.css);
+@import url(../components/toast.css);
 
 @import url(../utils/animated.css);
 @import url(../utils/border.css);
