@@ -60,13 +60,16 @@ export class ToastGenerator {
     toast.classList.add("toast");
     toast.classList.add(`${this.position}`);
     toast.closedBy = "closerequest";
-    toast.id = this.toasts.length;
     toast.popover = "manual";
     toast.style.display = "flex";
-    toast.textContent = this.formatText(text, type);
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = this.formatText(text, type);
+
+    toast.appendChild(paragraph);
+    document.body.appendChild(toast);
 
     this.toasts.unshift(toast);
-    document.body.appendChild(toast);
 
     this.placeToasts();
 

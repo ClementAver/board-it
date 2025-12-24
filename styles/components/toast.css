@@ -4,27 +4,30 @@
   box-shadow: var(--shadow-std);
   color: var(--primary);
   cursor: pointer;
-  max-width: calc(100vh - (var(--spacing-lg) * 2));
-  max-width: calc(100dvh - (var(--spacing-lg) * 2));
+  max-width: min(
+    calc(100% - (var(--spacing-lg) * 2)),
+    calc(320px - (var(--spacing-lg) * 2))
+  );
   padding: var(--spacing-xs) var(--spacing-md) var(--spacing-sm);
   top: unset;
   transition: bottom 0.5s ease-in-out, opacity 0.5s 0.25s ease-in-out;
-  width: calc(640px - (var(--spacing-lg) * 2));
   width: fit-content;
   z-index: 1;
-
-  /* 🚧🚧🚧🚧🚧 */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  /* 🚧🚧🚧🚧🚧 */
 
   @starting-style {
     bottom: 0;
     opacity: 0;
   }
+}
+
+.toast > p {
+  display: -webkit-box;
+  height: fit-content;
+  line-clamp: 2;
+  line-height: 1.4;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .toast.center {

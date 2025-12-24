@@ -10,6 +10,7 @@ import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
+import ToastGenerator from "../classes/ToastGenerator.js";
 
 initAnchors();
 initTooltips();

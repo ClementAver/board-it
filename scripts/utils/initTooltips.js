@@ -2,8 +2,6 @@ export default function initTooltips() {
   const describeds = document.querySelectorAll(':has(+ [role="tooltip"])');
   const tooltips = document.querySelectorAll('[role="tooltip"]');
 
-  console.log(describeds);
-
   for (let i = 0; i < describeds.length; i++) {
     const described = describeds[i];
     const tooltip = tooltips[i];
