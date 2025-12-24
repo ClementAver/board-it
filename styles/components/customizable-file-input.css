@@ -32,6 +32,8 @@ input[type="file"] + label span {
 div:has(> input[type="file"][data-indicator="true"]) {
   display: flex;
   flex-flow: nowrap;
+  height: fit-content;
+  margin-top: auto;
   max-width: 100%;
   overflow: hidden;
 }

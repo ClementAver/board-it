@@ -31,9 +31,7 @@
               }
             </style>
           </defs>
-          <title>
-            Point d'exclamation dans un encadré stylisé
-          </title>
+          <title>Point d'exclamation dans un encadré stylisé</title>
           <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">
               <polygon
@@ -462,7 +460,11 @@
           <span class="unit">%</span>
         </div>
 
-        <button type="button" data-widget="frame-all" class="rounded-xs no-dash">
+        <button
+          type="button"
+          data-widget="frame-all"
+          class="rounded-xs no-dash"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -536,42 +538,47 @@
             <circle cx="10" cy="12" r="2" />
             <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
           </svg>
-          <span class="mb-md">Glissez-déposez vos images ici.</span>
-          <span class="mb-lg">— ou —</span>
-          <div>
-            <input
-              type="file"
-              accept="image/png"
-              name="file"
-              id="picture-input"
-              tabindex="-1"
-              data-indicator="true"
-              multiple
-            />
-            <label for="picture-input" class="button-chameleon" tabindex="0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
-                />
-                <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                <path d="M12 12v6" />
-                <path d="m15 15-3-3-3 3" />
-              </svg>
-              <span>Importer une image <small>(.png)</small></span>
-            </label>
-            <p><small>–</small></p>
-            <button id="png-button" type="submit"></button>
-          </div>
+          <span class="mb-lg">Glissez-déposez vos images ici.</span>
+          <form class="flex gap-lg">
+            <div>
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                name="file"
+                id="picture-input"
+                tabindex="-1"
+                data-indicator="true"
+                multiple
+              />
+              <label for="picture-input" class="button-chameleon" tabindex="0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                  />
+                  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                  <path d="M12 12v6" />
+                  <path d="m15 15-3-3-3 3" />
+                </svg>
+                <span>Importer des images <small>(.png)</small></span>
+              </label>
+              <p><small>–</small></p>
+            </div>
+            <div class="spring-wrapper rounded-xs">
+              <button id="png-button" class="rounded-xs bold" type="submit">
+                Importer
+              </button>
+            </div>
+          </form>
         </div>
       </article>
     </dialog>
