@@ -43,4 +43,14 @@ Canvas.resizeWith(Toolbox.widgets.leftDrawer.leftDrawerMenu);
 const camera = Toolbox.grab("camera");
 camera.initKeyboardActions(Canvas);
 
+ToastGenerator.center.generate(
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel fermentum massa, id posuere urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus et congue enim. Sed ac nunc suscipit, commodo eros et, congue lorem. Nam vestibulum pretium tristique. Phasellus dictum ex quam, quis maximus felis suscipit vel. Aenean a posuere ex. Nullam laoreet bibendum mauris. Morbi neque ligula, tempor non aliquam venenatis, laoreet nec leo. Aliquam erat volutpat. Sed at leo et erat volutpat pulvinar sed sit amet tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In varius, neque nec elementum volutpat, turpis quam hendrerit magna, ut tincidunt eros tellus id metus. Sed scelerisque turpis velit, quis dapibus arcu aliquet ut.",
+  { type: "check" }
+);
+
+setTimeout(
+  () => ToastGenerator.center.generate("Lorem ipsum", { type: "cross" }),
+  1000
+);
+
 debug(WorkFile);

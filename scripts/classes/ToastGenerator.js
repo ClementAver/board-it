@@ -64,8 +64,19 @@ export class ToastGenerator {
     toast.style.display = "flex";
 
     const paragraph = document.createElement("p");
-    paragraph.textContent = this.formatText(text, type);
+    const content = document.createElement("span");
+    content.textContent = text;
 
+    if (type) {
+      if (!["check", "cross"].includes(type)) return;
+
+      const leftSign = document.createElement("span");
+      leftSign.classList.add("signed");
+      this.appendGlyph(leftSign, type);
+      paragraph.appendChild(leftSign);
+    }
+
+    paragraph.appendChild(content);
     toast.appendChild(paragraph);
     document.body.appendChild(toast);
 
@@ -106,19 +117,22 @@ export class ToastGenerator {
     this.placeToasts();
   }
 
-  formatText(text, type) {
+  appendGlyph(element, type) {
+    let glyph = "?";
     switch (type) {
       case "check":
-        text = "✔ | " + text;
+        element.classList.add("check");
+        element.textContent = "✔";
         break;
       case "cross":
-        text = "✘ | " + text;
+        element.classList.add("cross");
+        element.textContent = "✘";
         break;
       default:
         break;
     }
 
-    return text;
+    return glyph;
   }
 }
 
