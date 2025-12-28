@@ -31,21 +31,22 @@
 
 .toast span:first-child {
   align-items: center;
-  border-right: 1px solid var(--primary);
   display: flex;
   padding-inline: var(--spacing-md);
   text-align: center;
 
   &.signed {
-    border-radius: var(--spacing-xs) 0 0 var(--spacing-xs);
+    background-color: var(--primary);
+    border-radius: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
   }
 
   &.check {
-    background-color: var(--valid);
+    color: var(--valid);
   }
 
   &.cross {
-    background-color: var(--invalid);
+    color: var(--invalid);
   }
 }
 
