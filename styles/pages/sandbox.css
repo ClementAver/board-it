@@ -14,6 +14,7 @@
 @import url(../globals/svg.css);
 @import url(../globals/textarea.css);
 
+@import url(../components/aeee-thumbnail.css);
 @import url(../components/customizable-select.css);
 @import url(../components/logo.css);
 @import url(../components/main-header.css);
