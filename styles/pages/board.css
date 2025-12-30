@@ -1,3 +1,6 @@
+@layer reset, global, page, component, util, popover;
+/* Above not working, cannot bypass the chaining order of precedence ? */
+
 @import url(../reset.css);
 @import url(../config.css);
 @import url(../theme.css);
@@ -25,7 +28,7 @@
 
 @import url(../utils/anchor-positioning.css);
 @import url(../utils/animated.css);
-@import url(../utils/border.css);
+@import url(../utils/rounded.css);
 @import url(../utils/button-chameleon.css);
 @import url(../utils/color.css);
 @import url(../utils/font.css);
@@ -33,13 +36,15 @@
 @import url(../utils/spring.css);
 @import url(../utils/miscellaneous.css);
 
-body {
-  background-color: var(--secondary);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
-  width: 100dvw;
+@layer page {
+  body {
+    background-color: var(--secondary);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    width: 100dvw;
+  }
 }

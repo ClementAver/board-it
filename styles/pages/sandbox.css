@@ -24,20 +24,23 @@
 @import url(../components/toast.css);
 
 @import url(../utils/animated.css);
-@import url(../utils/border.css);
+@import url(../utils/rounded.css);
 @import url(../utils/color.css);
 @import url(../utils/font.css);
 @import url(../utils/spacing.css);
+@import url(../utils/spring.css);
 @import url(../utils/miscellaneous.css);
 @import url(../utils/validated.css);
 
-body {
-  background-color: var(--ternary);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
-  width: 100dvw;
+@layer page {
+  body {
+    background-color: var(--ternary);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    width: 100dvw;
+  }
 }

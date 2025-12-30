@@ -1,31 +1,36 @@
-.spring-wrapper {
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    var(--spring-background) 50%
-  );
-  display: grid;
-  grid-template-rows:
-    0
-    auto
-    calc(var(--spring-spacing) * 2);
-  transition: grid-template-rows 0.1s;
-}
-.spring-wrapper:hover,
-.spring-wrapper:focus-visible {
-  grid-template-rows:
-    calc(var(--spring-spacing))
-    auto
-    calc(var(--spring-spacing));
-}
-.spring-wrapper:hover:active,
-.spring-wrapper:focus-visible:active {
-  grid-template-rows:
-    calc(var(--spring-spacing) * 2)
-    auto
-    0;
-}
+@layer util {
+  @layer spring {
+    .spring-wrapper {
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        var(--spring-background) 50%
+      );
+      display: grid;
+      grid-template-rows:
+        0
+        auto
+        calc(var(--spring-spacing) * 2);
+      transition: grid-template-rows 0.1s;
+      width: fit-content;
+    }
+    .spring-wrapper:hover,
+    .spring-wrapper:focus-visible {
+      grid-template-rows:
+        calc(var(--spring-spacing))
+        auto
+        calc(var(--spring-spacing));
+    }
+    .spring-wrapper:hover:active,
+    .spring-wrapper:focus-visible:active {
+      grid-template-rows:
+        calc(var(--spring-spacing) * 2)
+        auto
+        0;
+    }
 
-.spring-wrapper > :first-child {
-  grid-row: 2/3;
+    .spring-wrapper > :first-child {
+      grid-row: 2/3;
+    }
+  }
 }

@@ -1,7 +1,11 @@
-[popover]:not(:popover-open) {
-  display: none;
-}
+@layer global {
+  @layer popover {
+    [popover]:not(:popover-open) {
+      display: none;
+    }
 
-[popover] {
-  border: none;
+    [popover] {
+      border: none;
+    }
+  }
 }

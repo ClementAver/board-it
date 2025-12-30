@@ -1,94 +1,95 @@
-.dropdown-menu {
-  display: flex;
-  flex-flow: column nowrap;
-  position: fixed;
-}
+@layer component {
+  .dropdown-menu {
+    display: flex;
+    flex-flow: column nowrap;
+    position: fixed;
+  }
 
-.dropdown-menu.anchor-bottom-sr {
-  margin-left: calc(-1 * var(--spacing-xs));
-}
+  .dropdown-menu.anchor-bottom-sr {
+    margin-left: calc(-1 * var(--spacing-xs));
+  }
 
-.dropdown-menu.anchor-right-sb {
-  margin-top: calc(-1 * var(--spacing-xs));
-}
+  .dropdown-menu.anchor-right-sb {
+    margin-top: calc(-1 * var(--spacing-xs));
+  }
 
-button:has(+ .dropdown-menu) {
-  border-radius: var(--spacing-xs);
-  font-weight: 500;
-  padding-right: var(--spacing-lg);
-  position: relative;
-}
+  button:has(+ .dropdown-menu) {
+    border-radius: var(--spacing-xs);
+    font-weight: 500;
+    padding-right: var(--spacing-lg);
+    position: relative;
+  }
 
-button:has(+ .dropdown-menu):after {
-  content: "↴";
-  font-weight: inherit;
-  position: absolute;
-  right: var(--spacing-sm);
-}
+  button:has(+ .dropdown-menu):after {
+    content: "↴";
+    font-weight: inherit;
+    position: absolute;
+    right: var(--spacing-sm);
+  }
 
-.dropdown-menu {
-  background-color: var(--secondary-darker);
-  --before-width: 1px;
-  border-radius: var(--spacing-xs);
-  box-shadow: var(--shadow-std);
-  display: flex;
-  flex-flow: column nowrap;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-xs);
-  padding-left: calc(var(--spacing-xs) * 2 + var(--before-width));
-}
+  .dropdown-menu {
+    background-color: var(--secondary-darker);
+    --before-width: 1px;
+    border-radius: var(--spacing-xs);
+    box-shadow: var(--shadow-std);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    padding-left: calc(var(--spacing-xs) * 2 + var(--before-width));
+  }
 
-.dropdown-menu:before {
-  background-color: var(--accent-beta);
-  bottom: var(--spacing-xs);
-  content: "";
-  left: var(--spacing-xs);
-  position: absolute;
-  top: var(--spacing-xs);
-  width: var(--before-width);
-}
+  .dropdown-menu:before {
+    background-color: var(--accent-beta);
+    bottom: var(--spacing-xs);
+    content: "";
+    left: var(--spacing-xs);
+    position: absolute;
+    top: var(--spacing-xs);
+    width: var(--before-width);
+  }
 
-.dropdown-menu .dropdown-menu:before {
-  background-color: var(--accent-alpha);
-}
+  .dropdown-menu .dropdown-menu:before {
+    background-color: var(--accent-alpha);
+  }
 
-.dropdown-menu button,
-.dropdown-menu .button-chameleon {
-  border-radius: var(--spacing-xs);
-  display: flex;
-  font-weight: 500;
-  gap: var(--spacing-sm);
-  padding-left: var(--spacing-xs);
-  width: 100%;
-}
+  .dropdown-menu button,
+  .dropdown-menu .button-chameleon {
+    border-radius: var(--spacing-xs);
+    display: flex;
+    font-weight: 500;
+    gap: var(--spacing-sm);
+    padding-left: var(--spacing-xs);
+    width: 100%;
+  }
 
-.dropdown-menu svg {
-  margin-block: auto;
-  stroke-width: 2px;
-  transform: scale(0.75);
-}
+  .dropdown-menu svg {
+    margin-block: auto;
+    stroke-width: 2px;
+    transform: scale(0.75);
+  }
 
-button:has(+ .dropdown-menu),
-.dropdown-menu button,
-.dropdown-menu .button-chameleon {
-  max-width: 150px;
-}
+  button:has(+ .dropdown-menu),
+  .dropdown-menu button,
+  .dropdown-menu .button-chameleon {
+    max-width: 150px;
+  }
 
-button:has(+ .dropdown-menu) span:first-child,
-.dropdown-menu button span:first-child,
-.dropdown-menu .button-chameleon span:first-child {
-  margin-left: var(--spacing-sm);
-}
+  button:has(+ .dropdown-menu) span:first-child,
+  .dropdown-menu button span:first-child,
+  .dropdown-menu .button-chameleon span:first-child {
+    margin-left: var(--spacing-sm);
+  }
 
-button:has(+ .dropdown-menu),
-.dropdown-menu span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+  button:has(+ .dropdown-menu),
+  .dropdown-menu span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-/* Not supported in the current configuration as of 2025/11/14. */
-/*
+  /* Not supported in the current configuration as of 2025/11/14. */
+  /*
 position-try: --menu-bottom-left, --menu-top-right, menu-top-left;
 
 @position-try --menu-bottom-left {
@@ -103,3 +104,4 @@ position-try: --menu-bottom-left, --menu-top-right, menu-top-left;
   position-area: top span-left;
 } 
 */
+}

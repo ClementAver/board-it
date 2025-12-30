@@ -1,6 +1,8 @@
-svg {
-  aspect-ratio: 1/1;
-  height: auto;
-  width: var(--icons-width);
-  min-width: var(--icons-width);
+@layer global {
+  svg {
+    aspect-ratio: 1/1;
+    height: auto;
+    width: var(--icons-width);
+    min-width: var(--icons-width);
+  }
 }

@@ -1,14 +1,17 @@
 import handleError from "../utils/handleError.js";
 
+// TODO: https://web.dev/articles/custom-elements-best-practices?hl=fr
 class Thumbnail extends HTMLElement {
   _article = document.createElement("article");
   _figure = document.createElement("figure");
   _image = document.createElement("img");
-  _caption = document.createElement("figcaption");
+  _caption = null;
   _loader = document.createElement("div");
 
   constructor() {
     super();
+
+    this.classList.add("thumbnail");
 
     this._loader.classList.add("loader");
 
@@ -25,16 +28,19 @@ class Thumbnail extends HTMLElement {
     };
     this.setSource();
     this.setAlternateText();
-    this._figure.append(this._image);
+    this._figure.appendChild(this._image);
 
-    this.setCaption();
-    this._figure.append(this._caption);
-
-    this.classList.add("thumbnail");
+    const caption = this.getAttribute("caption");
+    if (this.getAttribute("rounded")) {
+      this._article.classList.add("rounded-full");
+    } else if (caption) {
+      this._caption = document.createElement("figcaption");
+      this.setCaption(caption);
+      this._figure.appendChild(this._caption);
+    }
 
     this._article.appendChild(this._figure);
     this._article.appendChild(this._loader);
-
     this.appendChild(this._article);
   }
 
@@ -63,7 +69,8 @@ class Thumbnail extends HTMLElement {
   }
 
   setCaption(caption) {
-    this._caption.textContent = caption ?? this.getAttribute("caption") ?? "";
+    if (this._caption)
+      this._caption.textContent = caption ?? this.getAttribute("caption") ?? "";
   }
 
   setSource(source) {
