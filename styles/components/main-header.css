@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   @media screen and (max-width: 1023px) {
     header.main-header {
       transition: inset 0.2s;

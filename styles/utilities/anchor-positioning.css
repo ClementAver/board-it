@@ -1,5 +1,4 @@
-@layer util {
-  @layer anchor-positioning {
+@layer utilities {
     .anchor-bottom {
       position-area: bottom;
       position-try: flip-block, flip-inline, flip-block flip-inline;
@@ -23,5 +22,4 @@
       position-try: flip-block, flip-inline, flip-block flip-inline;
       position-visibility: anchors-visible;
     }
-  }
 }

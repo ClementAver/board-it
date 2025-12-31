@@ -1,5 +1,4 @@
-@layer global {
-  @layer popover {
+@layer globals {
     [popover]:not(:popover-open) {
       display: none;
     }
@@ -7,5 +6,4 @@
     [popover] {
       border: none;
     }
-  }
 }

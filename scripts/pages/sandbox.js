@@ -1,6 +1,6 @@
-import debug from "../utils/debug.js";
+import debug from "../utilities/debug.js";
 import MainHeader from "../classes/MainHeader.js";
-import reactive from "../utils/reactive.js";
+import reactive from "../utilities/reactive.js";
 import Theme from "../classes/Theme.js";
 
 new MainHeader();

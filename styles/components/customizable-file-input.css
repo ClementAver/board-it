@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   input[type="file"] {
     clip-path: inset(50%);
     height: 1px;

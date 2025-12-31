@@ -1,5 +1,4 @@
-@layer reset, global, page, component, util, popover;
-/* Above not working, cannot bypass the chaining order of precedence ? */
+@layer reset, config, theme, animation, globals, pages, components, utilities, main-header;
 
 @import url(../reset.css);
 @import url(../config.css);
@@ -10,7 +9,7 @@
 @import url(../globals/dialog.css);
 @import url(../globals/global.css);
 @import url(../globals/link.css);
-@import url(../globals/popover.css);
+@import url(../globals/popover.css) layer(popover);
 @import url(../globals/svg.css);
 @import url(../globals/widget.css);
 
@@ -19,24 +18,24 @@
 @import url(../components/dropdown-menu.css);
 @import url(../components/dropzone.css);
 @import url(../components/logo.css);
-@import url(../components/main-header.css);
+@import url(../components/main-header.css) layer(main-header);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
 @import url(../components/theme-switch.css);
 @import url(../components/toast.css);
 @import url(../components/tooltip.css);
 
-@import url(../utils/anchor-positioning.css);
-@import url(../utils/animated.css);
-@import url(../utils/rounded.css);
-@import url(../utils/button-chameleon.css);
-@import url(../utils/color.css);
-@import url(../utils/font.css);
-@import url(../utils/spacing.css);
-@import url(../utils/spring.css);
-@import url(../utils/miscellaneous.css);
+@import url(../utilities/anchor-positioning.css);
+@import url(../utilities/animated.css);
+@import url(../utilities/button-chameleon.css);
+@import url(../utilities/color.css);
+@import url(../utilities/font.css);
+@import url(../utilities/rounded.css);
+@import url(../utilities/spacing.css);
+@import url(../utilities/spring.css);
+@import url(../utilities/miscellaneous.css);
 
-@layer page {
+@layer pages {
   body {
     background-color: var(--secondary);
     display: grid;

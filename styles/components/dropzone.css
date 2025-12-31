@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   dialog:has([data-dropzone]) {
     background-color: transparent;
     border: none;

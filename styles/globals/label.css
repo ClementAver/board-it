@@ -1,4 +1,4 @@
-@layer global {
+@layer globals {
   label {
     color: var(--accent-alpha);
     font-weight: 500;

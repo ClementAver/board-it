@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   .toast {
     background-color: var(--accent-beta);
     border-radius: var(--border-width);

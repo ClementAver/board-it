@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   menu#left-drawer {
     z-index: 1;
     background-color: var(--secondary);

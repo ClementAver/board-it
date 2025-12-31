@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   #logo-header {
     color: var(--text-swath);
   }

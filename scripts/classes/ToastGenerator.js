@@ -1,4 +1,4 @@
-import px from "../utils/px.js";
+import px from "../utilities/px.js";
 
 export class ToastGenerator {
   _delay = 5000;

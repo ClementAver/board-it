@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   #data-theme-switch-btn {
     align-items: center;
     background-color: var(--secondary);
@@ -45,6 +45,15 @@
   #data-theme-switch-handle svg {
     min-width: 0;
     width: 100%;
-    animation: scale-0-75 0.3s ease-in-out forwards;
+    animation: theme-switch-scale 0.3s ease-in-out forwards;
+  }
+
+  @keyframes theme-switch-scale {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(0.75);
+    }
   }
 }

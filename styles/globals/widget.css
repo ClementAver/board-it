@@ -1,4 +1,4 @@
-@layer global {
+@layer globals {
   .widget {
     background-color: var(--secondary-darker);
     border-radius: var(--spacing-xs);

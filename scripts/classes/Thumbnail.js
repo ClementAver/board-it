@@ -1,4 +1,4 @@
-import handleError from "../utils/handleError.js";
+import handleError from "../utilities/handleError.js";
 
 // TODO: https://web.dev/articles/custom-elements-best-practices?hl=fr
 class Thumbnail extends HTMLElement {

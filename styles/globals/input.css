@@ -1,4 +1,4 @@
-@layer global {
+@layer globals {
   input {
     background-color: var(--input-background);
     border-bottom: var(--border-width) solid var(--accent-alpha);

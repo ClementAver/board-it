@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   #camera-widget {
     bottom: 1rem;
     display: flex;

@@ -1,4 +1,4 @@
-import delay from "../utils/delay.js";
+import delay from "../utilities/delay.js";
 import MainHeader from "../classes/MainHeader.js";
 import Theme from "../classes/Theme.js";
 

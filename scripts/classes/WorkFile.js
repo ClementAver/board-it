@@ -1,4 +1,4 @@
-import handleError from "../utils/handleError.js";
+import handleError from "../utilities/handleError.js";
 import Board from "./Board.js";
 import Canvas from "./Canvas.js";
 import History from "./History.js";

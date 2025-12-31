@@ -1,0 +1,144 @@
+@layer utilities {
+  .light {
+    /* forces light color-scheme */
+    color-scheme: light;
+  }
+  .dark {
+    /* forces dark color-scheme */
+    color-scheme: dark;
+  }
+
+  .text-primary {
+    color: var(--primary);
+  }
+  .text-secondary {
+    color: var(--secondary);
+  }
+  .text-secondary-darker {
+    color: var(--secondary-darker);
+  }
+  .text-ternary {
+    color: var(--ternary);
+  }
+  .text-hl-alpha {
+    color: var(--accent-alpha);
+  }
+  .text-hl-beta {
+    color: var(--accent-beta);
+  }
+  .text-transparent {
+    color: transparent;
+  }
+
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  .bg-secondary-darker {
+    background-color: var(--secondary-darker);
+  }
+  .bg-ternary {
+    background-color: var(--ternary);
+  }
+  .bg-hl-alpha {
+    background-color: var(--accent-alpha);
+  }
+  .bg-hl-beta {
+    background-color: var(--accent-beta);
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+
+  .bd-primary {
+    border: var(--border-width) solid var(--primary);
+  }
+  .bd-secondary {
+    border: var(--border-width) solid var(--secondary);
+  }
+  .bd-secondary-darker {
+    border: var(--border-width) solid var(--secondary-darker);
+  }
+  .bd-ternary {
+    border: var(--border-width) solid var(--ternary);
+  }
+  .bd-hl-alpha {
+    border: var(--border-width) solid var(--accent-alpha);
+  }
+  .bd-hl-beta {
+    border: var(--border-width) solid var(--accent-beta);
+  }
+  .bd-transparent {
+    border: var(--border-width) solid transparent;
+  }
+
+  /* ⇊ Hover ⇊ */
+
+  .text-primary--hov:hover {
+    color: var(--primary);
+  }
+  .text-secondary--hov:hover {
+    color: var(--secondary);
+  }
+  .text-secondary-darker--hov:hover {
+    color: var(--secondary-darker);
+  }
+  .text-ternary--hov:hover {
+    color: var(--ternary);
+  }
+  .text-hl-alpha--hov:hover {
+    color: var(--accent-alpha);
+  }
+  .text-hl-beta--hov:hover {
+    color: var(--accent-beta);
+  }
+  .text-transparent--hov:hover {
+    color: transparent;
+  }
+
+  .bg-primary--hov:hover {
+    background-color: var(--primary);
+  }
+  .bg-secondary--hov:hover {
+    background-color: var(--secondary);
+  }
+  .bg-secondary-darker--hov:hover {
+    background-color: var(--secondary-darker);
+  }
+  .bg-ternary--hov:hover {
+    background-color: var(--ternary);
+  }
+  .bg-hl-alpha--hov:hover {
+    background-color: var(--accent-alpha);
+  }
+  .bg-hl-beta--hov:hover {
+    background-color: var(--accent-beta);
+  }
+  .bg-transparent--hov:hover {
+    background-color: transparent;
+  }
+
+  .bd-primary--hov:hover {
+    border: var(--border-width) solid var(--primary);
+  }
+  .bd-secondary--hov:hover {
+    border: var(--border-width) solid var(--secondary);
+  }
+  .bd-secondary-darker--hov:hover {
+    border: var(--border-width) solid var(--secondary-darker);
+  }
+  .bd-ternary--hov:hover {
+    border: var(--border-width) solid var(--ternary);
+  }
+  .bd-hl-alpha--hov:hover {
+    border: var(--border-width) solid var(--accent-alpha);
+  }
+  .bd-hl-beta--hov:hover {
+    border: var(--border-width) solid var(--accent-beta);
+  }
+  .bd-transparent--hov:hover {
+    border: var(--border-width) solid transparent;
+  }
+}

@@ -1,4 +1,4 @@
-@layer component {
+@layer components {
   :has(+ [role="tooltip"]) {
     cursor: help;
   }

@@ -1,4 +1,4 @@
-import preventKeys from "../../scripts/utils/preventKeys.js";
+import preventKeys from "../../scripts/utilities/preventKeys.js";
 import Tool from "./Tool.js";
 import Toolbox from "./Toolbox.js";
 

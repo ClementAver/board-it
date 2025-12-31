@@ -1,4 +1,4 @@
-import handleError from "../utils/handleError.js";
+import handleError from "../utilities/handleError.js";
 import Toolbox from "./Toolbox.js";
 
 class Canvas {

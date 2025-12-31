@@ -1,31 +1,32 @@
-@layer globals {
-  button {
+@layer utilities {
+  .button-chameleon {
     background-color: var(--btn-background-color);
     border: var(--border-width) solid var(--btn-border-color);
     color: var(--btn-color);
     cursor: pointer;
     line-height: 1rem;
     padding: var(--btn-padding-y) var(--btn-padding-x);
+    text-decoration: none;
   }
 
-  button:hover,
-  button:focus-visible {
+  .button-chameleon:hover,
+  .button-chameleon:focus-visible {
     background-color: var(--btn-background-color-hover);
     border: var(--border-width) solid var(--btn-border-color-hover);
     box-shadow: var(--shadow-std);
     color: var(--btn-color-hover);
   }
 
-  button:hover:active,
-  button:focus-visible:active {
+  .button-chameleon:hover:active,
+  .button-chameleon:focus-visible:active {
     background-color: var(--btn-background-color-active);
     border: var(--border-width) solid var(--btn-border-color-active);
     box-shadow: var(--shadow-std);
     color: var(--btn-color-active);
   }
 
-  button:hover:disabled,
-  button:focus-visible:disabled {
+  .button-chameleon:hover:disabled,
+  .button-chameleon:focus-visible:disabled {
     background-color: var(--btn-background-color);
     border: var(--border-width) solid var(--btn-border-color);
     box-shadow: unset;
@@ -33,37 +34,10 @@
     cursor: default;
   }
 
-  button.selected {
+  .button-chameleon.selected {
     background-color: var(--btn-background-color-selected);
     border: var(--border-width) solid var(--btn-border-color-selected);
     box-shadow: var(--shadow-std);
     color: var(--btn-color-selected);
-  }
-
-  #btn-debug {
-    background-color: transparent;
-    bottom: 0.5rem;
-    border: none;
-    padding: 0;
-    position: fixed;
-    right: 0.25rem;
-  }
-
-  /* ⇊ .spring-tile button styles ⇊ */
-  .spring-wrapper:has(> button) {
-    --spring-spacing: 0.25rem;
-    --spring-background: var(--secondary-darker);
-  }
-
-  .spring-wrapper > button {
-    transition: background-color 0.1s ease-in-out, border 0.1s ease-in-out,
-      color 0.1s ease-in-out;
-  }
-
-  .spring-wrapper > button:hover,
-  .spring-wrapper > button:focus-visible {
-    background-color: var(--btn-background-color-hover);
-    border: var(--border-width) solid var(--btn-border-color-hover);
-    color: var(--btn-color-hover);
   }
 }
