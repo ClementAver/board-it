@@ -1,5 +1,3 @@
-@layer reset, config, theme, animation, globals, pages, components, utilities, main-header;
-
 @import url(../reset.css);
 @import url(../config.css);
 @import url(../theme.css);
@@ -9,7 +7,7 @@
 @import url(../globals/dialog.css);
 @import url(../globals/global.css);
 @import url(../globals/link.css);
-@import url(../globals/popover.css) layer(popover);
+@import url(../globals/popover.css);
 @import url(../globals/svg.css);
 @import url(../globals/widget.css);
 
@@ -18,7 +16,7 @@
 @import url(../components/dropdown-menu.css);
 @import url(../components/dropzone.css);
 @import url(../components/logo.css);
-@import url(../components/main-header.css) layer(main-header);
+@import url(../components/main-header.css);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
 @import url(../components/theme-switch.css);
@@ -35,15 +33,13 @@
 @import url(../utilities/spring.css);
 @import url(../utilities/miscellaneous.css);
 
-@layer pages {
-  body {
-    background-color: var(--secondary);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
-    height: 100vh;
-    height: 100dvh;
-    width: 100vw;
-    width: 100dvw;
-  }
+body {
+  background-color: var(--secondary);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
 }

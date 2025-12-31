@@ -1,10 +1,8 @@
-@layer globals {
-  label {
-    color: var(--accent-alpha);
-    font-weight: 500;
-  }
+label {
+  color: var(--accent-alpha);
+  font-weight: 500;
+}
 
-  label:has(:disabled) {
-    opacity: var(--disabled-opacity);
-  }
+label:has(:disabled) {
+  opacity: var(--disabled-opacity);
 }

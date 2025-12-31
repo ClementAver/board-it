@@ -1,35 +1,33 @@
-@layer globals {
-  dialog {
-    border-radius: var(--spacing-lg);
-    box-shadow: var(--shadow-std);
-    opacity: 1;
-    padding: 0;
-    transform: translateY(0px);
-    transition: opacity 0.3s, transform 0.3s;
+dialog {
+  border-radius: var(--spacing-lg);
+  box-shadow: var(--shadow-std);
+  opacity: 1;
+  padding: 0;
+  transform: translateY(0px);
+  transition: opacity 0.3s, transform 0.3s;
 
-    @starting-style {
-      opacity: 0;
-      transform: translateY(-50%);
-    }
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-50%);
   }
+}
 
-  dialog::backdrop {
-    backdrop-filter: blur(var(--spacing-lg));
-    background-color: var(--backdrop-color);
-    opacity: 1;
-    position: relative;
-    transition: opacity 0.3s;
+dialog::backdrop {
+  backdrop-filter: blur(var(--spacing-lg));
+  background-color: var(--backdrop-color);
+  opacity: 1;
+  position: relative;
+  transition: opacity 0.3s;
 
-    @starting-style {
-      opacity: 0;
-    }
+  @starting-style {
+    opacity: 0;
   }
+}
 
-  dialog > button:first-of-type {
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: scale(0.75);
-    z-index: 10;
-  }
+dialog > button:first-of-type {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(0.75);
+  z-index: 10;
 }

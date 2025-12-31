@@ -1,89 +1,87 @@
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
 
-@layer config {
-  :root {
-    color-scheme: light dark;
+:root {
+  color-scheme: light dark;
 
-    font-family: "Commissioner";
-    font-size: 16px;
-    color: var(--text);
+  font-family: "Commissioner";
+  font-size: 16px;
+  color: var(--text);
 
-    --border-width: 0.125rem;
-    --disabled-opacity: 0.5;
-    --icons-width: 1.125rem;
-    --spring-background: var(--secondary-darker);
-    --spring-spacing: 0.25rem;
-    --shadow-std: var(--shadow) 0px 1px 4px;
-    --shadow-adaptative-std: var(--shadow-adaptative) 0px 1px 4px;
+  --border-width: 0.125rem;
+  --disabled-opacity: 0.5;
+  --icons-width: 1.125rem;
+  --spring-background: var(--secondary-darker);
+  --spring-spacing: 0.25rem;
+  --shadow-std: var(--shadow) 0px 1px 4px;
+  --shadow-adaptative-std: var(--shadow-adaptative) 0px 1px 4px;
 
-    --spacing-xs: 0.125rem;
-    --spacing-sm: 0.25rem;
-    --spacing-md: 0.5rem;
-    --spacing-lg: 1rem;
+  --spacing-xs: 0.125rem;
+  --spacing-sm: 0.25rem;
+  --spacing-md: 0.5rem;
+  --spacing-lg: 1rem;
 
-    --btn-padding-x: 0.5rem;
-    --btn-padding-y: 0.5rem;
-    --btn-color: var(--text-swath);
-    --btn-background-color: var(--secondary);
-    --btn-border-color: var(--secondary);
-    --btn-color-hover: var(--primary);
-    --btn-background-color-hover: var(--accent-beta);
-    --btn-border-color-hover: var(--accent-beta);
-    --btn-color-active: var(--accent-beta);
-    --btn-background-color-active: var(--primary);
-    --btn-border-color-active: var(--primary);
-    --btn-color-selected: var(--accent-beta);
-    --btn-background-color-selected: var(--primary);
-    --btn-border-color-selected: var(--primary);
+  --btn-padding-x: 0.5rem;
+  --btn-padding-y: 0.5rem;
+  --btn-color: var(--text-swath);
+  --btn-background-color: var(--secondary);
+  --btn-border-color: var(--secondary);
+  --btn-color-hover: var(--primary);
+  --btn-background-color-hover: var(--accent-beta);
+  --btn-border-color-hover: var(--accent-beta);
+  --btn-color-active: var(--accent-beta);
+  --btn-background-color-active: var(--primary);
+  --btn-border-color-active: var(--primary);
+  --btn-color-selected: var(--accent-beta);
+  --btn-background-color-selected: var(--primary);
+  --btn-border-color-selected: var(--primary);
 
-    --link-padding-x: 0.5rem;
-    --link-padding-y: 0;
-    --link-color: var(--text);
-    --link-background-color: var(--ternary);
-    --link-border-color: var(--ternary);
-    --link-color-hover: var(--primary);
-    --link-background-color-hover: var(--accent-beta);
-    --link-border-color-hover: var(--accent-beta);
+  --link-padding-x: 0.5rem;
+  --link-padding-y: 0;
+  --link-color: var(--text);
+  --link-background-color: var(--ternary);
+  --link-border-color: var(--ternary);
+  --link-color-hover: var(--primary);
+  --link-background-color-hover: var(--accent-beta);
+  --link-border-color-hover: var(--accent-beta);
 
-    --left-drawer-padding: 0.5rem;
-    --main-header-background-color: var(--secondary-darker);
+  --left-drawer-padding: 0.5rem;
+  --main-header-background-color: var(--secondary-darker);
 
-    /* ⇊  Default theme colours ⇊ */
-    --text: hsl(0, 0%, 10%);
-    --text-swath: hsl(0, 0%, 90%);
-    --input-background: hsl(0, 0%, 95%);
-    --primary: hsl(30, 20%, 20%);
-    --secondary: hsl(120, 10%, 40%);
-    --secondary-darker: hsl(120, 10%, 25%);
-    --ternary: hsl(0, 0%, 90%);
-    --shadow: rgba(0, 0, 0, 0.125);
-    --shadow-adaptative: rgba(0, 0, 0, 0.25);
-    --backdrop-color: rgba(0, 0, 0, 0.25);
-  }
+  /* ⇊  Default theme colours ⇊ */
+  --text: hsl(0, 0%, 10%);
+  --text-swath: hsl(0, 0%, 90%);
+  --input-background: hsl(0, 0%, 95%);
+  --primary: hsl(30, 20%, 20%);
+  --secondary: hsl(120, 10%, 40%);
+  --secondary-darker: hsl(120, 10%, 25%);
+  --ternary: hsl(0, 0%, 90%);
+  --shadow: rgba(0, 0, 0, 0.125);
+  --shadow-adaptative: rgba(0, 0, 0, 0.25);
+  --backdrop-color: rgba(0, 0, 0, 0.25);
+}
 
-  /* Commons */
+/* Commons */
 
-  @property --accent-alpha {
-    syntax: "<color>";
-    inherits: false;
-    initial-value: hsl(200, 60%, 50%);
-  }
+@property --accent-alpha {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(200, 60%, 50%);
+}
 
-  @property --accent-beta {
-    syntax: "<color>";
-    inherits: false;
-    initial-value: hsl(30, 70%, 60%);
-  }
+@property --accent-beta {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(30, 70%, 60%);
+}
 
-  @property --valid {
-    syntax: "<color>";
-    inherits: false;
-    initial-value: limegreen;
-  }
+@property --valid {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: limegreen;
+}
 
-  @property --invalid {
-    syntax: "<color>";
-    inherits: false;
-    initial-value: crimson;
-  }
+@property --invalid {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: crimson;
 }

@@ -1,17 +1,15 @@
-@layer utilities {
-  .rounded-xs {
-    border-radius: var(--spacing-xs);
-  }
-  .rounded-sm {
-    border-radius: var(--spacing-sm);
-  }
-  .rounded-md {
-    border-radius: var(--spacing-md);
-  }
-  .rounded-lg {
-    border-radius: var(--spacing-lg);
-  }
-  .rounded-full {
-    border-radius: calc(infinity * 1px);
-  }
+.rounded-xs {
+  border-radius: var(--spacing-xs);
+}
+.rounded-sm {
+  border-radius: var(--spacing-sm);
+}
+.rounded-md {
+  border-radius: var(--spacing-md);
+}
+.rounded-lg {
+  border-radius: var(--spacing-lg);
+}
+.rounded-full {
+  border-radius: calc(infinity * 1px);
 }

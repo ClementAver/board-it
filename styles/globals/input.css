@@ -1,17 +1,15 @@
-@layer globals {
-  input {
-    background-color: var(--input-background);
-    border-bottom: var(--border-width) solid var(--accent-alpha);
-    border-left: none;
-    border-radius: var(--spacing-xs);
-    border-right: var(--border-width) solid var(--accent-alpha);
-    border-top: none;
-    color: var(--text);
-    font-weight: 400;
-    overflow: hidden;
-    padding: 0.125rem 2rem 0.125rem 0.25rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
-  }
+input {
+  background-color: var(--input-background);
+  border-bottom: var(--border-width) solid var(--accent-alpha);
+  border-left: none;
+  border-radius: var(--spacing-xs);
+  border-right: var(--border-width) solid var(--accent-alpha);
+  border-top: none;
+  color: var(--text);
+  font-weight: 400;
+  overflow: hidden;
+  padding: 0.125rem 2rem 0.125rem 0.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }

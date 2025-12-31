@@ -1,6 +1,4 @@
-@layer globals {
-  :disabled {
-    opacity: var(--disabled-opacity);
-    cursor: default;
-  }
+:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: default;
 }

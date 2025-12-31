@@ -1,25 +1,23 @@
-@layer utilities {
-    .anchor-bottom {
-      position-area: bottom;
-      position-try: flip-block, flip-inline, flip-block flip-inline;
-      position-visibility: anchors-visible;
-    }
+.anchor-bottom {
+  position-area: bottom;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}
 
-    .anchor-bottom-sr {
-      position-area: bottom span-right;
-      position-try: flip-block, flip-inline, flip-block flip-inline;
-      position-visibility: anchors-visible;
-    }
+.anchor-bottom-sr {
+  position-area: bottom span-right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}
 
-    .anchor-right {
-      position-area: right;
-      position-try: flip-block, flip-inline, flip-block flip-inline;
-      position-visibility: anchors-visible;
-    }
+.anchor-right {
+  position-area: right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
+}
 
-    .anchor-right-sb {
-      position-area: span-bottom right;
-      position-try: flip-block, flip-inline, flip-block flip-inline;
-      position-visibility: anchors-visible;
-    }
+.anchor-right-sb {
+  position-area: span-bottom right;
+  position-try: flip-block, flip-inline, flip-block flip-inline;
+  position-visibility: anchors-visible;
 }

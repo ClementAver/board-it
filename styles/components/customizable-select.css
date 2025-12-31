@@ -1,23 +1,22 @@
-@layer components {
-  select,
-  ::picker(select) {
-    appearance: base-select;
-    border: none;
-  }
+select,
+::picker(select) {
+  appearance: base-select;
+  border: none;
+}
 
-  select {
-    align-items: center;
-    background-color: var(--btn-background-color);
-    border: var(--border-width) solid var(--btn-border-color);
-    color: var(--btn-color);
-    cursor: pointer;
-    line-height: 1rem;
-    height: 1.5rem;
-    padding: var(--btn-padding-y) var(--btn-padding-x);
-    display: inline-block;
-  }
+select {
+  align-items: center;
+  background-color: var(--btn-background-color);
+  border: var(--border-width) solid var(--btn-border-color);
+  color: var(--btn-color);
+  cursor: pointer;
+  line-height: 1rem;
+  height: 1.5rem;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  display: inline-block;
+}
 
-  /* select:hover,
+/* select:hover,
 select:focus-visible {
   background-color: var(--btn-background-color-hover);
   border: var(--border-width) solid var(--btn-border-color-hover);
@@ -33,87 +32,86 @@ select:focus-visible:active {
   color: var(--btn-color-active);
 } */
 
-  select:hover:disabled,
-  select:focus-visible:disabled {
-    background-color: var(--btn-background-color);
-    border: var(--border-width) solid var(--btn-border-color);
-    color: var(--btn-color);
-    cursor: default;
-  }
+select:hover:disabled,
+select:focus-visible:disabled {
+  background-color: var(--btn-background-color);
+  border: var(--border-width) solid var(--btn-border-color);
+  color: var(--btn-color);
+  cursor: default;
+}
 
-  select:open::picker-icon {
-    rotate: 180deg;
-  }
+select:open::picker-icon {
+  rotate: 180deg;
+}
 
-  selectedcontent {
-    color: inherit;
-  }
+selectedcontent {
+  color: inherit;
+}
 
-  ::picker(select) {
-    background-color: var(--secondary-darker);
-    border-radius: var(--spacing-xs);
-    display: flex;
-    flex-flow: column nowrap;
-    gap: var(--spacing-xs);
-    left: anchor(auto);
-    opacity: 0;
-    padding: var(--spacing-xs);
-    box-shadow: var(--shadow-std);
-    top: calc(anchor(bottom) + var(--spacing-xs));
-    pointer-events: none;
-  }
+::picker(select) {
+  background-color: var(--secondary-darker);
+  border-radius: var(--spacing-xs);
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--spacing-xs);
+  left: anchor(auto);
+  opacity: 0;
+  padding: var(--spacing-xs);
+  box-shadow: var(--shadow-std);
+  top: calc(anchor(bottom) + var(--spacing-xs));
+  pointer-events: none;
+}
 
-  ::picker(select):popover-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
+::picker(select):popover-open {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-  option {
-    background-color: var(--btn-background-color);
-    border: var(--border-width) solid var(--btn-border-color);
-    color: var(--btn-color);
-    cursor: pointer;
-    line-height: 1rem;
-    padding: var(--btn-padding-y) var(--btn-padding-x);
-    font-family: "Commissioner", "Arial", sans-serif;
-  }
+option {
+  background-color: var(--btn-background-color);
+  border: var(--border-width) solid var(--btn-border-color);
+  color: var(--btn-color);
+  cursor: pointer;
+  line-height: 1rem;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-family: "Commissioner", "Arial", sans-serif;
+}
 
-  option:hover,
-  option:focus-visible {
-    background-color: var(--btn-background-color-hover);
-    border: var(--border-width) solid var(--btn-border-color-hover);
-    box-shadow: var(--shadow-std);
-    color: var(--btn-color-hover);
-  }
+option:hover,
+option:focus-visible {
+  background-color: var(--btn-background-color-hover);
+  border: var(--border-width) solid var(--btn-border-color-hover);
+  box-shadow: var(--shadow-std);
+  color: var(--btn-color-hover);
+}
 
-  option:hover:active,
-  option:focus-visible:active {
-    background-color: var(--btn-background-color-active);
-    border: var(--border-width) solid var(--btn-border-color-active);
-    box-shadow: var(--shadow-std);
-    color: var(--btn-color-active);
-  }
+option:hover:active,
+option:focus-visible:active {
+  background-color: var(--btn-background-color-active);
+  border: var(--border-width) solid var(--btn-border-color-active);
+  box-shadow: var(--shadow-std);
+  color: var(--btn-color-active);
+}
 
-  button:hover:disabled,
-  button:focus-visible:disabled {
-    background-color: var(--btn-background-color);
-    border: var(--border-width) solid var(--btn-border-color);
-    box-shadow: unset;
-    color: var(--btn-color);
-    cursor: default;
-  }
+button:hover:disabled,
+button:focus-visible:disabled {
+  background-color: var(--btn-background-color);
+  border: var(--border-width) solid var(--btn-border-color);
+  box-shadow: unset;
+  color: var(--btn-color);
+  cursor: default;
+}
 
-  option:checked {
-    background-color: var(--btn-background-color-selected);
-    border: var(--border-width) solid var(--btn-border-color-selected);
-    box-shadow: var(--shadow-std);
-    color: var(--btn-color-selected);
-    font-weight: 700;
-  }
+option:checked {
+  background-color: var(--btn-background-color-selected);
+  border: var(--border-width) solid var(--btn-border-color-selected);
+  box-shadow: var(--shadow-std);
+  color: var(--btn-color-selected);
+  font-weight: 700;
+}
 
-  option::checkmark {
-    content: "✓";
-    margin-left: auto;
-    order: 1;
-  }
+option::checkmark {
+  content: "✓";
+  margin-left: auto;
+  order: 1;
 }

@@ -1,28 +1,26 @@
-@layer globals {
-  nav a::after {
-    content: "↗";
-    position: absolute;
-    right: var(--link-padding-x);
-    top: 50%;
-    transform: translateY(-50%);
-  }
+nav a::after {
+  content: "↗";
+  position: absolute;
+  right: var(--link-padding-x);
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  nav a {
-    background-color: var(--link-background-color);
-    border: var(--border-width) solid var(--link-border-color);
-    color: var(--link-color);
-    display: inline-block;
-    padding: var(--link-padding-y) var(--link-padding-x);
-    padding-right: calc(2ch + var(--link-padding-x));
-    height: 1.5rem;
-    position: relative;
-  }
+nav a {
+  background-color: var(--link-background-color);
+  border: var(--border-width) solid var(--link-border-color);
+  color: var(--link-color);
+  display: inline-block;
+  padding: var(--link-padding-y) var(--link-padding-x);
+  padding-right: calc(2ch + var(--link-padding-x));
+  height: 1.5rem;
+  position: relative;
+}
 
-  nav a:hover,
-  nav a:focus-visible {
-    background-color: var(--link-background-color-hover);
-    border: var(--border-width) solid var(--link-border-color-hover);
-    box-shadow: var(--shadow-std);
-    color: var(--link-color-hover);
-  }
+nav a:hover,
+nav a:focus-visible {
+  background-color: var(--link-background-color-hover);
+  border: var(--border-width) solid var(--link-border-color-hover);
+  box-shadow: var(--shadow-std);
+  color: var(--link-color-hover);
 }

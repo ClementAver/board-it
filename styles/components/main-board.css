@@ -1,20 +1,18 @@
-@layer components {
-  main#canvas-wrapper {
-    align-items: center;
-    background-color: var(--ternary);
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
+main#canvas-wrapper {
+  align-items: center;
+  background-color: var(--ternary);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
 
-  canvas {
-    background-color: var(--ternary);
-  }
+canvas {
+  background-color: var(--ternary);
+}
 
-  #left-drawer-switch {
-    left: var(--left-drawer-padding);
-    position: absolute;
-    top: var(--left-drawer-padding);
-  }
+#left-drawer-switch {
+  left: var(--left-drawer-padding);
+  position: absolute;
+  top: var(--left-drawer-padding);
 }

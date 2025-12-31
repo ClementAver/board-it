@@ -1,10 +1,8 @@
-@layer components {
-  #logo-header {
-    color: var(--text-swath);
-  }
+#logo-header {
+  color: var(--text-swath);
+}
 
-  #logo-header:hover,
-  #logo-header:focus-visible {
-    color: var(--accent-beta);
-  }
+#logo-header:hover,
+#logo-header:focus-visible {
+  color: var(--accent-beta);
 }

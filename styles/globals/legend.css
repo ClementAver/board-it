@@ -1,8 +1,6 @@
-@layer globals {
-  legend {
-    float: left;
-    font-size: small;
-    font-weight: 600;
-    width: 100%;
-  }
+legend {
+  float: left;
+  font-size: small;
+  font-weight: 600;
+  width: 100%;
 }

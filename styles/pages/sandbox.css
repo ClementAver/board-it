@@ -32,15 +32,13 @@
 @import url(../utilities/miscellaneous.css);
 @import url(../utilities/validated.css);
 
-@layer pages {
-  body {
-    background-color: var(--ternary);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
-    height: 100vh;
-    height: 100dvh;
-    width: 100vw;
-    width: 100dvw;
-  }
+body {
+  background-color: var(--ternary);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
 }

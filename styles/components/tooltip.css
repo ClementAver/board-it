@@ -1,39 +1,38 @@
-@layer components {
-  :has(+ [role="tooltip"]) {
-    cursor: help;
-  }
+:has(+ [role="tooltip"]) {
+  cursor: help;
+}
 
-  :has(+ [role="tooltip"]):not(.no-dash) {
-    border-bottom: var(--border-width) dashed var(--text);
-  }
+:has(+ [role="tooltip"]):not(.no-dash) {
+  border-bottom: var(--border-width) dashed var(--text);
+}
 
-  [role="tooltip"] {
-    background-color: var(--accent-beta);
-    border-radius: var(--border-width);
-    box-shadow: var(--shadow-std);
-    color: var(--primary);
-    font-size: 1rem;
-    line-height: 1.2;
-    padding: var(--spacing-xs) var(--spacing-md) var(--spacing-sm);
-    position: fixed;
-  }
+[role="tooltip"] {
+  background-color: var(--accent-beta);
+  border-radius: var(--border-width);
+  box-shadow: var(--shadow-std);
+  color: var(--primary);
+  font-size: 1rem;
+  line-height: 1.2;
+  padding: var(--spacing-xs) var(--spacing-md) var(--spacing-sm);
+  position: fixed;
+}
 
-  [role="tooltip"]:popover-open {
-    animation: tooltip-in 0.1s ease-in-out;
-  }
+[role="tooltip"]:popover-open {
+  animation: tooltip-in 0.1s ease-in-out;
+}
 
-  @keyframes tooltip-in {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
+@keyframes tooltip-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
   }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
-  /*
+/*
  * ⇊ Kept as legacy example ⇊
  * Replaced by a combination of 'interestfor' and 'popover="hint"'.
  *
@@ -49,4 +48,3 @@
  *   visibility: visible;
  * } 
  */
-}
