@@ -53,7 +53,7 @@ class WorkFile {
             type: "check",
           });
         })
-        .catch((e) => console.debug(e)); // TODO : Take a look at all the channels available for the console and their roles
+        .catch((e) => console.debug(e));
     };
 
     reader.onerror = () => {

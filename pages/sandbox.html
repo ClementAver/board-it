@@ -125,10 +125,43 @@
 
     <main class="p-lg">
       <button
-        type="button"
-        class="h-32 py-0 rounded-xs"
         id="count-btn"
+        type="button"
+        class="h-32 py-0 rounded-xs mb-lg"
       ></button>
+
+      <form class="ml-auto mr-lg mb-lg">
+        <p>
+          <label for="pet-select" class="sr-only">Select pet:</label>
+          <select id="pet-select" class="rounded-xs py-xs">
+            <button>
+              <selectedcontent></selectedcontent>
+            </button>
+
+            <option class="rounded-xs py-xs" value="">
+              Please select a pet
+            </option>
+            <option class="rounded-xs py-xs" value="cat">
+              <span class="option-label">Cat</span>
+            </option>
+            <option class="rounded-xs py-xs" value="dog">
+              <span class="option-label">Dog</span>
+            </option>
+            <option class="rounded-xs py-xs" value="hamster">
+              <span class="option-label">Hamster</span>
+            </option>
+            <option class="rounded-xs py-xs" value="chicken">
+              <span class="option-label">Chicken</span>
+            </option>
+            <option class="rounded-xs py-xs" value="fish">
+              <span class="option-label">Fish</span>
+            </option>
+            <option class="rounded-xs py-xs" value="snake">
+              <span class="option-label">Snake</span>
+            </option>
+          </select>
+        </p>
+      </form>
 
       <div class="spring-wrapper rounded-sm mb-lg">
         <aeee-thumbnail
@@ -144,39 +177,6 @@
         caption="Lives in the savana."
         rounded="true"
       ></aeee-thumbnail>
-
-      <form class="ml-auto mr-lg">
-        <p>
-          <label for="pet-select" class="sr-only">Select pet:</label>
-          <select id="pet-select" class="rounded-xs py-0">
-            <button>
-              <selectedcontent></selectedcontent>
-            </button>
-
-            <option class="rounded-xs py-0" value="">
-              Please select a pet
-            </option>
-            <option class="rounded-xs py-0" value="cat">
-              <span class="option-label">Cat</span>
-            </option>
-            <option class="rounded-xs py-0" value="dog">
-              <span class="option-label">Dog</span>
-            </option>
-            <option class="rounded-xs py-0" value="hamster">
-              <span class="option-label">Hamster</span>
-            </option>
-            <option class="rounded-xs py-0" value="chicken">
-              <span class="option-label">Chicken</span>
-            </option>
-            <option class="rounded-xs py-0" value="fish">
-              <span class="option-label">Fish</span>
-            </option>
-            <option class="rounded-xs py-0" value="snake">
-              <span class="option-label">Snake</span>
-            </option>
-          </select>
-        </p>
-      </form>
     </main>
   </body>
 
