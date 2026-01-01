@@ -17,3 +17,12 @@
     opacity: 1;
   }
 }
+
+@keyframes loading-skeleton {
+  0% {
+    background-position: 0% 200%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}

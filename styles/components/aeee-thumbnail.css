@@ -1,4 +1,10 @@
 aeee-thumbnail {
+  display: inline-block;
+
+  &[hidden] {
+    display: none;
+  }
+
   article {
     background-color: var(--secondary);
     border-radius: var(--spacing-sm);
@@ -10,7 +16,7 @@ aeee-thumbnail {
   }
 
   figure {
-    display: none;
+    display: grid;
     grid-template-areas: "main";
     height: 100%;
     margin: 0;
@@ -37,14 +43,16 @@ aeee-thumbnail {
     padding-inline: var(--spacing-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
+    z-index: 1;
   }
 
   :has(.loader) {
     position: relative;
   }
 
+  /* TODO: Make a @mixin out of this. */
   .loader {
-    animation: loading-background 2s infinite;
+    animation: loading-skeleton 2s infinite;
     background: linear-gradient(
       to right,
       var(--secondary),
@@ -55,6 +63,7 @@ aeee-thumbnail {
     background-size: 200% 100%;
     inset: 0;
     position: absolute;
+    z-index: 2;
   }
 
   .loader.error {
@@ -79,14 +88,5 @@ aeee-thumbnail {
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     white-space: nowrap;
-  }
-
-  @keyframes loading-background {
-    0% {
-      background-position: 0% 200%;
-    }
-    100% {
-      background-position: -200% 0%;
-    }
   }
 }
