@@ -87,10 +87,10 @@ export class ToastGenerator {
     const removeOnClick = () => this.removeToast(toast, { isClicked: true });
     toast.addEventListener("click", removeOnClick);
 
-    // setTimeout(() => {
-    //   toast.removeEventListener("click", removeOnClick);
-    //   this.removeToast(toast);
-    // }, this.delay);
+    setTimeout(() => {
+      toast.removeEventListener("click", removeOnClick);
+      this.removeToast(toast);
+    }, this.delay);
   }
 
   placeToasts() {
