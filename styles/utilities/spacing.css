@@ -46,7 +46,7 @@
   align-items: center;
 }
 .items-end {
-  align-items: left;
+  align-items: end;
 }
 .items-baseline {
   align-items: baseline;

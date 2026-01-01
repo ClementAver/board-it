@@ -9,16 +9,16 @@
     0
     auto
     calc(var(--spring-spacing) * 2);
-  height: calc-size(fit-content, size + var(--spring-spacing) * 2);
+  height: calc-size(auto, round(nearest, size, 1px));
   transition: grid-template-rows 0.1s;
   width: fit-content;
 }
 .spring-wrapper:hover,
 .spring-wrapper:focus-visible {
   grid-template-rows:
-    calc(var(--spring-spacing))
+    var(--spring-spacing)
     auto
-    calc(var(--spring-spacing));
+    var(--spring-spacing);
 }
 .spring-wrapper:hover:active,
 .spring-wrapper:focus-visible:active {
