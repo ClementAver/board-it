@@ -9,6 +9,7 @@
     0
     auto
     calc(var(--spring-spacing) * 2);
+  height: calc-size(fit-content, size + var(--spring-spacing) * 2);
   transition: grid-template-rows 0.1s;
   width: fit-content;
 }
