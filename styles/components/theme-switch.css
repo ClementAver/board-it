@@ -1,7 +1,7 @@
 #data-theme-switch-btn {
   align-items: center;
   background-color: var(--secondary);
-  border-radius: 9999px;
+  border-radius: calc(infinity * 1px);
   display: flex;
   height: 1.5rem;
   justify-content: start;
@@ -31,7 +31,7 @@
 #data-theme-switch-handle {
   align-items: center;
   background-color: var(--secondary-darker);
-  border-radius: 9999px;
+  border-radius: calc(infinity * 1px);
   display: flex;
   height: 1.25rem;
   justify-content: center;

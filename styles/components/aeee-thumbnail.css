@@ -1,8 +1,34 @@
 aeee-thumbnail {
   display: inline-block;
+  position: relative;
 
   &[hidden] {
     display: none;
+  }
+
+  &:state(rounded) {
+    border-radius: calc(infinity * 1px);
+    overflow: hidden;
+  }
+
+  /* 
+   * TODO: Make a @mixin out of this when browsers support allows it. 
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Custom_functions_and_mixins
+  */
+  &:state(loading)::after {
+    content: "";
+    animation: loading-skeleton 2s infinite;
+    background: linear-gradient(
+      to right,
+      var(--secondary),
+      var(--secondary-darker),
+      var(--secondary)
+    );
+    background-color: var(--secondary);
+    background-size: 200% 100%;
+    inset: 0;
+    position: absolute;
+    z-index: 2;
   }
 
   article {
@@ -44,49 +70,5 @@ aeee-thumbnail {
     text-overflow: ellipsis;
     white-space: nowrap;
     z-index: 1;
-  }
-
-  :has(.loader) {
-    position: relative;
-  }
-
-  /* TODO: Make a @mixin out of this. */
-  .loader {
-    animation: loading-skeleton 2s infinite;
-    background: linear-gradient(
-      to right,
-      var(--secondary),
-      var(--secondary-darker),
-      var(--secondary)
-    );
-    background-color: var(--secondary);
-    background-size: 200% 100%;
-    inset: 0;
-    position: absolute;
-    z-index: 2;
-  }
-
-  .loader.error {
-    animation: unset;
-    background: unset;
-  }
-  .loader.error::after {
-    background-color: var(--invalid);
-    border-radius: var(--spacing-sm);
-    box-shadow: var(--shadow-std);
-    box-sizing: border-box;
-    color: var(--text-swath);
-    content: "Erreur";
-    display: inline-block;
-    height: fit-content;
-    left: 50%;
-    max-width: calc(100% - 2rem);
-    overflow: hidden;
-    padding-inline: var(--spacing-sm);
-    position: absolute;
-    text-overflow: ellipsis;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    white-space: nowrap;
   }
 }
