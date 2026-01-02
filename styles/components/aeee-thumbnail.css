@@ -1,6 +1,7 @@
 aeee-thumbnail {
   display: inline-block;
   position: relative;
+  overflow: hidden;
 
   &[hidden] {
     display: none;
@@ -8,7 +9,6 @@ aeee-thumbnail {
 
   &:state(rounded) {
     border-radius: calc(infinity * 1px);
-    overflow: hidden;
   }
 
   /* 
@@ -29,6 +29,7 @@ aeee-thumbnail {
     inset: 0;
     position: absolute;
     z-index: 2;
+    border-radius: var(--spacing-sm);
   }
 
   article {

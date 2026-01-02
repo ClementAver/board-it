@@ -8,6 +8,7 @@ class Thumbnail extends HTMLElement {
   _figure = document.createElement("figure");
   _image = document.createElement("img");
   _isRounded = false;
+  _placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
   _source = "";
 
   constructor({ source, alternate, caption, isRounded } = {}) {
@@ -34,6 +35,10 @@ class Thumbnail extends HTMLElement {
         text: `Une Erreur est survenue lors du chargement d'une image.`,
         error,
       });
+
+      if (this.source !== this.placeholderImage) {
+        this.source = this.placeholderImage;
+      }
     };
 
     this.figure.appendChild(this.image);
@@ -70,6 +75,10 @@ class Thumbnail extends HTMLElement {
 
   get isRounded() {
     return this._isRounded;
+  }
+
+  get placeholderImage() {
+    return this._placeholderImage;
   }
 
   get source() {
@@ -125,6 +134,10 @@ class Thumbnail extends HTMLElement {
     } else {
       this._internals.states.delete("rounded");
     }
+  }
+
+  set placeholderImage(placeholderImage) {
+    this._placeholderImage = placeholderImage;
   }
 
   set source(source) {
