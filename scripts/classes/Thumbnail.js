@@ -1,6 +1,5 @@
 import handleError from "../utilities/handleError.js";
 
-// TODO : Add a rounded way for js.
 class Thumbnail extends HTMLElement {
   _alternate = "";
   _article = document.createElement("article");
@@ -19,7 +18,9 @@ class Thumbnail extends HTMLElement {
       alternate ?? this.getAttribute("data-alternate") ?? this.alternate;
     this.caption = caption ?? this.getAttribute("data-caption") ?? this.caption;
     this.isRounded =
-      isRounded ?? this.getAttribute("data-is-rounded") ?? this.isRounded;
+      isRounded ??
+      this.getAttribute("data-is-rounded") === "true" ??
+      this.isRounded;
     this.source = source ?? this.getAttribute("data-source") ?? this.source;
 
     this._loader.classList.add("loader");
@@ -128,6 +129,11 @@ class Thumbnail extends HTMLElement {
   }
 
   set isRounded(isRounded) {
+    if (this.getAttribute("data-is-rounded") !== isRounded.toString()) {
+      this.setAttribute("data-is-rounded", isRounded.toString());
+      return;
+    }
+
     this._isRounded = isRounded;
 
     if (isRounded) {
@@ -162,7 +168,7 @@ class Thumbnail extends HTMLElement {
         this.caption = newValue;
         break;
       case "data-is-rounded":
-        this.isRounded = newValue;
+        this.isRounded = newValue.toString() === "true";
         break;
       case "data-source":
         this.source = newValue;
@@ -175,8 +181,8 @@ class Thumbnail extends HTMLElement {
   static observedAttributes = [
     "data-alternate",
     "data-caption",
-    "data-source",
     "data-is-rounded",
+    "data-source",
   ];
 }
 
