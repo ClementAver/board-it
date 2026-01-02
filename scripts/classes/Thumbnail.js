@@ -4,15 +4,16 @@ class Thumbnail extends HTMLElement {
   _alternate = "";
   _article = document.createElement("article");
   _caption = "";
-  _figcaption = null;
+  _figcaption = document.createElement("figcaption");
   _figure = document.createElement("figure");
   _image = document.createElement("img");
   _isRounded = false;
-  _loader = document.createElement("div");
   _source = "";
 
   constructor({ source, alternate, caption, isRounded } = {}) {
     super();
+
+    this._internals = this.attachInternals();
 
     this.alternate =
       alternate ?? this.getAttribute("data-alternate") ?? this.alternate;
@@ -23,15 +24,12 @@ class Thumbnail extends HTMLElement {
       this.isRounded;
     this.source = source ?? this.getAttribute("data-source") ?? this.source;
 
-    this._loader.classList.add("loader");
-
     this.image.loading = "lazy";
     this.image.onload = () => {
-      this.loader.style.display = "none";
-      this.loader.classList.remove("error");
+      this._internals.states.delete("loading");
     };
     this.image.onerror = (error) => {
-      this.loader.classList.add("error");
+      this._internals.states.delete("loading");
       handleError({
         text: `Une Erreur est survenue lors du chargement d'une image.`,
         error,
@@ -39,8 +37,8 @@ class Thumbnail extends HTMLElement {
     };
 
     this.figure.appendChild(this.image);
+    this.figure.appendChild(this.figcaption);
     this.article.appendChild(this.figure);
-    this.article.appendChild(this.loader);
     this.appendChild(this.article);
 
     console.dir(this);
@@ -68,10 +66,6 @@ class Thumbnail extends HTMLElement {
 
   get image() {
     return this._image;
-  }
-
-  get loader() {
-    return this._loader;
   }
 
   get isRounded() {
@@ -103,12 +97,6 @@ class Thumbnail extends HTMLElement {
     }
 
     this._caption = caption;
-
-    if (!this.figcaption) {
-      this.figcaption = document.createElement("figcaption");
-      this.figure.appendChild(this.figcaption);
-    }
-
     this.figcaption.textContent = caption;
   }
 
@@ -124,10 +112,6 @@ class Thumbnail extends HTMLElement {
     this._image = image;
   }
 
-  set loader(loader) {
-    this._loader = loader;
-  }
-
   set isRounded(isRounded) {
     if (this.getAttribute("data-is-rounded") !== isRounded.toString()) {
       this.setAttribute("data-is-rounded", isRounded.toString());
@@ -137,11 +121,9 @@ class Thumbnail extends HTMLElement {
     this._isRounded = isRounded;
 
     if (isRounded) {
-      this.classList.add("rounded-full");
-      this.classList.add("overflow-hidden");
+      this._internals.states.add("rounded");
     } else {
-      this.classList.remove("rounded-full");
-      this.classList.remove("overflow-hidden");
+      this._internals.states.delete("rounded");
     }
   }
 
@@ -151,8 +133,7 @@ class Thumbnail extends HTMLElement {
       return;
     }
 
-    this.loader.style.display = "block";
-
+    this._internals.states.add("loading");
     this._source = source;
     this.image.src = source;
   }
