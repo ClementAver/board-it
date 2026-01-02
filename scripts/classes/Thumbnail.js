@@ -8,17 +8,21 @@ class Thumbnail extends HTMLElement {
   _figcaption = null;
   _figure = document.createElement("figure");
   _image = document.createElement("img");
+  _isRounded = false;
   _loader = document.createElement("div");
   _source = "";
 
-  constructor({ src, alt, caption } = {}) {
+  constructor({ source, alternate, caption, isRounded } = {}) {
     super();
 
-    this.alternate = alt ?? this.getAttribute("alt") ?? this.alterante;
-    this.caption = caption ?? this.getAttribute("caption") ?? this.caption;
-    this.source = src ?? this.getAttribute("src") ?? this.source;
+    this.alternate =
+      alternate ?? this.getAttribute("data-alternate") ?? this.alternate;
+    this.caption = caption ?? this.getAttribute("data-caption") ?? this.caption;
+    this.isRounded =
+      isRounded ?? this.getAttribute("data-is-rounded") ?? this.isRounded;
+    this.source = source ?? this.getAttribute("data-source") ?? this.source;
 
-    this._loader.classList.add("loader"); // TODO : replace by an attribute.
+    this._loader.classList.add("loader");
 
     this.image.loading = "lazy";
     this.image.onload = () => {
@@ -69,13 +73,17 @@ class Thumbnail extends HTMLElement {
     return this._loader;
   }
 
+  get isRounded() {
+    return this._isRounded;
+  }
+
   get source() {
     return this._source;
   }
 
   set alternate(alternate) {
-    if (this.getAttribute("alt") !== alternate) {
-      this.setAttribute("alt", alternate);
+    if (this.getAttribute("data-alternate") !== alternate) {
+      this.setAttribute("data-alternate", alternate);
       return;
     }
 
@@ -88,8 +96,8 @@ class Thumbnail extends HTMLElement {
   }
 
   set caption(caption) {
-    if (this.getAttribute("caption") !== caption) {
-      this.setAttribute("caption", caption);
+    if (this.getAttribute("data-caption") !== caption) {
+      this.setAttribute("data-caption", caption);
       return;
     }
 
@@ -119,9 +127,21 @@ class Thumbnail extends HTMLElement {
     this._loader = loader;
   }
 
+  set isRounded(isRounded) {
+    this._isRounded = isRounded;
+
+    if (isRounded) {
+      this.classList.add("rounded-full");
+      this.classList.add("overflow-hidden");
+    } else {
+      this.classList.remove("rounded-full");
+      this.classList.remove("overflow-hidden");
+    }
+  }
+
   set source(source) {
-    if (this.getAttribute("src") !== source) {
-      this.setAttribute("src", source);
+    if (this.getAttribute("data-source") !== source) {
+      this.setAttribute("data-source", source);
       return;
     }
 
@@ -135,13 +155,16 @@ class Thumbnail extends HTMLElement {
     if (oldValue === newValue) return;
 
     switch (name) {
-      case "alt":
+      case "data-alternate":
         this.alternate = newValue;
         break;
-      case "caption":
+      case "data-caption":
         this.caption = newValue;
         break;
-      case "src":
+      case "data-is-rounded":
+        this.isRounded = newValue;
+        break;
+      case "data-source":
         this.source = newValue;
         break;
       default:
@@ -149,7 +172,12 @@ class Thumbnail extends HTMLElement {
     }
   }
 
-  static observedAttributes = ["alt", "caption", "src"];
+  static observedAttributes = [
+    "data-alternate",
+    "data-caption",
+    "data-source",
+    "data-is-rounded",
+  ];
 }
 
 customElements.define("aeee-thumbnail", Thumbnail);
