@@ -11,6 +11,17 @@ aeee-thumbnail {
     border-radius: calc(infinity * 1px);
   }
 
+  &:state(error)::before {
+    color: var(--invalid);
+    content: "✘";
+    font-size: 8rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-57.5%);
+    z-index: 1;
+  }
+
   /* 
    * TODO: Make a @mixin out of this when browsers support allows it. 
    * https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Custom_functions_and_mixins
@@ -57,6 +68,10 @@ aeee-thumbnail {
     width: 150px;
   }
 
+  &:state(error) img {
+    filter: grayscale(80%);
+  }
+
   figcaption {
     background-color: var(--accent-beta);
     border-radius: var(--spacing-sm);
@@ -71,5 +86,10 @@ aeee-thumbnail {
     text-overflow: ellipsis;
     white-space: nowrap;
     z-index: 1;
+  }
+
+  &:state(rounded) figcaption,
+  &:state(error) figcaption {
+    display: none;
   }
 }

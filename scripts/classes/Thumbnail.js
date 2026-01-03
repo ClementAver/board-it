@@ -28,9 +28,14 @@ class Thumbnail extends HTMLElement {
     this.image.loading = "lazy";
     this.image.onload = () => {
       this._internals.states.delete("loading");
+
+      if (this.source !== this.placeholderImage) {
+        this._internals.states.delete("error");
+      }
     };
     this.image.onerror = (error) => {
       this._internals.states.delete("loading");
+      this._internals.states.add("error");
       handleError({
         text: `Une Erreur est survenue lors du chargement d'une image.`,
         error,
