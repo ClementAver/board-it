@@ -8,12 +8,13 @@ export default class CustomizableFileInput {
     this.input = input ?? this.input;
     this.label = label ?? this.input.nextElementSibling;
     this.hasIndicator = this.input.dataset.indicator ?? this.hasIndicator;
-    if (this.hasIndicator) this.paragraph = paragraph ?? this.label.nextElementSibling;
+    if (this.hasIndicator)
+      this.paragraph = paragraph ?? this.label.nextElementSibling;
 
     this.input.addEventListener("change", (event) => {
       if (this.paragraph) {
         const count = event.target.files.length ?? 0;
-        this.paragraph.firstChild.textContent = `${count} fichier${
+        this.paragraph.querySelector("small").textContent = `${count} fichier${
           count > 1 ? "s" : ""
         } sélectionné${count > 1 ? "s" : ""}`;
       }

@@ -8,6 +8,7 @@ import initTooltips from "../utilities/initTooltips.js";
 import MainHeader from "../classes/MainHeader.js";
 import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
+import UploadImageForm from "../classes/UploadImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
@@ -20,8 +21,10 @@ const downloadWorkFileForm = document.querySelector(
 const uploadWorkFileForm = document.querySelector(
   "form:has(#upload-workfile-input)"
 );
+const uploadImageForm = document.querySelector("form:has(#upload-image-input)");
+
 const jsonInput = document.getElementById("upload-workfile-input");
-const pictureInput = document.getElementById("picture-input");
+const imageInput = document.getElementById("upload-image-input");
 const imageUploadDialog = document.querySelector("[data-image-upload-dialog]");
 const imageUploadDialogTriggers = document.querySelectorAll(
   "[data-image-upload-dialog-trigger]"
@@ -30,9 +33,10 @@ const imageUploadDialogTriggers = document.querySelectorAll(
 new MainHeader();
 new Theme();
 new CustomizableFileInput({ input: jsonInput });
-new CustomizableFileInput({ input: pictureInput });
+new CustomizableFileInput({ input: imageInput });
 new Dialog({ dialog: imageUploadDialog, triggers: imageUploadDialogTriggers });
 
+new UploadImageForm({ form: uploadImageForm });
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
 

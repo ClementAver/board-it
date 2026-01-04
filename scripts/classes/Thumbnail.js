@@ -50,8 +50,6 @@ class Thumbnail extends HTMLElement {
     this.figure.appendChild(this.figcaption);
     this.article.appendChild(this.figure);
     this.appendChild(this.article);
-
-    console.dir(this);
   }
 
   get alternate() {
