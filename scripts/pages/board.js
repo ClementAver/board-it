@@ -22,16 +22,16 @@ const uploadWorkFileForm = document.querySelector(
 );
 const jsonInput = document.getElementById("upload-workfile-input");
 const pictureInput = document.getElementById("picture-input");
-const dropzoneDialog = document.querySelector("[data-dropzone-dialog]");
-const dropzoneDialogTriggers = document.querySelectorAll(
-  "[data-dropzone-dialog-trigger]"
+const imageUploadDialog = document.querySelector("[data-image-upload-dialog]");
+const imageUploadDialogTriggers = document.querySelectorAll(
+  "[data-image-upload-dialog-trigger]"
 );
 
 new MainHeader();
 new Theme();
 new CustomizableFileInput({ input: jsonInput });
 new CustomizableFileInput({ input: pictureInput });
-new Dialog({ dialog: dropzoneDialog, triggers: dropzoneDialogTriggers });
+new Dialog({ dialog: imageUploadDialog, triggers: imageUploadDialogTriggers });
 
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });

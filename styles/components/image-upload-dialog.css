@@ -1,0 +1,33 @@
+dialog:has([data-image-upload]) {
+  border: none;
+  height: 100vh;
+  height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding-top: 2.5rem;
+  width: 100vw;
+  width: 100dvw;
+
+  @media screen and (min-width: 900px) {
+    max-width: 75vw;
+    max-width: 75dvw;
+    max-height: 75vh;
+    max-height: 75dvh;
+  }
+}
+
+dialog:has([data-image-upload]):open {
+  display: flex;
+}
+
+dialog:has([data-image-upload]) > p {
+  font-weight: 500;
+  left: 0;
+  margin: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm);
+  padding-right: calc(var(--spacing-lg) * 2);
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
