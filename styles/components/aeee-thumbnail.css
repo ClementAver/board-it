@@ -3,6 +3,10 @@ aeee-thumbnail {
   position: relative;
   overflow: hidden;
 
+  &:not(:defined) {
+    display: none;
+  }
+
   &[hidden] {
     display: none;
   }

@@ -1,0 +1,64 @@
+aeee-file-input {
+  display: inline-block;
+
+  &[hidden] {
+    display: none;
+  }
+
+  input {
+    clip-path: inset(50%);
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    z-index: -1;
+
+    & + label {
+      border-radius: var(--spacing-xs);
+      display: flex;
+      font-weight: 500;
+      gap: var(--spacing-sm);
+      max-width: 100%;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      width: fit-content;
+
+      & svg {
+        transform: scale(0.75);
+      }
+
+      & span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &:has(> p) {
+    display: flex;
+    flex-flow: nowrap;
+    height: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+
+    & label {
+      border-radius: var(--spacing-xs) 0 0 var(--spacing-xs);
+      max-width: 100%;
+    }
+  }
+
+  p {
+    background-color: var(--secondary-darker);
+    border: var(--border-width) solid var(--secondary-darker);
+    border-radius: 0 var(--spacing-xs) var(--spacing-xs) 0;
+    color: var(--text-swath);
+    line-height: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

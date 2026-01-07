@@ -1,5 +1,4 @@
 import Canvas from "../classes/Canvas.js";
-import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
 import Dialog from "../classes/Dialog.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
@@ -23,8 +22,6 @@ const uploadWorkFileForm = document.querySelector(
 );
 const uploadImageForm = document.querySelector("form:has(#upload-image-input)");
 
-const jsonInput = document.getElementById("upload-workfile-input");
-const imageInput = document.getElementById("upload-image-input");
 const imageUploadDialog = document.querySelector("[data-image-upload-dialog]");
 const imageUploadDialogTriggers = document.querySelectorAll(
   "[data-image-upload-dialog-trigger]"
@@ -32,8 +29,7 @@ const imageUploadDialogTriggers = document.querySelectorAll(
 
 new MainHeader();
 new Theme();
-new CustomizableFileInput({ input: jsonInput });
-new CustomizableFileInput({ input: imageInput });
+
 new Dialog({ dialog: imageUploadDialog, triggers: imageUploadDialogTriggers });
 
 new UploadImageForm({ form: uploadImageForm });

@@ -95,38 +95,40 @@
             class="dropdown-menu anchor-bottom-sr"
           >
             <form action="" enctype="multipart/form-data">
-              <input
-                type="file"
-                accept="application/JSON"
-                name="json"
-                id="upload-workfile-input"
-                tabindex="-1"
-              />
-              <label
-                for="upload-workfile-input"
-                class="button-chameleon"
-                tabindex="0"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+              <aeee-file-input>
+                <input
+                  type="file"
+                  accept="application/JSON"
+                  name="json"
+                  id="upload-workfile-input"
+                  tabindex="-1"
+                />
+                <label
+                  for="upload-workfile-input"
+                  class="button-chameleon"
+                  tabindex="0"
                 >
-                  <path
-                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
-                  />
-                  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                  <path d="M12 12v6" />
-                  <path d="m15 15-3-3-3 3" />
-                </svg>
-                <span>Téléverser</span>
-              </label>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                    />
+                    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                    <path d="M12 12v6" />
+                    <path d="m15 15-3-3-3 3" />
+                  </svg>
+                  <span>Téléverser</span>
+                </label>
+              </aeee-file-input>
             </form>
 
             <form action="" enctype="multipart/form-data">
@@ -524,14 +526,13 @@
         enctype="multipart/form-data"
         class="flex wrap gap-lg items-end max-w-full p-lg"
       >
-        <div>
+        <aeee-file-input>
           <input
             type="file"
             accept="image/png, image/jpeg"
             name="image"
             id="upload-image-input"
             tabindex="-1"
-            data-indicator="true"
             multiple
           />
           <label for="upload-image-input" class="button-chameleon" tabindex="0">
@@ -558,15 +559,18 @@
           <p>
             <small>–</small>
           </p>
-        </div>
+        </aeee-file-input>
+        
         <div class="spring-wrapper rounded-xs">
-          <button class="rounded-xs bold" type="submit">
-            Importer
-          </button>
+          <button class="rounded-xs bold" type="submit">Importer</button>
         </div>
       </form>
     </dialog>
   </body>
 
   <script type="module" src="../scripts/pages/board.js"></script>
+  <script
+    type="module"
+    src="../scripts/classes/CustomizableFileInput.js"
+  ></script>
 </html>
