@@ -15,19 +15,19 @@ dialog:has([data-image-upload]) {
     max-height: 75vh;
     max-height: 75dvh;
   }
-}
 
-dialog:has([data-image-upload]):open {
-  display: flex;
-}
+  &:open {
+    display: flex;
+  }
 
-dialog:has([data-image-upload]) > p {
-  font-weight: 500;
-  left: 0;
-  margin: var(--spacing-xs) var(--spacing-md);
-  padding: var(--spacing-sm);
-  padding-right: calc(var(--spacing-lg) * 2);
-  position: absolute;
-  top: 0;
-  z-index: 10;
+  & > p {
+    font-weight: 500;
+    left: 0;
+    margin: var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-sm);
+    padding-right: calc(var(--spacing-lg) * 2);
+    position: absolute;
+    top: 0;
+    z-index: 10;
+  }
 }
