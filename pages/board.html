@@ -237,7 +237,7 @@
             class="dropdown-menu anchor-bottom-sr"
           >
             <button
-              data-image-upload-dialog-trigger
+              data-trigger="image-upload-dialog"
               data-action="showModal"
               type="button"
             >
@@ -492,80 +492,86 @@
       </menu>
     </main>
 
-    <dialog data-image-upload-dialog autofocus closedby="any">
-      <button
-        data-image-upload-dialog-trigger
-        data-action="close"
-        type="button"
-        class="rounded-full bd-transparent bg-transparent text-secondary ml-auto"
-        aria-label="Fermer la boîte de dialogue modale."
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+    <aeee-dialog>
+      <dialog id="image-upload-dialog" autofocus closedby="any">
+        <button
+          data-trigger="image-upload-dialog"
+          data-action="close"
+          type="button"
+          class="rounded-full bd-transparent bg-transparent text-secondary ml-auto"
+          aria-label="Fermer la boîte de dialogue modale."
         >
-          <path d="m14 10 7-7" />
-          <path d="M20 10h-6V4" />
-          <path d="m3 21 7-7" />
-          <path d="M4 14h6v6" />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m14 10 7-7" />
+            <path d="M20 10h-6V4" />
+            <path d="m3 21 7-7" />
+            <path d="M4 14h6v6" />
+          </svg>
+        </button>
 
-      <p>Importer une image</p>
+        <p>Importer une image</p>
 
-      <form
-        data-image-upload
-        action=""
-        enctype="multipart/form-data"
-        class="flex wrap gap-lg items-end max-w-full p-lg"
-      >
-        <aeee-file-input>
-          <input
-            type="file"
-            accept="image/png, image/jpeg"
-            name="image"
-            id="upload-image-input"
-            tabindex="-1"
-            multiple
-          />
-          <label for="upload-image-input" class="button-chameleon" tabindex="0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+        <form
+          data-image-upload
+          action=""
+          enctype="multipart/form-data"
+          class="flex wrap gap-lg items-end max-w-full p-lg"
+        >
+          <aeee-file-input>
+            <input
+              type="file"
+              accept="image/png, image/jpeg"
+              name="image"
+              id="upload-image-input"
+              tabindex="-1"
+              multiple
+            />
+            <label
+              for="upload-image-input"
+              class="button-chameleon"
+              tabindex="0"
             >
-              <path
-                d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
-              />
-              <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-              <path d="M12 12v6" />
-              <path d="m15 15-3-3-3 3" />
-            </svg>
-            <span>Importer des images <small>(.png)</small></span>
-          </label>
-          <p>
-            <small>–</small>
-          </p>
-        </aeee-file-input>
-        
-        <div class="spring-wrapper rounded-xs">
-          <button class="rounded-xs bold" type="submit">Importer</button>
-        </div>
-      </form>
-    </dialog>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                />
+                <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                <path d="M12 12v6" />
+                <path d="m15 15-3-3-3 3" />
+              </svg>
+              <span>Importer des images <small>(.png)</small></span>
+            </label>
+            <p>
+              <small>–</small>
+            </p>
+          </aeee-file-input>
+
+          <div class="spring-wrapper rounded-xs">
+            <button class="rounded-xs bold" type="submit">Importer</button>
+          </div>
+        </form>
+      </dialog>
+    </aeee-dialog>
   </body>
 
   <script type="module" src="../scripts/pages/board.js"></script>
@@ -573,4 +579,5 @@
     type="module"
     src="../scripts/classes/CustomizableFileInput.js"
   ></script>
+  <script type="module" src="../scripts/classes/Dialog.js"></script>
 </html>

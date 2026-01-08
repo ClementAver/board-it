@@ -1,30 +1,28 @@
-export default class Dialog {
-  _dialog = document.querySelector("[data-dialog]");
-  _triggers = document.querySelectorAll("[data-dialog-trigger]");
+class Dialog extends HTMLElement {
+  _dialog = null;
+  _triggers = null;
 
   constructor({ dialog, triggers } = {}) {
+    super();
+
     this.dialog = dialog ?? this.dialog;
     this.triggers = triggers ?? this.triggers;
+  }
+
+  connectedCallback() {
+    this.dialog = this.querySelector("dialog") ?? this.dialog;
+    this.triggers =
+      document.querySelectorAll(`[data-trigger="${this.dialog.id}"]`) ??
+      this.triggers;
 
     this.triggers.forEach((element) => {
-      element.addEventListener("click", (event) => {
-        switch (event.target.closest("[data-action]").dataset.action) {
-          case "showModal":
-            this.dialog.showModal();
-            break;
+      element.addEventListener("click", this.trigger.bind(this));
+    });
+  }
 
-          case "show":
-            this.dialog.show();
-            break;
-
-          case "close":
-            this.dialog.close();
-            break;
-
-          default:
-            break;
-        }
-      });
+  disconnectedCallback() {
+    this.triggers.forEach((element) => {
+      element.removeEventListener("click", this.trigger);
     });
   }
 
@@ -43,4 +41,25 @@ export default class Dialog {
   set triggers(triggers) {
     this._triggers = triggers;
   }
+
+  trigger(event) {
+    switch (event.target.closest("[data-action]").dataset.action) {
+      case "showModal":
+        this.dialog.showModal();
+        break;
+
+      case "show":
+        this.dialog.show();
+        break;
+
+      case "close":
+        this.dialog.close();
+        break;
+
+      default:
+        break;
+    }
+  }
 }
+
+customElements.define("aeee-dialog", Dialog);

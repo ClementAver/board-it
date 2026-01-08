@@ -1,6 +1,5 @@
 import Canvas from "../classes/Canvas.js";
 import debug from "../utilities/debug.js";
-import Dialog from "../classes/Dialog.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
 import initAnchors from "../utilities/initAnchors.js";
 import initTooltips from "../utilities/initTooltips.js";
@@ -22,15 +21,8 @@ const uploadWorkFileForm = document.querySelector(
 );
 const uploadImageForm = document.querySelector("form:has(#upload-image-input)");
 
-const imageUploadDialog = document.querySelector("[data-image-upload-dialog]");
-const imageUploadDialogTriggers = document.querySelectorAll(
-  "[data-image-upload-dialog-trigger]"
-);
-
 new MainHeader();
 new Theme();
-
-new Dialog({ dialog: imageUploadDialog, triggers: imageUploadDialogTriggers });
 
 new UploadImageForm({ form: uploadImageForm });
 new UploadWorkFileForm({ form: uploadWorkFileForm });
