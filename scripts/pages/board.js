@@ -3,7 +3,6 @@ import debug from "../utilities/debug.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
 import initAnchors from "../utilities/initAnchors.js";
 import initTooltips from "../utilities/initTooltips.js";
-import MainHeader from "../classes/MainHeader.js";
 import Theme from "../classes/Theme.js";
 import Toolbox from "../classes/Toolbox.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
@@ -21,7 +20,6 @@ const uploadWorkFileForm = document.querySelector(
 );
 const uploadImageForm = document.querySelector("form:has(#upload-image-input)");
 
-new MainHeader();
 new Theme();
 
 new UploadImageForm({ form: uploadImageForm });

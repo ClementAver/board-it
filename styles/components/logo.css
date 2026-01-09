@@ -1,8 +1,14 @@
-#logo-header {
-  color: var(--text-swath);
-}
+#logo-button {
+  display: flex;
+  width: calc(18 * var(--spacing-xs));
 
-#logo-header:hover,
-#logo-header:focus-visible {
-  color: var(--accent-beta);
+  & svg {
+    color: var(--text-swath);
+    margin: auto;
+  }
+
+  &:hover svg,
+  &:focus-visible svg {
+    color: var(--accent-beta);
+  }
 }

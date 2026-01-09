@@ -5,7 +5,6 @@
   display: flex;
   height: 1.5rem;
   justify-content: start;
-  margin-right: var(--spacing-lg);
   min-width: 2.5rem;
   padding-inline: 0;
   --theme-switch-btn-translate: 0;

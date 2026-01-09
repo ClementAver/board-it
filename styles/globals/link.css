@@ -1,7 +1,7 @@
 nav a::after {
   content: "↗";
   position: absolute;
-  right: var(--link-padding-x);
+  right: calc(var(--link-padding-x) * 0.75);
   top: 50%;
   transform: translateY(-50%);
 }
@@ -12,8 +12,7 @@ nav a {
   color: var(--link-color);
   display: inline-block;
   padding: var(--link-padding-y) var(--link-padding-x);
-  padding-right: calc(2ch + var(--link-padding-x));
-  height: 1.5rem;
+  padding-right: calc(1.25ch + var(--link-padding-x));
   position: relative;
 }
 

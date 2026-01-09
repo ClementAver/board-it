@@ -3,7 +3,6 @@
   border: var(--border-width) solid var(--btn-border-color);
   color: var(--btn-color);
   cursor: pointer;
-  line-height: 1rem;
   padding: var(--btn-padding-y) var(--btn-padding-x);
   text-decoration: none;
 }

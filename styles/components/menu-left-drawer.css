@@ -1,4 +1,5 @@
 menu#left-drawer {
+  grid-area: left-drawer;
   z-index: 1;
   background-color: var(--secondary);
   max-width: 0;

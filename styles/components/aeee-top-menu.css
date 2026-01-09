@@ -1,0 +1,37 @@
+aeee-top-menu {
+  --btn-padding-y: var(--spacing-xs);
+  display: block;
+  font-size: 0.75rem;
+  grid-area: top-menu;
+  background-color: var(--secondary-darker);
+
+  &[hidden] {
+    display: none;
+  }
+
+  & header {
+    align-items: center;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    transition: inset 0.2s;
+  }
+
+  & ul,
+  & menu {
+    display: flex;
+    gap: var(--spacing-sm);
+    list-style-type: none;
+  }
+
+  & [data-target] {
+    margin-top: var(--spacing-md);
+    border-radius: 0 0 var(--spacing-xs) var(--spacing-xs);
+  }
+
+  @media screen and (min-width: 1024px) {
+    & [data-switch] {
+      display: none;
+    }
+  }
+}
