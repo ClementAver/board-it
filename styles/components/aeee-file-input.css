@@ -50,10 +50,12 @@ aeee-file-input {
   }
 
   p {
+    align-items: center;
     background-color: var(--secondary-darker);
     border: var(--border-width) solid var(--secondary-darker);
     border-radius: 0 var(--spacing-xs) var(--spacing-xs) 0;
     color: var(--text-swath);
+    display: flex;
     line-height: 1rem;
     max-width: 100%;
     overflow: hidden;
