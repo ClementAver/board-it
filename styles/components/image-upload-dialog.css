@@ -20,7 +20,7 @@ dialog:has([data-image-upload]) {
     display: flex;
   }
 
-  & > p {
+  > p {
     font-weight: 500;
     left: 0;
     margin: var(--spacing-xs) var(--spacing-md);

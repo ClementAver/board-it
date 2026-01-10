@@ -2,7 +2,7 @@
   display: flex;
   width: calc(18 * var(--spacing-xs));
 
-  & svg {
+  svg {
     color: var(--text-swath);
     margin: auto;
   }

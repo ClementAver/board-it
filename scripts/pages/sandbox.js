@@ -1,11 +1,11 @@
 import debug from "../utilities/debug.js";
-import MainHeader from "../classes/MainHeader.js";
 import reactive from "../utilities/reactive.js";
 import Theme from "../classes/Theme.js";
-
-new MainHeader();
+import initTooltips from "../utilities/initTooltips.js";
 
 new Theme();
+
+initTooltips();
 
 const count = new reactive(0);
 

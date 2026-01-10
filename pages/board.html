@@ -68,37 +68,69 @@
           <small>Page d'accueil</small>
         </article>
 
-        <menu>
-          <li>
-            <button
-              data-anchor
-              type="button"
-              popovertarget="file-menu"
-              popovertargetaction="toggle"
-              class="ml-md"
-            >
-              Fichier
-            </button>
-            <div
-              id="file-menu"
-              popover
-              data-target
-              class="dropdown-menu anchor-bottom-sr"
-            >
-              <form action="" enctype="multipart/form-data">
-                <aeee-file-input>
-                  <input
-                    type="file"
-                    accept="application/JSON"
-                    name="json"
-                    id="upload-workfile-input"
+        <div id="top-menu-wrapper">
+          <menu>
+            <li>
+              <button
+                data-anchor
+                type="button"
+                popovertarget="file-menu"
+                popovertargetaction="toggle"
+              >
+                Fichier
+              </button>
+              <div
+                id="file-menu"
+                popover
+                data-target
+                class="dropdown-menu anchor-bottom-sr"
+              >
+                <form action="" enctype="multipart/form-data">
+                  <aeee-file-input>
+                    <input
+                      type="file"
+                      accept="application/JSON"
+                      name="json"
+                      id="upload-workfile-input"
+                      tabindex="-1"
+                    />
+                    <label
+                      for="upload-workfile-input"
+                      class="button-chameleon"
+                      tabindex="0"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                        />
+                        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                        <path d="M12 12v6" />
+                        <path d="m15 15-3-3-3 3" />
+                      </svg>
+                      <span>Téléverser</span>
+                    </label>
+                  </aeee-file-input>
+                </form>
+
+                <form action="" enctype="multipart/form-data">
+                  <a
+                    id="download-workfile-anchor"
+                    href="#"
+                    download="file_name.json"
                     tabindex="-1"
-                  />
-                  <label
-                    for="upload-workfile-input"
-                    class="button-chameleon"
-                    tabindex="0"
-                  >
+                    class="sr-only"
+                  ></a>
+                  <button type="submit">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -114,23 +146,92 @@
                         d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
                       />
                       <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                      <path d="M12 12v6" />
-                      <path d="m15 15-3-3-3 3" />
+                      <path d="M12 18v-6" />
+                      <path d="m9 15 3 3 3-3" />
                     </svg>
-                    <span>Téléverser</span>
-                  </label>
-                </aeee-file-input>
-              </form>
+                    <span>Télécharger</span>
+                  </button>
+                </form>
 
-              <form action="" enctype="multipart/form-data">
-                <a
-                  id="download-workfile-anchor"
-                  href="#"
-                  download="file_name.json"
-                  tabindex="-1"
-                  class="sr-only"
-                ></a>
-                <button type="submit">
+                <button
+                  data-anchor
+                  type="button"
+                  popovertarget="file-menu-more"
+                  interestfor="file-menu-more"
+                >
+                  <span>Plus d'options</span>
+                </button>
+                <div
+                  id="file-menu-more"
+                  popover
+                  data-target
+                  class="dropdown-menu anchor-right-sb"
+                >
+                  <button type="submit">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
+                      />
+                      <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+                    </svg>
+                    <span>Renommer</span>
+                  </button>
+
+                  <button type="submit">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M10 11v6" />
+                      <path d="M14 11v6" />
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                      <path d="M3 6h18" />
+                      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                    </svg>
+                    <span>Supprimer</span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <button
+                popovertarget="picture-menu"
+                popovertargetaction="toggle"
+                data-anchor
+                type="button"
+                class="mr-auto"
+              >
+                Image
+              </button>
+              <div
+                id="picture-menu"
+                popover
+                data-target
+                class="dropdown-menu anchor-bottom-sr"
+              >
+                <button
+                  data-trigger="image-upload-dialog"
+                  data-action="showModal"
+                  type="button"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -146,134 +247,34 @@
                       d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
                     />
                     <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                    <path d="M12 18v-6" />
-                    <path d="m9 15 3 3 3-3" />
+                    <circle cx="10" cy="12" r="2" />
+                    <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
                   </svg>
-                  <span>Télécharger</span>
-                </button>
-              </form>
-
-              <button
-                data-anchor
-                type="button"
-                popovertarget="file-menu-more"
-                interestfor="file-menu-more"
-              >
-                <span>Plus d'options</span>
-              </button>
-              <div
-                id="file-menu-more"
-                popover
-                data-target
-                class="dropdown-menu anchor-right-sb"
-              >
-                <button type="submit">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
-                    />
-                    <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
-                  </svg>
-                  <span>Renommer</span>
-                </button>
-
-                <button type="submit">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M10 11v6" />
-                    <path d="M14 11v6" />
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-                    <path d="M3 6h18" />
-                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                  </svg>
-                  <span>Supprimer</span>
+                  <span>Importer</span>
                 </button>
               </div>
-            </div>
-          </li>
-
-          <li>
-            <button
-              popovertarget="picture-menu"
-              popovertargetaction="toggle"
-              data-anchor
-              type="button"
-              class="mr-auto"
-            >
-              Image
-            </button>
-            <div
-              id="picture-menu"
-              popover
-              data-target
-              class="dropdown-menu anchor-bottom-sr"
-            >
-              <button
-                data-trigger="image-upload-dialog"
-                data-action="showModal"
-                type="button"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
-                  />
-                  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                  <circle cx="10" cy="12" r="2" />
-                  <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
-                </svg>
-                <span>Importer</span>
-              </button>
-            </div>
-          </li>
-        </menu>
-
-        <nav>
-          <ul>
-            <li>
-              <a href="./board.html" class="rounded-full medium">Board</a>
             </li>
-            <li>
-              <a href="./contact.html" class="rounded-full medium">Contact</a>
-            </li>
-          </ul>
-        </nav>
+          </menu>
+
+          <nav>
+            <ul>
+              <li>
+                <a href="./board.html" class="rounded-full medium">Board</a>
+              </li>
+              <li>
+                <a href="./contact.html" class="rounded-full medium">Contact</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
         <button
-          id="data-theme-switch-btn"
+          id="theme-switch-btn"
           type="button"
           aria-label="Toggles Dark theme."
           class="no-dash ml-auto"
         >
-          <div id="data-theme-switch-handle">
+          <div id="theme-switch-handle">
             <svg
               id="theme-sun"
               xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +305,7 @@
             </svg>
           </div>
         </button>
-        <article role="tooltip" class="m-sm anchor-bottom-sr">
+        <article role="tooltip" class="m-sm anchor-bottom-sr whitespace-nowrap">
           <small>Thème sombre</small>
         </article>
 
@@ -312,7 +313,7 @@
           data-switch
           type="button"
           aria-label="Shows/hides the menu on smaller screen widths."
-          class="rounded-full bd-transparent bg-transparent text-secondary"
+          class="rounded-full bd-transparent bg-transparent text-swatch"
         ></button>
       </header>
     </aeee-top-menu>

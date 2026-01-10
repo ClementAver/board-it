@@ -8,6 +8,7 @@
 
 [role="tooltip"] {
   background-color: var(--accent-beta);
+  border: none;
   border-radius: var(--border-width);
   box-shadow: var(--shadow-std);
   color: var(--primary);

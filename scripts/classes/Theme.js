@@ -3,10 +3,17 @@ export default class Theme {
   _moon = document.getElementById("theme-moon");
   _prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
   _sun = document.getElementById("theme-sun");
-  _switchBtn = document.getElementById("data-theme-switch-btn");
-  _switchHandle = document.getElementById("data-theme-switch-handle");
+  _switchBtn = document.getElementById("theme-switch-btn");
+  _switchHandle = document.getElementById("theme-switch-handle");
 
-  constructor({ currentTheme, moon, prefersDark, sun, switchBtn, switchHandle } = {}) {
+  constructor({
+    currentTheme,
+    moon,
+    prefersDark,
+    sun,
+    switchBtn,
+    switchHandle,
+  } = {}) {
     this.currentTheme = currentTheme ?? this.currentTheme;
     this.moon = moon ?? this.moon;
     this.prefersDark = prefersDark ?? this.prefersDark;
@@ -18,7 +25,9 @@ export default class Theme {
 
     this.switchBtn.addEventListener("click", () => {
       this.currentTheme =
-        document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.getAttribute("data-theme") === "dark"
+          ? "light"
+          : "dark";
       this.setTheme(this.currentTheme);
     });
 

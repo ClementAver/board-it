@@ -9,119 +9,127 @@
   </head>
 
   <body>
-    <header class="main-header" data-open="false">
-      <a href="../index.html">
-        <svg
-          id="logo-header"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 319.66 393.49"
-        >
-          <defs>
-            <style>
-              .cls-1 {
-                fill: currentColor;
-              }
+    <aeee-top-menu>
+      <header data-open="false">
+        <a href="../index.html" id="logo-button" class="no-dash">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.66 393.49">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: currentColor;
+                }
 
-              .cls-2 {
-                fill: #fd2;
-              }
+                .cls-2 {
+                  fill: #fd2;
+                }
 
-              .cls-3 {
-                fill: #fa0;
-              }
-            </style>
-          </defs>
-          <title>quest_for_game_logo_dark</title>
-          <g id="Layer_2" data-name="Layer 2">
-            <g id="Layer_1-2" data-name="Layer 1">
-              <polygon
-                class="cls-1"
-                points="310.28 105.33 308.89 145.25 244.24 188.96 310.28 105.33"
-              />
-              <path
-                class="cls-1"
-                d="M175,352.49l114.52-9.71-45-139.25,56.13-35.17,19,186.12-147,12.62A51,51,0,0,0,175,352.49Z"
-              />
-              <path
-                class="cls-1"
-                d="M69.88,361.41l-46.84,4a166.11,166.11,0,0,1-5.31-41.78c0-72.73,46.9-134.74,112.74-158.73V115.71L107.4,73.31l-93,41.12L0,381.92l74.74-6.41A49.42,49.42,0,0,1,69.88,361.41Z"
-              />
-              <polygon
-                class="cls-1"
-                points="131.16 35.42 112.82 51.68 131.16 94.12 131.16 35.42"
-              />
-              <polygon
-                class="cls-2"
-                points="243.95 0 145.79 9.43 130.79 286.47 140.95 293.17 243.95 0"
-              />
-              <polygon
-                class="cls-3"
-                points="243.95 0 314.64 68.75 153.06 294.29 140.95 293.17 243.95 0"
-              />
-              <circle class="cls-2" cx="121.99" cy="351.46" r="42.02" />
-              <path
-                class="cls-3"
-                d="M127.11,386.31c27.65,1.6,42-48.39,17.66-61.71A65.61,65.61,0,0,1,127.11,386.31Z"
-              />
+                .cls-3 {
+                  fill: #fa0;
+                }
+              </style>
+            </defs>
+            <title>Point d'exclamation dans un encadré stylisé</title>
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="Layer_1-2" data-name="Layer 1">
+                <polygon
+                  class="cls-1"
+                  points="310.28 105.33 308.89 145.25 244.24 188.96 310.28 105.33"
+                />
+                <path
+                  class="cls-1"
+                  d="M175,352.49l114.52-9.71-45-139.25,56.13-35.17,19,186.12-147,12.62A51,51,0,0,0,175,352.49Z"
+                />
+                <path
+                  class="cls-1"
+                  d="M69.88,361.41l-46.84,4a166.11,166.11,0,0,1-5.31-41.78c0-72.73,46.9-134.74,112.74-158.73V115.71L107.4,73.31l-93,41.12L0,381.92l74.74-6.41A49.42,49.42,0,0,1,69.88,361.41Z"
+                />
+                <polygon
+                  class="cls-1"
+                  points="131.16 35.42 112.82 51.68 131.16 94.12 131.16 35.42"
+                />
+                <polygon
+                  class="cls-2"
+                  points="243.95 0 145.79 9.43 130.79 286.47 140.95 293.17 243.95 0"
+                />
+                <polygon
+                  class="cls-3"
+                  points="243.95 0 314.64 68.75 153.06 294.29 140.95 293.17 243.95 0"
+                />
+                <circle class="cls-2" cx="121.99" cy="351.46" r="42.02" />
+                <path
+                  class="cls-3"
+                  d="M127.11,386.31c27.65,1.6,42-48.39,17.66-61.71A65.61,65.61,0,0,1,127.11,386.31Z"
+                />
+              </g>
             </g>
-          </g>
-        </svg>
-      </a>
-
-      <button
-        id="main-header-switch"
-        type="button"
-        aria-label="Shows/hides the menu on smaller screen widths."
-        class="rounded-full bd-transparent bg-transparent text-secondary"
-      ></button>
-
-      <button
-        id="data-theme-switch-btn"
-        type="button"
-        aria-label="Toggles Dark theme."
-      >
-        <div id="data-theme-switch-handle">
-          <svg
-            id="theme-sun"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="12" cy="12" r="4" />
-            <path
-              d="M12 2v2M12 20v2M5 5l1 1M18 18l1 1M2 12h2M20 12h2M6 18l-1 1M19 5l-1 1"
-            />
           </svg>
+        </a>
+        <article role="tooltip" class="m-sm anchor-right">
+          <small>Page d'accueil</small>
+        </article>
 
-          <svg
-            id="theme-moon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path d="M21 12a9 9 0 1 1-9-9v1a6 6 0 0 0 8 8z" />
-          </svg>
+        <div id="top-menu-wrapper">
+          <nav>
+            <ul>
+              <li>
+                <a href="./board.html" class="rounded-full medium">Board</a>
+              </li>
+              <li>
+                <a href="./contact.html" class="rounded-full medium">Contact</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-      </button>
 
-      <nav>
-        <ul>
-          <li><a href="./board.html" class="rounded-full medium">Board</a></li>
-          <li>
-            <a href="./contact.html" class="rounded-full medium">Contact</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div id="main-header-placeholder"></div>
+        <button
+          id="theme-switch-btn"
+          type="button"
+          aria-label="Toggles Dark theme."
+          class="no-dash ml-auto"
+        >
+          <div id="theme-switch-handle">
+            <svg
+              id="theme-sun"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2M12 20v2M5 5l1 1M18 18l1 1M2 12h2M20 12h2M6 18l-1 1M19 5l-1 1"
+              />
+            </svg>
+
+            <svg
+              id="theme-moon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21 12a9 9 0 1 1-9-9v1a6 6 0 0 0 8 8z" />
+            </svg>
+          </div>
+        </button>
+        <article role="tooltip" class="m-sm anchor-bottom-sr whitespace-nowrap">
+          <small>Thème sombre</small>
+        </article>
+
+        <button
+          data-switch
+          type="button"
+          aria-label="Shows/hides the menu on smaller screen widths."
+          class="rounded-full bd-transparent bg-transparent text-swatch"
+        ></button>
+      </header>
+    </aeee-top-menu>
 
     <main class="p-lg">
       <button
@@ -182,4 +190,5 @@
 
   <script type="module" src="../scripts/pages/sandbox.js"></script>
   <script type="module" src="../scripts/classes/Thumbnail.js"></script>
+  <script type="module" src="../scripts/classes/TopMenu.js"></script>
 </html>

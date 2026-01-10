@@ -15,14 +15,16 @@
 @import url(../globals/textarea.css);
 
 @import url(../components/aeee-thumbnail.css);
+@import url(../components/aeee-top-menu.css);
 @import url(../components/customizable-select.css);
 @import url(../components/logo.css);
-@import url(../components/main-header.css);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
 @import url(../components/theme-switch.css);
 @import url(../components/toast.css);
+@import url(../components/tooltip.css);
 
+@import url(../utilities/anchor-positioning.css);
 @import url(../utilities/animated.css);
 @import url(../utilities/rounded.css);
 @import url(../utilities/color.css);
@@ -35,8 +37,12 @@
 body {
   background-color: var(--ternary);
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto;
   grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "top-menu"
+    "main";
+
   height: 100vh;
   height: 100dvh;
   width: 100vw;

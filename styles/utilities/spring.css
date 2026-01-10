@@ -12,22 +12,23 @@
   height: calc-size(auto, round(nearest, size, 1px));
   transition: grid-template-rows 0.1s;
   width: fit-content;
-}
-.spring-wrapper:hover,
-.spring-wrapper:focus-visible {
-  grid-template-rows:
-    var(--spring-spacing)
-    auto
-    var(--spring-spacing);
-}
-.spring-wrapper:hover:active,
-.spring-wrapper:focus-visible:active {
-  grid-template-rows:
-    calc(var(--spring-spacing) * 2)
-    auto
-    0;
-}
 
-.spring-wrapper > :first-child {
-  grid-row: 2/3;
+  &:hover,
+  &:focus-visible {
+    grid-template-rows:
+      var(--spring-spacing)
+      auto
+      var(--spring-spacing);
+  }
+  &:hover:active,
+  &:focus-visible:active {
+    grid-template-rows:
+      calc(var(--spring-spacing) * 2)
+      auto
+      0;
+  }
+
+  > :first-child {
+    grid-row: 2/3;
+  }
 }

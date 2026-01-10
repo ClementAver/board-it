@@ -15,7 +15,7 @@ aeee-file-input {
     width: 1px;
     z-index: -1;
 
-    & + label {
+    + label {
       border-radius: var(--spacing-xs);
       display: flex;
       font-weight: 500;
@@ -24,11 +24,11 @@ aeee-file-input {
       padding: var(--btn-padding-y) var(--btn-padding-x);
       width: fit-content;
 
-      & svg {
+      svg {
         transform: scale(0.75);
       }
 
-      & span {
+      span {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -43,7 +43,7 @@ aeee-file-input {
     max-width: 100%;
     overflow: hidden;
 
-    & label {
+    label {
       border-radius: var(--spacing-xs) 0 0 var(--spacing-xs);
       max-width: 100%;
     }

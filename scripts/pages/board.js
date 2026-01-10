@@ -9,9 +9,6 @@ import UploadImageForm from "../classes/UploadImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
-initAnchors();
-initTooltips();
-
 const downloadWorkFileForm = document.querySelector(
   "form:has(#download-workfile-anchor)"
 );
@@ -25,6 +22,9 @@ new Theme();
 new UploadImageForm({ form: uploadImageForm });
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
+
+initAnchors();
+initTooltips();
 
 Canvas.resize();
 Canvas.resizeWith(Toolbox.widgets.leftDrawer.leftDrawerMenu);
