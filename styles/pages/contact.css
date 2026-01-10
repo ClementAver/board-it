@@ -13,11 +13,11 @@
 @import url(../globals/svg.css);
 @import url(../globals/textarea.css);
 
+@import url(../components/aeee-theme-switch.css);
 @import url(../components/aeee-top-menu.css);
 @import url(../components/logo.css);
 @import url(../components/menu-left-drawer.css);
 @import url(../components/main-board.css);
-@import url(../components/theme-switch.css);
 @import url(../components/tooltip.css);
 
 @import url(../utilities/anchor-positioning.css);

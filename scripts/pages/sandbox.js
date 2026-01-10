@@ -1,9 +1,6 @@
 import debug from "../utilities/debug.js";
 import reactive from "../utilities/reactive.js";
-import Theme from "../classes/Theme.js";
 import initTooltips from "../utilities/initTooltips.js";
-
-new Theme();
 
 initTooltips();
 

@@ -1,8 +1,5 @@
 import delay from "../utilities/delay.js";
-import Theme from "../classes/Theme.js";
 import initTooltips from "../utilities/initTooltips.js";
-
-new Theme();
 
 initTooltips();
 

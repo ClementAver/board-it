@@ -1,10 +1,10 @@
-export default class Theme {
+class ThemeSwitch extends HTMLElement {
   _currentTheme = null;
-  _moon = document.getElementById("theme-moon");
-  _prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-  _sun = document.getElementById("theme-sun");
-  _switchBtn = document.getElementById("theme-switch-btn");
-  _switchHandle = document.getElementById("theme-switch-handle");
+  _moon = null;
+  _prefersDark = null;
+  _sun = null;
+  _switchBtn = null;
+  _switchHandle = null;
 
   constructor({
     currentTheme,
@@ -14,27 +14,38 @@ export default class Theme {
     switchBtn,
     switchHandle,
   } = {}) {
+    super();
+
     this.currentTheme = currentTheme ?? this.currentTheme;
     this.moon = moon ?? this.moon;
     this.prefersDark = prefersDark ?? this.prefersDark;
     this.sun = sun ?? this.sun;
     this.switchBtn = switchBtn ?? this.switchBtn;
     this.switchHandle = switchHandle ?? this.switchHandle;
+  }
+
+  connectedCallback() {
+    this.moon = this.querySelector("[title = 'theme-moon']") ?? this.moon;
+    this.prefersDark =
+      window.matchMedia("(prefers-color-scheme: dark)") ?? this.prefersDark;
+    this.sun = this.querySelector("[title = 'theme-sun']") ?? this.sun;
+    this.switchBtn =
+      this.querySelector("[data-theme-switch]") ?? this.switchBtn;
+    this.switchHandle =
+      this.querySelector("[data-theme-switch-handle]") ?? this.switchHandle;
 
     this.initTheme();
 
-    this.switchBtn.addEventListener("click", () => {
-      this.currentTheme =
-        document.documentElement.getAttribute("data-theme") === "dark"
-          ? "light"
-          : "dark";
-      this.setTheme(this.currentTheme);
-    });
+    this.switchBtn.addEventListener("click", this.toggle.bind(this));
+    this.prefersDark.addEventListener(
+      "change",
+      this.updatePreferredTheme.bind(this)
+    );
+  }
 
-    this.prefersDark.addEventListener("change", (e) => {
-      this.currentTheme = e.matches ? "dark" : "light";
-      this.setTheme(this.currentTheme);
-    });
+  disconnectedCallback() {
+    this.switchBtn.removeEventListener("click", this.toggle);
+    this.prefersDark.removeEventListener("change", this.updatePreferredTheme);
   }
 
   get currentTheme() {
@@ -105,6 +116,19 @@ export default class Theme {
     this.updateIcon(theme);
   }
 
+  toggle() {
+    this.currentTheme =
+      document.documentElement.getAttribute("data-theme") === "dark"
+        ? "light"
+        : "dark";
+    this.setTheme(this.currentTheme);
+  }
+
+  updatePreferredTheme(e) {
+    this.currentTheme = e.matches ? "dark" : "light";
+    this.setTheme(this.currentTheme);
+  }
+
   updateIcon(theme) {
     const pressed = theme === "dark" ? true : false;
 
@@ -117,3 +141,5 @@ export default class Theme {
     }
   }
 }
+
+customElements.define("aeee-theme-switch", ThemeSwitch);
