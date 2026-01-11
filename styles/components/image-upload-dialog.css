@@ -1,9 +1,7 @@
-dialog:has([data-image-upload]) {
+dialog#image-upload-dialog {
   border: none;
   height: 100vh;
   height: 100dvh;
-  align-items: center;
-  justify-content: center;
   margin: auto;
   padding-top: 2.5rem;
   width: 100vw;
@@ -23,11 +21,24 @@ dialog:has([data-image-upload]) {
   > p {
     font-weight: 500;
     left: 0;
-    margin: var(--spacing-xs) var(--spacing-md);
-    padding: var(--spacing-sm);
-    padding-right: calc(var(--spacing-lg) * 2);
+    margin: var(--spacing-xs) var(--spacing-lg);
+    max-width: 100%;
+    overflow: hidden;
+    padding-block: var(--spacing-md);
+    padding-right: calc(var(--spacing-lg) * 3);
     position: absolute;
+    text-overflow: ellipsis;
     top: 0;
-    z-index: 10;
+    white-space: nowrap;
+  }
+
+  > form {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-lg);
+    height: 100%;
+    padding: var(--spacing-lg);
+    width: 100%;
   }
 }

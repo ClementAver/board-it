@@ -23,7 +23,7 @@
   --spacing-lg: 1rem;
 
   --btn-padding-x: var(--spacing-md);
-  --btn-padding-y: var(--spacing-md);
+  --btn-padding-y: var(--spacing-xs);
   --btn-color: var(--text-swath);
   --btn-background-color: var(--secondary);
   --btn-border-color: var(--secondary);

@@ -4,7 +4,7 @@ import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
 import initAnchors from "../utilities/initAnchors.js";
 import initTooltips from "../utilities/initTooltips.js";
 import Toolbox from "../classes/Toolbox.js";
-import UploadImageForm from "../classes/UploadImageForm.js";
+// import UploadImageForm from "../classes/UploadImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
@@ -16,7 +16,7 @@ const uploadWorkFileForm = document.querySelector(
 );
 const uploadImageForm = document.querySelector("form:has(#upload-image-input)");
 
-new UploadImageForm({ form: uploadImageForm });
+// new UploadImageForm({ form: uploadImageForm });
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
 

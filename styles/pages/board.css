@@ -11,8 +11,9 @@
 @import url(../globals/svg.css);
 @import url(../globals/widget.css);
 
-@import url(../components/aeee-theme-switch.css);
 @import url(../components/aeee-file-input.css);
+@import url(../components/aeee-gallery.css);
+@import url(../components/aeee-theme-switch.css);
 @import url(../components/aeee-top-menu.css);
 @import url(../components/camera-widget.css);
 @import url(../components/dropdown-menu.css);

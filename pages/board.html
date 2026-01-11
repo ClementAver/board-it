@@ -332,7 +332,7 @@
           <button
             type="button"
             data-tool="camera"
-            class="flex gap-lg rounded-xs bd-transparent w-full no-dash"
+            class="flex rounded-xs bd-transparent w-full no-dash icon"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -363,7 +363,7 @@
           <button
             type="button"
             data-tool="selector"
-            class="flex gap-lg rounded-xs bd-transparent w-full no-dash"
+            class="flex gap-lg rounded-xs bd-transparent w-full no-dash icon"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -402,7 +402,7 @@
       <button
         id="left-drawer-switch"
         type="button"
-        class="rounded-full bd-transparent bg-transparent text-secondary no-dash"
+        class="rounded-full bd-transparent bg-transparent text-secondary no-dash icon"
         aria-label="Extends/retracts the left drawer."
       ></button>
       <article role="tooltip" class="m-sm anchor-right">
@@ -507,7 +507,7 @@
           data-trigger="image-upload-dialog"
           data-action="close"
           type="button"
-          class="rounded-full bd-transparent bg-transparent text-secondary ml-auto"
+          class="rounded-full bd-transparent bg-transparent text-secondary ml-auto icon"
           aria-label="Fermer la boîte de dialogue modale."
         >
           <svg
@@ -527,10 +527,43 @@
             <path d="M4 14h6v6" />
           </svg>
         </button>
-
         <p>Importer une image</p>
 
-        <form
+        <form data-image-upload action="" enctype="multipart/form-data">
+          <aeee-gallery class="w-full grow">
+            <div data-gallery-actions>
+              <p>Page&nbsp;: 1&nbsp;/&nbsp;1</p>
+              <menu class="flex justify-end">
+                <button type="button" class="rounded-xs">Précédent</button>
+                <button type="button" class="rounded-xs">Suivant</button>
+              </menu>
+            </div>
+
+            <div data-gallery-wrapper>
+              <div
+                style="height: 150px; width: 150px; background-color: lime"
+              ></div>
+              <div
+                style="height: 150px; width: 150px; background-color: lime"
+              ></div>
+              <div
+                style="height: 150px; width: 150px; background-color: lime"
+              ></div>
+              <div
+                style="height: 150px; width: 150px; background-color: lime"
+              ></div>
+              <div
+                style="height: 150px; width: 150px; background-color: lime"
+              ></div>
+            </div>
+          </aeee-gallery>
+
+          <div class="spring-wrapper rounded-xs">
+            <button class="rounded-xs bold" type="submit">Importer</button>
+          </div>
+        </form>
+
+        <!-- <form
           data-image-upload
           action=""
           enctype="multipart/form-data"
@@ -578,7 +611,7 @@
           <div class="spring-wrapper rounded-xs">
             <button class="rounded-xs bold" type="submit">Importer</button>
           </div>
-        </form>
+        </form> -->
       </dialog>
     </aeee-dialog>
   </body>
@@ -591,4 +624,5 @@
   <script type="module" src="../scripts/classes/Dialog.js"></script>
   <script type="module" src="../scripts/classes/Theme.js"></script>
   <script type="module" src="../scripts/classes/TopMenu.js"></script>
+  <script type="module" src="../scripts/classes/Gallery.js"></script>
 </html>

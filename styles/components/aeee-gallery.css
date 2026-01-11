@@ -1,0 +1,33 @@
+aeee-gallery {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--spacing-md);
+
+  &[hidden] {
+    display: none;
+  }
+
+  [data-gallery-wrapper] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  [data-gallery-actions] {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--spacing-lg);
+  }
+
+  [data-gallery-actions] > p {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+  }
+
+  menu {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--spacing-sm);
+  }
+}

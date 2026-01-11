@@ -19,11 +19,14 @@
 .text-ternary {
   color: var(--ternary);
 }
-.text-hl-alpha {
+.text-accent-alpha {
   color: var(--accent-alpha);
 }
-.text-hl-beta {
+.text-accent-beta {
   color: var(--accent-beta);
+}
+.text-swath {
+  color: var(--text-swath);
 }
 .text-transparent {
   color: transparent;
@@ -41,10 +44,10 @@
 .bg-ternary {
   background-color: var(--ternary);
 }
-.bg-hl-alpha {
+.bg-accent-alpha {
   background-color: var(--accent-alpha);
 }
-.bg-hl-beta {
+.bg-accent-beta {
   background-color: var(--accent-beta);
 }
 .bg-transparent {
@@ -63,11 +66,14 @@
 .bd-ternary {
   border: var(--border-width) solid var(--ternary);
 }
-.bd-hl-alpha {
+.bd-accent-alpha {
   border: var(--border-width) solid var(--accent-alpha);
 }
-.bd-hl-beta {
+.bd-accent-beta {
   border: var(--border-width) solid var(--accent-beta);
+}
+.bd-swath {
+  border: var(--border-width) solid var(--text-swath);
 }
 .bd-transparent {
   border: var(--border-width) solid transparent;
@@ -87,10 +93,10 @@
 .text-ternary--hov:hover {
   color: var(--ternary);
 }
-.text-hl-alpha--hov:hover {
+.text-accent-alpha--hov:hover {
   color: var(--accent-alpha);
 }
-.text-hl-beta--hov:hover {
+.text-accent-beta--hov:hover {
   color: var(--accent-beta);
 }
 .text-transparent--hov:hover {
@@ -109,10 +115,10 @@
 .bg-ternary--hov:hover {
   background-color: var(--ternary);
 }
-.bg-hl-alpha--hov:hover {
+.bg-accent-alpha--hov:hover {
   background-color: var(--accent-alpha);
 }
-.bg-hl-beta--hov:hover {
+.bg-accent-beta--hov:hover {
   background-color: var(--accent-beta);
 }
 .bg-transparent--hov:hover {
@@ -131,10 +137,10 @@
 .bd-ternary--hov:hover {
   border: var(--border-width) solid var(--ternary);
 }
-.bd-hl-alpha--hov:hover {
+.bd-accent-alpha--hov:hover {
   border: var(--border-width) solid var(--accent-alpha);
 }
-.bd-hl-beta--hov:hover {
+.bd-accent-beta--hov:hover {
   border: var(--border-width) solid var(--accent-beta);
 }
 .bd-transparent--hov:hover {
