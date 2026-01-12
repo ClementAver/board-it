@@ -50,9 +50,8 @@ aeee-thumbnail {
   article {
     background-color: var(--secondary);
     border-radius: var(--spacing-sm);
-    height: 100%;
-    max-height: 150px;
-    max-width: 150px;
+    max-width: 300px;
+    min-width: 100px;
     overflow: hidden;
     width: 100%;
   }
@@ -67,9 +66,8 @@ aeee-thumbnail {
 
   img {
     grid-area: main;
-    height: 150px;
+    aspect-ratio: 1/1;
     object-fit: cover;
-    width: 150px;
   }
 
   &:state(error) img {
@@ -80,7 +78,6 @@ aeee-thumbnail {
     background-color: var(--accent-beta);
     border-radius: var(--spacing-sm);
     box-shadow: var(--shadow-std);
-    box-sizing: border-box;
     color: var(--primary);
     grid-area: main;
     margin: auto 1rem 1rem auto;

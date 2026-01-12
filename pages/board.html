@@ -501,69 +501,80 @@
       </menu>
     </main>
 
-    <aeee-dialog>
-      <dialog id="image-upload-dialog" autofocus closedby="any">
-        <button
-          data-trigger="image-upload-dialog"
-          data-action="close"
-          type="button"
-          class="rounded-full bd-transparent bg-transparent text-secondary ml-auto icon"
-          aria-label="Fermer la boîte de dialogue modale."
+    <dialog is="aeee-dialog" id="image-upload-dialog" autofocus closedby="any">
+      <button
+        data-trigger="image-upload-dialog"
+        data-action="close"
+        type="button"
+        class="rounded-full bd-transparent bg-transparent text-secondary ml-auto icon"
+        aria-label="Fermer la boîte de dialogue modale."
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m14 10 7-7" />
-            <path d="M20 10h-6V4" />
-            <path d="m3 21 7-7" />
-            <path d="M4 14h6v6" />
-          </svg>
-        </button>
-        <p>Importer une image</p>
+          <path d="m14 10 7-7" />
+          <path d="M20 10h-6V4" />
+          <path d="m3 21 7-7" />
+          <path d="M4 14h6v6" />
+        </svg>
+      </button>
+      <p>Importer une image</p>
 
-        <form data-image-upload action="" enctype="multipart/form-data">
-          <aeee-gallery class="w-full grow">
-            <div data-gallery-actions>
-              <p>Page&nbsp;: 1&nbsp;/&nbsp;1</p>
-              <menu class="flex justify-end">
-                <button type="button" class="rounded-xs">Précédent</button>
-                <button type="button" class="rounded-xs">Suivant</button>
-              </menu>
-            </div>
-
-            <div data-gallery-wrapper>
-              <div
-                style="height: 150px; width: 150px; background-color: lime"
-              ></div>
-              <div
-                style="height: 150px; width: 150px; background-color: lime"
-              ></div>
-              <div
-                style="height: 150px; width: 150px; background-color: lime"
-              ></div>
-              <div
-                style="height: 150px; width: 150px; background-color: lime"
-              ></div>
-              <div
-                style="height: 150px; width: 150px; background-color: lime"
-              ></div>
-            </div>
-          </aeee-gallery>
-
-          <div class="spring-wrapper rounded-xs">
-            <button class="rounded-xs bold" type="submit">Importer</button>
+      <form data-image-upload action="" enctype="multipart/form-data">
+        <aeee-gallery class="w-full grow">
+          <div data-gallery-actions>
+            <p>Page&nbsp;: 1&nbsp;/&nbsp;1</p>
+            <menu class="flex justify-end">
+              <button type="button" class="rounded-xs">Précédent</button>
+              <button type="button" class="rounded-xs">Suivant</button>
+            </menu>
           </div>
-        </form>
 
-        <!-- <form
+          <div data-gallery-wrapper>
+            <div class="spring-wrapper rounded-sm">
+              <aeee-thumbnail
+                data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
+                data-alternate="The king of the jungle."
+                data-caption="Lives in the savana."
+              ></aeee-thumbnail>
+            </div>
+
+            <div class="spring-wrapper rounded-full">
+              <aeee-thumbnail
+                data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog.jpg/2560px-Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog.jpg"
+                data-alternate="The king of the jungle."
+                data-caption="Lives in the savana."
+                data-is-rounded="true"
+              ></aeee-thumbnail>
+            </div>
+          </div>
+        </aeee-gallery>
+
+        <script>
+          const wrapper = document.querySelector("[data-gallery-wrapper]");
+          const thumbnail = document.querySelector("div:has(> aeee-thumbnail)");
+
+          let count = 0;
+          while (count < 10) {
+            wrapper.appendChild(thumbnail.cloneNode(true));
+            count++;
+          }
+        </script>
+
+        <div class="spring-wrapper rounded-xs">
+          <button class="rounded-xs bold" type="submit">Importer</button>
+        </div>
+      </form>
+
+      <!-- <form
           data-image-upload
           action=""
           enctype="multipart/form-data"
@@ -612,8 +623,7 @@
             <button class="rounded-xs bold" type="submit">Importer</button>
           </div>
         </form> -->
-      </dialog>
-    </aeee-dialog>
+    </dialog>
   </body>
 
   <script type="module" src="../scripts/pages/board.js"></script>
@@ -625,4 +635,5 @@
   <script type="module" src="../scripts/classes/Theme.js"></script>
   <script type="module" src="../scripts/classes/TopMenu.js"></script>
   <script type="module" src="../scripts/classes/Gallery.js"></script>
+  <script type="module" src="../scripts/classes/Thumbnail.js"></script>
 </html>

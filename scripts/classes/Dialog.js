@@ -1,18 +1,15 @@
-class Dialog extends HTMLElement {
-  _dialog = null;
+class Dialog extends HTMLDialogElement {
   _triggers = null;
 
-  constructor({ dialog, triggers } = {}) {
+  constructor({ triggers } = {}) {
     super();
 
-    this.dialog = dialog ?? this.dialog;
     this.triggers = triggers ?? this.triggers;
   }
 
   connectedCallback() {
-    this.dialog = this.querySelector("dialog") ?? this.dialog;
     this.triggers =
-      document.querySelectorAll(`[data-trigger="${this.dialog.id}"]`) ??
+      document.querySelectorAll(`[data-trigger="${this.id}"]`) ??
       this.triggers;
 
     this.triggers.forEach((element) => {
@@ -26,16 +23,8 @@ class Dialog extends HTMLElement {
     });
   }
 
-  get dialog() {
-    return this._dialog;
-  }
-
   get triggers() {
     return this._triggers;
-  }
-
-  set dialog(dialog) {
-    this._dialog = dialog;
   }
 
   set triggers(triggers) {
@@ -45,15 +34,15 @@ class Dialog extends HTMLElement {
   trigger(event) {
     switch (event.target.closest("[data-action]").dataset.action) {
       case "showModal":
-        this.dialog.showModal();
+        this.showModal();
         break;
 
       case "show":
-        this.dialog.show();
+        this.show();
         break;
 
       case "close":
-        this.dialog.close();
+        this.close();
         break;
 
       default:
@@ -62,4 +51,4 @@ class Dialog extends HTMLElement {
   }
 }
 
-customElements.define("aeee-dialog", Dialog);
+customElements.define("aeee-dialog", Dialog, { extends: "dialog" });
