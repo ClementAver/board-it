@@ -1,7 +1,12 @@
 aeee-thumbnail {
+  background-color: var(--secondary);
+  border-radius: var(--spacing-sm);
   display: inline-block;
-  position: relative;
+  max-width: 300px;
+  min-width: 100px;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 
   &:not(:defined) {
     display: none;
@@ -45,15 +50,6 @@ aeee-thumbnail {
     position: absolute;
     z-index: 2;
     border-radius: var(--spacing-sm);
-  }
-
-  article {
-    background-color: var(--secondary);
-    border-radius: var(--spacing-sm);
-    max-width: 300px;
-    min-width: 100px;
-    overflow: hidden;
-    width: 100%;
   }
 
   figure {

@@ -2,7 +2,6 @@ import handleError from "../utilities/handleError.js";
 
 class Thumbnail extends HTMLElement {
   _alternate = "";
-  _article = document.createElement("article");
   _caption = "";
   _figcaption = document.createElement("figcaption");
   _figure = document.createElement("figure");
@@ -24,6 +23,8 @@ class Thumbnail extends HTMLElement {
       this.getAttribute("data-is-rounded") === "true" ??
       this.isRounded;
     this.source = source ?? this.getAttribute("data-source") ?? this.source;
+
+    this.setAttribute("role", "article");
 
     this.image.loading = "lazy";
     this.image.onload = () => {
@@ -48,16 +49,11 @@ class Thumbnail extends HTMLElement {
 
     this.figure.appendChild(this.image);
     this.figure.appendChild(this.figcaption);
-    this.article.appendChild(this.figure);
-    this.appendChild(this.article);
+    this.appendChild(this.figure);
   }
 
   get alternate() {
     return this._alternate;
-  }
-
-  get article() {
-    return this._article;
   }
 
   get caption() {
@@ -96,10 +92,6 @@ class Thumbnail extends HTMLElement {
 
     this._alternate = alternate;
     this.image.alt = alternate;
-  }
-
-  set article(article) {
-    this._article = article;
   }
 
   set caption(caption) {

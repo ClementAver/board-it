@@ -2,6 +2,7 @@ aeee-gallery {
   display: flex;
   flex-flow: column nowrap;
   gap: var(--spacing-md);
+  overflow: hidden;
 
   &[hidden] {
     display: none;
@@ -9,8 +10,9 @@ aeee-gallery {
 
   [data-gallery-wrapper] {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
     gap: var(--spacing-sm);
+    overflow-x: auto;
   }
 
   [data-gallery-actions] {
