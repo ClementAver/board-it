@@ -1,0 +1,59 @@
+aeee-pagination {
+  align-items: center;
+  border-radius: var(--spacing-xs);
+  display: flex;
+  gap: var(--spacing-xs);
+  width: 100%;
+
+  &:not(:defined) {
+    display: none;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  & button {
+    border-radius: var(--spacing-xs);
+
+    &:nth-child(2) svg {
+      transform: rotate(-90deg);
+    }
+    &:nth-child(4) svg {
+      transform: rotate(90deg);
+    }
+    &:nth-child(5) svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  & p {
+    border-radius: var(--spacing-xs);
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-inline: auto;
+    padding: var(--spacing-xs);
+  }
+
+  & input {
+    background-color: var(--secondary-darker);
+    border: none;
+    border-radius: var(--spacing-xs);
+    box-sizing: content-box;
+    color: var(--text-swath);
+    padding-left: var(--spacing-md);
+    text-align: center;
+    width: calc(3ch + 1rem);
+  }
+
+  & span {
+    background-color: var(--secondary);
+    border-radius: var(--spacing-xs);
+    box-sizing: content-box;
+    color: var(--text-swath);
+    display: inline-block;
+    padding-inline: var(--spacing-md);
+    text-align: end;
+    width: 4ch;
+  }
+}

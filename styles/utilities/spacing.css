@@ -39,6 +39,11 @@
   flex: 1 1 0%;
 }
 
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
 .items-start {
   align-items: start;
 }

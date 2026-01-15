@@ -1,11 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
 
-:root {
+* {
+  scrollbar-width: inherit;
+  scrollbar-color: inherit;
+  scrollbar-track-color: inherit;
+  scrollbar-gutter: inherit;
+  scrollbar-arrow-color: inherit;
+}
+
+html {
   color-scheme: light dark;
 
   font-family: "Commissioner";
   font-size: 16px;
   color: var(--text);
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) transparent;
 
   --border-width: var(--spacing-xs);
   --disabled-opacity: var(--spacing-md);
@@ -60,30 +70,9 @@
   --shadow: rgba(0, 0, 0, 0.125);
   --shadow-adaptative: rgba(0, 0, 0, 0.25);
   --backdrop-color: rgba(0, 0, 0, 0.25);
-}
 
-/* Commons */
-
-@property --accent-alpha {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: hsl(200, 60%, 50%);
-}
-
-@property --accent-beta {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: hsl(30, 70%, 60%);
-}
-
-@property --valid {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: limegreen;
-}
-
-@property --invalid {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: crimson;
+  --accent-alpha: hsl(200, 60%, 50%);
+  --accent-beta: hsl(30, 70%, 60%);
+  --valid: limegreen;
+  --invalid: crimson;
 }

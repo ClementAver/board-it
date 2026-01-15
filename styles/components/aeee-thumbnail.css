@@ -36,7 +36,6 @@ aeee-thumbnail {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Custom_functions_and_mixins
   */
   &:state(loading)::after {
-    content: "";
     animation: loading-skeleton 2s infinite;
     background: linear-gradient(
       to right,
@@ -46,10 +45,11 @@ aeee-thumbnail {
     );
     background-color: var(--secondary);
     background-size: 200% 100%;
+    border-radius: var(--spacing-sm);
+    content: "";
     inset: 0;
     position: absolute;
     z-index: 2;
-    border-radius: var(--spacing-sm);
   }
 
   figure {
@@ -61,8 +61,9 @@ aeee-thumbnail {
   }
 
   img {
-    grid-area: main;
     aspect-ratio: 1/1;
+    grid-area: main;
+    height: 100%;
     object-fit: cover;
   }
 

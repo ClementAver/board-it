@@ -6,7 +6,7 @@
   color-scheme: dark;
 }
 
-:root {
+html {
   --text: light-dark(hsl(0, 0%, 10%), hsl(0, 0%, 90%));
   --text-swath: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 90%));
   --input-background: light-dark(hsl(0, 0%, 95%), hsl(0, 0%, 20%));
