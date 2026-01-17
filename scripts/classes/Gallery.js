@@ -11,8 +11,8 @@ class Gallery extends HTMLElement {
 
   connectedCallback() {
     this.pagination =
-      this.querySelector("[data-pagination]") ?? this.pagination;
-    this.wrapper = this.querySelector("[data-next]") ?? this.wrapper;
+      this.querySelector("[data-page]") ?? this.pagination;
+    this.wrapper = this.querySelector("[data-gallery-wrapper]") ?? this.wrapper;
   }
 
   get pagination() {

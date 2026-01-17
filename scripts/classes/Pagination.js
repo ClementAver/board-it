@@ -4,17 +4,20 @@ class Pagination extends HTMLElement {
   _lastButton = document.createElement("button");
   _maximumSpan = document.createElement("span");
   _nextButton = document.createElement("button");
-  _page = 999;
-  _maxNumber = 999;
+  _page = 1;
+  _maxPage = 999;
   _previousButton = document.createElement("button");
 
   _chevron = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>`;
   _chevronFirst = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-first-icon lucide-chevron-first"><path d="m17 18-6-6 6-6"/><path d="M7 6v12"/></svg>`;
 
-  constructor({ page } = {}) {
+  constructor({ page, maxPage } = {}) {
     super();
 
-    this.page = page ?? this.page;
+    this._internals = this.attachInternals();
+
+    this.page = page ?? this.getAttribute("data-page") ?? this.page;
+    this.maxPage = maxPage ?? this.getAttribute("data-max") ?? this.maxPage;
 
     this.setAttribute("role", "menu");
 
@@ -32,12 +35,9 @@ class Pagination extends HTMLElement {
     pageInfosP.display = "inline-block";
 
     this.currentInput.type = "number";
-    this.currentInput.value = this.page;
-    this.currentInput.max = 999;
     this.currentInput.min = 1;
+    this.currentInput.max = this.maxPage;
     this.currentInput.step = 1;
-
-    this.maximumSpan.textContent = `/\u00a0${this.maxNumber}`;
 
     this.appendChild(this.firstButton);
     this.appendChild(this.previousButton);
@@ -47,6 +47,22 @@ class Pagination extends HTMLElement {
 
     this.appendChild(this.nextButton);
     this.appendChild(this.lastButton);
+  }
+
+  connectedCallback() {
+    this.currentInput.addEventListener("change", this.change.bind(this));
+    this.firstButton.addEventListener("click", this.first.bind(this));
+    this.previousButton.addEventListener("click", this.previous.bind(this));
+    this.nextButton.addEventListener("click", this.next.bind(this));
+    this.lastButton.addEventListener("click", this.last.bind(this));
+  }
+
+  disconnectedCallback() {
+    this.currentInput.removeEventListener("change", this.change);
+    this.firstButton.removeEventListener("click", this.first);
+    this.previousButton.removeEventListener("click", this.previous);
+    this.nextButton.removeEventListener("click", this.next);
+    this.lastButton.removeEventListener("click", this.last);
   }
 
   get currentInput() {
@@ -73,8 +89,8 @@ class Pagination extends HTMLElement {
     return this._page;
   }
 
-  get maxNumber() {
-    return this._maxNumber;
+  get maxPage() {
+    return this._maxPage;
   }
 
   get previousButton() {
@@ -102,16 +118,109 @@ class Pagination extends HTMLElement {
   }
 
   set page(page) {
+    page = parseInt(page);
+    if (this.getAttribute("data-page") != page) {
+      this.setAttribute("data-page", page);
+      return;
+    }
+
     this._page = page;
+    this.updateCurrent();
   }
 
-  set maxNumber(maxNumber) {
-    this._maxNumber = maxNumber;
+  set maxPage(maxPage) {
+    maxPage = parseInt(maxPage);
+    if (this.getAttribute("data-max") != maxPage) {
+      this.setAttribute("data-max", maxPage);
+      return;
+    }
+
+    this._maxPage = maxPage;
+    this.updateMax();
   }
 
   set previousButton(previousButton) {
     this._previousButton = previousButton;
   }
+
+  updateCurrent() {
+    this.currentInput.value = this.page;
+    this.updateButtonState();
+  }
+
+  updateMax() {
+    this.currentInput.max = this.maxPage;
+    this.maximumSpan.textContent = `/\u00a0${this.maxPage}`;
+    this.updateButtonState();
+  }
+
+  updateButtonState() {
+    if (this.page === this.maxPage) {
+      this._internals.states.add("max");
+      this.updateButtonsDisabled([this.nextButton, this.lastButton], true);
+    } else {
+      this._internals.states.delete("max");
+      this.updateButtonsDisabled([this.nextButton, this.lastButton], false);
+    }
+
+    if (this.page === 1) {
+      this._internals.states.add("min");
+      this.updateButtonsDisabled([this.firstButton, this.previousButton], true);
+    } else {
+      this._internals.states.delete("min");
+      this.updateButtonsDisabled(
+        [this.firstButton, this.previousButton],
+        false,
+      );
+    }
+  }
+
+  change(e) {
+    this.page = e.target.value;
+  }
+
+  first() {
+    this.page = 1;
+  }
+
+  previous() {
+    if (this.page > 1) this.page = --this.page;
+  }
+
+  next() {
+    if (this.page < this.maxPage) this.page = ++this.page;
+  }
+
+  last() {
+    this.page = this.maxPage;
+  }
+
+  /**
+   * @param {HTMLButtonElement} buttons
+   * @param {boolean} disabled
+   */
+  updateButtonsDisabled(buttons, disabled) {
+    buttons.forEach((element) => {
+      element.disabled = !!disabled;
+    });
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue) return;
+
+    switch (name) {
+      case "data-page":
+        this.page = newValue;
+        break;
+      case "data-max":
+        this.maxPage = newValue;
+        break;
+      default:
+        break;
+    }
+  }
+
+  static observedAttributes = ["data-page", "data-max"];
 }
 
 customElements.define("aeee-pagination", Pagination);

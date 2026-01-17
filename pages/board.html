@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -528,11 +528,13 @@
       </button>
       <p>Importer une image</p>
 
-      <form data-image-upload action="" enctype="multipart/form-data">
+      <form action="" data-image-selection enctype="multipart/form-data">
         <aeee-gallery class="w-full grow">
-          <div data-gallery-actions>
-            <aeee-pagination class="ml-auto"></aeee-pagination>
-          </div>
+          <aeee-pagination
+            class="ml-auto"
+            data-page="1"
+            data-max="999"
+          ></aeee-pagination>
 
           <div data-gallery-wrapper>
             <div class="spring-wrapper rounded-sm">

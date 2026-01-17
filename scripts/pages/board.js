@@ -5,20 +5,23 @@ import initAnchors from "../utilities/initAnchors.js";
 import initTooltips from "../utilities/initTooltips.js";
 import Toolbox from "../classes/Toolbox.js";
 // import UploadImageForm from "../classes/UploadImageForm.js";
+import SelectionImageForm from "../classes/SelectionImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
 const downloadWorkFileForm = document.querySelector(
-  "form:has(#download-workfile-anchor)"
+  "form:has(#download-workfile-anchor)",
 );
 const uploadWorkFileForm = document.querySelector(
-  "form:has(#upload-workfile-input)"
+  "form:has(#upload-workfile-input)",
 );
-const uploadImageForm = document.querySelector("form:has(#upload-image-input)");
+// const uploadImageForm = document.querySelector("form[data-image-upload]");
+const selectionImageForm = document.querySelector("form[data-image-selection]");
 
-// new UploadImageForm({ form: uploadImageForm });
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
+// new UploadImageForm({ form: uploadImageForm });
+new SelectionImageForm({ form: selectionImageForm });
 
 initAnchors();
 initTooltips();

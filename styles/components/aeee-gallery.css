@@ -17,22 +17,4 @@ aeee-gallery {
     gap: var(--spacing-sm);
     overflow-x: auto;
   }
-
-  [data-gallery-actions] {
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--spacing-lg);
-  }
-
-  [data-gallery-actions] > p {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-
-  menu {
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--spacing-sm);
-  }
 }

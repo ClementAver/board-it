@@ -53,7 +53,7 @@ aeee-pagination {
     color: var(--text-swath);
     display: inline-block;
     padding-inline: var(--spacing-md);
-    text-align: end;
+    text-align: start;
     width: 4ch;
   }
 }

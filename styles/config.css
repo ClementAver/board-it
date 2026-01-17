@@ -18,7 +18,7 @@ html {
   scrollbar-color: var(--secondary) transparent;
 
   --border-width: var(--spacing-xs);
-  --disabled-opacity: var(--spacing-md);
+  --disabled-opacity: 0.5;
   --icons-width: var(--spacing-lg);
 
   --spring-background: var(--secondary-darker);
