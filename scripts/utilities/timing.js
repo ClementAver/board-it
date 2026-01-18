@@ -22,16 +22,16 @@ export function debounce(
 ) {
   let timeoutID;
 
-  return () => {
+  return (args) => {
     if (!timeoutID) {
-      if (leading) callback();
+      if (leading) callback.apply(this, [args]);
     }
 
     clearTimeout(timeoutID);
 
     timeoutID = setTimeout(() => {
       timeoutID = false;
-      if (trailing) callback();
+      if (trailing) callback.apply(this, [args]);
     }, delay);
   };
 }
@@ -46,18 +46,18 @@ export function throttle(callback, delay = 0) {
   let lastCall;
   let timeoutID;
 
-  return () => {
+  return (args) => {
     const now = Date.now();
     clearTimeout(timeoutID);
 
     if (!lastCall || now >= lastCall + delay) {
       lastCall = now;
-      callback();
+      callback.apply(this, [args]);
     } else {
       timeoutID = setTimeout(
         () => {
           lastCall = Date.now();
-          callback();
+          callback.apply(this, [args]);
         },
         Math.min(delay - (now - lastCall), delay),
       );

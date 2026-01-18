@@ -1,3 +1,5 @@
+import { debounce } from "../utilities/timing.js";
+
 class Pagination extends HTMLElement {
   _currentInput = document.createElement("input");
   _firstButton = document.createElement("button");
@@ -49,18 +51,20 @@ class Pagination extends HTMLElement {
     this.appendChild(this.lastButton);
   }
 
+  debouncedChange = debounce(this.change.bind(this), 1000);
+
   connectedCallback() {
-    this.currentInput.addEventListener("change", this.change.bind(this));
     this.firstButton.addEventListener("click", this.first.bind(this));
     this.previousButton.addEventListener("click", this.previous.bind(this));
+    this.currentInput.addEventListener("change", this.debouncedChange);
     this.nextButton.addEventListener("click", this.next.bind(this));
     this.lastButton.addEventListener("click", this.last.bind(this));
   }
 
   disconnectedCallback() {
-    this.currentInput.removeEventListener("change", this.change);
     this.firstButton.removeEventListener("click", this.first);
     this.previousButton.removeEventListener("click", this.previous);
+    this.currentInput.removeEventListener("change", this.debouncedChange);
     this.nextButton.removeEventListener("click", this.next);
     this.lastButton.removeEventListener("click", this.last);
   }
