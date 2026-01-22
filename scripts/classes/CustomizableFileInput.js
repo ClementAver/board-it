@@ -1,4 +1,4 @@
-class CustomizableFileInput extends HTMLElement {
+export class CustomizableFileInput extends HTMLElement {
   _input = null;
   _label = null;
   _paragraph = null;
@@ -57,4 +57,3 @@ class CustomizableFileInput extends HTMLElement {
   }
 }
 
-customElements.define("aeee-file-input", CustomizableFileInput);

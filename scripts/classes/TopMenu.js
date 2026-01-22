@@ -1,4 +1,4 @@
-class TopMenu extends HTMLElement {
+export class TopMenu extends HTMLElement {
   _header = null;
   _toggleButton = null;
 
@@ -55,4 +55,3 @@ class TopMenu extends HTMLElement {
   }
 }
 
-customElements.define("aeee-top-menu", TopMenu);

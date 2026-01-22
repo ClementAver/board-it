@@ -1,4 +1,4 @@
-class ThemeSwitch extends HTMLElement {
+export class ThemeSwitch extends HTMLElement {
   _currentTheme = null;
   _moon = null;
   _prefersDark = null;
@@ -141,5 +141,3 @@ class ThemeSwitch extends HTMLElement {
     }
   }
 }
-
-customElements.define("aeee-theme-switch", ThemeSwitch);

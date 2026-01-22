@@ -1,4 +1,4 @@
-class Gallery extends HTMLElement {
+export class Gallery extends HTMLElement {
   _pagination = null;
   _wrapper = null;
 
@@ -31,5 +31,3 @@ class Gallery extends HTMLElement {
     this._wrapper = wrapper;
   }
 }
-
-customElements.define("aeee-gallery", Gallery);

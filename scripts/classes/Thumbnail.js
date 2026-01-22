@@ -1,6 +1,6 @@
 import handleError from "../utilities/handleError.js";
 
-class Thumbnail extends HTMLElement {
+export class Thumbnail extends HTMLElement {
   _alternate = "";
   _caption = "";
   _figcaption = document.createElement("figcaption");
@@ -175,4 +175,3 @@ class Thumbnail extends HTMLElement {
   ];
 }
 
-customElements.define("aeee-thumbnail", Thumbnail);

@@ -1,6 +1,6 @@
 import { debounce } from "../utilities/timing.js";
 
-class Pagination extends HTMLElement {
+export class Pagination extends HTMLElement {
   _currentInput = document.createElement("input");
   _firstButton = document.createElement("button");
   _lastButton = document.createElement("button");
@@ -226,5 +226,3 @@ class Pagination extends HTMLElement {
 
   static observedAttributes = ["data-page", "data-max"];
 }
-
-customElements.define("aeee-pagination", Pagination);

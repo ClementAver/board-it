@@ -1,4 +1,4 @@
-class Dialog extends HTMLDialogElement {
+export class Dialog extends HTMLDialogElement {
   _triggers = null;
 
   constructor({ triggers } = {}) {
@@ -50,5 +50,3 @@ class Dialog extends HTMLDialogElement {
     }
   }
 }
-
-customElements.define("aeee-dialog", Dialog, { extends: "dialog" });
