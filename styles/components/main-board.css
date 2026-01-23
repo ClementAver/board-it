@@ -1,4 +1,5 @@
 main#canvas-wrapper {
+  grid-area: main-board;
   align-items: center;
   background-color: var(--ternary);
   display: flex;
@@ -9,10 +10,4 @@ main#canvas-wrapper {
 
 canvas {
   background-color: var(--ternary);
-}
-
-#left-drawer-switch {
-  left: var(--left-drawer-padding);
-  position: absolute;
-  top: var(--left-drawer-padding);
 }

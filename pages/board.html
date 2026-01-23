@@ -327,89 +327,109 @@
       </header>
     </aeee-top-menu>
 
-    <menu data-open="true" id="left-drawer">
-      <div class="fixed">
-        <li>
-          <button
-            type="button"
-            data-tool="camera"
-            class="flex rounded-xs bd-transparent w-full no-dash icon"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              style="transform: translateX(0.05rem)"
-            >
-              <path
-                d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"
-              />
-              <rect x="2" y="6" width="14" height="12" rx="2" />
-            </svg>
-            <span class="sr-only">Caméra</span>
-          </button>
-
-          <article role="tooltip" class="m-sm anchor-right">
-            <small>Caméra</small>
-          </article>
-        </li>
-
-        <li>
-          <button
-            type="button"
-            data-tool="selector"
-            class="flex gap-lg rounded-xs bd-transparent w-full no-dash icon"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M5 3a2 2 0 0 0-2 2" />
-              <path d="M19 3a2 2 0 0 1 2 2" />
-              <path d="M21 19a2 2 0 0 1-2 2" />
-              <path d="M5 21a2 2 0 0 1-2-2" />
-              <path d="M9 3h1" />
-              <path d="M9 21h1" />
-              <path d="M14 3h1" />
-              <path d="M14 21h1" />
-              <path d="M3 9v1" />
-              <path d="M21 9v1" />
-              <path d="M3 14v1" />
-              <path d="M21 14v1" />
-            </svg>
-            <span class="sr-only">Sélectionner</span>
-          </button>
-          <article role="tooltip" class="m-sm anchor-right">
-            <small>Sélectionner</small>
-          </article>
-        </li>
-      </div>
-    </menu>
-
-    <main id="canvas-wrapper">
+    <menu
+      id="left-drawer"
+      data-open="true"
+      class="left"
+      style="grid-area: left-drawer"
+    >
       <button
         id="left-drawer-switch"
         type="button"
         class="rounded-full bd-transparent bg-transparent text-secondary no-dash icon"
         aria-label="Extends/retracts the left drawer."
-      ></button>
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M8 3 4 7l4 4" />
+          <path d="M4 7h16" />
+          <path d="m16 21 4-4-4-4" />
+          <path d="M20 17H4" />
+        </svg>
+      </button>
       <article role="tooltip" class="m-sm anchor-right">
         <small>Afficher&thinsp;/&thinsp;masquer le tiroir de gauche</small>
       </article>
 
+      <li>
+        <button
+          type="button"
+          data-tool="camera"
+          class="flex rounded-xs bd-transparent w-full no-dash icon"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="transform: translateX(0.05rem)"
+          >
+            <path
+              d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"
+            />
+            <rect x="2" y="6" width="14" height="12" rx="2" />
+          </svg>
+          <span class="sr-only">Caméra</span>
+        </button>
+
+        <article role="tooltip" class="m-sm anchor-right">
+          <small>Caméra</small>
+        </article>
+      </li>
+
+      <li>
+        <button
+          type="button"
+          data-tool="selector"
+          class="flex gap-lg rounded-xs bd-transparent w-full no-dash icon"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 3a2 2 0 0 0-2 2" />
+            <path d="M19 3a2 2 0 0 1 2 2" />
+            <path d="M21 19a2 2 0 0 1-2 2" />
+            <path d="M5 21a2 2 0 0 1-2-2" />
+            <path d="M9 3h1" />
+            <path d="M9 21h1" />
+            <path d="M14 3h1" />
+            <path d="M14 21h1" />
+            <path d="M3 9v1" />
+            <path d="M21 9v1" />
+            <path d="M3 14v1" />
+            <path d="M21 14v1" />
+          </svg>
+          <span class="sr-only">Sélectionner</span>
+        </button>
+        <article role="tooltip" class="m-sm anchor-right">
+          <small>Sélectionner</small>
+        </article>
+      </li>
+    </menu>
+
+    <main id="canvas-wrapper">
       <menu
         id="camera-widget"
         aria-label="Camera widget"

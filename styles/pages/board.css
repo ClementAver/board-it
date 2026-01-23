@@ -44,9 +44,9 @@ body {
   grid-template-areas:
     "top-menu top-menu top-menu"
     "left-drawer main-board right-drawer";
-
   height: 100vh;
   height: 100dvh;
+  overflow: hidden;
   width: 100vw;
   width: 100dvw;
 }

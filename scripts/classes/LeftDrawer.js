@@ -22,8 +22,6 @@ export default class LeftDrawer {
     this.toggleLeftDrawerBtn.addEventListener("click", () => {
       this.toggle();
     });
-
-    this.updateToggleIcon();
   }
 
   get cameraBtn() {
@@ -60,7 +58,6 @@ export default class LeftDrawer {
 
   toggle() {
     this.leftDrawerMenu.setAttribute("data-open", this.leftDrawerMenu.dataset.open != "true");
-    this.updateToggleIcon();
   }
 
   updateSelected(label) {
@@ -69,16 +66,5 @@ export default class LeftDrawer {
 
     if (currentSelected) currentSelected.classList.remove("selected");
     if (nextSelected) nextSelected.classList.add("selected");
-  }
-
-  // TODO : XSS
-  updateToggleIcon() {
-    if (this.leftDrawerMenu .dataset.open === "true") {
-      this.toggleLeftDrawerBtn.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg>';
-    } else {
-      this.toggleLeftDrawerBtn.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg>';
-    }
   }
 }
