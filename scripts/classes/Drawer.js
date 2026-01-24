@@ -5,7 +5,6 @@ export default class Drawer extends HTMLMenuElement {
     super();
     this.toggleButton = toggleButton ?? this.toggleButton;
 
-    console.log(this.toggleButton);
     this.toggleButton.addEventListener("click", () => {
       this.toggle();
     });
