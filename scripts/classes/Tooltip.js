@@ -1,6 +1,5 @@
 import Unique from "./Unique.js";
 
-// TODO : Fix top-layer (2) placement issue ?
 export default class Tooltip extends HTMLElement {
   _text = "";
 

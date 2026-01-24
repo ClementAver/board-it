@@ -1,5 +1,5 @@
-import Tooltip from "./Tooltip.js";
 import { debounce } from "../utilities/timing.js";
+import manageClasses from "../utilities/manageClasses.js";
 
 export default class Pagination extends HTMLElement {
   _currentInput = document.createElement("input");
@@ -53,6 +53,7 @@ export default class Pagination extends HTMLElement {
 
     // TODO : Test tooltip, to be removed.
     const tooltip = document.createElement("aeee-tooltip");
+    manageClasses(tooltip, ["m-sm", "anchor-bottom-sr"]);
     this.appendChild(tooltip);
     tooltip.setAttribute("data-text", "efefz");
   }
