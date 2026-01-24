@@ -1,3 +1,4 @@
+import Tooltip from "./Tooltip.js";
 import { debounce } from "../utilities/timing.js";
 
 export default class Pagination extends HTMLElement {
@@ -49,6 +50,11 @@ export default class Pagination extends HTMLElement {
 
     this.appendChild(this.nextButton);
     this.appendChild(this.lastButton);
+
+    // TODO : Test tooltip, to be removed.
+    const tooltip = document.createElement("aeee-tooltip");
+    this.appendChild(tooltip);
+    tooltip.setAttribute("data-text", "efefz");
   }
 
   debouncedChange = debounce(this.change.bind(this), 1000);
