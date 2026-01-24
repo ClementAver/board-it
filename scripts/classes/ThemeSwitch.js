@@ -1,4 +1,4 @@
-export class ThemeSwitch extends HTMLElement {
+export default class ThemeSwitch extends HTMLElement {
   _currentTheme = null;
   _moon = null;
   _prefersDark = null;

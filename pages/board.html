@@ -320,7 +320,23 @@
           type="button"
           aria-label="Shows/hides the menu on smaller screen widths."
           class="rounded-full bd-transparent bg-transparent text-swatch no-dash"
-        ></button>
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+          </svg>
+        </button>
         <article role="tooltip" class="m-sm anchor-bottom-sr whitespace-nowrap">
           <small>Afficher&thinsp;/&thinsp;masquer le menu principal.</small>
         </article>
@@ -329,15 +345,16 @@
 
     <menu
       id="left-drawer"
+      is="aeee-drawer"
       data-open="true"
       class="left"
       style="grid-area: left-drawer"
     >
       <button
-        id="left-drawer-switch"
+        data-switch
         type="button"
-        class="rounded-full bd-transparent bg-transparent text-secondary no-dash icon"
         aria-label="Extends/retracts the left drawer."
+        class="rounded-full bd-transparent bg-transparent text-secondary no-dash icon"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

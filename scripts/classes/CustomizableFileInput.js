@@ -1,4 +1,4 @@
-export class CustomizableFileInput extends HTMLElement {
+export default class CustomizableFileInput extends HTMLElement {
   _input = null;
   _label = null;
   _paragraph = null;

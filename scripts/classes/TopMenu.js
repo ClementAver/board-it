@@ -1,4 +1,5 @@
-export class TopMenu extends HTMLElement {
+// TODO : Useless div wrapper ?
+export default class TopMenu extends HTMLElement {
   _header = null;
   _toggleButton = null;
 
@@ -15,7 +16,6 @@ export class TopMenu extends HTMLElement {
       this.querySelector("[data-switch]") ?? this.toggleButton;
 
     this.toggleButton.addEventListener("click", this.toggle.bind(this));
-    this.updateToggleIcon();
   }
 
   disconnectedCallback() {
@@ -40,18 +40,5 @@ export class TopMenu extends HTMLElement {
 
   toggle() {
     this.header.setAttribute("data-open", this.header.dataset.open != "true");
-    this.updateToggleIcon();
-  }
-
-  // TODO : XSS
-  updateToggleIcon() {
-    if (this.header.dataset.open === "true") {
-      this.toggleButton.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>';
-    } else {
-      this.toggleButton.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>';
-    }
   }
 }
-

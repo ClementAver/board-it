@@ -1,4 +1,4 @@
-export class Dialog extends HTMLDialogElement {
+export default class Dialog extends HTMLDialogElement {
   _triggers = null;
 
   constructor({ triggers } = {}) {

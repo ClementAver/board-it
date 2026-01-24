@@ -1,4 +1,4 @@
-export class Gallery extends HTMLElement {
+export default class Gallery extends HTMLElement {
   _pagination = null;
   _wrapper = null;
 

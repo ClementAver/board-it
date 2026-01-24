@@ -56,7 +56,7 @@ html {
   --link-background-color-hover: var(--accent-beta);
   --link-border-color-hover: var(--accent-beta);
 
-  --left-drawer-padding: var(--spacing-md);
+  --drawer-padding: var(--spacing-md);
   --main-header-background-color: var(--secondary-darker);
 
   /* ⇊  Default theme colours ⇊ */

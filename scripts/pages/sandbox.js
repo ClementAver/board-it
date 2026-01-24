@@ -1,9 +1,9 @@
 import debug from "../utilities/debug.js";
 import reactive from "../utilities/reactive.js";
 import initTooltips from "../utilities/initTooltips.js";
-import { ThemeSwitch } from "../classes/ThemeSwitch.js";
-import { Thumbnail } from "../classes/Thumbnail.js";
-import { TopMenu } from "../classes/TopMenu.js";
+import ThemeSwitch from "../classes/ThemeSwitch.js";
+import Thumbnail from "../classes/Thumbnail.js";
+import TopMenu from "../classes/TopMenu.js";
 
 customElements.define("aeee-theme-switch", ThemeSwitch);
 customElements.define("aeee-thumbnail", Thumbnail);

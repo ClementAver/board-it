@@ -8,16 +8,18 @@ import Toolbox from "../classes/Toolbox.js";
 import SelectionImageForm from "../classes/SelectionImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
-import { CustomizableFileInput } from "../classes/CustomizableFileInput.js";
-import { Dialog } from "../classes/Dialog.js";
-import { Gallery } from "../classes/Gallery.js";
-import { Pagination } from "../classes/Pagination.js";
-import { ThemeSwitch } from "../classes/ThemeSwitch.js";
-import { Thumbnail } from "../classes/Thumbnail.js";
-import { TopMenu } from "../classes/TopMenu.js";
+import CustomizableFileInput from "../classes/CustomizableFileInput.js";
+import Dialog from "../classes/Dialog.js";
+import Drawer from "../classes/Drawer.js";
+import Gallery from "../classes/Gallery.js";
+import Pagination from "../classes/Pagination.js";
+import ThemeSwitch from "../classes/ThemeSwitch.js";
+import Thumbnail from "../classes/Thumbnail.js";
+import TopMenu from "../classes/TopMenu.js";
 
 customElements.define("aeee-file-input", CustomizableFileInput);
 customElements.define("aeee-dialog", Dialog, { extends: "dialog" });
+customElements.define("aeee-drawer", Drawer, { extends: "menu" });
 customElements.define("aeee-gallery", Gallery);
 customElements.define("aeee-pagination", Pagination);
 customElements.define("aeee-theme-switch", ThemeSwitch);
@@ -25,10 +27,10 @@ customElements.define("aeee-thumbnail", Thumbnail);
 customElements.define("aeee-top-menu", TopMenu);
 
 const downloadWorkFileForm = document.querySelector(
-  "form:has(#download-workfile-anchor)"
+  "form:has(#download-workfile-anchor)",
 );
 const uploadWorkFileForm = document.querySelector(
-  "form:has(#upload-workfile-input)"
+  "form:has(#upload-workfile-input)",
 );
 // const uploadImageForm = document.querySelector("form[data-image-upload]");
 const selectionImageForm = document.querySelector("form[data-image-selection]");
@@ -42,7 +44,8 @@ initAnchors();
 initTooltips();
 
 Canvas.resize();
-Canvas.resizeWith(Toolbox.widgets.leftDrawer.leftDrawerMenu);
+const leftDrawer = document.getElementById("left-drawer");
+Canvas.resizeWith(leftDrawer);
 
 const camera = Toolbox.grab("camera");
 camera.initKeyboardActions(Canvas);

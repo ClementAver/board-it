@@ -1,11 +1,11 @@
 import Camera from "./Camera.js";
 import Selector from "./Selector.js";
 import FrameAll from "../classes/FrameAll.js";
-import LeftDrawer from "../classes/LeftDrawer.js";
+import ToolSelector from "./ToolSelector.js";
 import Pan from "../classes/Pan.js";
 import Zoom from "../classes/Zoom.js";
 
-class Toolbox {
+export class Toolbox {
   _handled = null;
   _previous = null;
   _tools = {};
@@ -33,7 +33,7 @@ class Toolbox {
 
     this.tools = { camera: cameraProxy, selector: new Selector() };
 
-    this.widgets = { leftDrawer: new LeftDrawer() };
+    this.widgets = { toolSelector: new ToolSelector() };
     this.widgets = { pan: new Pan() };
     this.widgets = { zoom };
     this.widgets = { frameAll: new FrameAll() };

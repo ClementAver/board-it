@@ -1,6 +1,6 @@
 import { debounce } from "../utilities/timing.js";
 
-export class Pagination extends HTMLElement {
+export default class Pagination extends HTMLElement {
   _currentInput = document.createElement("input");
   _firstButton = document.createElement("button");
   _lastButton = document.createElement("button");

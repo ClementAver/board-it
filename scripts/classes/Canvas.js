@@ -1,7 +1,7 @@
 import handleError from "../utilities/handleError.js";
 import Toolbox from "./Toolbox.js";
 
-class Canvas {
+export class Canvas {
   _boards = [];
   _canvas = document.createElement("canvas");
   _context = this.canvas.getContext("2d");

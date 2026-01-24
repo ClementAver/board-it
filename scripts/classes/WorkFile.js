@@ -5,7 +5,7 @@ import History from "./History.js";
 import ToastGenerator from "./ToastGenerator.js";
 import Toolbox from "./Toolbox.js";
 
-class WorkFile {
+export class WorkFile {
   _history = new History();
   _instanciated = {};
 
