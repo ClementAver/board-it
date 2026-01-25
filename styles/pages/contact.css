@@ -14,7 +14,7 @@
 @import url(../globals/textarea.css);
 
 @import url(../components/aeee-theme-switch.css);
-@import url(../components/aeee-top-menu.css);
+@import url(../components/aeee-banner.css);
 @import url(../components/logo.css);
 @import url(../components/main-board.css);
 @import url(../components/tooltip.css);
@@ -35,7 +35,7 @@ body {
   grid-template-columns: auto;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "top-menu"
+    "banner"
     "main";
 
   height: 100vh;

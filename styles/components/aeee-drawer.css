@@ -1,4 +1,4 @@
-menu[is=aeee-drawer] {
+menu[data-drawer] {
   background-color: var(--secondary);
   max-width: 0;
   padding: var(--drawer-padding) 0 0;

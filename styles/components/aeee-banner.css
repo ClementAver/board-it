@@ -1,21 +1,13 @@
-aeee-top-menu {
+header[role=banner] {
+  align-items: center;
   --btn-padding-y: var(--spacing-xs);
   background-color: var(--secondary-darker);
-  display: block;
+  display: flex;
   font-size: 0.75rem;
-  grid-area: top-menu;
-
-  &[hidden] {
-    display: none;
-  }
-
-  header {
-    align-items: center;
-    display: flex;
-    gap: var(--spacing-md);
-    height: calc(22 * var(--spacing-xs));
-    padding: var(--spacing-md);
-  }
+  gap: var(--spacing-md);
+  grid-area: banner;
+  height: calc(22 * var(--spacing-xs));
+  padding: var(--spacing-md);
 
   ul,
   menu {
@@ -24,12 +16,12 @@ aeee-top-menu {
     list-style-type: none;
   }
 
-  [data-open="false"] {
-    #top-menu-wrapper {
+  &[data-open="false"] {
+    #banner-wrapper {
       margin-left: var(--spacing-sm);
 
       > * {
-        animation: top-menu-wrapper-content-false 0.2s backwards ease-in-out;
+        animation: banner-wrapper-content-false 0.2s backwards ease-in-out;
       }
     }
 
@@ -42,9 +34,9 @@ aeee-top-menu {
     }
   }
 
-  [data-open="true"] {
-    #top-menu-wrapper {
-      animation: top-menu-wrapper 0.2s ease-in-out;
+  &[data-open="true"] {
+    #banner-wrapper {
+      animation: banner-wrapper 0.2s ease-in-out;
       background-color: var(--secondary-darker);
       display: flex;
       flex-flow: column nowrap;
@@ -56,7 +48,7 @@ aeee-top-menu {
       z-index: 2;
 
       > * {
-        animation: top-menu-wrapper-content-true 0.2s 0.2s backwards ease-in-out;
+        animation: banner-wrapper-content-true 0.2s 0.2s backwards ease-in-out;
       }
 
       nav {
@@ -66,7 +58,7 @@ aeee-top-menu {
   }
 }
 
-@keyframes top-menu-wrapper {
+@keyframes banner-wrapper {
   0% {
     transform: translateX(100%);
   }
@@ -75,7 +67,7 @@ aeee-top-menu {
   }
 }
 
-@keyframes top-menu-wrapper-content-false {
+@keyframes banner-wrapper-content-false {
   0% {
     opacity: 0;
   }
@@ -84,7 +76,7 @@ aeee-top-menu {
   }
 }
 
-@keyframes top-menu-wrapper-content-true {
+@keyframes banner-wrapper-content-true {
   0% {
     opacity: 0;
   }

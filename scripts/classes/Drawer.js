@@ -1,17 +1,24 @@
-export default class Drawer extends HTMLMenuElement {
-  _toggleButton = this.querySelector("[data-switch]");
+export default class Drawer {
+  _drawer = null;
+  _toggleButton = null;
 
-  constructor({ toggleButton } = {}) {
-    super();
+  constructor({ drawer, toggleButton } = {}) {
+    this.drawer = drawer ?? this.drawer;
     this.toggleButton = toggleButton ?? this.toggleButton;
 
-    this.toggleButton.addEventListener("click", () => {
-      this.toggle();
-    });
+    this.toggleButton.addEventListener("click", this.toggle.bind(this));
+  }
+
+  get drawer() {
+    return this._drawer;
   }
 
   get toggleButton() {
     return this._toggleButton;
+  }
+
+  set drawer(drawer) {
+    this._drawer = drawer;
   }
 
   set toggleButton(toggleButton) {
@@ -19,6 +26,10 @@ export default class Drawer extends HTMLMenuElement {
   }
 
   toggle() {
-    this.setAttribute("data-open", this.dataset.open != "true");
+    this.drawer.setAttribute("data-open", this.drawer.dataset.open != "true");
+  }
+
+  removeListener() {
+    this.toggleButton.removeEventListener("click", this.toggle);
   }
 }

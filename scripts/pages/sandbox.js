@@ -1,14 +1,15 @@
 import debug from "../utilities/debug.js";
+import initDrawers from "../utilities/initDrawer.js";
 import reactive from "../utilities/reactive.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Thumbnail from "../classes/Thumbnail.js";
 import Tooltip from "../classes/Tooltip.js";
-import TopMenu from "../classes/TopMenu.js";
 
 customElements.define("aeee-theme-switch", ThemeSwitch);
 customElements.define("aeee-thumbnail", Thumbnail);
 customElements.define("aeee-tooltip", Tooltip);
-customElements.define("aeee-top-menu", TopMenu);
+
+initDrawers();
 
 const count = new reactive(0);
 

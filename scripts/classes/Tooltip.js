@@ -47,7 +47,6 @@ export default class Tooltip extends HTMLElement {
 
     switch (name) {
       case "data-text":
-        console.log(newValue);
         this.text = newValue;
         this.addSmallText(newValue);
         break;

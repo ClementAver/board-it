@@ -53,9 +53,9 @@ export default class Pagination extends HTMLElement {
 
     // TODO : Test tooltip, to be removed.
     const tooltip = document.createElement("aeee-tooltip");
+    tooltip.setAttribute("data-text", "Lorem ipsum");
     manageClasses(tooltip, ["m-sm", "anchor-bottom-sr"]);
     this.appendChild(tooltip);
-    tooltip.setAttribute("data-text", "efefz");
   }
 
   debouncedChange = debounce(this.change.bind(this), 1000);

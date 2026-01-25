@@ -17,7 +17,7 @@
 @import url(../components/aeee-pagination.css);
 @import url(../components/aeee-thumbnail.css);
 @import url(../components/aeee-theme-switch.css);
-@import url(../components/aeee-top-menu.css);
+@import url(../components/aeee-banner.css);
 @import url(../components/camera-widget.css);
 @import url(../components/dropdown-menu.css);
 @import url(../components/image-upload-dialog.css);
@@ -42,7 +42,7 @@ body {
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "top-menu top-menu top-menu"
+    "banner banner banner"
     "left-drawer main-board right-drawer";
   height: 100vh;
   height: 100dvh;
