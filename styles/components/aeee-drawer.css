@@ -46,23 +46,9 @@ menu[data-drawer] {
   }
 
   &[data-open="true"] {
-    max-width: calc(
-      var(--icons-width) +
-        (
-          var(--drawer-padding) + var(--btn-padding-x) +
-            var(--border-width)
-        ) *
-        2
-    );
+    max-width: fit-content;
     padding: var(--drawer-padding);
-    width: calc(
-      var(--icons-width) +
-        (
-          var(--drawer-padding) + var(--btn-padding-x) +
-            var(--border-width)
-        ) *
-        2
-    );
+    width: fit-content;
 
     > li {
       opacity: 1;

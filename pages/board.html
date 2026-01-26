@@ -441,6 +441,91 @@
       </li>
     </menu>
 
+    <!-- 🚧🚧🚧🚧🚧🚧🚧 -->
+    <menu
+      id="right-drawer"
+      data-drawer
+      data-open="true"
+      class="right"
+      style="grid-area: right-drawer"
+    >
+      <button
+        data-switch
+        type="button"
+        aria-label="Extends/retracts the left drawer."
+        class="rounded-full bd-transparent bg-transparent text-secondary no-dash icon"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M8 3 4 7l4 4" />
+          <path d="M4 7h16" />
+          <path d="m16 21 4-4-4-4" />
+          <path d="M20 17H4" />
+        </svg>
+      </button>
+      <aeee-tooltip class="m-sm anchor-right">
+        <small>Afficher&thinsp;/&thinsp;masquer le tiroir de droite</small>
+      </aeee-tooltip>
+
+      <details name="right-drawer-details">
+        <summary>Téléverser une image</summary>
+        <form data-image-upload action="" enctype="multipart/form-data">
+          <aeee-file-input>
+            <input
+              id="upload-image-input"
+              type="file"
+              accept="image/png, image/jpeg"
+              name="image"
+              tabindex="-1"
+              multiple
+            />
+            <label
+              for="upload-image-input"
+              class="button-chameleon"
+              tabindex="0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                />
+                <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                <path d="M12 12v6" />
+                <path d="m15 15-3-3-3 3" />
+              </svg>
+              <span>Importer des images <small>(.png)</small></span>
+            </label>
+            <p>
+              <small>–</small>
+            </p>
+          </aeee-file-input>
+
+          <div class="spring-wrapper rounded-xs">
+            <button class="rounded-xs bold" type="submit">Importer</button>
+          </div>
+        </form>
+      </details>
+    </menu>
+    <!-- 🚧🚧🚧🚧🚧🚧🚧 -->
+
     <main id="canvas-wrapper">
       <menu
         id="camera-widget"

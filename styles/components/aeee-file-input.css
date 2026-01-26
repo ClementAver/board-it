@@ -1,4 +1,28 @@
+form:has(> aeee-file-input) {
+  align-items: end;
+  /* background-color: var(--ternary); */
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: start;
+  overflow: hidden;
+  padding: var(--spacing-lg);
+  position: relative;
+
+  &::after {
+    background: center / cover
+      url(../../assets/pictures/thumbnail_placehoder.png);
+    content: "";
+    filter: blur(25px) contrast(100%) brightness(125%);
+    inset: 0;
+    opacity: 1;
+    position: absolute;
+    transform: scale(1.5);
+    z-index: -1;
+  }
+}
+
 aeee-file-input {
+  box-shadow: var(--shadow-std);
   display: block;
 
   &[hidden] {
@@ -62,5 +86,9 @@ aeee-file-input {
     padding: var(--btn-padding-y) var(--btn-padding-x);
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  + div {
+    box-shadow: var(--shadow-std);
   }
 }

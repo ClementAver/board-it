@@ -1,0 +1,8 @@
+#right-drawer {
+  padding: unset;
+  white-space: nowrap;
+
+  &[data-open="true"] {
+    min-width: 512px;
+  }
+}

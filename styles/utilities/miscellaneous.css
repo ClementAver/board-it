@@ -35,3 +35,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.shadow {
+  box-shadow: var(--shadow-std);
+}
+.shadow-adaptative {
+  box-shadow: var(--shadow-adaptative-std);
+}
+

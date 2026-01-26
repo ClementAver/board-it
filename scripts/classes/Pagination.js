@@ -1,5 +1,6 @@
-import { debounce } from "../utilities/timing.js";
 import manageClasses from "../utilities/manageClasses.js";
+import Tooltip from "./Tooltip.js";
+import { debounce } from "../utilities/timing.js";
 
 export default class Pagination extends HTMLElement {
   _currentInput = document.createElement("input");
@@ -52,10 +53,11 @@ export default class Pagination extends HTMLElement {
     this.appendChild(this.lastButton);
 
     // TODO : Test tooltip, to be removed.
-    const tooltip = document.createElement("aeee-tooltip");
-    tooltip.setAttribute("data-text", "Lorem ipsum");
-    manageClasses(tooltip, ["m-sm", "anchor-bottom-sr"]);
-    this.appendChild(tooltip);
+    // const tooltip = document.createElement("aeee-tooltip");
+    // const tooltip = new Tooltip();
+    // tooltip.setAttribute("data-text", "Lorem ipsum");
+    // manageClasses(tooltip, ["m-sm", "anchor-bottom-sr"]);
+    // this.appendChild(tooltip);
   }
 
   debouncedChange = debounce(this.change.bind(this), 1000);

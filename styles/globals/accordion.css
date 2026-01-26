@@ -1,0 +1,51 @@
+details {
+  border-bottom: var(--border-width) solid var(--text-swath);
+  color: var(--text-swath);
+  padding-bottom: var(--spacing-sm);
+
+  summary {
+    font-weight: 600;
+    padding-inline: var(--spacing-lg);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: var(--spacing-md);
+    }
+  }
+
+  ::marker {
+    content: "+";
+    display: block;
+    font-size: 130%;
+    width: 10px;
+  }
+
+  &[open] {
+    padding-bottom: unset;
+
+    ::marker {
+      content: "-";
+    }
+
+    summary {
+      + * {
+        animation: accordion ease-in-out 200ms;
+      }
+    }
+  }
+}
+
+@keyframes accordion {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
