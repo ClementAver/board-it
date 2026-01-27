@@ -86,7 +86,7 @@
               class="dropdown-menu anchor-bottom-sr"
             >
               <form action="" enctype="multipart/form-data">
-                <aeee-file-input>
+                <aeee-file-input class="w-full">
                   <input
                     type="file"
                     accept="application/JSON"
@@ -315,7 +315,7 @@
         data-switch
         type="button"
         aria-label="Shows/hides the menu on smaller screen widths."
-        class="rounded-full bd-transparent bg-transparent text-swatch no-dash"
+        class="rounded-full bd-transparent bg-transparent text-swath no-dash"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -476,9 +476,14 @@
         <small>Afficher&thinsp;/&thinsp;masquer le tiroir de droite</small>
       </aeee-tooltip>
 
-      <details name="right-drawer-details">
+      <details name="right-drawer-details text-xs">
         <summary>Téléverser une image</summary>
-        <form data-image-upload action="" enctype="multipart/form-data">
+        <form
+          data-image-upload
+          action=""
+          enctype="multipart/form-data"
+          class="p-lg"
+        >
           <aeee-file-input>
             <input
               id="upload-image-input"
@@ -490,7 +495,7 @@
             />
             <label
               for="upload-image-input"
-              class="button-chameleon"
+              class="button-chameleon swath"
               tabindex="0"
             >
               <svg
@@ -519,7 +524,7 @@
           </aeee-file-input>
 
           <div class="spring-wrapper rounded-xs">
-            <button class="rounded-xs bold" type="submit">Importer</button>
+            <button class="rounded-xs bold swath" type="submit">Importer</button>
           </div>
         </form>
       </details>

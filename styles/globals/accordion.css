@@ -16,7 +16,6 @@ details {
 
   ::marker {
     content: "+";
-    display: block;
     font-size: 130%;
     width: 10px;
   }

@@ -1,14 +1,12 @@
 form:has(> aeee-file-input) {
   align-items: end;
-  /* background-color: var(--ternary); */
   display: flex;
   gap: var(--spacing-lg);
   justify-content: start;
   overflow: hidden;
-  padding: var(--spacing-lg);
   position: relative;
 
-  &::after {
+  /* &::after {
     background: center / cover
       url(../../assets/pictures/thumbnail_placehoder.png);
     content: "";
@@ -18,7 +16,7 @@ form:has(> aeee-file-input) {
     position: absolute;
     transform: scale(1.5);
     z-index: -1;
-  }
+  } */
 }
 
 aeee-file-input {
