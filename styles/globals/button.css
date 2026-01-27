@@ -47,9 +47,9 @@ button,
 
     &:hover,
     &:focus-visible {
-      background: var(--accent-beta-brighter);
-      border: var(--border-width) solid var(--accent-beta-brighter);
-      color: var(--primary);
+      background: var( --secondary-lighter);
+      border: var(--border-width) solid var( --secondary-lighter);
+      color: var(--text-swath);
 
       &:active {
         background-color: var(--btn-background-color-active);

@@ -1,5 +1,5 @@
 details {
-  border-bottom: var(--border-width) solid var(--text-swath);
+  /* border-bottom: var(--border-width) solid var(--text-swath); */
   color: var(--text-swath);
   padding-bottom: var(--spacing-sm);
 

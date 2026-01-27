@@ -20,7 +20,7 @@ form:has(> aeee-file-input) {
 }
 
 aeee-file-input {
-  box-shadow: var(--shadow-std);
+  border-radius: var(--spacing-xs);
   display: block;
 
   &[hidden] {
@@ -38,7 +38,6 @@ aeee-file-input {
     z-index: -1;
 
     + label {
-      border-radius: var(--spacing-xs);
       display: flex;
       font-weight: 500;
       gap: var(--spacing-sm);
@@ -66,7 +65,6 @@ aeee-file-input {
     overflow: hidden;
 
     label {
-      border-radius: var(--spacing-xs) 0 0 var(--spacing-xs);
       max-width: 100%;
     }
   }
@@ -75,7 +73,6 @@ aeee-file-input {
     align-items: center;
     background-color: var(--secondary-darker);
     border: var(--border-width) solid var(--secondary-darker);
-    border-radius: 0 var(--spacing-xs) var(--spacing-xs) 0;
     color: var(--text-swath);
     display: flex;
     line-height: 1rem;
@@ -84,9 +81,5 @@ aeee-file-input {
     padding: var(--btn-padding-y) var(--btn-padding-x);
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  + div {
-    box-shadow: var(--shadow-std);
   }
 }
