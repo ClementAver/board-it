@@ -7,20 +7,22 @@ export default class Tooltip extends HTMLElement {
   constructor({ text } = {}) {
     super();
 
-    if (!this.previousElementSibling) {
-      this.remove();
-      return;
-    }
-
     this.id = Unique.getUniqueID();
     this.setAttribute("role", "tooltip");
     this.popover = "hint";
 
-    this.previousElementSibling.setAttribute("aria-describedby", [this.id]);
-    this.previousElementSibling.interestForElement = this;
-
     this.text = text ?? this.text;
     if (this.text) this.addSmallText(this.text);
+  }
+
+  connectedCallback() {
+    if (!this.previousElementSibling) {
+      this.remove();
+      return;
+    }
+    
+    this.previousElementSibling.setAttribute("aria-describedby", [this.id]);
+    this.previousElementSibling.interestForElement = this;
   }
 
   get text() {
@@ -29,6 +31,10 @@ export default class Tooltip extends HTMLElement {
 
   set text(text) {
     this._text = text;
+    if (this.getAttribute("data-text") !== text) {
+      this.setAttribute("data-text", text);
+      return;
+    }
   }
 
   addSmallText(text) {
@@ -57,3 +63,5 @@ export default class Tooltip extends HTMLElement {
 
   static observedAttributes = ["data-text"];
 }
+
+customElements.define("aeee-tooltip", Tooltip);

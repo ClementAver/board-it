@@ -39,7 +39,7 @@ export default class ThemeSwitch extends HTMLElement {
     this.switchBtn.addEventListener("click", this.toggle.bind(this));
     this.prefersDark.addEventListener(
       "change",
-      this.updatePreferredTheme.bind(this)
+      this.updatePreferredTheme.bind(this),
     );
   }
 
@@ -141,3 +141,5 @@ export default class ThemeSwitch extends HTMLElement {
     }
   }
 }
+
+customElements.define("aeee-theme-switch", ThemeSwitch);

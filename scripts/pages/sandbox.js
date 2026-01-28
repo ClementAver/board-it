@@ -5,10 +5,6 @@ import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Thumbnail from "../classes/Thumbnail.js";
 import Tooltip from "../classes/Tooltip.js";
 
-customElements.define("aeee-theme-switch", ThemeSwitch);
-customElements.define("aeee-thumbnail", Thumbnail);
-customElements.define("aeee-tooltip", Tooltip);
-
 initDrawers();
 
 const count = new reactive(0);

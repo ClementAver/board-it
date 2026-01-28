@@ -16,14 +16,6 @@ import Tooltip from "../classes/Tooltip.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
-customElements.define("aeee-dialog", Dialog, { extends: "dialog" });
-customElements.define("aeee-file-input", CustomizableFileInput);
-customElements.define("aeee-gallery", Gallery);
-customElements.define("aeee-pagination", Pagination);
-customElements.define("aeee-theme-switch", ThemeSwitch);
-customElements.define("aeee-thumbnail", Thumbnail);
-customElements.define("aeee-tooltip", Tooltip);
-
 const downloadWorkFileForm = document.querySelector(
   "form:has(#download-workfile-anchor)",
 );

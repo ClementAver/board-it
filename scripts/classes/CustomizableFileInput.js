@@ -57,3 +57,4 @@ export default class CustomizableFileInput extends HTMLElement {
   }
 }
 
+customElements.define("aeee-file-input", CustomizableFileInput);

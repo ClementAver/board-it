@@ -9,8 +9,7 @@ export default class Dialog extends HTMLDialogElement {
 
   connectedCallback() {
     this.triggers =
-      document.querySelectorAll(`[data-trigger="${this.id}"]`) ??
-      this.triggers;
+      document.querySelectorAll(`[data-trigger="${this.id}"]`) ?? this.triggers;
 
     this.triggers.forEach((element) => {
       element.addEventListener("click", this.trigger.bind(this));
@@ -50,3 +49,5 @@ export default class Dialog extends HTMLDialogElement {
     }
   }
 }
+
+customElements.define("aeee-dialog", Dialog, { extends: "dialog" });

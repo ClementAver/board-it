@@ -1,5 +1,6 @@
 import manageClasses from "../utilities/manageClasses.js";
 import Tooltip from "./Tooltip.js";
+import insertSibling from "../utilities/insertSibling.js";
 import { debounce } from "../utilities/timing.js";
 
 export default class Pagination extends HTMLElement {
@@ -39,25 +40,38 @@ export default class Pagination extends HTMLElement {
     pageInfosP.display = "inline-block";
 
     this.currentInput.type = "number";
+    this.currentInput.name = "page";
     this.currentInput.min = 1;
     this.currentInput.max = this.maxPage;
     this.currentInput.step = 1;
+
+    manageClasses(
+      [this.firstButton, this.previousButton, this.nextButton, this.lastButton],
+      ["no-dash"],
+    );
 
     this.appendChild(this.firstButton);
     this.appendChild(this.previousButton);
     pageInfosP.appendChild(this.currentInput);
     pageInfosP.appendChild(this.maximumSpan);
     this.appendChild(pageInfosP);
-
     this.appendChild(this.nextButton);
     this.appendChild(this.lastButton);
 
-    // TODO : Test tooltip, to be removed.
-    // const tooltip = document.createElement("aeee-tooltip");
-    // const tooltip = new Tooltip();
-    // tooltip.setAttribute("data-text", "Lorem ipsum");
-    // manageClasses(tooltip, ["m-sm", "anchor-bottom-sr"]);
-    // this.appendChild(tooltip);
+    const tooltipFirst = new Tooltip({ text: "Première page" });
+    const tooltipPrevious = new Tooltip({ text: "Page précédente" });
+    const tooltipNext = new Tooltip({ text: "Page suivante" });
+    const tooltipLast = new Tooltip({ text: "Dernière page" });
+
+    manageClasses(
+      [tooltipFirst, tooltipPrevious, tooltipNext, tooltipLast],
+      ["m-sm", "anchor-bottom-sr"],
+    );
+
+    insertSibling(tooltipFirst, this.firstButton);
+    insertSibling(tooltipPrevious, this.previousButton);
+    insertSibling(tooltipNext, this.nextButton);
+    insertSibling(tooltipLast, this.lastButton);
   }
 
   debouncedChange = debounce(this.change.bind(this), 1000);
@@ -235,3 +249,5 @@ export default class Pagination extends HTMLElement {
 
   static observedAttributes = ["data-page", "data-max"];
 }
+
+customElements.define("aeee-pagination", Pagination);

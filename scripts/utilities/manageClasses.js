@@ -1,14 +1,16 @@
 /**
- * @param { HTMLElement } element
+ * @param { Array<HTMLElement> } elements
  * @param { Array<string> } classes
  * @param { {strategy?: 'add' | 'remove' | 'replace' | 'toggle' } } options
  */
 export default function manageClasses(
-  element,
+  elements,
   classes,
   { strategy = "add" } = {},
 ) {
-  classes.forEach((c) => {
-    element.classList[strategy](c);
+  elements.forEach((e) => {
+    classes.forEach((c) => {
+      e.classList[strategy](c);
+    });
   });
 }

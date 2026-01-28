@@ -175,3 +175,4 @@ export default class Thumbnail extends HTMLElement {
   ];
 }
 
+customElements.define("aeee-thumbnail", Thumbnail);

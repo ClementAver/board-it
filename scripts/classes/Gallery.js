@@ -10,8 +10,7 @@ export default class Gallery extends HTMLElement {
   }
 
   connectedCallback() {
-    this.pagination =
-      this.querySelector("[data-page]") ?? this.pagination;
+    this.pagination = this.querySelector("[data-page]") ?? this.pagination;
     this.wrapper = this.querySelector("[data-gallery-wrapper]") ?? this.wrapper;
   }
 
@@ -31,3 +30,5 @@ export default class Gallery extends HTMLElement {
     this._wrapper = wrapper;
   }
 }
+
+customElements.define("aeee-gallery", Gallery);
