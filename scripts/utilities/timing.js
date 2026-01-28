@@ -13,8 +13,11 @@
  *
  * @param { Function } callback
  * @param { number } delay
- * @param { object } option
+ * @param { Object } options
+ * @param { boolean | undefined } options.leading
+ * @param { boolean | undefined } options.trailing
  */
+
 export function debounce(
   callback,
   delay = 0,
@@ -23,16 +26,24 @@ export function debounce(
   let timeoutID;
 
   return (args) => {
-    if (!timeoutID) {
-      if (leading) callback.apply(this, [args]);
-    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (!timeoutID) {
+          if (leading) callback.apply(null, [args]);
+        }
 
-    clearTimeout(timeoutID);
+        if (timeoutID) clearTimeout(timeoutID);
 
-    timeoutID = setTimeout(() => {
-      timeoutID = false;
-      if (trailing) callback.apply(this, [args]);
-    }, delay);
+        timeoutID = setTimeout(() => {
+          timeoutID = false;
+          if (trailing) callback.apply(null, [args]);
+        }, delay);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 }
 
@@ -48,19 +59,29 @@ export function throttle(callback, delay = 0) {
 
   return (args) => {
     const now = Date.now();
-    clearTimeout(timeoutID);
+    if (timeoutID) clearTimeout(timeoutID);
 
-    if (!lastCall || now >= lastCall + delay) {
-      lastCall = now;
-      callback.apply(this, [args]);
-    } else {
-      timeoutID = setTimeout(
-        () => {
-          lastCall = Date.now();
-          callback.apply(this, [args]);
-        },
-        Math.min(delay - (now - lastCall), delay),
-      );
-    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (!lastCall || now >= lastCall + delay) {
+          lastCall = now;
+
+          await callback.apply(null, [args]);
+        } else {
+          timeoutID = setTimeout(
+            async () => {
+              lastCall = Date.now();
+
+              await callback.apply(null, [args]);
+            },
+            Math.min(delay - (now - lastCall), delay),
+          );
+        }
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 }
