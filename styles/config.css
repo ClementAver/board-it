@@ -75,7 +75,7 @@ html {
   --valid: limegreen;
   --invalid: crimson;
 
-  --secondary-darker: color-mix(in hsl, var(--secondary), hsl(0, 0%, 0%) 25%);
+  --secondary-darker: color-mix(in oklab, var(--secondary), hsl(0, 0%, 0%) 30%);
   --secondary-lighter: color-mix(
     in hsl,
     var(--secondary),
