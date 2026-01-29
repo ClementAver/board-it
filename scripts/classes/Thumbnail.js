@@ -3,6 +3,8 @@ import handleError from "../utilities/handleError.js";
 export default class Thumbnail extends HTMLElement {
   _alternate = "";
   _caption = "";
+  _checkbox = document.createElement("input");
+  _isChecked = false;
   _figcaption = document.createElement("figcaption");
   _figure = document.createElement("figure");
   _image = document.createElement("img");
@@ -10,7 +12,7 @@ export default class Thumbnail extends HTMLElement {
   _placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
   _source = "";
 
-  constructor({ source, alternate, caption, isRounded } = {}) {
+  constructor({ source, alternate, caption, isChecked, isRounded } = {}) {
     super();
 
     this._internals = this.attachInternals();
@@ -18,6 +20,10 @@ export default class Thumbnail extends HTMLElement {
     this.alternate =
       alternate ?? this.getAttribute("data-alternate") ?? this.alternate;
     this.caption = caption ?? this.getAttribute("data-caption") ?? this.caption;
+    this.isChecked =
+      isChecked ??
+      this.getAttribute("data-is-checked") === "true" ??
+      this.isChecked;
     this.isRounded =
       isRounded ??
       this.getAttribute("data-is-rounded") === "true" ??
@@ -25,6 +31,10 @@ export default class Thumbnail extends HTMLElement {
     this.source = source ?? this.getAttribute("data-source") ?? this.source;
 
     this.setAttribute("role", "article");
+
+    this.checkbox.type = "checkbox";
+    this.checkbox.name = "thumbnail";
+    this.checkbox.classList.add("sr-only");
 
     this.image.loading = "lazy";
     this.image.onload = () => {
@@ -47,9 +57,18 @@ export default class Thumbnail extends HTMLElement {
       }
     };
 
+    this.appendChild(this.checkbox);
     this.figure.appendChild(this.image);
     this.figure.appendChild(this.figcaption);
     this.appendChild(this.figure);
+  }
+
+  connectedCallback() {
+    this.addEventListener("click", this.toggleChecked.bind(this));
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener("click", this.toggleChecked);
   }
 
   get alternate() {
@@ -58,6 +77,10 @@ export default class Thumbnail extends HTMLElement {
 
   get caption() {
     return this._caption;
+  }
+
+  get checkbox() {
+    return this._checkbox;
   }
 
   get figcaption() {
@@ -70,6 +93,10 @@ export default class Thumbnail extends HTMLElement {
 
   get image() {
     return this._image;
+  }
+
+  get isChecked() {
+    return this._isChecked;
   }
 
   get isRounded() {
@@ -104,6 +131,10 @@ export default class Thumbnail extends HTMLElement {
     this.figcaption.textContent = caption;
   }
 
+  set checkbox(checkbox) {
+    this._checkbox = checkbox;
+  }
+
   set figcaption(figcaption) {
     this._figcaption = figcaption;
   }
@@ -114,6 +145,23 @@ export default class Thumbnail extends HTMLElement {
 
   set image(image) {
     this._image = image;
+  }
+
+  set isChecked(isChecked) {
+    if (this.getAttribute("data-is-checked") !== isChecked.toString()) {
+      this.setAttribute("data-is-checked", isChecked.toString());
+      return;
+    }
+
+    this._isChecked = isChecked;
+
+    if (isChecked) {
+      this.checkbox.checked = true;
+      this._internals.states.add("checked");
+    } else {
+      this.checkbox.checked = false;
+      this._internals.states.delete("checked");
+    }
   }
 
   set isRounded(isRounded) {
@@ -146,6 +194,10 @@ export default class Thumbnail extends HTMLElement {
     this.image.src = source;
   }
 
+  toggleChecked() {
+    this.isChecked = !this.isChecked;
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;
 
@@ -155,6 +207,9 @@ export default class Thumbnail extends HTMLElement {
         break;
       case "data-caption":
         this.caption = newValue;
+        break;
+      case "data-is-checked":
+        this.isChecked = newValue.toString() === "true";
         break;
       case "data-is-rounded":
         this.isRounded = newValue.toString() === "true";
@@ -170,6 +225,7 @@ export default class Thumbnail extends HTMLElement {
   static observedAttributes = [
     "data-alternate",
     "data-caption",
+    "data-is-checked",
     "data-is-rounded",
     "data-source",
   ];

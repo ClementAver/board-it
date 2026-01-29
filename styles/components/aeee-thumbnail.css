@@ -16,6 +16,41 @@ aeee-thumbnail {
     display: none;
   }
 
+  &:state(checked) {
+    border: calc(var(--border-width) * 2) solid var(--accent-alpha);
+
+    ::before {
+      box-shadow: inset 0 0 var(--spacing-xs) var(--accent-alpha);
+      content: "";
+      inset: 0;
+      position: absolute;
+    }
+
+    ::after {
+      background-color: var(--accent-alpha);
+      border-radius: var(--spacing-sm);
+      color: var(--text-swath);
+      content: "✔";
+      padding-inline: var(--spacing-sm);
+      position: absolute;
+      right: var(--spacing-lg);
+      top: var(--spacing-lg);
+    }
+
+    &:state(rounded) {
+      ::before {
+        border-radius: calc(infinity * 1px);
+      }
+
+      ::after {
+        bottom: var(--spacing-lg);
+        right: 50%;
+        top: unset;
+        transform: translateX(50%);
+      }
+    }
+  }
+
   &:state(rounded) {
     border-radius: calc(infinity * 1px);
   }

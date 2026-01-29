@@ -12,7 +12,7 @@ import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Thumbnail from "../classes/Thumbnail.js";
 import Toolbox from "../classes/Toolbox.js";
 import Tooltip from "../classes/Tooltip.js";
-// import UploadImageForm from "../classes/UploadImageForm.js";
+import UploadImageForm from "../classes/UploadImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
@@ -22,12 +22,12 @@ const downloadWorkFileForm = document.querySelector(
 const uploadWorkFileForm = document.querySelector(
   "form:has(#upload-workfile-input)",
 );
-// const uploadImageForm = document.querySelector("form[data-image-upload]");
+const uploadImageForm = document.querySelector("form[data-image-upload]");
 const selectionImageForm = document.querySelector("form[data-image-selection]");
 
 new UploadWorkFileForm({ form: uploadWorkFileForm });
 new DownloadWorkFileForm({ form: downloadWorkFileForm });
-// new UploadImageForm({ form: uploadImageForm });
+new UploadImageForm({ form: uploadImageForm });
 new SelectionImageForm({ form: selectionImageForm });
 
 initAnchors();
