@@ -3,16 +3,24 @@ import handleError from "../utilities/handleError.js";
 export default class Thumbnail extends HTMLElement {
   _alternate = "";
   _caption = "";
-  _checkbox = document.createElement("input");
-  _isChecked = false;
+  _checkbox = null;
   _figcaption = document.createElement("figcaption");
   _figure = document.createElement("figure");
   _image = document.createElement("img");
+  _isChecked = false;
   _isRounded = false;
+  _isSelectable = false;
   _placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
   _source = "";
 
-  constructor({ source, alternate, caption, isChecked, isRounded } = {}) {
+  constructor({
+    source,
+    alternate,
+    caption,
+    isChecked,
+    isRounded,
+    isSelectable,
+  } = {}) {
     super();
 
     this._internals = this.attachInternals();
@@ -28,13 +36,20 @@ export default class Thumbnail extends HTMLElement {
       isRounded ??
       this.getAttribute("data-is-rounded") === "true" ??
       this.isRounded;
+    this.isSelectable =
+      isSelectable ??
+      this.getAttribute("data-is-selectable") === "true" ??
+      this.isSelectable;
     this.source = source ?? this.getAttribute("data-source") ?? this.source;
 
     this.setAttribute("role", "article");
 
-    this.checkbox.type = "checkbox";
-    this.checkbox.name = "thumbnail";
-    this.checkbox.classList.add("sr-only");
+    if (this.isSelectable) {
+      this.checkbox = document.createElement("input");
+      this.checkbox.type = "checkbox";
+      this.checkbox.name = "thumbnail";
+      this.checkbox.classList.add("sr-only");
+    }
 
     this.image.loading = "lazy";
     this.image.onload = () => {
@@ -57,14 +72,15 @@ export default class Thumbnail extends HTMLElement {
       }
     };
 
-    this.appendChild(this.checkbox);
+    if (this.checkbox) this.appendChild(this.checkbox);
     this.figure.appendChild(this.image);
     this.figure.appendChild(this.figcaption);
     this.appendChild(this.figure);
   }
 
   connectedCallback() {
-    this.addEventListener("click", this.toggleChecked.bind(this));
+    if (this.checkbox)
+      this.addEventListener("click", this.toggleChecked.bind(this));
   }
 
   disconnectedCallback() {
@@ -101,6 +117,10 @@ export default class Thumbnail extends HTMLElement {
 
   get isRounded() {
     return this._isRounded;
+  }
+
+  get isSelectable() {
+    return this._isSelectable;
   }
 
   get placeholderImage() {
@@ -179,6 +199,15 @@ export default class Thumbnail extends HTMLElement {
     }
   }
 
+  set isSelectable(isSelectable) {
+    if (this.getAttribute("data-is-selectable") !== isSelectable.toString()) {
+      this.setAttribute("data-is-selectable", isSelectable.toString());
+      return;
+    }
+
+    this._isSelectable = isSelectable;
+  }
+
   set placeholderImage(placeholderImage) {
     this._placeholderImage = placeholderImage;
   }
@@ -214,6 +243,9 @@ export default class Thumbnail extends HTMLElement {
       case "data-is-rounded":
         this.isRounded = newValue.toString() === "true";
         break;
+      case "data-is-selectable":
+        this.isSelectable = newValue.toString() === "true";
+        break;
       case "data-source":
         this.source = newValue;
         break;
@@ -227,6 +259,7 @@ export default class Thumbnail extends HTMLElement {
     "data-caption",
     "data-is-checked",
     "data-is-rounded",
+    "data-is-selectable",
     "data-source",
   ];
 }

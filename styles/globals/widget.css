@@ -22,6 +22,11 @@
   border-radius: var(--spacing-xs);
   color: var(--text-swath);
   padding-inline: var(--spacing-sm);
+
+  &[type="number"] {
+    padding-inline: unset;
+    padding-left: var(--spacing-sm);
+  }
 }
 
 .widget div:has(.unit) {

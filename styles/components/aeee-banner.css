@@ -1,4 +1,8 @@
-header[role=banner] {
+body:has(header[role="banner"][data-open="true"]) {
+  overflow-y: hidden;
+}
+
+header[role="banner"] {
   align-items: center;
   --btn-padding-y: var(--spacing-xs);
   background-color: var(--secondary-darker);

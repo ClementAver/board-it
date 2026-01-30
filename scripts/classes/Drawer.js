@@ -27,6 +27,12 @@ export default class Drawer {
 
   toggle() {
     this.drawer.setAttribute("data-open", this.drawer.dataset.open != "true");
+
+    if (this.drawer.dataset.open != "true") {
+      this.drawer
+        .querySelectorAll("[open]")
+        .forEach((node) => node.removeAttribute("open"));
+    }
   }
 
   removeListener() {
