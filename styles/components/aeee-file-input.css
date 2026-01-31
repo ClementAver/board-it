@@ -45,10 +45,6 @@ aeee-file-input {
       padding: var(--btn-padding-y) var(--btn-padding-x);
       width: fit-content;
 
-      svg {
-        transform: scale(0.75);
-      }
-
       span {
         overflow: hidden;
         text-overflow: ellipsis;

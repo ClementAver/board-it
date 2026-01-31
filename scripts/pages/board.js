@@ -19,15 +19,17 @@ import WorkFile from "../classes/WorkFile.js";
 const downloadWorkFileForm = document.querySelector(
   "form:has(#download-workfile-anchor)",
 );
+new DownloadWorkFileForm({ form: downloadWorkFileForm });
+
 const uploadWorkFileForm = document.querySelector(
   "form:has(#upload-workfile-input)",
 );
-const uploadImageForm = document.querySelector("form[data-image-upload]");
-const selectionImageForm = document.querySelector("form[data-image-selection]");
-
 new UploadWorkFileForm({ form: uploadWorkFileForm });
-new DownloadWorkFileForm({ form: downloadWorkFileForm });
+
+const uploadImageForm = document.querySelector("form[data-image-upload]");
 new UploadImageForm({ form: uploadImageForm });
+
+const selectionImageForm = document.querySelector("form[data-image-selection]");
 new SelectionImageForm({ form: selectionImageForm });
 
 initAnchors();
@@ -35,7 +37,9 @@ initDrawers();
 
 Canvas.resize();
 const leftDrawer = document.getElementById("left-drawer");
+const rightDrawer = document.getElementById("right-drawer");
 Canvas.resizeWith(leftDrawer);
+Canvas.resizeWith(rightDrawer);
 
 const camera = Toolbox.grab("camera");
 camera.initKeyboardActions(Canvas);

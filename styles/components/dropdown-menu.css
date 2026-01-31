@@ -62,12 +62,6 @@ button:has(+ .dropdown-menu):after {
   width: 100%;
 }
 
-.dropdown-menu svg {
-  margin-block: auto;
-  stroke-width: 2px;
-  transform: scale(0.75);
-}
-
 button:has(+ .dropdown-menu),
 .dropdown-menu button,
 .dropdown-menu .button-chameleon {

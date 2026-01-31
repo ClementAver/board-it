@@ -17,5 +17,17 @@ export default class SelectionImageForm {
 
   upload = (event) => {
     event.preventDefault();
+    this.processFormData();
   };
+
+  processFormData() {
+    const formData = new FormData(this.form);
+
+    const thumbnails = [];
+    for (var [key, value] of formData.entries()) {
+      if (key === "thumbnail") thumbnails.push(value);
+    }
+
+    console.log(thumbnails);
+  }
 }

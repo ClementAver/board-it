@@ -49,6 +49,7 @@ export default class Thumbnail extends HTMLElement {
       this.checkbox.type = "checkbox";
       this.checkbox.name = "thumbnail";
       this.checkbox.classList.add("sr-only");
+      this.checkbox.value = this.source;
     }
 
     this.image.loading = "lazy";
@@ -221,6 +222,7 @@ export default class Thumbnail extends HTMLElement {
     this._internals.states.add("loading");
     this._source = source;
     this.image.src = source;
+    if (this.checkbox) this.checkbox.value = this.source;
   }
 
   toggleChecked() {

@@ -28,13 +28,15 @@ aeee-thumbnail {
 
     ::after {
       background-color: var(--accent-alpha);
-      border-radius: var(--spacing-sm);
+      border-radius: calc(infinity * 1px);
       color: var(--text-swath);
       content: "✔";
       padding-inline: var(--spacing-sm);
       position: absolute;
       right: var(--spacing-lg);
+      text-align: center;
       top: var(--spacing-lg);
+      width: 1lh;
     }
 
     &:state(rounded) {
