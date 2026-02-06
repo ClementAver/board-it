@@ -1,0 +1,15 @@
+{
+  "validator": {
+    "required": "ce champ est requis",
+    "empty": "ce champ ne dois pas être vide",
+    "email": "cette adresse électronique est invalide",
+    "phone": "ce numéro de téléphone est invalide",
+    "too": {
+      "short": "ce champ doit contenir au minimum {number} caractères",
+      "long": "ce champ doit contenir au maximum {number} caractères",
+      "small": "ce champ doit est supérieur à {number}",
+      "big": "ce champ doit être inférieur à {number}",
+      "heavy": "la taille du fichier soumis ne doit pas excéder {number} {unit}"
+    }
+  }
+}
