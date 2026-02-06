@@ -16,29 +16,13 @@ import UploadImageForm from "../classes/UploadImageForm.js";
 import UploadWorkFileForm from "../classes/UploadWorkFileForm.js";
 import WorkFile from "../classes/WorkFile.js";
 
-const downloadWorkFileForm = document.querySelector(
-  "form:has(#download-workfile-anchor)",
-);
-new DownloadWorkFileForm({ form: downloadWorkFileForm });
-
-const uploadWorkFileForm = document.querySelector(
-  "form:has(#upload-workfile-input)",
-);
-new UploadWorkFileForm({ form: uploadWorkFileForm });
-
-const uploadImageForm = document.querySelector("form[data-image-upload]");
-new UploadImageForm({ form: uploadImageForm });
-
-const selectionImageForm = document.querySelector("form[data-image-selection]");
-new SelectionImageForm({ form: selectionImageForm });
-
 initAnchors();
 initDrawers();
 
 Canvas.resize();
 const leftDrawer = document.getElementById("left-drawer");
-const rightDrawer = document.getElementById("right-drawer");
 Canvas.resizeWith(leftDrawer);
+const rightDrawer = document.getElementById("right-drawer");
 Canvas.resizeWith(rightDrawer);
 
 const camera = Toolbox.grab("camera");

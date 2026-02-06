@@ -1,18 +1,7 @@
-export default class SelectionImageForm {
-  _form = null;
-
-  constructor({ form } = {}) {
-    this.form = form ?? this.form;
-
-    this.form.addEventListener("submit", this.upload);
-  }
-
-  get form() {
-    return this._form;
-  }
-
-  set form(form) {
-    this._form = form;
+export default class SelectionImageForm extends HTMLFormElement {
+  constructor() {
+    super();
+    this.addEventListener("submit", this.upload);
   }
 
   upload = (event) => {
@@ -21,7 +10,7 @@ export default class SelectionImageForm {
   };
 
   processFormData() {
-    const formData = new FormData(this.form);
+    const formData = new FormData(this);
 
     const thumbnails = [];
     for (var [key, value] of formData.entries()) {
@@ -31,3 +20,7 @@ export default class SelectionImageForm {
     console.log(thumbnails);
   }
 }
+
+customElements.define("aeee-selection-image-form", SelectionImageForm, {
+  extends: "form",
+});

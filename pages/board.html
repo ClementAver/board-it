@@ -85,17 +85,21 @@
               data-target
               class="dropdown-menu anchor-bottom-sr"
             >
-              <form action="" enctype="multipart/form-data">
+              <form
+                is="aeee-upload-work-file-form"
+                action=""
+                enctype="multipart/form-data"
+              >
                 <aeee-file-input class="w-full">
                   <input
                     type="file"
                     accept="application/JSON"
                     name="json"
-                    id="upload-workfile-input"
+                    id="upload-work-file-input"
                     tabindex="-1"
                   />
                   <label
-                    for="upload-workfile-input"
+                    for="upload-work-file-input"
                     class="button-chameleon"
                     tabindex="0"
                   >
@@ -122,7 +126,11 @@
                 </aeee-file-input>
               </form>
 
-              <form action="" enctype="multipart/form-data">
+              <form
+                is="aeee-download-workfile-form"
+                action=""
+                enctype="multipart/form-data"
+              >
                 <a
                   id="download-workfile-anchor"
                   href="#"
@@ -479,7 +487,7 @@
       <details name="right-drawer-details">
         <summary>Téléverser une image</summary>
         <form
-          data-image-upload
+          is="aeee-upload-image-form"
           action=""
           enctype="multipart/form-data"
           class="p-lg"
@@ -654,7 +662,11 @@
       </button>
       <p>Importer une image</p>
 
-      <form action="" data-image-selection enctype="multipart/form-data">
+      <form
+        is="aeee-selection-image-form"
+        action=""
+        enctype="multipart/form-data"
+      >
         <aeee-gallery class="w-full grow">
           <aeee-pagination
             class="ml-auto"
@@ -698,56 +710,6 @@
           <button class="rounded-xs bold" type="submit">Importer</button>
         </div>
       </form>
-
-      <!-- <form
-          data-image-upload
-          action=""
-          enctype="multipart/form-data"
-          class="flex wrap gap-lg items-end max-w-full p-lg"
-        >
-          <aeee-file-input>
-            <input
-              type="file"
-              accept="image/png, image/jpeg"
-              name="image"
-              id="upload-image-input"
-              tabindex="-1"
-              multiple
-            />
-            <label
-              for="upload-image-input"
-              class="button-chameleon"
-              tabindex="0"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
-                />
-                <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                <path d="M12 12v6" />
-                <path d="m15 15-3-3-3 3" />
-              </svg>
-              <span>Importer des images <small>(.png)</small></span>
-            </label>
-            <p>
-              <small>–</small>
-            </p>
-          </aeee-file-input>
-
-          <div class="spring-wrapper rounded-xs">
-            <button class="rounded-xs bold" type="submit">Importer</button>
-          </div>
-        </form> -->
     </dialog>
   </body>
 </html>

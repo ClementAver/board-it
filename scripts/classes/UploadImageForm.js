@@ -1,23 +1,20 @@
-export default class UploadImageForm {
-  _form = null;
+export default class UploadImageForm extends HTMLFormElement {
   _input = null;
   _submitButton = null;
 
-  constructor({ form, input, submitButton } = {}) {
-    this.form = form ?? this.form;
+  constructor({ input, submitButton } = {}) {
+    super();
+
     this.input =
-      input ?? this.form.querySelector('input[type="file"]') ?? this.input;
+      input ?? this.querySelector('input[type="file"]') ?? this.input;
+
     this.submitButton =
       submitButton ??
-      this.form.querySelector('button[type="submit"]') ??
+      this.querySelector('button[type="submit"]') ??
       this.submitButton;
 
-    this.form.addEventListener("submit", this.upload);
+    this.addEventListener("submit", this.upload);
     this.input.addEventListener("change", this.update);
-  }
-
-  get form() {
-    return this._form;
   }
 
   get input() {
@@ -26,10 +23,6 @@ export default class UploadImageForm {
 
   get submitButton() {
     return this._submitButton;
-  }
-
-  set form(form) {
-    this._form = form;
   }
 
   set input(input) {
@@ -42,7 +35,7 @@ export default class UploadImageForm {
 
   update = () => {
     this.processFormData();
-  }
+  };
 
   upload = (event) => {
     event.preventDefault();
@@ -50,7 +43,7 @@ export default class UploadImageForm {
   };
 
   processFormData() {
-    const formData = new FormData(this.form);
+    const formData = new FormData(this);
 
     const files = [];
     for (var [key, value] of formData.entries()) {
@@ -60,3 +53,7 @@ export default class UploadImageForm {
     console.log(files);
   }
 }
+
+customElements.define("aeee-upload-image-form", UploadImageForm, {
+  extends: "form",
+});

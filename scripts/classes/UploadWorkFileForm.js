@@ -1,27 +1,20 @@
 import WorkFile from "./WorkFile.js";
 
-export default class UploadWorkFileForm {
-  _form = null;
+export default class UploadWorkFileForm extends HTMLFormElement {
   _input = null;
 
-  constructor({ form, input } = {}) {
-    this.form = form ?? this.form;
-    this.input = input ?? this.form.querySelector('input[type="file"]');
+  constructor({ input } = {}) {
+    super();
 
-    this.form.addEventListener("submit", this.upload);
+    this.input =
+      input ?? this.querySelector('input[type="file"]') ?? this.input;
+
+    this.addEventListener("submit", this.upload);
     this.input.addEventListener("change", this.submit);
-  }
-
-  get form() {
-    return this._form;
   }
 
   get input() {
     return this._input;
-  }
-
-  set form(form) {
-    this._form = form;
   }
 
   set input(input) {
@@ -30,12 +23,12 @@ export default class UploadWorkFileForm {
 
   submit() {
     const submitEvent = new SubmitEvent("submit");
-    this.form.dispatchEvent(submitEvent);
+    this.dispatchEvent(submitEvent);
   }
 
   upload = (event) => {
     event.preventDefault();
-    const data = new FormData(this.form);
+    const data = new FormData(this);
 
     const files = [];
     for (var [key, value] of data.entries()) {
@@ -45,3 +38,7 @@ export default class UploadWorkFileForm {
     WorkFile.read(files[0]);
   };
 }
+
+customElements.define("aeee-upload-work-file-form", UploadWorkFileForm, {
+  extends: "form",
+});
