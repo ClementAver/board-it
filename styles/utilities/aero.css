@@ -1,0 +1,64 @@
+html {
+  --aero-hsl: var(--aero-hue) var(--aero-saturation) var(--aero-lightness);
+
+  --aero-hue: 0deg;
+  --aero-saturation: 0%;
+  --aero-lightness: 70%;
+
+  --aero-opacity: 0.5;
+
+  --aero-opacity-1: calc(0.1 * var(--aero-opacity));
+  --aero-opacity-2: calc(0.2 * var(--aero-opacity));
+  --aero-opacity-3: calc(0.3 * var(--aero-opacity));
+  --aero-opacity-4: calc(0.4 * var(--aero-opacity));
+  --aero-opacity-5: calc(0.5 * var(--aero-opacity));
+
+  --aero-backdrop-blur: blur(2px);
+  --aero-background:
+    linear-gradient(
+      355deg,
+      hsl(var(--aero-hsl) / var(--aero-opacity-1)) 55%,
+      transparent 55%
+    ),
+    radial-gradient(
+      60% 60% at 30% 0%,
+      hsl(var(--aero-hsl) / var(--aero-opacity-3)),
+      transparent
+    ),
+    radial-gradient(
+      70% 30% at 70% 100%,
+      hsl(var(--aero-hsl) / var(--aero-opacity-4)),
+      transparent
+    ),
+    linear-gradient(
+      165deg,
+      hsl(var(--aero-hsl) / var(--aero-opacity-1)) 42.5%,
+      transparent 45%
+    ),
+    linear-gradient(
+      175deg,
+      hsl(var(--aero-hsl) / var(--aero-opacity-3)),
+      hsl(var(--aero-hsl) / var(--aero-opacity-2)) 45%,
+      transparent 45%
+    );
+
+  --aero-shadow-std:
+    hsl(0 0% 0% / 10%) 0px 4px 8px,
+    inset 0px 1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-5)),
+    inset 0px -1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-4));
+}
+
+.aero {
+  backdrop-filter: var(--aero-backdrop-blur);
+  position: relative;
+
+  &:after {
+    background: var(--aero-background);
+    border-radius: inherit;
+    box-shadow: var(--aero-shadow-std);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+}

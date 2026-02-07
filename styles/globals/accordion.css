@@ -1,6 +1,7 @@
 details {
-  border-bottom: var(--border-width) solid var(--text-swath);
+  border-radius: var(--spacing-sm);
   color: var(--text-swath);
+  margin: var(--spacing-md);
   padding-bottom: var(--spacing-sm);
 
   summary {
@@ -9,6 +10,13 @@ details {
     margin-left: calc(var(--spacing-lg) * 2);
     padding-bottom: var(--spacing-xs);
     padding-right: var(--spacing-lg);
+
+    span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
   ::marker {

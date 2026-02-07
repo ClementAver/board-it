@@ -41,15 +41,15 @@ button,
   }
 
   &.swath {
-    background: var(--accent-beta);
-    border: var(--border-width) solid var(--accent-beta);
-    color: var(--primary);
+    background: var(--secondary-lighter);
+    border: var(--border-width) solid var(--secondary-lighter);
+    color: var(--text-swath);
 
     &:hover,
     &:focus-visible {
-      background: var( --secondary-lighter);
-      border: var(--border-width) solid var( --secondary-lighter);
-      color: var(--text-swath);
+      background: var(--accent-beta);
+      border: var(--border-width) solid var(--accent-beta);
+      color: var(--primary);
 
       &:active {
         background-color: var(--btn-background-color-active);

@@ -92,10 +92,10 @@
               >
                 <aeee-file-input class="w-full">
                   <input
+                    id="upload-work-file-input"
+                    name="json"
                     type="file"
                     accept="application/JSON"
-                    name="json"
-                    id="upload-work-file-input"
                     tabindex="-1"
                   />
                   <label
@@ -485,7 +485,9 @@
       </aeee-tooltip>
 
       <details name="right-drawer-details">
-        <summary>Téléverser une image</summary>
+        <summary>
+          <span>Téléverser une image</span>
+        </summary>
         <form
           is="aeee-upload-image-form"
           action=""
@@ -640,7 +642,7 @@
         data-trigger="image-upload-dialog"
         data-action="close"
         type="button"
-        class="rounded-full bd-transparent bg-transparent text-secondary ml-auto icon"
+        class="rounded-full bd-transparent bg-transparent text-secondary ml-auto"
         aria-label="Fermer la boîte de dialogue modale."
       >
         <svg

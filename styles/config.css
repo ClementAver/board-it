@@ -19,7 +19,7 @@ html {
 
   --border-width: var(--spacing-xs);
   --disabled-opacity: 0.5;
-  --icons-width: 0.8lh;
+  --icons-width: 1rem;
 
   --spring-background: var(--secondary-darker);
   --spring-spacing: 0.25rem;

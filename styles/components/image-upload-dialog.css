@@ -3,7 +3,7 @@ dialog#image-upload-dialog {
   height: 100vh;
   height: 100dvh;
   margin: auto;
-  padding-top: 2.5rem;
+  padding-top: 2.75rem;
   width: 100vw;
   width: 100dvw;
 
@@ -21,14 +21,13 @@ dialog#image-upload-dialog {
   > p {
     font-weight: 500;
     left: 0;
-    margin: var(--spacing-xs) var(--spacing-lg);
+    margin-inline: var(--spacing-lg);
     max-width: 100%;
     overflow: hidden;
-    padding-block: var(--spacing-md);
     padding-right: calc(var(--spacing-lg) * 3);
     position: absolute;
     text-overflow: ellipsis;
-    top: 0;
+    top: 0.75rem;
     white-space: nowrap;
   }
 

@@ -1,11 +1,8 @@
 aeee-gallery {
-  background-color: var(--ternary);
-  border-radius: var(--spacing-lg);
   display: flex;
   flex-flow: column nowrap;
   gap: var(--spacing-md);
   overflow: hidden;
-  padding: var(--spacing-lg);
 
   &[hidden] {
     display: none;

@@ -1,10 +1,13 @@
 dialog {
+  background-color: var(--ternary);
   border-radius: var(--spacing-lg);
   box-shadow: var(--shadow-std);
   opacity: 1;
   padding: 0;
   transform: translateY(0px);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 
   @starting-style {
     opacity: 0;
@@ -25,8 +28,9 @@ dialog::backdrop {
 }
 
 dialog > button:first-of-type {
+  padding: var(--spacing-md);
   position: absolute;
-  right: var(--spacing-sm);
-  top: var(--spacing-sm);
+  right: var(--spacing-md);
+  top: var(--spacing-md);
   z-index: 10;
 }

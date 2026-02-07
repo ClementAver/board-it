@@ -22,6 +22,7 @@ form:has(> aeee-file-input) {
 aeee-file-input {
   border-radius: var(--spacing-xs);
   display: block;
+  --radius: var(--spacing-xs);
 
   &[hidden] {
     display: none;
@@ -36,29 +37,30 @@ aeee-file-input {
     white-space: nowrap;
     width: 1px;
     z-index: -1;
+  }
 
-    + label {
-      display: flex;
-      font-weight: 500;
-      gap: var(--spacing-sm);
-      max-width: 100%;
-      padding: var(--btn-padding-y) var(--btn-padding-x);
-      width: fit-content;
+  label {
+    border-radius: var(--radius);
+    display: flex;
+    font-weight: 500;
+    gap: var(--spacing-sm);
+    max-width: 100%;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    width: fit-content;
 
-      span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
   &:has(> p) {
     display: flex;
-    flex-flow: nowrap;
+    flex-flow: wrap;
+    gap: var(--spacing-md);
     height: fit-content;
     max-width: 100%;
-    overflow: hidden;
 
     label {
       max-width: 100%;
@@ -69,6 +71,7 @@ aeee-file-input {
     align-items: center;
     background-color: var(--secondary-darker);
     border: var(--border-width) solid var(--secondary-darker);
+    border-radius: var(--radius);
     color: var(--text-swath);
     display: flex;
     line-height: 1rem;
