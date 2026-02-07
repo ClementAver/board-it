@@ -58,7 +58,7 @@ aeee-file-input {
   &:has(> p) {
     display: flex;
     flex-flow: wrap;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     height: fit-content;
     max-width: 100%;
 

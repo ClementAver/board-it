@@ -17,21 +17,21 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--secondary) transparent;
 
+  /* ⇊  Globals ⇊ */
   --border-width: var(--spacing-xs);
   --disabled-opacity: 0.5;
   --icons-width: 1rem;
 
-  --spring-background: var(--secondary-darker);
-  --spring-spacing: 0.25rem;
-
   --shadow-std: var(--shadow) 0px 1px 4px;
   --shadow-adaptative-std: var(--shadow-adaptative) 0px 1px 4px;
 
+  /* ⇊  Spacing ⇊ */
   --spacing-xs: 0.125rem;
   --spacing-sm: 0.25rem;
   --spacing-md: 0.5rem;
   --spacing-lg: 1rem;
 
+  /* ⇊  Button ⇊ */
   --btn-padding-x: var(--spacing-md);
   --btn-padding-y: var(--spacing-xs);
   --btn-color: var(--text-swath);
@@ -47,6 +47,7 @@ html {
   --btn-background-color-selected: var(--primary);
   --btn-border-color-selected: var(--primary);
 
+  /* ⇊  Link ⇊ */
   --link-padding-x: var(--spacing-md);
   --link-padding-y: 0;
   --link-color: var(--text);
@@ -55,9 +56,6 @@ html {
   --link-color-hover: var(--primary);
   --link-background-color-hover: var(--accent-beta);
   --link-border-color-hover: var(--accent-beta);
-
-  --drawer-padding: var(--spacing-md);
-  --main-header-background-color: var(--secondary-darker);
 
   /* ⇊  Default theme colours ⇊ */
   --text: hsl(0, 0%, 10%);
@@ -75,10 +73,19 @@ html {
   --valid: limegreen;
   --invalid: crimson;
 
+  --accent-alpha-50: hsl(200 60% 50% / 50%);
+  --accent-beta-50: hsl(30 70% 60% / 50%);
+
   --secondary-darker: color-mix(in oklab, var(--secondary), hsl(0, 0%, 0%) 30%);
   --secondary-lighter: color-mix(
     in hsl,
     var(--secondary),
     hsl(0, 0%, 100%) 25%
   );
+
+  /* ⇊  Miscellaneous ⇊ */
+  --drawer-padding: var(--spacing-md);
+  --main-header-background-color: var(--secondary-darker);
+  --spring-background: var(--secondary-darker);
+  --spring-spacing: 0.25rem;
 }

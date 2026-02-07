@@ -2,7 +2,6 @@ import debug from "../utilities/debug.js";
 import initDrawers from "../utilities/initDrawer.js";
 import reactive from "../utilities/reactive.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
-import Thumbnail from "../classes/Thumbnail.js";
 import Tooltip from "../classes/Tooltip.js";
 
 initDrawers();

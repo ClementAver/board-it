@@ -1,15 +1,23 @@
 details {
   border-radius: var(--spacing-sm);
   color: var(--text-swath);
-  margin: var(--spacing-md);
   padding-bottom: var(--spacing-sm);
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--accent-alpha-50);
+  }
 
   summary {
-    font-weight: 600;
+    cursor: pointer;
+    font-weight: 700;
     list-style-position: outside;
     margin-left: calc(var(--spacing-lg) * 2);
     padding-bottom: var(--spacing-xs);
     padding-right: var(--spacing-lg);
+    position: relative;
+    user-select: none;
+    z-index: 1;
 
     span {
       display: block;
@@ -25,7 +33,7 @@ details {
   }
 
   &[open] {
-    padding-bottom: unset;
+    padding-bottom: var(--spacing-sm);
 
     ::marker {
       content: "-  ";

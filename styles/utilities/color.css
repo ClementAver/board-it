@@ -41,6 +41,9 @@
 .bg-secondary-darker {
   background-color: var(--secondary-darker);
 }
+.bg-secondary-lighter {
+  background-color: var(--secondary-lighter);
+}
 .bg-ternary {
   background-color: var(--ternary);
 }
@@ -62,6 +65,9 @@
 }
 .bd-secondary-darker {
   border: var(--border-width) solid var(--secondary-darker);
+}
+.bd-secondary-lighter {
+  border: var(--border-width) solid var(--secondary-lighter);
 }
 .bd-ternary {
   border: var(--border-width) solid var(--ternary);
@@ -112,6 +118,9 @@
 .bg-secondary-darker--hov:hover {
   background-color: var(--secondary-darker);
 }
+.bg-secondary-lighter--hov:hover {
+  background-color: var(--secondary-lighter);
+}
 .bg-ternary--hov:hover {
   background-color: var(--ternary);
 }
@@ -133,6 +142,9 @@
 }
 .bd-secondary-darker--hov:hover {
   border: var(--border-width) solid var(--secondary-darker);
+}
+.bd-secondary-lighter--hov:hover {
+  border: var(--border-width) solid var(--secondary-lighter);
 }
 .bd-ternary--hov:hover {
   border: var(--border-width) solid var(--ternary);

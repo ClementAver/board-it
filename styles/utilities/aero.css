@@ -1,12 +1,10 @@
 html {
-  --aero-hsl: var(--aero-hue) var(--aero-saturation) var(--aero-lightness);
-
   --aero-hue: 0deg;
   --aero-saturation: 0%;
-  --aero-lightness: 70%;
+  --aero-lightness: 100%;
+  --aero-hsl: var(--aero-hue) var(--aero-saturation) var(--aero-lightness);
 
-  --aero-opacity: 0.5;
-
+  --aero-opacity: 1;
   --aero-opacity-1: calc(0.1 * var(--aero-opacity));
   --aero-opacity-2: calc(0.2 * var(--aero-opacity));
   --aero-opacity-3: calc(0.3 * var(--aero-opacity));
@@ -41,7 +39,6 @@ html {
       hsl(var(--aero-hsl) / var(--aero-opacity-2)) 45%,
       transparent 45%
     );
-
   --aero-shadow-std:
     hsl(0 0% 0% / 10%) 0px 4px 8px,
     inset 0px 1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-5)),
@@ -53,6 +50,7 @@ html {
   position: relative;
 
   &:after {
+    mix-blend-mode: overlay;
     background: var(--aero-background);
     border-radius: inherit;
     box-shadow: var(--aero-shadow-std);
