@@ -5,7 +5,8 @@ details {
   transition: background-color 200ms ease-in-out;
 
   &:hover {
-    background-color: var(--accent-alpha-50);
+    background-color: var(--lighten);
+    box-shadow: var(--shadow-std);
   }
 
   summary {
@@ -33,7 +34,7 @@ details {
   }
 
   &[open] {
-    padding-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-md);
 
     ::marker {
       content: "-  ";
