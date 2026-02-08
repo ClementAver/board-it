@@ -40,7 +40,7 @@ html {
       transparent 45%
     );
   --aero-shadow-std:
-    hsl(0 0% 0% / 10%) 0px 4px 8px,
+    hsl(0 0% 0% / 20%) 0px 2px 4px,
     inset 0px 1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-5)),
     inset 0px -1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-4));
 }

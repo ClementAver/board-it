@@ -73,9 +73,6 @@ html {
   --valid: limegreen;
   --invalid: crimson;
 
-  --accent-alpha-50: hsl(200 60% 50% / 50%);
-  --accent-beta-50: hsl(30 70% 60% / 50%);
-
   --lighten: hsl(0 0% 100% / 10%);
   --darken: hsl(0 0% 0% / 10%);
 

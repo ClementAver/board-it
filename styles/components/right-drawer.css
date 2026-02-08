@@ -1,5 +1,6 @@
 #right-drawer {
   white-space: nowrap;
-
+  background: linear-gradient(to right, lime 50%, magenta 50%);
+  
   /* &[data-open="true"] {} */
 }

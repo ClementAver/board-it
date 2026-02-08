@@ -48,6 +48,7 @@ export default class CustomizableFileInput extends HTMLElement {
   }
 
   change(event) {
+    // TODO : issue at trigger.
     if (this.paragraph) {
       const count = event.target.files.length ?? 0;
       this.paragraph.querySelector("small").textContent = `${count} fichier${
