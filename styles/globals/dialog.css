@@ -3,6 +3,7 @@ dialog {
   border-radius: var(--spacing-lg);
   box-shadow: var(--shadow-std);
   opacity: 1;
+  overscroll-behavior: contain;
   padding: 0;
   transform: translateY(0px);
   transition:
