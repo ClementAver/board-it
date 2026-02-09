@@ -3,7 +3,6 @@ import Unique from "./Unique.js";
 export default class Tooltip extends HTMLElement {
   _text = "";
 
-  // TODO : Are all web component constructor parameters useless as we can't instanciate one web component from Javascript?
   constructor({ text } = {}) {
     super();
 

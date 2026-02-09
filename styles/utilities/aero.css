@@ -60,3 +60,16 @@ html {
     position: absolute;
   }
 }
+
+/* (example : Add a tint to the aero style from the template)
+<style>
+  @scope {
+    :scope {
+      background-color: hsl(200 60% 50% / 20%);
+      &:hover {
+        background-color: hsl(200 60% 50% / 40%);
+      }
+    }
+  }
+</style> 
+*/

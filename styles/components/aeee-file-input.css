@@ -5,18 +5,6 @@ form:has(> aeee-file-input) {
   justify-content: start;
   overflow: hidden;
   position: relative;
-
-  /* &::after {
-    background: center / cover
-      url(../../assets/pictures/thumbnail_placehoder.png);
-    content: "";
-    filter: blur(25px) contrast(100%) brightness(125%);
-    inset: 0;
-    opacity: 1;
-    position: absolute;
-    transform: scale(1.5);
-    z-index: -1;
-  } */
 }
 
 aeee-file-input {

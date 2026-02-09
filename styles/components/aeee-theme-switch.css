@@ -1,4 +1,6 @@
 aeee-theme-switch {
+  --theme-switch-background: var(--accent-beta);
+
   [data-theme-switch] {
     align-items: center;
     background-color: var(--secondary);
@@ -13,12 +15,12 @@ aeee-theme-switch {
 
     &:hover,
     &:focus-visible {
-      color: var(--btn-background-color-hover);
+      color: var(--theme-switch-background);
 
       &:active {
-        background-color: var(--btn-background-color-hover);
-        border: var(--border-width) solid var(--btn-border-color-hover);
-        color: var(--btn-background-color-hover);
+        background-color: var(--theme-switch-background);
+        border: var(--border-width) solid var(--theme-switch-background);
+        color: var(--theme-switch-background);
       }
     }
 
