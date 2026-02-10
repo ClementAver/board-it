@@ -9,8 +9,8 @@
 [role="tooltip"] {
   background-color: var(--accent-beta);
   border: none;
-  border-radius: var(--border-width);
-  box-shadow: var(--shadow-std);
+  border-radius: var(--spacing-xs);
+  box-shadow: var(--shadow);
   color: var(--primary);
   font-size: 1rem;
   line-height: 1.2;

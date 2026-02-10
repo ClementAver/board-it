@@ -2,8 +2,8 @@
   border-radius: var(--spacing-xs);
   color: var(--text-swath);
   display: flex;
+  font-size: 0.8rem;
   gap: var(--spacing-xs);
-  line-height: var(--icons-width);
   padding: var(--spacing-xs);
 }
 

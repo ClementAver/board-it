@@ -22,7 +22,7 @@ select {
   &:focus-visible {
     background-color: var(--btn-background-color-hover);
     border: var(--border-width) solid var(--btn-border-color-hover);
-    box-shadow: var(--shadow-std);
+    box-shadow: var(--shadow);
     color: var(--btn-color-hover);
 
     selectedcontent {
@@ -34,7 +34,7 @@ select {
   &:focus-visible:active {
     background-color: var(--btn-background-color-active);
     border: var(--border-width) solid var(--btn-border-color-active);
-    box-shadow: var(--shadow-std);
+    box-shadow: var(--shadow);
     color: var(--btn-color-active);
 
     selectedcontent {
@@ -76,7 +76,7 @@ select {
     &:focus-visible {
       background-color: var(--btn-background-color-hover);
       border: var(--border-width) solid var(--btn-border-color-hover);
-      box-shadow: var(--shadow-std);
+      box-shadow: var(--shadow);
       color: var(--btn-color-hover);
     }
 
@@ -84,18 +84,19 @@ select {
     &:focus-visible:active {
       background-color: var(--btn-background-color-active);
       border: var(--border-width) solid var(--btn-border-color-active);
-      box-shadow: var(--shadow-std);
+      box-shadow: var(--shadow);
       color: var(--btn-color-active);
     }
 
     &:checked {
       background-color: var(--btn-background-color-selected);
       border: var(--border-width) solid var(--btn-border-color-selected);
-      box-shadow: var(--shadow-std);
+      box-shadow: var(--shadow);
       color: var(--btn-color-selected);
       font-weight: 700;
     }
 
+    /* TODO: use url() */
     &::checkmark {
       content: "✓";
       margin-left: auto;
@@ -113,7 +114,7 @@ select {
   left: anchor(auto);
   opacity: 0;
   padding: var(--spacing-xs);
-  box-shadow: var(--shadow-std);
+  box-shadow: var(--shadow);
   top: calc(anchor(bottom) + var(--spacing-xs));
   pointer-events: none;
 }

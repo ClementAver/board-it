@@ -1,6 +1,12 @@
+html {
+  --icons-height: calc(1lh * 0.8);
+}
+
 svg {
   aspect-ratio: 1/1;
-  height: auto;
-  width: var(--icons-width);
-  min-width: var(--icons-width);
+  display: block;
+  height: var(--icons-height);
+  margin-block: auto;
+  min-width: auto;
+  width: auto;
 }

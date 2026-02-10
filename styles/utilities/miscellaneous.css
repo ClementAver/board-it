@@ -37,9 +37,5 @@
 }
 
 .shadow {
-  box-shadow: var(--shadow-std);
+  box-shadow: var(--shadow);
 }
-.shadow-adaptative {
-  box-shadow: var(--shadow-adaptative-std);
-}
-

@@ -1,7 +1,7 @@
 dialog {
   background-color: var(--ternary);
   border-radius: var(--spacing-lg);
-  box-shadow: var(--shadow-std);
+  box-shadow: var(--shadow);
   opacity: 1;
   overscroll-behavior: contain;
   padding: 0;

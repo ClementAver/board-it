@@ -1,3 +1,8 @@
+html {
+  --spring-background: var(--secondary-darker);
+  --spring-spacing: 0.25rem;
+}
+
 .spring-wrapper {
   background: linear-gradient(
     to bottom,

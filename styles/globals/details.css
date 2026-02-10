@@ -5,7 +5,7 @@ details {
 
   &:hover {
     background-color: var(--lighten);
-    box-shadow: var(--shadow-std);
+    box-shadow: var(--shadow);
   }
 
   summary {

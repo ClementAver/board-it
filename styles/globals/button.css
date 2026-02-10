@@ -1,3 +1,20 @@
+html {
+  --btn-background-color: var(--secondary);
+  --btn-background-color-active: var(--primary);
+  --btn-background-color-hover: var(--accent-beta);
+  --btn-background-color-selected: var(--primary);
+  --btn-border-color: var(--secondary);
+  --btn-border-color-active: var(--primary);
+  --btn-border-color-hover: var(--accent-beta);
+  --btn-border-color-selected: var(--primary);
+  --btn-color: var(--text-swath);
+  --btn-color-active: var(--accent-beta);
+  --btn-color-hover: var(--primary);
+  --btn-color-selected: var(--accent-beta);
+  --btn-padding-y: var(--spacing-xs);
+  --btn-padding-x: var(--spacing-md);
+}
+
 button,
 .button-chameleon {
   background-color: var(--btn-background-color);
@@ -10,13 +27,13 @@ button,
   &:focus-visible {
     background-color: var(--btn-background-color-hover);
     border: var(--border-width) solid var(--btn-border-color-hover);
-    box-shadow: var(--shadow-std);
+    box-shadow: var(--shadow);
     color: var(--btn-color-hover);
 
     &:active {
       background-color: var(--btn-background-color-active);
       border: var(--border-width) solid var(--btn-border-color-active);
-      box-shadow: var(--shadow-std);
+      box-shadow: var(--shadow);
       color: var(--btn-color-active);
     }
 
@@ -32,7 +49,7 @@ button,
   &.selected {
     background-color: var(--btn-background-color-selected);
     border: var(--border-width) solid var(--btn-border-color-selected);
-    box-shadow: var(--shadow-std);
+    box-shadow: var(--shadow);
     color: var(--btn-color-selected);
   }
 

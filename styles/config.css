@@ -1,16 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
 
 * {
-  scrollbar-width: inherit;
-  scrollbar-color: inherit;
-  scrollbar-track-color: inherit;
-  scrollbar-gutter: inherit;
   scrollbar-arrow-color: inherit;
+  scrollbar-color: inherit;
+  scrollbar-gutter: inherit;
+  scrollbar-track-color: inherit;
+  scrollbar-width: inherit;
 }
 
 html {
   color-scheme: light dark;
-
   font-family: "Commissioner";
   font-size: 16px;
   color: var(--text);
@@ -20,42 +19,13 @@ html {
   /* ⇊  Globals ⇊ */
   --border-width: var(--spacing-xs);
   --disabled-opacity: 0.5;
-  --icons-width: 1rem;
-
-  --shadow-std: var(--shadow) 0px 1px 4px;
-  --shadow-adaptative-std: var(--shadow-adaptative) 0px 1px 4px;
+  --shadow: hsl(0 0% 0% / 0.125) 0px 1px 4px;
 
   /* ⇊  Spacing ⇊ */
   --spacing-xs: 0.125rem;
   --spacing-sm: 0.25rem;
   --spacing-md: 0.5rem;
   --spacing-lg: 1rem;
-
-  /* ⇊  Button ⇊ */
-  --btn-padding-x: var(--spacing-md);
-  --btn-padding-y: var(--spacing-xs);
-  --btn-color: var(--text-swath);
-  --btn-background-color: var(--secondary);
-  --btn-border-color: var(--secondary);
-  --btn-color-hover: var(--primary);
-  --btn-background-color-hover: var(--accent-beta);
-  --btn-border-color-hover: var(--accent-beta);
-  --btn-color-active: var(--accent-beta);
-  --btn-background-color-active: var(--primary);
-  --btn-border-color-active: var(--primary);
-  --btn-color-selected: var(--accent-beta);
-  --btn-background-color-selected: var(--primary);
-  --btn-border-color-selected: var(--primary);
-
-  /* ⇊  Link ⇊ */
-  --link-padding-x: var(--spacing-md);
-  --link-padding-y: 0;
-  --link-color: var(--text);
-  --link-background-color: var(--ternary);
-  --link-border-color: var(--ternary);
-  --link-color-hover: var(--primary);
-  --link-background-color-hover: var(--accent-beta);
-  --link-border-color-hover: var(--accent-beta);
 
   /* ⇊  Default theme colours ⇊ */
   --text: hsl(0, 0%, 10%);
@@ -64,10 +34,8 @@ html {
   --primary: hsl(30, 20%, 20%);
   --secondary: hsl(120, 10%, 40%);
   --ternary: hsl(0, 0%, 90%);
-  --shadow: rgba(0, 0, 0, 0.125);
-  --shadow-adaptative: rgba(0, 0, 0, 0.25);
   --backdrop-color: rgba(0, 0, 0, 0.25);
-
+  
   --accent-alpha: hsl(200, 60%, 50%);
   --accent-beta: hsl(30, 70%, 60%);
   --valid: limegreen;
@@ -78,14 +46,8 @@ html {
 
   --secondary-darker: color-mix(in oklab, var(--secondary), hsl(0, 0%, 0%) 30%);
   --secondary-lighter: color-mix(
-    in hsl,
+    in oklab,
     var(--secondary),
-    hsl(0, 0%, 100%) 25%
+    hsl(0, 0%, 100%) 30%
   );
-
-  /* ⇊  Miscellaneous ⇊ */
-  --drawer-padding: var(--spacing-md);
-  --main-header-background-color: var(--secondary-darker);
-  --spring-background: var(--secondary-darker);
-  --spring-spacing: 0.25rem;
 }

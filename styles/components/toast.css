@@ -1,7 +1,7 @@
 .toast {
   background-color: var(--accent-beta);
-  border-radius: var(--border-width);
-  box-shadow: var(--shadow-std);
+  border-radius: var(--spacing-xs);
+  box-shadow: var(--shadow);
   color: var(--primary);
   cursor: pointer;
   max-width: min(
@@ -10,7 +10,9 @@
   );
   padding: var(--spacing-xs) var(--spacing-md);
   top: unset;
-  transition: bottom 0.5s ease-in-out, opacity 0.5s 0.25s ease-in-out;
+  transition:
+    bottom 0.5s ease-in-out,
+    opacity 0.5s 0.25s ease-in-out;
   width: fit-content;
   z-index: 1;
 

@@ -111,7 +111,7 @@ aeee-thumbnail {
   figcaption {
     background-color: var(--accent-beta);
     border-radius: var(--spacing-sm);
-    box-shadow: var(--shadow-std);
+    box-shadow: var(--shadow);
     color: var(--primary);
     grid-area: main;
     margin: auto 1rem 1rem auto;

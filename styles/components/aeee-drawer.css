@@ -1,7 +1,7 @@
 menu[data-drawer] {
   background-color: var(--secondary);
   max-width: 0;
-  padding: var(--drawer-padding) 0 0;
+  padding: var(--spacing-md) 0 0;
   position: relative;
   transition: all 200ms ease-in-out;
   width: 0;
@@ -9,15 +9,15 @@ menu[data-drawer] {
 
   [data-switch] {
     position: absolute;
-    top: var(--drawer-padding);
+    top: var(--spacing-md);
 
     .left & {
-      left: calc(var(--drawer-padding) + 100%);
+      left: calc(var(--spacing-md) + 100%);
       transition: left 200ms ease-in-out;
     }
 
     .right & {
-      right: calc(var(--drawer-padding) + 100%);
+      right: calc(var(--spacing-md) + 100%);
       transition: right 200ms ease-in-out;
     }
   }
@@ -32,7 +32,7 @@ menu[data-drawer] {
       transform: translateX(-200%);
     }
 
-     .right & {
+    .right & {
       transform: translateX(200%);
     }
 
@@ -47,7 +47,7 @@ menu[data-drawer] {
 
   &[data-open="true"] {
     max-width: fit-content;
-    padding: var(--drawer-padding);
+    padding: var(--spacing-md);
     width: fit-content;
 
     > li {

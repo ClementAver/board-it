@@ -1,3 +1,14 @@
+html {
+  --link-background-color: var(--ternary);
+  --link-background-color-hover: var(--accent-beta);
+  --link-border-color: var(--ternary);
+  --link-border-color-hover: var(--accent-beta);
+  --link-color: var(--text);
+  --link-color-hover: var(--primary);
+  --link-padding-x: var(--spacing-md);
+  --link-padding-y: 0;
+}
+
 nav a::after {
   content: "↗";
   position: absolute;
@@ -20,6 +31,6 @@ nav a:hover,
 nav a:focus-visible {
   background-color: var(--link-background-color-hover);
   border: var(--border-width) solid var(--link-border-color-hover);
-  box-shadow: var(--shadow-std);
+  box-shadow: var(--shadow);
   color: var(--link-color-hover);
 }
