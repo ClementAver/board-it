@@ -1,7 +1,6 @@
 details {
   border-radius: var(--spacing-sm);
   color: var(--text-swath);
-  padding-bottom: var(--spacing-sm);
   transition: background-color 200ms ease-in-out;
 
   &:hover {
@@ -11,14 +10,18 @@ details {
 
   summary {
     cursor: pointer;
-    font-weight: 700;
     list-style-position: outside;
     margin-left: calc(var(--spacing-lg) * 2);
-    padding-bottom: var(--spacing-xs);
+    padding-block: var(--spacing-md);
     padding-right: var(--spacing-lg);
     position: relative;
     user-select: none;
-    z-index: 1;
+
+    &::marker {
+      content: "+ ";
+      font-size: 130%;
+      line-height: 70%;
+    }
 
     span {
       display: block;
@@ -28,30 +31,31 @@ details {
     }
   }
 
-  ::marker {
-    content: "+ ";
-    font-size: 130%;
+  &::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 200ms;
   }
 
   &[open] {
-    padding-bottom: var(--spacing-md);
-
     ::marker {
       content: "-  ";
     }
 
-    summary {
-      + * {
-        animation: accordion ease-in-out 200ms;
-      }
+    &::details-content {
+      block-size: auto;
+    }
+
+    summary + * {
+      animation: details-content ease-in-out 200ms;
     }
   }
 }
 
-@keyframes accordion {
+@keyframes details-content {
   0% {
     opacity: 0;
-    transform: translateY(-2rem);
+    transform: translateY(2rem);
   }
   50% {
     opacity: 0;
