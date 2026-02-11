@@ -10,9 +10,14 @@ select {
   border: var(--border-width) solid var(--btn-border-color);
   color: var(--btn-color);
   cursor: pointer;
+  display: inline-block;
   line-height: 1.5rem;
   padding: var(--btn-padding-y) var(--btn-padding-x);
-  display: inline-block;
+
+  &::picker-icon {
+    scale: 0.75;
+    /* transition: rotate 300ms ease-in-out; */
+  }
 
   &:open::picker-icon {
     rotate: 180deg;
@@ -68,9 +73,9 @@ select {
     border: var(--border-width) solid var(--btn-border-color);
     color: var(--btn-color);
     cursor: pointer;
+    font-family: "Commissioner", "Arial", sans-serif;
     line-height: 1.5rem;
     padding: var(--btn-padding-y) var(--btn-padding-x);
-    font-family: "Commissioner", "Arial", sans-serif;
 
     &:hover,
     &:focus-visible {
@@ -92,15 +97,15 @@ select {
       background-color: var(--btn-background-color-selected);
       border: var(--border-width) solid var(--btn-border-color-selected);
       box-shadow: var(--shadow);
-      color: var(--btn-color-selected);
-      font-weight: 700;
+      color: var(--valid);
+      font-weight: 600;
     }
 
-    /* TODO: use url() */
     &::checkmark {
       content: "✓";
       margin-left: auto;
       order: 1;
+      scale: 0.75;
     }
   }
 }
@@ -114,9 +119,9 @@ select {
   left: anchor(auto);
   opacity: 0;
   padding: var(--spacing-xs);
+  pointer-events: none;
   box-shadow: var(--shadow);
   top: calc(anchor(bottom) + var(--spacing-xs));
-  pointer-events: none;
 }
 
 ::picker(select):popover-open {
