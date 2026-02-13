@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column nowrap;
   position: fixed;
+  animation: dropdown-menu 200ms ease-in-out;
 }
 
 .dropdown-menu.anchor-bottom-sr {
@@ -97,3 +98,17 @@ position-try: --menu-bottom-left, --menu-top-right, menu-top-left;
   position-area: top span-left;
 } 
 */
+
+@keyframes dropdown-menu {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

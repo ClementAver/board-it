@@ -47,17 +47,19 @@ details {
     }
 
     summary + * {
-      animation: details-content ease-in-out 200ms;
+      animation: details-content ease-in-out 400ms;
     }
   }
 }
 
 @keyframes details-content {
   0% {
+    inline-size: 0;
     opacity: 0;
     transform: translateY(2rem);
   }
   50% {
+    inline-size: calc-size(fit-content, size);
     opacity: 0;
   }
   100% {
