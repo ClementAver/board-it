@@ -16,15 +16,6 @@
 button:has(+ .dropdown-menu) {
   border-radius: var(--spacing-xs);
   font-weight: 500;
-  padding-right: var(--spacing-lg);
-  position: relative;
-}
-
-button:has(+ .dropdown-menu):after {
-  content: "↴";
-  font-weight: inherit;
-  position: absolute;
-  right: var(--spacing-sm);
 }
 
 .dropdown-menu {
