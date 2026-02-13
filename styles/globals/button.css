@@ -53,10 +53,6 @@ button,
     color: var(--btn-color-selected);
   }
 
-  &.icon {
-    padding-block: var(--spacing-md);
-  }
-
   &.swath {
     background: var(--secondary-lighter);
     border: var(--border-width) solid var(--secondary-lighter);
