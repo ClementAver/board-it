@@ -20,7 +20,8 @@
 
 body {
   /* 4. Add accessible line-height */
-  line-height: 1.6;
+  /* line-height: 1.6; */
+  line-height: var(--line-height);
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
 }

@@ -1,9 +1,5 @@
 html {
-  --icon-height: calc(1lh * 0.8);
-}
-
-.icon-sm {
-  --icon-height: calc(1lh * 0.6);
+  --icon-height: calc(2ex);
 }
 
 svg {

@@ -416,8 +416,14 @@
 .w-16 {
   width: 16px;
 }
+.w-24 {
+  width: 24px;
+}
 .w-32 {
   width: 32px;
+}
+.w-48 {
+  width: 48px;
 }
 .w-64 {
   width: 64px;
@@ -482,8 +488,14 @@
 .max-w-16 {
   max-width: 16px;
 }
+.max-w-24 {
+  max-width: 24px;
+}
 .max-w-32 {
   max-width: 32px;
+}
+.max-w-48 {
+  max-width: 48px;
 }
 .max-w-64 {
   max-width: 64px;
@@ -548,8 +560,14 @@
 .min-w-16 {
   min-width: 16px;
 }
+.min-w-24 {
+  min-width: 24px;
+}
 .min-w-32 {
   min-width: 32px;
+}
+.min-w-48 {
+  min-width: 48px;
 }
 .min-w-64 {
   min-width: 64px;
@@ -614,8 +632,14 @@
 .h-16 {
   height: 16px;
 }
+.h-24 {
+  height: 24px;
+}
 .h-32 {
   height: 32px;
+}
+.h-48 {
+  height: 48px;
 }
 .h-64 {
   height: 64px;
@@ -680,8 +704,14 @@
 .max-h-16 {
   max-height: 16px;
 }
+.max-h-24 {
+  max-height: 24px;
+}
 .max-h-32 {
   max-height: 32px;
+}
+.max-h-48 {
+  max-height: 48px;
 }
 .max-h-64 {
   max-height: 64px;
@@ -746,8 +776,14 @@
 .min-h-16 {
   min-height: 16px;
 }
+.min-h-24 {
+  min-height: 24px;
+}
 .min-h-32 {
   min-height: 32px;
+}
+.min-h-48 {
+  min-height: 48px;
 }
 .min-h-64 {
   min-height: 64px;

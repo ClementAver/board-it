@@ -13,7 +13,7 @@
   box-shadow: var(--shadow);
   color: var(--primary);
   font-size: 1rem;
-  line-height: 1.2;
+  line-height: 1.1;
   padding: var(--spacing-xs) var(--spacing-md) var(--spacing-sm);
   position: fixed;
 }

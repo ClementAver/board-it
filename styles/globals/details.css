@@ -19,8 +19,6 @@ details {
 
     &::marker {
       content: "+ ";
-      font-size: 130%;
-      line-height: 70%;
     }
 
     span {

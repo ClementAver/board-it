@@ -62,7 +62,6 @@ aeee-file-input {
     border-radius: var(--radius);
     color: var(--text-swath);
     display: flex;
-    line-height: 1rem;
     max-width: 100%;
     overflow: hidden;
     padding: var(--btn-padding-y) var(--btn-padding-x);
