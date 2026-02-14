@@ -15,11 +15,12 @@ select {
   padding: var(--btn-padding-y) var(--btn-padding-x);
 
   &::picker-icon {
+    animation: picker-icon-close 200ms ease-in-out;
     scale: 0.75;
-    /* transition: rotate 300ms ease-in-out; */
   }
 
   &:open::picker-icon {
+    animation: picker-icon-open 200ms ease-in-out;
     rotate: 180deg;
   }
 
@@ -127,4 +128,26 @@ select {
 ::picker(select):popover-open {
   opacity: 1;
   pointer-events: auto;
+}
+
+@keyframes picker-icon-open {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes picker-icon-close {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

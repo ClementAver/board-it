@@ -2,6 +2,10 @@ html {
   --icon-height: calc(1lh * 0.8);
 }
 
+.icon-sm {
+  --icon-height: calc(1lh * 0.6);
+}
+
 svg {
   aspect-ratio: 1/1;
   display: block;
@@ -9,8 +13,4 @@ svg {
   margin-block: auto;
   min-width: auto;
   width: auto;
-}
-
-.icon-sm {
-  --icon-height: calc(1lh * 0.5);
 }
