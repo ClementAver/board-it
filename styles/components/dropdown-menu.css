@@ -45,7 +45,7 @@ button:has(+ .dropdown-menu) {
 }
 
 .dropdown-menu button,
-.dropdown-menu .button-chameleon {
+.dropdown-menu .button {
   border-radius: var(--spacing-xs);
   display: flex;
   font-weight: 500;
@@ -56,13 +56,13 @@ button:has(+ .dropdown-menu) {
 
 button:has(+ .dropdown-menu),
 .dropdown-menu button,
-.dropdown-menu .button-chameleon {
+.dropdown-menu .button {
   max-width: 150px;
 }
 
 button:has(+ .dropdown-menu) span:first-child,
 .dropdown-menu button span:first-child,
-.dropdown-menu .button-chameleon span:first-child {
+.dropdown-menu .button span:first-child {
   margin-left: var(--spacing-sm);
 }
 

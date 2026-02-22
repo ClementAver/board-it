@@ -16,7 +16,7 @@ html {
 }
 
 button,
-.button-chameleon {
+.button {
   background-color: var(--btn-background-color);
   border: var(--border-width) solid var(--btn-border-color);
   color: var(--btn-color);
