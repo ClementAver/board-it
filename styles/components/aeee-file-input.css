@@ -58,7 +58,6 @@ aeee-file-input {
   p {
     align-items: center;
     background-color: var(--secondary-darker);
-    border: var(--border-width) solid var(--secondary-darker);
     border-radius: var(--radius);
     color: var(--text-swath);
     display: flex;

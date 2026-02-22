@@ -13,7 +13,7 @@
     <header role="banner" data-drawer="banner-drawer" data-open="false">
       <a
         href="../index.html"
-        class="button flex flex-center no-dash py-xs px-md rounded-xs bg-transparent bd-transparent"
+        class="button flex flex-center no-dash px-md rounded-xs bg-transparent"
         style="font-size: 1rem"
       >
         <svg
@@ -377,7 +377,7 @@
         data-switch="banner-drawer"
         type="button"
         aria-label="Shows/hides the menu on smaller screen widths."
-        class="rounded-full bd-transparent bg-transparent text-swath no-dash h-24"
+        class="rounded-full bg-transparent text-swath no-dash h-24"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -411,7 +411,7 @@
         <button
           type="button"
           data-tool="camera"
-          class="flex rounded-xs bd-transparent w-full no-dash py-md"
+          class="flex rounded-xs w-full no-dash py-md"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -442,7 +442,7 @@
         <button
           type="button"
           data-tool="selector"
-          class="flex rounded-xs bd-transparent w-full no-dash py-md"
+          class="flex rounded-xs w-full no-dash py-md"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -476,14 +476,13 @@
       </li>
     </menu>
 
-    <!-- 🚧🚧🚧🚧🚧🚧🚧 -->
     <menu
       data-drawer="right-drawer"
       data-open="true"
       class="right"
       style="grid-area: right-drawer"
     >
-      <details name="right-drawer-details" class="mb-sm">
+      <details name="right-drawer-details" class="mb-sm medium" open>
         <summary>
           <span>Téléverser des images</span>
         </summary>
@@ -492,7 +491,6 @@
           action="http://127.0.0.1:8698/media"
           method="post"
           enctype="multipart/form-data"
-          class="p-lg"
         >
           <aeee-file-input>
             <input
@@ -537,7 +535,6 @@
         </form>
       </details>
     </menu>
-    <!-- 🚧🚧🚧🚧🚧🚧🚧 -->
 
     <main id="canvas-wrapper">
       <menu
@@ -638,7 +635,7 @@
         data-trigger="image-upload-dialog"
         data-action="close"
         type="button"
-        class="rounded-full bd-transparent bg-transparent text-secondary ml-auto p-md"
+        class="rounded-full bg-transparent text-secondary ml-auto p-md"
         aria-label="Fermer la boîte de dialogue modale."
       >
         <svg
@@ -679,15 +676,6 @@
                 data-alternate="The king of the jungle."
                 data-caption="Lives in the savana."
                 data-is-selectable="true"
-              />
-            </div>
-
-            <div class="spring-wrapper rounded-full">
-              <aeee-thumbnail
-                data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog.jpg/2560px-Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog.jpg"
-                data-alternate="The king of the jungle."
-                data-caption="Lives in the savana."
-                data-is-rounded="true"
               />
             </div>
           </div>

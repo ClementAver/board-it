@@ -41,9 +41,6 @@
 .bg-secondary-darker {
   background-color: var(--secondary-darker);
 }
-.bg-secondary-lighter {
-  background-color: var(--secondary-lighter);
-}
 .bg-ternary {
   background-color: var(--ternary);
 }
@@ -58,31 +55,28 @@
 }
 
 .bd-primary {
-  border: var(--border-width) solid var(--primary);
+  border-color: var(--primary);
 }
 .bd-secondary {
-  border: var(--border-width) solid var(--secondary);
+  border-color: var(--secondary);
 }
 .bd-secondary-darker {
-  border: var(--border-width) solid var(--secondary-darker);
-}
-.bd-secondary-lighter {
-  border: var(--border-width) solid var(--secondary-lighter);
+  border-color: var(--secondary-darker);
 }
 .bd-ternary {
-  border: var(--border-width) solid var(--ternary);
+  border-color: var(--ternary);
 }
 .bd-accent-alpha {
-  border: var(--border-width) solid var(--accent-alpha);
+  border-color: var(--accent-alpha);
 }
 .bd-accent-beta {
-  border: var(--border-width) solid var(--accent-beta);
+  border-color: var(--accent-beta);
 }
 .bd-swath {
-  border: var(--border-width) solid var(--text-swath);
+  border-color: var(--text-swath);
 }
 .bd-transparent {
-  border: var(--border-width) solid transparent;
+  border-color: transparent;
 }
 
 /* ⇊ Hover ⇊ */
@@ -118,9 +112,6 @@
 .bg-secondary-darker--hov:hover {
   background-color: var(--secondary-darker);
 }
-.bg-secondary-lighter--hov:hover {
-  background-color: var(--secondary-lighter);
-}
 .bg-ternary--hov:hover {
   background-color: var(--ternary);
 }
@@ -135,26 +126,23 @@
 }
 
 .bd-primary--hov:hover {
-  border: var(--border-width) solid var(--primary);
+  border-color: var(--primary);
 }
 .bd-secondary--hov:hover {
-  border: var(--border-width) solid var(--secondary);
+  border-color: var(--secondary);
 }
 .bd-secondary-darker--hov:hover {
-  border: var(--border-width) solid var(--secondary-darker);
-}
-.bd-secondary-lighter--hov:hover {
-  border: var(--border-width) solid var(--secondary-lighter);
+  border-color: var(--secondary-darker);
 }
 .bd-ternary--hov:hover {
-  border: var(--border-width) solid var(--ternary);
+  border-color: var(--ternary);
 }
 .bd-accent-alpha--hov:hover {
-  border: var(--border-width) solid var(--accent-alpha);
+  border-color: var(--accent-alpha);
 }
 .bd-accent-beta--hov:hover {
-  border: var(--border-width) solid var(--accent-beta);
+  border-color: var(--accent-beta);
 }
 .bd-transparent--hov:hover {
-  border: var(--border-width) solid transparent;
+  border-color: transparent;
 }

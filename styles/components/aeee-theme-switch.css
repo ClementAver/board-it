@@ -9,9 +9,8 @@ aeee-theme-switch {
     border: none;
     border-radius: calc(infinity * 1px);
     display: flex;
-    height: calc(var(--theme-switch-unit) * 6);
     justify-content: start;
-    min-width: calc(var(--theme-switch-unit) * 12);
+    min-width: calc(var(--theme-switch-unit) * 10);
     padding-inline: 0;
     --theme-switch-handle-translate: calc(var(--theme-switch-unit) * 1);
     width: calc(var(--theme-switch-unit) * 6);
@@ -29,7 +28,7 @@ aeee-theme-switch {
     }
 
     [data-theme="dark"] & {
-      --theme-switch-handle-translate: calc(var(--theme-switch-unit) * 7);
+      --theme-switch-handle-translate: calc(var(--theme-switch-unit) * 5);
     }
   }
 

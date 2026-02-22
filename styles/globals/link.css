@@ -6,7 +6,7 @@ html {
   --link-color: var(--text);
   --link-color-hover: var(--primary);
   --link-padding-x: var(--spacing-md);
-  --link-padding-y: 0;
+  --link-padding-y: var(--spacing-sm);
 }
 
 nav a::after {
@@ -19,7 +19,6 @@ nav a::after {
 
 nav a {
   background-color: var(--link-background-color);
-  border: var(--border-width) solid var(--link-border-color);
   color: var(--link-color);
   display: inline-block;
   padding: var(--link-padding-y) var(--link-padding-x);
@@ -30,7 +29,6 @@ nav a {
 nav a:hover,
 nav a:focus-visible {
   background-color: var(--link-background-color-hover);
-  border: var(--border-width) solid var(--link-border-color-hover);
   box-shadow: var(--shadow);
   color: var(--link-color-hover);
 }

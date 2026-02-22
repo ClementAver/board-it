@@ -17,16 +17,16 @@ aeee-thumbnail {
   }
 
   &:state(checked) {
-    border: calc(var(--border-width) * 2) solid var(--accent-alpha);
+    border: calc(var(--border-width)) solid var(--accent-alpha);
 
     ::before {
-      box-shadow: inset 0 0 var(--spacing-xs) var(--accent-alpha);
+      box-shadow: inset 0 0 var(--spacing-lg) var(--accent-alpha);
       content: "";
       inset: 0;
       position: absolute;
     }
 
-    ::after {
+    /* ::after {
       background-color: var(--accent-alpha);
       border-radius: calc(infinity * 1px);
       color: var(--text-swath);
@@ -37,7 +37,7 @@ aeee-thumbnail {
       text-align: center;
       top: var(--spacing-lg);
       width: 1lh;
-    }
+    } */
 
     &:state(rounded) {
       ::before {

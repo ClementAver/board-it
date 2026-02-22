@@ -4,7 +4,7 @@ body:has(header[role="banner"][data-open="true"]) {
 
 header[role="banner"] {
   align-items: center;
-  --btn-padding-y: var(--spacing-xs);
+  --btn-padding-y: var(--spacing-sm);
   background-color: var(--secondary-darker);
   display: flex;
   font-size: 0.75rem;

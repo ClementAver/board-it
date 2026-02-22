@@ -11,35 +11,38 @@ html {
   --btn-color-active: var(--accent-beta);
   --btn-color-hover: var(--primary);
   --btn-color-selected: var(--accent-beta);
-  --btn-padding-y: var(--spacing-xs);
+  --btn-padding-y: var(--spacing-sm);
   --btn-padding-x: var(--spacing-md);
 }
 
 button,
 .button {
   background-color: var(--btn-background-color);
-  border: var(--border-width) solid var(--btn-border-color);
+  border: none;
   color: var(--btn-color);
   cursor: pointer;
   padding: var(--btn-padding-y) var(--btn-padding-x);
 
   &:hover,
   &:focus-visible {
-    background-color: var(--btn-background-color-hover);
-    border: var(--border-width) solid var(--btn-border-color-hover);
+    background: linear-gradient(
+      var(--accent-beta) 25%,
+      var(--accent-beta-lighter) 200%
+    );
     box-shadow: var(--shadow);
     color: var(--btn-color-hover);
 
     &:active {
-      background-color: var(--btn-background-color-active);
-      border: var(--border-width) solid var(--btn-border-color-active);
+      background: linear-gradient(
+        var(--btn-background-color-active) 25%,
+        var(--accent-beta) 275%
+      );
       box-shadow: var(--shadow);
       color: var(--btn-color-active);
     }
 
     &:disabled {
       background-color: var(--btn-background-color);
-      border: var(--border-width) solid var(--btn-border-color);
       box-shadow: unset;
       color: var(--btn-color);
       cursor: default;
@@ -48,25 +51,26 @@ button,
 
   &.selected {
     background-color: var(--btn-background-color-selected);
-    border: var(--border-width) solid var(--btn-border-color-selected);
     box-shadow: var(--shadow);
-    color: var(--btn-color-selected);
+   
   }
 
   &.swath {
-    background: var(--secondary-lighter);
-    border: var(--border-width) solid var(--secondary-lighter);
-    color: var(--text-swath);
+    background: var(--accent-beta);
+    color: var(--primary);
 
     &:hover,
     &:focus-visible {
-      background: var(--accent-beta);
-      border: var(--border-width) solid var(--accent-beta);
-      color: var(--primary);
+      background: linear-gradient(
+        var(--accent-beta) 25%,
+        var(--accent-beta-lighter) 200%
+      );
 
       &:active {
-        background-color: var(--btn-background-color-active);
-        border: var(--border-width) solid var(--btn-border-color-active);
+        background: linear-gradient(
+          var(--btn-background-color-active) 25%,
+          var(--accent-beta) 275%
+        );
         color: var(--btn-color-active);
       }
     }
@@ -84,7 +88,6 @@ button,
 #btn-debug {
   background-color: transparent;
   bottom: 0.5rem;
-  border: none;
   padding: 0;
   position: fixed;
   right: 0.25rem;

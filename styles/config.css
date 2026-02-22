@@ -47,9 +47,9 @@ html {
   --darken: hsl(0 0% 0% / 10%);
 
   --secondary-darker: color-mix(in oklab, var(--secondary), hsl(0, 0%, 0%) 30%);
-  --secondary-lighter: color-mix(
+  --accent-beta-lighter: color-mix(
     in oklab,
-    var(--secondary),
+    var(--accent-beta),
     hsl(0, 0%, 100%) 30%
   );
 }

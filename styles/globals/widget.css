@@ -4,20 +4,20 @@
   display: flex;
   font-size: 0.8rem;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs);
+  padding: var(--spacing-sm);
 }
 
 .widget button {
   align-items: center;
   display: flex;
   justify-content: center;
-  padding-block: var(--spacing-xs);
+  padding-block: var(--spacing-sm);
   padding-inline: var(--spacing-sm);
 }
 
 .widget input {
   background-color: var(--secondary-darker);
-  border: var(--border-width) solid var(--secondary);
+  border: none;
   border-radius: var(--spacing-xs);
   color: var(--text-swath);
   padding-inline: var(--spacing-sm);

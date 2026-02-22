@@ -1,24 +1,29 @@
 details {
-  border-radius: var(--spacing-sm);
   color: var(--text-swath);
   transition: background-color 200ms ease-in-out;
+  /* border-bottom: 1px solid var(--text-swath); */
 
-  &:hover {
+  /* &:hover {
     background-color: var(--lighten);
     box-shadow: var(--shadow);
-  }
+  } */
 
   summary {
     cursor: pointer;
     list-style-position: outside;
-    margin-left: calc(var(--spacing-lg) * 2);
-    padding-block: var(--spacing-md);
-    padding-right: var(--spacing-lg);
+    padding-right: calc(var(--spacing-lg) * 2);
     position: relative;
     user-select: none;
 
     &::marker {
-      content: "+ ";
+      content: "";
+    }
+
+    &::after {
+      content: "+";
+      position: absolute;
+      top: 0;
+      right: 0;
     }
 
     span {
@@ -32,16 +37,20 @@ details {
   &::details-content {
     block-size: 0;
     overflow: hidden;
-    transition: block-size 200ms;
+    transition:
+      block-size 200ms,
+      padding 200ms;
+    padding-top: var(--spacing-md);
   }
 
   &[open] {
-    ::marker {
-      content: "-  ";
+    summary::after {
+      content: "-";
     }
 
     &::details-content {
       block-size: auto;
+      padding-bottom: var(--spacing-md);
     }
 
     summary + * {
