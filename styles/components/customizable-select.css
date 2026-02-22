@@ -10,7 +10,7 @@ select {
   border: var(--border-width) solid var(--btn-border-color);
   color: var(--btn-color);
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   padding: var(--btn-padding-y) var(--btn-padding-x);
 
   &::picker-icon {

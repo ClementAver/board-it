@@ -20,9 +20,9 @@ initAnchors();
 initDrawers();
 
 Canvas.resize();
-const leftDrawer = document.getElementById("left-drawer");
+const leftDrawer = document.querySelector('[data-drawer="left-drawer"]');
 Canvas.resizeWith(leftDrawer);
-const rightDrawer = document.getElementById("right-drawer");
+const rightDrawer = document.querySelector('[data-drawer="right-drawer"]');
 Canvas.resizeWith(rightDrawer);
 
 const camera = Toolbox.grab("camera");

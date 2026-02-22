@@ -5,8 +5,13 @@ export default function initDrawers() {
 
   return Array.from(drawers)
     .map((drawer) => {
-      const toggleButton = drawer.querySelector("[data-switch]");
+      const toggleButton = document.querySelector(
+        `[data-switch="${drawer.dataset.drawer}"]`,
+      );
       if (!toggleButton) return;
+
+      console.log(drawer, toggleButton);
+      
 
       return new Drawer({ drawer, toggleButton });
     })

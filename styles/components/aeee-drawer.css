@@ -7,21 +7,6 @@ menu[data-drawer] {
   width: 0;
   z-index: 1;
 
-  [data-switch] {
-    position: absolute;
-    top: var(--spacing-md);
-
-    .left & {
-      left: calc(var(--spacing-md) + 100%);
-      transition: left 200ms ease-in-out;
-    }
-
-    .right & {
-      right: calc(var(--spacing-md) + 100%);
-      transition: right 200ms ease-in-out;
-    }
-  }
-
   > li {
     list-style-type: none;
     opacity: 0;
