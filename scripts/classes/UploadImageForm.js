@@ -38,7 +38,7 @@ export default class UploadImageForm extends HTMLFormElement {
   };
 
   upload = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     this.processFormData();
   };
 
