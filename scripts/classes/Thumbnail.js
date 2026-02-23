@@ -74,6 +74,7 @@ export default class Thumbnail extends HTMLElement {
     };
 
     if (this.checkbox) this.appendChild(this.checkbox);
+    this.figure.classList.add("glint");
     this.figure.appendChild(this.image);
     this.figure.appendChild(this.figcaption);
     this.appendChild(this.figure);

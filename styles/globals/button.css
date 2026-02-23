@@ -63,7 +63,7 @@ button,
     &:focus-visible {
       background: linear-gradient(
         var(--accent-beta) 25%,
-        var(--accent-beta-lighter) 200%
+        var(--accent-beta-lighter) 125%
       );
 
       &:active {
