@@ -1,9 +1,8 @@
 dialog#image-upload-dialog {
   border: none;
-  height: 100vh;
-  height: 100dvh;
+  height: fit-content;
   margin: auto;
-  padding-top: 2.75rem;
+  overflow: hidden;
   width: 100vw;
   width: 100dvw;
 
@@ -16,28 +15,41 @@ dialog#image-upload-dialog {
 
   &:open {
     display: flex;
+    flex-flow: column nowrap;
   }
 
-  > p {
-    font-weight: 500;
-    left: 0;
-    margin-inline: var(--spacing-lg);
-    max-width: 100%;
-    overflow: hidden;
-    padding-right: calc(var(--spacing-lg) * 3);
-    position: absolute;
-    text-overflow: ellipsis;
-    top: 0.75rem;
-    white-space: nowrap;
+  header {
+    background-color: var(--secondary);
+    display: flex;
+    gap: var(--spacing);
+    padding: var(--spacing-sm);
+
+    p {
+      color: var(--text-swath);
+      font-weight: 400;
+      flex-grow: 1;
+      overflow: hidden;
+      padding-left: var(--spacing-lg);
+      padding-top: var(--spacing-sm);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    button {
+      aspect-ratio: 1/1;
+      border-radius: calc(infinity * 1px);
+      transform: scale(1);
+    }
   }
 
   > form {
+    background-color: var(--ternary);
     align-items: center;
     display: flex;
     flex-flow: column nowrap;
+    flex-grow: 1;
     gap: var(--spacing-lg);
-    height: 100%;
+    overflow: auto;
     padding: var(--spacing-lg);
-    width: 100%;
   }
 }

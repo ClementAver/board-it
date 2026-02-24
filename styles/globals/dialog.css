@@ -1,6 +1,6 @@
 dialog {
-  background-color: var(--ternary);
-  border-radius: var(--spacing-lg);
+  background-color: transparent;
+  border-radius: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-md);
   box-shadow: var(--shadow);
   opacity: 1;
   overscroll-behavior: contain;
@@ -26,12 +26,4 @@ dialog::backdrop {
   @starting-style {
     opacity: 0;
   }
-}
-
-dialog > button:first-of-type {
-  padding: var(--spacing-md);
-  position: absolute;
-  right: var(--spacing-md);
-  top: var(--spacing-md);
-  z-index: 10;
 }

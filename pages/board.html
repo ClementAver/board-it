@@ -502,7 +502,7 @@
               multiple
             />
             <label for="upload-image-input" class="button swath" tabindex="0">
-              <span>Importer des images <small>(.png)</small></span>
+              <span>Importer des images</span>
             </label>
             <p>
               <small>–</small>
@@ -613,31 +613,32 @@
     </main>
 
     <dialog is="aeee-dialog" id="image-upload-dialog" autofocus closedby="any">
-      <button
-        data-trigger="image-upload-dialog"
-        data-action="close"
-        type="button"
-        class="rounded-full bg-transparent text-secondary ml-auto p-md"
-        aria-label="Fermer la boîte de dialogue modale."
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+      <header>
+        <p>Importer une image</p>
+        <button
+          data-trigger="image-upload-dialog"
+          data-action="close"
+          type="button"
+          aria-label="Fermer la boîte de dialogue modale."
         >
-          <path d="m14 10 7-7" />
-          <path d="M20 10h-6V4" />
-          <path d="m3 21 7-7" />
-          <path d="M4 14h6v6" />
-        </svg>
-      </button>
-      <p>Importer une image</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m14 10 7-7" />
+            <path d="M20 10h-6V4" />
+            <path d="m3 21 7-7" />
+            <path d="M4 14h6v6" />
+          </svg>
+        </button>
+      </header>
 
       <form
         is="aeee-selection-image-form"
