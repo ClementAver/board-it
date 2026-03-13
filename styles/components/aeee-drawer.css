@@ -35,6 +35,10 @@ menu[data-drawer] {
     padding: var(--spacing-md);
     width: fit-content;
 
+    &.right {
+      min-width: 320px;
+    }
+
     > li {
       opacity: 1;
       transform: translateX(0);
