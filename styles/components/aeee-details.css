@@ -7,6 +7,11 @@ aeee-details {
     display: none;
   }
 
+  &:not(:has([data-open="true"])) {
+    border-bottom: 1px solid var(--text-swath);
+    padding-bottom: var(--spacing-sm);
+  }
+
   &:has([data-open="true"]) {
     grid-template-rows: auto auto;
   }
@@ -36,7 +41,9 @@ aeee-details {
         transform 200ms ease-in-out;
 
       &[data-open="true"] {
+        border-bottom: 1px solid var(--text-swath);
         opacity: 1;
+        padding-bottom: var(--spacing-md);
         transform: translateY(0);
       }
     }

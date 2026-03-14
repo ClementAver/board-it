@@ -5,6 +5,8 @@ dialog#image-upload-dialog {
   overflow: hidden;
   width: 100vw;
   width: 100dvw;
+  padding: var(--spacing-md);
+  background-color: rgba(255, 255, 255, 0.5);
 
   @media screen and (min-width: 900px) {
     max-width: 75vw;
@@ -20,9 +22,12 @@ dialog#image-upload-dialog {
 
   header {
     background-color: var(--secondary);
+    border-radius: var(--spacing-md);
     display: flex;
     gap: var(--spacing);
     padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow);
 
     p {
       color: var(--text-swath);
@@ -38,18 +43,16 @@ dialog#image-upload-dialog {
     button {
       aspect-ratio: 1/1;
       border-radius: calc(infinity * 1px);
-      transform: scale(1);
+      transform: scale(0.75);
     }
   }
 
   > form {
-    background-color: var(--ternary);
     align-items: center;
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;
     gap: var(--spacing-lg);
     overflow: auto;
-    padding: var(--spacing-lg);
   }
 }

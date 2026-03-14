@@ -42,7 +42,7 @@ html {
   --aero-shadow-std:
     hsl(0 0% 0% / 20%) 0px 2px 4px,
     inset 0px 1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-5)),
-    inset 0px -1px 1px hsl(var(--aero-hsl) / var(--aero-opacity-4));
+    inset 0px -1px 1px hsl(0 0 0 / var(--aero-opacity-1));
 }
 
 .aero {
