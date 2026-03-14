@@ -268,22 +268,6 @@
                   aria-label="Extends/retracts the left drawer."
                   class="no-dash"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M8 3 4 7l4 4" />
-                    <path d="M4 7h16" />
-                    <path d="m16 21 4-4-4-4" />
-                    <path d="M20 17H4" />
-                  </svg>
                   <span>Tiroir gauche</span>
                 </button>
 
@@ -293,22 +277,6 @@
                   aria-label="Extends/retracts the right drawer."
                   class="no-dash"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M8 3 4 7l4 4" />
-                    <path d="M4 7h16" />
-                    <path d="m16 21 4-4-4-4" />
-                    <path d="M20 17H4" />
-                  </svg>
                   <span>Tiroir droit</span>
                 </button>
               </div>
@@ -407,7 +375,7 @@
       class="left"
       style="grid-area: left-drawer"
     >
-      <li>
+      <li class="mb-sm">
         <button
           type="button"
           data-tool="camera"
@@ -482,13 +450,14 @@
       class="right"
       style="grid-area: right-drawer"
     >
-      <aeee-details data-name="right-drawer-details">
-        <p data-summary>Téléverser des images</p>
+      <aeee-details data-name="right-drawer-details" class="mb-sm">
+        <p data-summary class="text-swath truncate">Téléverser des images</p>
         <form
           is="aeee-upload-image-form"
           action="http://127.0.0.1:8698/media"
           method="post"
           enctype="multipart/form-data"
+          class="mt-sm mb-md"
         >
           <aeee-file-input>
             <input
@@ -515,13 +484,14 @@
         </form>
       </aeee-details>
 
-      <aeee-details data-name="right-drawer-details">
-        <p data-summary>Téléverser des images</p>
+      <aeee-details data-name="right-drawer-details" class="mb-sm">
+        <p data-summary class="text-swath truncate">Téléverser des images</p>
         <form
           is="aeee-upload-image-form"
           action="http://127.0.0.1:8698/media"
           method="post"
           enctype="multipart/form-data"
+          class="mt-sm mb-md"
         >
           <aeee-file-input>
             <input

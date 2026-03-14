@@ -1,12 +1,44 @@
 aeee-details {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 0;
+  transition: grid-template-rows 200ms;
 
-  [data-summary] + * {
-    background-color: lime;
+  &[hidden] {
+    display: none;
+  }
 
-    &[data-open="true"] {
-      background-color: crimson;
+  &:has([data-open="true"]) {
+    grid-template-rows: auto auto;
+  }
+
+  [data-summary] {
+    cursor: pointer;
+    margin-right: 2ch;
+    user-select: none;
+
+    &::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+    }
+
+    &:has(+ [data-open="true"]) {
+      &::after {
+        content: "-";
+      }
+    }
+
+    + * {
+      opacity: 0;
+      transform: translateY(-2rem);
+      transition:
+        opacity 200ms 100ms ease-in-out,
+        transform 200ms ease-in-out;
+
+      &[data-open="true"] {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 }
