@@ -10,9 +10,6 @@ export default function initDrawers() {
       );
       if (!toggleButton) return;
 
-      console.log(drawer, toggleButton);
-      
-
       return new Drawer({ drawer, toggleButton });
     })
     .filter((drawer) => drawer !== undefined);

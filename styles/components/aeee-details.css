@@ -1,0 +1,12 @@
+aeee-details {
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  [data-summary] + * {
+    background-color: lime;
+
+    &[data-open="true"] {
+      background-color: crimson;
+    }
+  }
+}

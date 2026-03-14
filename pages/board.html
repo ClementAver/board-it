@@ -482,10 +482,8 @@
       class="right"
       style="grid-area: right-drawer"
     >
-      <details name="right-drawer-details" class="mb-sm medium" open>
-        <summary>
-          <span>Téléverser des images</span>
-        </summary>
+      <aeee-details data-name="right-drawer-details">
+        <p data-summary>Téléverser des images</p>
         <form
           is="aeee-upload-image-form"
           action="http://127.0.0.1:8698/media"
@@ -515,7 +513,40 @@
             </button>
           </div>
         </form>
-      </details>
+      </aeee-details>
+
+      <aeee-details data-name="right-drawer-details">
+        <p data-summary>Téléverser des images</p>
+        <form
+          is="aeee-upload-image-form"
+          action="http://127.0.0.1:8698/media"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <aeee-file-input>
+            <input
+              id="upload-image-input"
+              type="file"
+              accept="image/png, image/jpeg"
+              name="image"
+              tabindex="-1"
+              multiple
+            />
+            <label for="upload-image-input" class="button swath" tabindex="0">
+              <span>Importer des images</span>
+            </label>
+            <p>
+              <small>–</small>
+            </p>
+          </aeee-file-input>
+
+          <div class="spring-wrapper rounded-xs">
+            <button class="rounded-xs bold swath" type="submit">
+              Importer
+            </button>
+          </div>
+        </form>
+      </aeee-details>
     </menu>
 
     <main id="canvas-wrapper">

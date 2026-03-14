@@ -1,6 +1,7 @@
 import Canvas from "../classes/Canvas.js";
 import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
+import Details from "../classes/aeee-details.js";
 import Dialog from "../classes/Dialog.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
 import Gallery from "../classes/Gallery.js";
