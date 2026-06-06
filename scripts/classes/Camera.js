@@ -166,34 +166,6 @@ export default class Camera extends Tool {
     return { minX, minY, maxX, maxY };
   }
 
-  canvasMousedownCallback(e) {
-    if (!Toolbox.isHandled(this.label)) return;
-
-    switch (this.cursor) {
-      case "move":
-        this.isPanning = true;
-        const p = canvas.toCanvasCoords(e.clientX, e.clientY);
-        this.startPan.x = p.x - this.originX;
-        this.startPan.y = p.y - this.originY;
-        break;
-
-      case "zoom-in":
-        this.zoomIn(canvas, { event: e });
-        break;
-
-      case "zoom-out":
-        this.zoomOut(canvas, { event: e });
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  windowMouseupCallback() {
-    this.isPanning = false;
-  }
-
   initKeyboardActions(canvas) {
     let isSpaceKey = false;
     window.addEventListener("keydown", (e) => {
@@ -268,7 +240,29 @@ export default class Camera extends Tool {
       }
     });
 
-    canvas.canvas.addEventListener("mousedown", this.canvasMousedownCallback);
+    canvas.canvas.addEventListener("mousedown", (e) => {
+      if (!Toolbox.isHandled(this.label)) return;
+
+      switch (this.cursor) {
+        case "move":
+          this.isPanning = true;
+          const p = canvas.toCanvasCoords(e.clientX, e.clientY);
+          this.startPan.x = p.x - this.originX;
+          this.startPan.y = p.y - this.originY;
+          break;
+
+        case "zoom-in":
+          this.zoomIn(canvas, { event: e });
+          break;
+
+        case "zoom-out":
+          this.zoomOut(canvas, { event: e });
+          break;
+
+        default:
+          break;
+      }
+    });
 
     canvas.canvas.addEventListener("mousemove", (e) => {
       if (!Toolbox.isHandled(this.label)) return;
@@ -287,7 +281,9 @@ export default class Camera extends Tool {
       }
     });
 
-    window.addEventListener("mouseup", this.windowMouseupCallback);
+    window.addEventListener("mouseup", () => {
+      this.isPanning = false;
+    });
 
     canvas.wrapper.addEventListener("wheel", (e) => {
       if (e.ctrlKey) {
