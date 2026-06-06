@@ -3,12 +3,12 @@ import Grid from "./Grid.js";
 import Picture from "./Picture.js";
 
 export default class Board extends Element {
-  _backgroundColor = "#fafafa";
-  _borderAlign = "outside";
-  _borderColor = "rgba(255, 255, 255, 1)";
-  _borderWidth = 10;
-  _elements = [];
-  _grids = [new Grid()];
+  #backgroundColor = "#fafafa";
+  #borderAlign = "outside";
+  #borderColor = "rgba(255, 255, 255, 1)";
+  #borderWidth = 10;
+  #elements = [];
+  #grids = [new Grid()];
 
   constructor({
     x = 0,
@@ -32,51 +32,51 @@ export default class Board extends Element {
   }
 
   get backgroundColor() {
-    return this._backgroundColor;
+    return this.#backgroundColor;
   }
 
   get borderAlign() {
-    return this._borderAlign;
+    return this.#borderAlign;
   }
 
   get borderColor() {
-    return this._borderColor;
+    return this.#borderColor;
   }
 
   get borderWidth() {
-    return this._borderWidth;
+    return this.#borderWidth;
   }
 
   get elements() {
-    return this._elements;
+    return this.#elements;
   }
 
   get grids() {
-    return this._grids;
+    return this.#grids;
   }
 
   set backgroundColor(backgroundColor) {
-    this._backgroundColor = backgroundColor;
+    this.#backgroundColor = backgroundColor;
   }
 
   set borderAlign(borderAlign) {
-    this._borderAlign = borderAlign;
+    this.#borderAlign = borderAlign;
   }
 
   set borderColor(borderColor) {
-    this._borderColor = borderColor;
+    this.#borderColor = borderColor;
   }
 
   set borderWidth(borderWidth) {
-    this._borderWidth = borderWidth;
+    this.#borderWidth = borderWidth;
   }
 
   set elements(elements) {
-    this._elements = elements;
+    this.#elements = elements;
   }
 
   set grids(grids) {
-    this._grids = grids;
+    this.#grids = grids;
   }
 
   draw(canvas) {
@@ -232,19 +232,19 @@ export default class Board extends Element {
   }
 
   static mapperIn({
-    _height: h,
-    _originX: x,
-    _originY: y,
-    _width: w,
-    _backgroundColor: backgroundColor,
-    _borderAlign: borderAlign,
-    _borderColor: borderColor,
-    _borderWidth: borderWidth,
-    _elements: elements,
-    _grids: grids,
+    height: h,
+    originX: x,
+    originY: y,
+    width: w,
+    backgroundColor,
+    borderAlign,
+    borderColor,
+    borderWidth,
+    elements,
+    grids,
   }) {
     elements = elements.map((element) => {
-      switch (element._elementType) {
+      switch (element.elementType) {
         case "picture":
           element = Picture.mapperIn(element);
           break;

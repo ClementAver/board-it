@@ -2,10 +2,10 @@ import handleError from "../utilities/handleError.js";
 import Toolbox from "./Toolbox.js";
 
 export class Canvas {
-  _boards = [];
-  _canvas = document.createElement("canvas");
-  _context = this.canvas.getContext("2d");
-  _wrapper = document.getElementById("canvas-wrapper");
+  #boards = [];
+  #canvas = document.createElement("canvas");
+  #context = this.canvas.getContext("2d");
+  #wrapper = document.getElementById("canvas-wrapper");
 
   constructor({ boards, wrapper } = {}) {
     this.boards = boards ?? this.boards;
@@ -25,35 +25,35 @@ export class Canvas {
   }
 
   get boards() {
-    return this._boards;
+    return this.#boards;
   }
 
   get canvas() {
-    return this._canvas;
+    return this.#canvas;
   }
 
   get context() {
-    return this._context;
+    return this.#context;
   }
 
   get wrapper() {
-    return this._wrapper;
+    return this.#wrapper;
   }
 
   set boards(boards) {
-    this._boards = boards;
+    this.#boards = boards;
   }
 
   set canvas(canvas) {
-    this._canvas = canvas;
+    this.#canvas = canvas;
   }
 
   set context(context) {
-    this._context = context;
+    this.#context = context;
   }
 
   set wrapper(wrapper) {
-    this._wrapper = wrapper;
+    this.#wrapper = wrapper;
   }
 
   debug() {

@@ -1,8 +1,8 @@
 import Element from "./Element.js";
 export default class Picture extends Element {
-  _backgroundColor = "transparent";
-  _image = new Image();
-  _source = "";
+  #backgroundColor = "transparent";
+  #image = new Image();
+  #source = "";
 
   constructor({ x = 100, y = 100, w = 1600, h = 900, backgroundColor, img, src } = {}) {
     super({ x, y, w, h, elementType: "picture" });
@@ -12,27 +12,27 @@ export default class Picture extends Element {
   }
 
   get backgroundColor() {
-    return this._backgroundColor;
+    return this.#backgroundColor;
   }
 
   get image() {
-    return this._image;
+    return this.#image;
   }
 
   get source() {
-    return this._source;
+    return this.#source;
   }
 
   set backgroundColor(backgroundColor) {
-    this._backgroundColor = backgroundColor;
+    this.#backgroundColor = backgroundColor;
   }
 
   set image(image) {
-    this._image = image;
+    this.#image = image;
   }
 
   set source(source) {
-    this._source = source;
+    this.#source = source;
   }
 
   draw(canvas, rect = { originX: 0, originY: 0 }) {
@@ -56,13 +56,13 @@ export default class Picture extends Element {
   }
 
   static mapperIn({
-    _height: h,
-    _originX: x,
-    _originY: y,
-    _width: w,
-    _backgroundColor: backgroundColor,
-    _image: img,
-    _source: src,
+    height: h,
+    originX: x,
+    originY: y,
+    width: w,
+    backgroundColor,
+    image: img,
+    source: src,
   }) {
     return new Picture({ h, x, y, w, backgroundColor, img, src });
   }

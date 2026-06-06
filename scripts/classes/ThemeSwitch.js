@@ -1,10 +1,10 @@
 export default class ThemeSwitch extends HTMLElement {
-  _currentTheme = null;
-  _moon = null;
-  _prefersDark = null;
-  _sun = null;
-  _switchBtn = null;
-  _switchHandle = null;
+  #currentTheme = null;
+  #moon = null;
+  #prefersDark = null;
+  #sun = null;
+  #switchBtn = null;
+  #switchHandle = null;
 
   constructor({
     currentTheme,
@@ -49,51 +49,51 @@ export default class ThemeSwitch extends HTMLElement {
   }
 
   get currentTheme() {
-    return this._currentTheme;
+    return this.#currentTheme;
   }
 
   get moon() {
-    return this._moon;
+    return this.#moon;
   }
 
   get prefersDark() {
-    return this._prefersDark;
+    return this.#prefersDark;
   }
 
   get sun() {
-    return this._sun;
+    return this.#sun;
   }
 
   get switchBtn() {
-    return this._switchBtn;
+    return this.#switchBtn;
   }
 
   get switchHandle() {
-    return this._switchHandle;
+    return this.#switchHandle;
   }
 
   set currentTheme(currentTheme) {
-    this._currentTheme = currentTheme;
+    this.#currentTheme = currentTheme;
   }
 
   set moon(moon) {
-    this._moon = moon;
+    this.#moon = moon;
   }
 
   set prefersDark(prefersDark) {
-    this._prefersDark = prefersDark;
+    this.#prefersDark = prefersDark;
   }
 
   set sun(sun) {
-    this._sun = sun;
+    this.#sun = sun;
   }
 
   set switchBtn(switchBtn) {
-    this._switchBtn = switchBtn;
+    this.#switchBtn = switchBtn;
   }
 
   set switchHandle(switchHandle) {
-    this._switchHandle = switchHandle;
+    this.#switchHandle = switchHandle;
   }
 
   initTheme() {

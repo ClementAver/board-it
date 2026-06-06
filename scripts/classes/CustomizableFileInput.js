@@ -1,7 +1,7 @@
 export default class CustomizableFileInput extends HTMLElement {
-  _input = null;
-  _label = null;
-  _paragraph = null;
+  #input= null;
+  #label = null;
+  #paragraph = null;
 
   constructor({ input, label, paragraph } = {}) {
     super();
@@ -24,27 +24,27 @@ export default class CustomizableFileInput extends HTMLElement {
   }
 
   get input() {
-    return this._input;
+    return this.#input;
   }
 
   get label() {
-    return this._label;
+    return this.#label;
   }
 
   get paragraph() {
-    return this._paragraph;
+    return this.#paragraph;
   }
 
   set input(input) {
-    this._input = input;
+    this.#input = input;
   }
 
   set label(label) {
-    this._label = label;
+    this.#label = label;
   }
 
   set paragraph(paragraph) {
-    this._paragraph = paragraph;
+    this.#paragraph = paragraph;
   }
 
   change(event) {

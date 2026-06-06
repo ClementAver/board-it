@@ -1,6 +1,6 @@
 export default class Details extends HTMLElement {
-  _title = null;
-  _drawer = null;
+  #title = null;
+  #drawer = null;
 
   constructor({ title, drawer } = {}) {
     super();
@@ -17,19 +17,19 @@ export default class Details extends HTMLElement {
   }
 
   get title() {
-    return this._title;
+    return this.#title;
   }
 
   get drawer() {
-    return this._drawer;
+    return this.#drawer;
   }
 
   set title(title) {
-    this._title = title;
+    this.#title = title;
   }
 
   set drawer(drawer) {
-    this._drawer = drawer;
+    this.#drawer = drawer;
   }
 
   toggle() {

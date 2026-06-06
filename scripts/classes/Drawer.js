@@ -1,6 +1,6 @@
 export default class Drawer {
-  _drawer = null;
-  _toggleButton = null;
+  #drawer = null;
+  #toggleButton = null;
 
   constructor({ drawer, toggleButton } = {}) {
     this.drawer = drawer ?? this.drawer;
@@ -10,19 +10,19 @@ export default class Drawer {
   }
 
   get drawer() {
-    return this._drawer;
+    return this.#drawer;
   }
 
   get toggleButton() {
-    return this._toggleButton;
+    return this.#toggleButton;
   }
 
   set drawer(drawer) {
-    this._drawer = drawer;
+    this.#drawer = drawer;
   }
 
   set toggleButton(toggleButton) {
-    this._toggleButton = toggleButton;
+    this.#toggleButton = toggleButton;
   }
 
   toggle() {

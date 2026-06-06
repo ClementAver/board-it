@@ -1,17 +1,17 @@
 import handleError from "../utilities/handleError.js";
 
 export default class Thumbnail extends HTMLElement {
-  _alternate = "";
-  _caption = "";
-  _checkbox = null;
-  _figcaption = document.createElement("figcaption");
-  _figure = document.createElement("figure");
-  _image = document.createElement("img");
-  _isChecked = false;
-  _isRounded = false;
-  _isSelectable = false;
-  _placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
-  _source = "";
+  #alternate = "";
+  #caption = "";
+  #checkbox = null;
+  #figcaption = document.createElement("figcaption");
+  #figure = document.createElement("figure");
+  #image = document.createElement("img");
+  #isChecked = false;
+  #isRounded = false;
+  #isSelectable = false;
+  #placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
+  #source = "";
 
   constructor({
     source,
@@ -90,47 +90,47 @@ export default class Thumbnail extends HTMLElement {
   }
 
   get alternate() {
-    return this._alternate;
+    return this.#alternate;
   }
 
   get caption() {
-    return this._caption;
+    return this.#caption;
   }
 
   get checkbox() {
-    return this._checkbox;
+    return this.#checkbox;
   }
 
   get figcaption() {
-    return this._figcaption;
+    return this.#figcaption;
   }
 
   get figure() {
-    return this._figure;
+    return this.#figure;
   }
 
   get image() {
-    return this._image;
+    return this.#image;
   }
 
   get isChecked() {
-    return this._isChecked;
+    return this.#isChecked;
   }
 
   get isRounded() {
-    return this._isRounded;
+    return this.#isRounded;
   }
 
   get isSelectable() {
-    return this._isSelectable;
+    return this.#isSelectable;
   }
 
   get placeholderImage() {
-    return this._placeholderImage;
+    return this.#placeholderImage;
   }
 
   get source() {
-    return this._source;
+    return this.#source;
   }
 
   set alternate(alternate) {
@@ -139,7 +139,7 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
 
-    this._alternate = alternate;
+    this.#alternate = alternate;
     this.image.alt = alternate;
   }
 
@@ -149,24 +149,24 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
 
-    this._caption = caption;
+    this.#caption = caption;
     this.figcaption.textContent = caption;
   }
 
   set checkbox(checkbox) {
-    this._checkbox = checkbox;
+    this.#checkbox = checkbox;
   }
 
   set figcaption(figcaption) {
-    this._figcaption = figcaption;
+    this.#figcaption = figcaption;
   }
 
   set figure(figure) {
-    this._figure = figure;
+    this.#figure = figure;
   }
 
   set image(image) {
-    this._image = image;
+    this.#image = image;
   }
 
   set isChecked(isChecked) {
@@ -175,7 +175,7 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
 
-    this._isChecked = isChecked;
+    this.#isChecked = isChecked;
 
     if (isChecked) {
       this.checkbox.checked = true;
@@ -192,7 +192,7 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
 
-    this._isRounded = isRounded;
+    this.#isRounded = isRounded;
 
     if (isRounded) {
       this._internals.states.add("rounded");
@@ -207,11 +207,11 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
 
-    this._isSelectable = isSelectable;
+    this.#isSelectable = isSelectable;
   }
 
   set placeholderImage(placeholderImage) {
-    this._placeholderImage = placeholderImage;
+    this.#placeholderImage = placeholderImage;
   }
 
   set source(source) {
@@ -221,7 +221,7 @@ export default class Thumbnail extends HTMLElement {
     }
 
     this._internals.states.add("loading");
-    this._source = source;
+    this.#source = source;
     this.image.src = source;
     if (this.checkbox) this.checkbox.value = this.source;
   }

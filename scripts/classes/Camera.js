@@ -9,15 +9,15 @@ export default class Camera extends Tool {
    * originX -> pan offset x
    * originY -> pan offset y
    */
-  _isLocked = false;
-  _isPanning = false;
-  _originX = 0;
-  _originY = 0;
-  _scale = 1;
-  _startPan = { x: 0, y: 0 };
-  _zoomIntensity = 0.1;
-  _zoomMax = 500;
-  _zoomMin = 10;
+  #isLocked = false;
+  #isPanning = false;
+  #originX = 0;
+  #originY = 0;
+  #scale = 1;
+  #startPan = { x: 0, y: 0 };
+  #zoomIntensity = 0.1;
+  #zoomMax = 500;
+  #zoomMin = 10;
 
   constructor({
     cursor = "move",
@@ -45,27 +45,27 @@ export default class Camera extends Tool {
   }
 
   get isLocked() {
-    return this._isLocked;
+    return this.#isLocked;
   }
 
   get isPanning() {
-    return this._isPanning;
+    return this.#isPanning;
   }
 
   get originX() {
-    return this._originX;
+    return this.#originX;
   }
 
   get originY() {
-    return this._originY;
+    return this.#originY;
   }
 
   get scale() {
-    return this._scale;
+    return this.#scale;
   }
 
   get startPan() {
-    return this._startPan;
+    return this.#startPan;
   }
 
   get zoom() {
@@ -73,53 +73,53 @@ export default class Camera extends Tool {
   }
 
   get zoomIntensity() {
-    return this._zoomIntensity;
+    return this.#zoomIntensity;
   }
 
   get zoomMax() {
-    return this._zoomMax;
+    return this.#zoomMax;
   }
 
   get zoomMin() {
-    return this._zoomMin;
+    return this.#zoomMin;
   }
 
   set isLocked(isLocked) {
-    this._isLocked = isLocked;
+    this.#isLocked = isLocked;
   }
 
   set isPanning(isPanning) {
-    this._isPanning = isPanning;
+    this.#isPanning = isPanning;
   }
 
   set originX(originX) {
-    this._originX = originX;
+    this.#originX = originX;
   }
 
   set originY(originY) {
-    this._originY = originY;
+    this.#originY = originY;
   }
 
   set scale(scale) {
     if (scale < this.zoomMin / 100) scale = this.zoomMin;
     if (scale > this.zoomMax / 100) scale = this.zoomMax;
-    this._scale = scale;
+    this.#scale = scale;
   }
 
   set startPan(startPan) {
-    this._startPan = startPan;
+    this.#startPan = startPan;
   }
 
   set zoomIntensity(zoomIntensity) {
-    this._zoomIntensity = zoomIntensity;
+    this.#zoomIntensity = zoomIntensity;
   }
 
   set zoomMax(zoomMax) {
-    this._zoomMax = zoomMax;
+    this.#zoomMax = zoomMax;
   }
 
   set zoomMin(zoomMin) {
-    this._zoomMin = zoomMin;
+    this.#zoomMin = zoomMin;
   }
 
   async frameAll(canvas, padding = 40) {
@@ -166,9 +166,36 @@ export default class Camera extends Tool {
     return { minX, minY, maxX, maxY };
   }
 
+  canvasMousedownCallback(e) {
+    if (!Toolbox.isHandled(this.label)) return;
+
+    switch (this.cursor) {
+      case "move":
+        this.isPanning = true;
+        const p = canvas.toCanvasCoords(e.clientX, e.clientY);
+        this.startPan.x = p.x - this.originX;
+        this.startPan.y = p.y - this.originY;
+        break;
+
+      case "zoom-in":
+        this.zoomIn(canvas, { event: e });
+        break;
+
+      case "zoom-out":
+        this.zoomOut(canvas, { event: e });
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  windowMouseupCallback() {
+    this.isPanning = false;
+  }
+
   initKeyboardActions(canvas) {
     let isSpaceKey = false;
-
     window.addEventListener("keydown", (e) => {
       preventKeys(e, ["space", "ControlLeft", "AltLeft"]);
 
@@ -241,29 +268,7 @@ export default class Camera extends Tool {
       }
     });
 
-    canvas.canvas.addEventListener("mousedown", (e) => {
-      if (!Toolbox.isHandled(this.label)) return;
-
-      switch (this.cursor) {
-        case "move":
-          this.isPanning = true;
-          const p = canvas.toCanvasCoords(e.clientX, e.clientY);
-          this.startPan.x = p.x - this.originX;
-          this.startPan.y = p.y - this.originY;
-          break;
-
-        case "zoom-in":
-          this.zoomIn(canvas, { event: e });
-          break;
-
-        case "zoom-out":
-          this.zoomOut(canvas, { event: e });
-          break;
-
-        default:
-          break;
-      }
-    });
+    canvas.canvas.addEventListener("mousedown", this.canvasMousedownCallback);
 
     canvas.canvas.addEventListener("mousemove", (e) => {
       if (!Toolbox.isHandled(this.label)) return;
@@ -282,9 +287,7 @@ export default class Camera extends Tool {
       }
     });
 
-    window.addEventListener("mouseup", () => {
-      this.isPanning = false;
-    });
+    window.addEventListener("mouseup", this.windowMouseupCallback);
 
     canvas.wrapper.addEventListener("wheel", (e) => {
       if (e.ctrlKey) {

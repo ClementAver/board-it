@@ -1,7 +1,7 @@
 import WorkFile from "./WorkFile.js";
 
 export default class UploadWorkFileForm extends HTMLFormElement {
-  _input = null;
+  #input = null;
 
   constructor({ input } = {}) {
     super();
@@ -14,11 +14,11 @@ export default class UploadWorkFileForm extends HTMLFormElement {
   }
 
   get input() {
-    return this._input;
+    return this.#input;
   }
 
   set input(input) {
-    this._input = input;
+    this.#input = input;
   }
 
   submit() {

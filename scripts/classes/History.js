@@ -1,7 +1,7 @@
 export default class History {
-  _head = 24;
-  _limit = 25;
-  _snapshots = [];
+  #head = 24;
+  #limit = 25;
+  #snapshots = [];
 
   constructor({ limit } = {}) {
     this.limit = limit ?? this.limit;
@@ -9,37 +9,37 @@ export default class History {
   }
 
   get head() {
-    return this._head;
+    return this.#head;
   }
 
   get limit() {
-    return this._limit;
+    return this.#limit;
   }
 
   get snapshots() {
-    return this._snapshots;
+    return this.#snapshots;
   }
 
   set head(head) {
     if (head < 0) head = 0;
     if (head >= this.limit) head = this.limit - 1;
 
-    this._head = Math.round(head);
+    this.#head = Math.round(head);
   }
 
   set limit(limit) {
-    this._limit = limit;
+    this.#limit = limit;
   }
 
   set snapshots(snapshots) {
-    this._snapshots = snapshots;
+    this.#snapshots = snapshots;
   }
 
   addSnapshot(snapshot) {
-    this._snapshots.unshift(snapshot);
+    this.#snapshots.unshift(snapshot);
 
     while (this.snapshots.length > this.limit) {
-      this._snapshots.pop();
+      this.#snapshots.pop();
     }
   }
 }

@@ -1,6 +1,6 @@
 export default class UploadImageForm extends HTMLFormElement {
-  _input = null;
-  _submitButton = null;
+  #input = null;
+  #submitButton = null;
 
   constructor({ input, submitButton } = {}) {
     super();
@@ -18,19 +18,19 @@ export default class UploadImageForm extends HTMLFormElement {
   }
 
   get input() {
-    return this._input;
+    return this.#input;
   }
 
   get submitButton() {
-    return this._submitButton;
+    return this.#submitButton;
   }
 
   set input(input) {
-    this._input = input;
+    this.#input = input;
   }
 
   set submitButton(submitButton) {
-    this._submitButton = submitButton;
+    this.#submitButton = submitButton;
   }
 
   update = () => {

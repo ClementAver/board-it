@@ -1,8 +1,8 @@
 export class Unique {
-  _assessed = 0;
+  #assessed = 0;
 
   getUniqueID() {
-    return `unique_id_${this._assessed++}`;
+    return `unique_id_${this.#assessed++}`;
   }
 }
 

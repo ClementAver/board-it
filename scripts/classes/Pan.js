@@ -1,7 +1,7 @@
 import Toolbox from "./Toolbox.js";
 
 export default class Pan {
-  _panBtn = document.querySelector("[data-widget='pan']");
+  #panBtn = document.querySelector("[data-widget='pan']");
 
   constructor({ panBtn } = {}) {
     this.panBtn = panBtn ?? this.panBtn;
@@ -13,10 +13,10 @@ export default class Pan {
   }
 
   get panBtn() {
-    return this._panBtn;
+    return this.#panBtn;
   }
 
   set panBtn(panBtn) {
-    this._panBtn = panBtn;
+    this.#panBtn = panBtn;
   }
 }

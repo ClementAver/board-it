@@ -4,17 +4,17 @@ import insertSibling from "../utilities/insertSibling.js";
 import { debounce } from "../utilities/timing.js";
 
 export default class Pagination extends HTMLElement {
-  _currentInput = document.createElement("input");
-  _firstButton = document.createElement("button");
-  _lastButton = document.createElement("button");
-  _maximumSpan = document.createElement("span");
-  _nextButton = document.createElement("button");
-  _page = 1;
-  _maxPage = 999;
-  _previousButton = document.createElement("button");
+  #currentInput = document.createElement("input");
+  #firstButton = document.createElement("button");
+  #lastButton = document.createElement("button");
+  #maximumSpan = document.createElement("span");
+  #nextButton = document.createElement("button");
+  #page = 1;
+  #maxPage = 999;
+  #previousButton = document.createElement("button");
 
-  _chevron = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>`;
-  _chevronFirst = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-first-icon lucide-chevron-first"><path d="m17 18-6-6 6-6"/><path d="M7 6v12"/></svg>`;
+  #chevron = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>`;
+  #chevronFirst = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-first-icon lucide-chevron-first"><path d="m17 18-6-6 6-6"/><path d="M7 6v12"/></svg>`;
 
   constructor({ page, maxPage } = {}) {
     super();
@@ -26,10 +26,10 @@ export default class Pagination extends HTMLElement {
 
     this.setAttribute("role", "menu");
 
-    this.firstButton.innerHTML = this._chevronFirst;
-    this.previousButton.innerHTML = this._chevron;
-    this.nextButton.innerHTML = this._chevron;
-    this.lastButton.innerHTML = this._chevronFirst;
+    this.firstButton.innerHTML = this.#chevronFirst;
+    this.previousButton.innerHTML = this.#chevron;
+    this.nextButton.innerHTML = this.#chevron;
+    this.lastButton.innerHTML = this.#chevronFirst;
 
     this.firstButton.setAttribute("aria-label", "Première page");
     this.previousButton.setAttribute("aria-label", "Page précédente");
@@ -93,55 +93,55 @@ export default class Pagination extends HTMLElement {
   }
 
   get currentInput() {
-    return this._currentInput;
+    return this.#currentInput;
   }
 
   get firstButton() {
-    return this._firstButton;
+    return this.#firstButton;
   }
 
   get lastButton() {
-    return this._lastButton;
+    return this.#lastButton;
   }
 
   get maximumSpan() {
-    return this._maximumSpan;
+    return this.#maximumSpan;
   }
 
   get nextButton() {
-    return this._nextButton;
+    return this.#nextButton;
   }
 
   get page() {
-    return this._page;
+    return this.#page;
   }
 
   get maxPage() {
-    return this._maxPage;
+    return this.#maxPage;
   }
 
   get previousButton() {
-    return this._previousButton;
+    return this.#previousButton;
   }
 
   set currentInput(currentInput) {
-    this._currentInput = currentInput;
+    this.#currentInput = currentInput;
   }
 
   set firstButton(firstButton) {
-    this._firstButton = firstButton;
+    this.#firstButton = firstButton;
   }
 
   set lastButton(lastButton) {
-    this._lastButton = lastButton;
+    this.#lastButton = lastButton;
   }
 
   set maximumSpan(maximumSpan) {
-    this._maximumSpan = maximumSpan;
+    this.#maximumSpan = maximumSpan;
   }
 
   set nextButton(nextButton) {
-    this._nextButton = nextButton;
+    this.#nextButton = nextButton;
   }
 
   set page(page) {
@@ -151,7 +151,7 @@ export default class Pagination extends HTMLElement {
       return;
     }
 
-    this._page = page;
+    this.#page = page;
     this.updateCurrent();
   }
 
@@ -162,12 +162,12 @@ export default class Pagination extends HTMLElement {
       return;
     }
 
-    this._maxPage = maxPage;
+    this.#maxPage = maxPage;
     this.updateMax();
   }
 
   set previousButton(previousButton) {
-    this._previousButton = previousButton;
+    this.#previousButton = previousButton;
   }
 
   updateCurrent() {

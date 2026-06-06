@@ -1,7 +1,7 @@
 import Unique from "./Unique.js";
 
 export default class Tooltip extends HTMLElement {
-  _text = "";
+  #text = "";
 
   constructor({ text } = {}) {
     super();
@@ -25,11 +25,11 @@ export default class Tooltip extends HTMLElement {
   }
 
   get text() {
-    return this._text;
+    return this.#text;
   }
 
   set text(text) {
-    this._text = text;
+    this.#text = text;
     if (this.getAttribute("data-text") !== text) {
       this.setAttribute("data-text", text);
       return;

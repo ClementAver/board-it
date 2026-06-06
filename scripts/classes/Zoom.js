@@ -2,8 +2,8 @@ import Canvas from "./Canvas.js";
 import Toolbox from "./Toolbox.js";
 
 export default class Zoom {
-  _zoomBtn = document.querySelector("[data-widget='zoom']");
-  _zoomIndicator = document.querySelector("[data-widget='zoom-indicator']");
+  #zoomBtn = document.querySelector("[data-widget='zoom']");
+  #zoomIndicator = document.querySelector("[data-widget='zoom-indicator']");
 
   constructor({ zoomBtn, zoomIndicator } = {}) {
     this.zoomBtn = zoomBtn ?? this.zoomBtn;
@@ -25,19 +25,19 @@ export default class Zoom {
   }
 
   get zoomBtn() {
-    return this._zoomBtn;
+    return this.#zoomBtn;
   }
 
   get zoomIndicator() {
-    return this._zoomIndicator;
+    return this.#zoomIndicator;
   }
 
   set zoomBtn(zoomBtn) {
-    this._zoomBtn = zoomBtn;
+    this.#zoomBtn = zoomBtn;
   }
 
   set zoomIndicator(zoomIndicator) {
-    this._zoomIndicator = zoomIndicator;
+    this.#zoomIndicator = zoomIndicator;
   }
 
   setZoomIndicator(zoom) {

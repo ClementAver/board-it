@@ -1,8 +1,8 @@
 import Toolbox from "./Toolbox.js";
 
 export default class ToolSelector {
-  _cameraButton = document.querySelector('[data-tool="camera"]');
-  _selectorButton = document.querySelector('[data-tool="selector"]');
+  #cameraButton = document.querySelector('[data-tool="camera"]');
+  #selectorButton = document.querySelector('[data-tool="selector"]');
 
   constructor() {
     window.addEventListener("grab", (e) => {
@@ -19,19 +19,19 @@ export default class ToolSelector {
   }
 
   get cameraButton() {
-    return this._cameraButton;
+    return this.#cameraButton;
   }
 
   get selectorButton() {
-    return this._selectorButton;
+    return this.#selectorButton;
   }
 
   set cameraButton(cameraButton) {
-    this._cameraButton = cameraButton;
+    this.#cameraButton = cameraButton;
   }
 
   set selectorButton(selectorButton) {
-    this._selectorButton = selectorButton;
+    this.#selectorButton = selectorButton;
   }
 
   updateSelected(label) {

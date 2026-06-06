@@ -6,15 +6,15 @@ import Pan from "../classes/Pan.js";
 import Zoom from "../classes/Zoom.js";
 
 export class Toolbox {
-  _handled = null;
-  _previous = null;
-  _tools = {};
-  _widgets = {};
+  #handled = null;
+  #previous = null;
+  #tools = {};
+  #widgets = {};
 
   constructor({ handled, tools, widgets } = {}) {
-    this.handled = handled ?? this._handled;
-    this.tools = tools ?? this._tools;
-    this.widgets = widgets ?? this._widgets;
+    this.handled = handled ?? this.#handled;
+    this.tools = tools ?? this.#tools;
+    this.widgets = widgets ?? this.#widgets;
 
     const camera = new Camera();
     const zoom = new Zoom();
@@ -22,10 +22,23 @@ export class Toolbox {
     /* ⇊ Camera Proxy ⇊ */
     const cameraProxyTarget = camera;
     const cameraProxyHandler = {
-      get(_, prop) {
+      /**
+       * We don't use `Reflect` in order to access to the Camera instance itself because we need read/write permissions for privates properties.
+       * `return Reflect.get(...arguments);`
+       */
+      get(target, prop, receiver) {
         if (prop === "scale") zoom.zoomIndicator.value = camera.zoom;
-
-        return Reflect.get(...arguments);
+        const value = target[prop];
+        if (value instanceof Function) {
+          return function (...args) {
+            return value.apply(this === receiver ? target : this, args);
+          };
+        }
+        return value;
+      },
+      set(obj, prop, value) {
+        obj[prop] = value;
+        return true;
       },
     };
     const cameraProxy = new Proxy(cameraProxyTarget, cameraProxyHandler);
@@ -40,44 +53,44 @@ export class Toolbox {
   }
 
   get handled() {
-    return this._handled;
+    return this.#handled;
   }
 
   get previous() {
-    return this._previous;
+    return this.#previous;
   }
 
   get tools() {
-    return this._tools;
+    return this.#tools;
   }
 
   get widgets() {
-    return this._widgets;
+    return this.#widgets;
   }
 
   set handled(handled) {
     this.previous = this.handled;
-    this._handled = handled;
+    this.#handled = handled;
     if (this.handled) this.emit();
   }
 
   set previous(previous) {
-    this._previous = previous;
+    this.#previous = previous;
   }
 
   set tools(tools) {
-    this._tools = { ...this.tools, ...tools };
+    this.#tools = { ...this.tools, ...tools };
   }
 
   set widgets(widgets) {
-    this._widgets = { ...this.widgets, ...widgets };
+    this.#widgets = { ...this.widgets, ...widgets };
   }
 
   emit() {
     window.dispatchEvent(
       new CustomEvent("grab", {
         detail: { cursor: this.handled.cursor, label: this.handled.label },
-      })
+      }),
     );
   }
 

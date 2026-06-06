@@ -2,11 +2,11 @@ import Element from "./Element.js";
 import Toolbox from "./Toolbox.js";
 
 export default class Grid extends Element {
-  _borderColor = "rgba(115, 225, 255, 1)";
-  _borderWidth = 1;
-  _dashes = [5, 5];
-  _isEnabled = true;
-  _spacing = 50;
+  #borderColor = "rgba(115, 225, 255, 1)";
+  #borderWidth = 1;
+  #dashes = [5, 5];
+  #isEnabled = true;
+  #spacing = 50;
 
   constructor({
     x = 100,
@@ -28,43 +28,43 @@ export default class Grid extends Element {
   }
 
   get borderColor() {
-    return this._borderColor;
+    return this.#borderColor;
   }
 
   get borderWidth() {
-    return this._borderWidth;
+    return this.#borderWidth;
   }
 
   get dashes() {
-    return this._dashes;
+    return this.#dashes;
   }
 
   get isEnabled() {
-    return this._isEnabled;
+    return this.#isEnabled;
   }
 
   get spacing() {
-    return this._spacing;
+    return this.#spacing;
   }
 
   set borderColor(borderColor) {
-    this._borderColor = borderColor;
+    this.#borderColor = borderColor;
   }
 
   set borderWidth(borderWidth) {
-    this._borderWidth = borderWidth;
+    this.#borderWidth = borderWidth;
   }
 
   set dashes(dashes) {
-    this._dashes = dashes;
+    this.#dashes = dashes;
   }
 
   set isEnabled(isEnabled) {
-    this._isEnabled = isEnabled;
+    this.#isEnabled = isEnabled;
   }
 
   set spacing(spacing) {
-    this._spacing = spacing;
+    this.#spacing = spacing;
   }
 
   draw(canvas, rect) {
@@ -103,15 +103,15 @@ export default class Grid extends Element {
   }
 
   static mapperIn({
-    _height: h,
-    _originX: x,
-    _originY: y,
-    _width: w,
-    _borderColor: borderColor,
-    _borderWidth: borderWidth,
-    _dashes: dashes,
-    _isEnabled: isEnabled,
-    _spacing: spacing,
+    height: h,
+    originX: x,
+    originY: y,
+    width: w,
+    borderColor,
+    borderWidth,
+    dashes,
+    isEnabled,
+    spacing,
   }) {
     return new Grid({
       x,

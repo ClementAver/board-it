@@ -1,6 +1,6 @@
 export default class Gallery extends HTMLElement {
-  _pagination = null;
-  _wrapper = null;
+  #pagination = null;
+  #wrapper = null;
 
   constructor({ pagination, wrapper } = {}) {
     super();
@@ -15,19 +15,19 @@ export default class Gallery extends HTMLElement {
   }
 
   get pagination() {
-    return this._pagination;
+    return this.#pagination;
   }
 
   get wrapper() {
-    return this._wrapper;
+    return this.#wrapper;
   }
 
   set pagination(pagination) {
-    this._pagination = pagination;
+    this.#pagination = pagination;
   }
 
   set wrapper(wrapper) {
-    this._wrapper = wrapper;
+    this.#wrapper = wrapper;
   }
 }
 

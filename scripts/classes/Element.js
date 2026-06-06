@@ -1,9 +1,9 @@
 export default class Element {
-  _elementType;
-  _height;
-  _originX;
-  _originY;
-  _width;
+  #elementType;
+  #height;
+  #originX;
+  #originY;
+  #width;
 
   constructor({ elementType, h, x, y, w } = {}) {
     this.elementType = elementType;
@@ -14,42 +14,42 @@ export default class Element {
   }
 
   get elementType() {
-    return this._elementType;
+    return this.#elementType;
   }
 
   get height() {
-    return this._height;
+    return this.#height;
   }
 
   get originX() {
-    return this._originX;
+    return this.#originX;
   }
 
   get originY() {
-    return this._originY;
+    return this.#originY;
   }
 
   get width() {
-    return this._width;
+    return this.#width;
   }
 
   set elementType(elementType) {
-    this._elementType = elementType;
+    this.#elementType = elementType;
   }
 
   set height(height) {
-    this._height = height;
+    this.#height = height;
   }
 
   set originX(originX) {
-    this._originX = originX;
+    this.#originX = originX;
   }
 
   set originY(originY) {
-    this._originY = originY;
+    this.#originY = originY;
   }
 
   set width(width) {
-    this._width = width;
+    this.#width = width;
   }
 }

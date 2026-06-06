@@ -2,7 +2,7 @@ import Toolbox from "./Toolbox.js";
 import Canvas from "./Canvas.js";
 
 export default class FrameAll {
-  _frameAllBtn = document.querySelector("[data-widget='frame-all']");
+  #frameAllBtn = document.querySelector("[data-widget='frame-all']");
 
   constructor({ frameAllBtn } = {}) {
     this.frameAllBtn = frameAllBtn ?? this.frameAllBtn;
@@ -11,10 +11,10 @@ export default class FrameAll {
   }
 
   get frameAllBtn() {
-    return this._frameAllBtn;
+    return this.#frameAllBtn;
   }
 
   set frameAllBtn(frameAllBtn) {
-    this._frameAllBtn = frameAllBtn;
+    this.#frameAllBtn = frameAllBtn;
   }
 }

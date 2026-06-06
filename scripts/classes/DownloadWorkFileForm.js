@@ -1,7 +1,7 @@
 import WorkFile from "./WorkFile.js";
 
 export default class DownloadWorkFileForm extends HTMLFormElement {
-  _anchor = null;
+  #anchor = null;
 
   constructor({ anchor } = {}) {
     super();
@@ -10,11 +10,11 @@ export default class DownloadWorkFileForm extends HTMLFormElement {
   }
 
   get anchor() {
-    return this._anchor;
+    return this.#anchor;
   }
 
   set anchor(anchor) {
-    this._anchor = anchor;
+    this.#anchor = anchor;
   }
 
   download = (event) => {

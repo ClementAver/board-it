@@ -1,5 +1,5 @@
 export default class Dialog extends HTMLDialogElement {
-  _triggers = null;
+  #triggers = null;
 
   constructor({ triggers } = {}) {
     super();
@@ -23,11 +23,11 @@ export default class Dialog extends HTMLDialogElement {
   }
 
   get triggers() {
-    return this._triggers;
+    return this.#triggers;
   }
 
   set triggers(triggers) {
-    this._triggers = triggers;
+    this.#triggers = triggers;
   }
 
   trigger(event) {

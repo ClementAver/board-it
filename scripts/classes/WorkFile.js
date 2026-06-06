@@ -6,8 +6,8 @@ import ToastGenerator from "./ToastGenerator.js";
 import Toolbox from "./Toolbox.js";
 
 export class WorkFile {
-  _history = new History();
-  _instanciated = {};
+  #history = new History();
+  #instanciated = {};
 
   constructor({ snapshot } = {}) {
     if (!snapshot) snapshot = localStorage.getItem("workfile/snapshot");
@@ -26,19 +26,19 @@ export class WorkFile {
   }
 
   get history() {
-    return this._history;
+    return this.#history;
   }
 
   get instanciated() {
-    return this._instanciated;
+    return this.#instanciated;
   }
 
   set history(history) {
-    this._history = history;
+    this.#history = history;
   }
 
   set instanciated(instanciated) {
-    this._instanciated = instanciated;
+    this.#instanciated = instanciated;
   }
 
   read(file) {

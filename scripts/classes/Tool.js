@@ -1,25 +1,25 @@
 export default class Tool {
-  _cursor = "auto";
-  _label = undefined;
+  #cursor = "auto";
+  #label = undefined;
 
   constructor({ cursor, label } = {}) {
-    this.cursor = cursor ?? this._cursor;
-    this.label = label ?? this._label;
+    this.cursor = cursor ?? this.#cursor;
+    this.label = label ?? this.#label;
   }
 
   get cursor() {
-    return this._cursor;
+    return this.#cursor;
   }
 
   get label() {
-    return this._label;
+    return this.#label;
   }
 
   set cursor(cursor) {
-    this._cursor = cursor;
+    this.#cursor = cursor;
   }
 
   set label(label) {
-    this._label = label;
+    this.#label = label;
   }
 }

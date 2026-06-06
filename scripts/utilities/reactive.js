@@ -10,11 +10,11 @@ export default function reactive(value) {
       switch (prop) {
         case "addAction":
           callbacks.add(receiver);
-          break;
+          return true;
         case "value":
-          Reflect.set(...arguments);
+          target[prop] = receiver;
           callbacks.forEach((cb) => cb(target.value));
-          break;
+          return true;
         default:
           throw new Error("Unauthorised assignment of reactive property");
       }

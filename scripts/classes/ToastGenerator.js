@@ -1,11 +1,11 @@
 import px from "../utilities/px.js";
 
 export class ToastGenerator {
-  _delay = 5000;
-  _gap = 8;
-  _offset = 16;
-  _position = "center";
-  _toasts = [];
+  #delay = 5000;
+  #gap = 8;
+  #offset = 16;
+  #position = "center";
+  #toasts = [];
 
   constructor({ delay, gap, offset, position, toasts } = {}) {
     this.delay = delay ?? this.delay;
@@ -16,43 +16,43 @@ export class ToastGenerator {
   }
 
   get delay() {
-    return this._delay;
+    return this.#delay;
   }
 
   get gap() {
-    return this._gap;
+    return this.#gap;
   }
 
   get offset() {
-    return this._offset;
+    return this.#offset;
   }
 
   get position() {
-    return this._position;
+    return this.#position;
   }
 
   get toasts() {
-    return this._toasts;
+    return this.#toasts;
   }
 
   set delay(delay) {
-    this._delay = delay;
+    this.#delay = delay;
   }
 
   set gap(gap) {
-    this._gap = gap;
+    this.#gap = gap;
   }
 
   set offset(offset) {
-    this._offset = offset;
+    this.#offset = offset;
   }
 
   set position(position) {
-    this._position = position;
+    this.#position = position;
   }
 
   set toasts(toasts) {
-    this._toasts = toasts;
+    this.#toasts = toasts;
   }
 
   generate(text, { type = "" } = {}) {
