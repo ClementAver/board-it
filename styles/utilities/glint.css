@@ -1,6 +1,7 @@
 .glint {
   --glint: -100%;
   position: relative;
+  overflow: hidden;
 
   &:hover {
     --glint: 100%;
@@ -19,5 +20,37 @@
     position: absolute;
     transform: translateX(var(--glint));
     transition: transform 200ms ease-in-out;
+  }
+}
+
+.glint-continuously {
+  overflow: hidden;
+  position: relative;
+
+  ::after {
+    animation: glint-continuously 10s infinite;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(0 0 100 / 20%),
+      transparent
+    );
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+@keyframes glint-continuously {
+  0% {
+    transform: translateX(-100%);
+  }
+  95% {
+    /* 95% = 0.5s at 10s animation-duration*/
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
