@@ -1,7 +1,8 @@
 aeee-details {
+  --duration: 200ms;
   display: grid;
   grid-template-rows: auto 0;
-  transition: grid-template-rows 200ms;
+  transition: grid-template-rows var(--duration);
 
   &[hidden] {
     display: none;
@@ -35,17 +36,23 @@ aeee-details {
 
     + * {
       opacity: 0;
-      transform: translateY(-2rem);
-      transition:
-        opacity 200ms 100ms ease-in-out,
-        transform 200ms ease-in-out;
-
+      transform-origin: center top;
+      
       &[data-open="true"] {
+        animation: drawer var(--duration) forwards;
         border-bottom: 1px solid var(--text-swath);
-        opacity: 1;
         padding-bottom: var(--spacing-md);
-        transform: translateY(0);
       }
     }
+  }
+}
+
+@keyframes drawer {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }

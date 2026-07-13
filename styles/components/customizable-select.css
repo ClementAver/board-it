@@ -87,8 +87,7 @@ select {
     &:checked {
       background-color: var(--btn-background-color-selected);
       box-shadow: var(--shadow);
-      color: var(--valid);
-      font-weight: 600;
+      color: var(--accent-beta);
     }
 
     &::checkmark {
@@ -122,7 +121,7 @@ select {
 @keyframes picker-icon-open {
   0% {
     opacity: 0;
-    transform: translateY(-2rem);
+    transform: translateY(-0.5rem);
   }
   100% {
     opacity: 1;
@@ -133,7 +132,7 @@ select {
 @keyframes picker-icon-close {
   0% {
     opacity: 0;
-    transform: translateY(-2rem);
+    transform: translateY(-0.5rem);
   }
   100% {
     opacity: 1;

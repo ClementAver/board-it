@@ -490,29 +490,12 @@
         <p data-summary class="text-swath medium truncate">
           Téléverser des images
         </p>
-        <form
-          is="aeee-upload-image-form"
-          action="http://127.0.0.1:8698/media"
-          method="post"
-          enctype="multipart/form-data"
-          class="mt-sm mb-md"
-        >
-          <aeee-file-input>
-            <input
-              id="upload-image-input"
-              type="file"
-              accept="image/png, image/jpeg"
-              name="image"
-              tabindex="-1"
-              multiple
-            />
-            <label for="upload-image-input" class="button swath" tabindex="0">
-              <span>Importer des images</span>
-            </label>
-            <p>
-              <small>–</small>
-            </p>
-          </aeee-file-input>
+        <form class="mt-sm mb-md">
+          <aeee-drag-and-drop
+            id="drag-and-drop-file-input"
+            input-placeholder="Select a file"
+            drop-zone-placeholder="Drop or paste your file here"
+          ></aeee-drag-and-drop>
 
           <div class="spring-wrapper rounded-xs">
             <button class="rounded-xs bold swath" type="submit">
@@ -686,4 +669,40 @@
       </form>
     </dialog>
   </body>
+
+  <style>
+    aeee-drag-and-drop {
+      .drop-zone {
+        border: 1px solid black;
+        height: 100px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      input {
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+      label {
+        background: lightgrey;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding-inline: 5px;
+
+        &:hover {
+          background: darkgrey;
+        }
+
+        &:active {
+          background: grey;
+        }
+      }
+    }
+  </style>
 </html>
