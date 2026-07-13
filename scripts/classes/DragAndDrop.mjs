@@ -16,9 +16,12 @@ export default class DragAndDrop extends HTMLElement {
     this.#dropZone = document.createElement("div");
     this.#dropZone.classList.add("drop-zone");
     this.#p = document.createElement("p");
+    this.#p.classList.add("truncate");
     this.#label = document.createElement("label");
+    ["button", "swath"].forEach((c) => this.#label.classList.add(c));
     this.#span = document.createElement("span");
     this.#input = document.createElement("input");
+    this.#input.classList.add("hidden");
     this.#input.type = "file";
 
     this.#dropZone.appendChild(this.#p);

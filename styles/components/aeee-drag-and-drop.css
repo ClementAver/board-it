@@ -1,0 +1,18 @@
+aeee-drag-and-drop {
+  .drop-zone {
+    align-items: center;
+    border: 1px dashed var(--text-swath);
+    border-radius: var(--spacing-sm);
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    margin-bottom: calc(var(--spacing-sm) * 3);
+    padding: var(--spacing-md);
+    width: 100%;
+  }
+
+  label {
+    border-radius: var(--spacing-xs);
+    font-weight: 500;
+  }
+}

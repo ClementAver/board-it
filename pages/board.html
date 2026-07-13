@@ -490,11 +490,11 @@
         <p data-summary class="text-swath medium truncate">
           Téléverser des images
         </p>
-        <form class="mt-sm mb-md">
+        <form class="mt-sm mb-md flex-col gap-lg">
           <aeee-drag-and-drop
             id="drag-and-drop-file-input"
-            input-placeholder="Select a file"
-            drop-zone-placeholder="Drop or paste your file here"
+            input-placeholder="Sélectionner un fichier"
+            drop-zone-placeholder="Déposer ou coller votre image ici"
           ></aeee-drag-and-drop>
 
           <div class="spring-wrapper rounded-xs">
@@ -669,40 +669,4 @@
       </form>
     </dialog>
   </body>
-
-  <style>
-    aeee-drag-and-drop {
-      .drop-zone {
-        border: 1px solid black;
-        height: 100px;
-        width: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5px;
-      }
-      input {
-        clip-path: inset(50%);
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-      }
-      label {
-        background: lightgrey;
-        border: 1px solid black;
-        border-radius: 5px;
-        padding-inline: 5px;
-
-        &:hover {
-          background: darkgrey;
-        }
-
-        &:active {
-          background: grey;
-        }
-      }
-    }
-  </style>
 </html>
