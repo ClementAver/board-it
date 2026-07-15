@@ -16,6 +16,7 @@ export default class DragAndDrop extends HTMLElement {
     this.#dropZone = document.createElement("div");
     this.#dropZone.classList.add("drop-zone");
     this.#p = document.createElement("p");
+    this.#p.classList.add("text-swath");
     this.#p.classList.add("truncate");
     this.#label = document.createElement("label");
     ["button", "swath"].forEach((c) => this.#label.classList.add(c));
@@ -38,12 +39,12 @@ export default class DragAndDrop extends HTMLElement {
         e.stopPropagation();
       }),
     );
-    // this.#dropZone?.addEventListener("dragover", (e) => {
-    //   e.dataTransfer.dropEffect = "copy";
-    // });
-    // this.#dropZone?.addEventListener("dragleave", (e) => {
-    //   e.dataTransfer.dropEffect = "none";
-    // });
+    this.#dropZone?.addEventListener("dragover", (e) => {
+      e.dataTransfer.dropEffect = "move";
+    });
+    this.#dropZone?.addEventListener("dragleave", (e) => {
+      e.dataTransfer.dropEffect = "none";
+    });
     this.#dropZone?.addEventListener("drop", async (e) => {
       this.#updateInput([...e.dataTransfer.files]?.[0]);
     });
