@@ -11,5 +11,7 @@
       "big": "ce champ doit être inférieur à {number}",
       "heavy": "la taille du fichier soumis ne doit pas excéder {number} {unit}"
     }
-  }
+  },
+  "type_missmatch": "le type {type} a été trouvé en lieu et place du ou des types {types}",
+  "type_missmatches": "au moins une non-concordance de type trouvée en lieu et place du ou des types {types}"
 }

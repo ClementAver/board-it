@@ -148,8 +148,17 @@ export default class DragAndDrop extends HTMLElement {
   #updateInput(fileList) {
     if (!(fileList instanceof FileList))
       throw new Error(
-        `Type missmatch: Expected FileList, found ${typeof file}`,
+        `type missmatch: expected filelist, found ${typeof file}`,
       );
+
+    if (
+      this.#accepted &&
+      !Array.from(fileList).every((file) => this.#accepted.includes(file.type))
+    )
+      throw new Error(
+        `at least one file type missmatch: expected ${this.#accepted.join(" or ")}`,
+      );
+
     this.#input.files = fileList;
     this.#input.dispatchEvent(new Event("change", { bubbles: true }));
   }
