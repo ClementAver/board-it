@@ -492,9 +492,13 @@
         </p>
         <form class="mt-sm mb-md flex-col gap-lg">
           <aeee-drag-and-drop
-            id="drag-and-drop-file-input"
-            input-placeholder="Sélectionner un fichier"
+            accepted="image/png, application/pdf"
             drop-zone-placeholder="Déposer ou coller votre image ici"
+            input-id="drag-and-drop-file-input"
+            label-placeholder="Sélectionner un fichier"
+            is-disabled="false"
+            is-multiple="true"
+            is-required="true"
           ></aeee-drag-and-drop>
 
           <div class="spring-wrapper rounded-xs">

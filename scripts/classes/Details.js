@@ -32,7 +32,7 @@ export default class Details extends HTMLElement {
   }
 
   toggle() {
-    this.drawer.setAttribute("data-open", this.drawer.dataset.open != "true");
+    this.drawer.setAttribute("data-open", this.drawer.dataset.open !== "true");
 
     if (this.drawer.dataset.open === "true") {
       Array.from(

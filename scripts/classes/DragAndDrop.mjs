@@ -1,9 +1,13 @@
 export default class DragAndDrop extends HTMLElement {
+  #accepted;
   #dropZone;
   #dropZonePlaceholder;
-  #id;
+  #inputId;
   #input;
-  #inputPlaceholder;
+  #labelPlaceholder;
+  #isDisabled;
+  #isMultiple;
+  #isRequired;
   #label;
   #p;
   #span;
@@ -22,7 +26,7 @@ export default class DragAndDrop extends HTMLElement {
     ["button", "swath"].forEach((c) => this.#label.classList.add(c));
     this.#span = document.createElement("span");
     this.#input = document.createElement("input");
-    this.#input.classList.add("hidden");
+    this.#input.hidden = true;
     this.#input.type = "file";
 
     this.#dropZone.appendChild(this.#p);
@@ -46,7 +50,7 @@ export default class DragAndDrop extends HTMLElement {
       e.dataTransfer.dropEffect = "none";
     });
     this.#dropZone?.addEventListener("drop", async (e) => {
-      this.#updateInput([...e.dataTransfer.files]?.[0]);
+      if (e.dataTransfer) this.#updateInput(e.dataTransfer.files);
     });
     this.#dropZone?.addEventListener("paste", async (e) => {
       if (
@@ -54,41 +58,30 @@ export default class DragAndDrop extends HTMLElement {
           return this.#dropZone.matches(selector);
         })
       ) {
-        this.#updateInput([...e.clipboardData.files]?.[0]);
+        if (e.clipboardData) this.#updateInput(e.clipboardData.files);
       }
     });
     this.#input.addEventListener("change", (e) => {
       if (!(e.target instanceof HTMLInputElement)) return;
-      this.dropZonePlaceholder = e.target.files[0].name;
+      if (e.target.files && e.target.files.length)
+        this.dropZonePlaceholder = Array.from(e.target.files)
+          .map((file) => file.name)
+          .join("\n");
     });
   }
 
-  set id(id) {
-    id = id.toString();
-    if (this.getAttribute("id") != id) {
-      this.setAttribute("id", id);
+  set accepted(accepted) {
+    if (this.getAttribute("accepted") !== accepted) {
+      this.setAttribute("accepted", accepted);
       return;
     }
-
-    this.#id = id;
-    this.#input.id = id;
-    this.#input.name = id;
-    this.#span.setAttribute("for", id);
-  }
-
-  set inputPlaceholder(inputPlaceholder) {
-    inputPlaceholder = inputPlaceholder.toString();
-    if (this.getAttribute("input-placeholder") != inputPlaceholder) {
-      this.setAttribute("input-placeholder", inputPlaceholder);
-      return;
-    }
-    this.#inputPlaceholder = inputPlaceholder;
-    this.#span.innerText = inputPlaceholder;
+    this.#accepted = accepted.replace(" ", "").split(",");
+    this.#input.accept = accepted;
   }
 
   set dropZonePlaceholder(dropZonePlaceholder) {
     dropZonePlaceholder = dropZonePlaceholder.toString();
-    if (this.getAttribute("drop-zone-placeholder") != dropZonePlaceholder) {
+    if (this.getAttribute("drop-zone-placeholder") !== dropZonePlaceholder) {
       this.setAttribute("drop-zone-placeholder", dropZonePlaceholder);
       return;
     }
@@ -96,31 +89,95 @@ export default class DragAndDrop extends HTMLElement {
     this.#p.innerText = dropZonePlaceholder;
   }
 
+  set inputId(id) {
+    id = id.toString();
+    if (this.getAttribute("input-id") !== id) {
+      this.setAttribute("input-id", id);
+      return;
+    }
+
+    this.#inputId = id;
+    this.#input.id = id;
+    this.#input.name = id;
+  }
+
+  set labelPlaceholder(labelPlaceholder) {
+    labelPlaceholder = labelPlaceholder.toString();
+    if (this.getAttribute("label-placeholder") !== labelPlaceholder) {
+      this.setAttribute("label-placeholder", labelPlaceholder);
+      return;
+    }
+    this.#labelPlaceholder = labelPlaceholder;
+    this.#span.innerText = labelPlaceholder;
+  }
+
+  set isDisabled(isDisabled) {
+    if (this.getAttribute("is-disabled") !== isDisabled.toString()) {
+      this.setAttribute("is-disabled", isDisabled.toString());
+      return;
+    }
+
+    this.#isDisabled = isDisabled;
+    this.#input.disabled = isDisabled === "true";
+  }
+
+  set isMultiple(isMultiple) {
+    if (this.getAttribute("is-multiple") !== isMultiple.toString()) {
+      this.setAttribute("is-multiple", isMultiple.toString());
+      return;
+    }
+
+    this.#isMultiple = isMultiple;
+    this.#input.multiple = isMultiple === "true";
+  }
+
+  set isRequired(isRequired) {
+    if (this.getAttribute("is-required") !== isRequired.toString()) {
+      this.setAttribute("is-required", isRequired.toString());
+      return;
+    }
+
+    this.#isRequired = isRequired;
+    this.#input.required = isRequired === "true";
+  }
+
   /**
-   * Update the input with a given file.
-   * @param { File } file A file
+   * Update the input files property with a given FileList.
+   * @param { FileList } fileList
    */
-  #updateInput(file) {
-    if (!(file instanceof File))
-      throw new Error(`Type missmatch: Expected File, found ${typeof file}`);
-    const fileList = new DataTransfer();
-    fileList.items.add(file);
-    this.#input.files = fileList.files;
-    this.dropZonePlaceholder = file.name;
+  #updateInput(fileList) {
+    if (!(fileList instanceof FileList))
+      throw new Error(
+        `Type missmatch: Expected FileList, found ${typeof file}`,
+      );
+    this.#input.files = fileList;
+    this.#input.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;
 
     switch (name) {
-      case "id":
-        this.id = newValue;
-        break;
-      case "input-placeholder":
-        this.inputPlaceholder = newValue;
+      case "accepted":
+        this.accepted = newValue;
         break;
       case "drop-zone-placeholder":
         this.dropZonePlaceholder = newValue;
+        break;
+      case "input-id":
+        this.inputId = newValue;
+        break;
+      case "label-placeholder":
+        this.labelPlaceholder = newValue;
+        break;
+      case "is-disabled":
+        this.isDisabled = newValue;
+        break;
+      case "is-multiple":
+        this.isMultiple = newValue;
+        break;
+      case "is-required":
+        this.isRequired = newValue;
         break;
       default:
         break;
@@ -128,9 +185,13 @@ export default class DragAndDrop extends HTMLElement {
   }
 
   static observedAttributes = [
-    "id",
-    "input-placeholder",
+    "accepted",
     "drop-zone-placeholder",
+    "input-id",
+    "label-placeholder",
+    "is-disabled",
+    "is-multiple",
+    "is-required",
   ];
 }
 
