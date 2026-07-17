@@ -110,7 +110,7 @@ export default class ThemeSwitch extends HTMLElement {
 
   setTheme(theme) {
     const pressed = theme === "dark" ? "true" : "false";
-    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
     this.switchBtn.setAttribute("aria-pressed", pressed);
     this.updateIcon(theme);
@@ -118,7 +118,7 @@ export default class ThemeSwitch extends HTMLElement {
 
   toggle() {
     this.currentTheme =
-      document.documentElement.getAttribute("data-theme") === "dark"
+      document.documentElement.dataset.theme === "dark"
         ? "light"
         : "dark";
     this.setTheme(this.currentTheme);

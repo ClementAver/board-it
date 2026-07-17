@@ -19,7 +19,6 @@ export default class Tooltip extends HTMLElement {
       this.remove();
       return;
     }
-    
     this.previousElementSibling.setAttribute("aria-describedby", [this.id]);
     this.previousElementSibling.interestForElement = this;
   }
@@ -29,11 +28,11 @@ export default class Tooltip extends HTMLElement {
   }
 
   set text(text) {
-    this.#text = text;
-    if (this.getAttribute("data-text") !== text) {
-      this.setAttribute("data-text", text);
+    if (this.dataset.text !== text) {
+      this.dataset.text = text;
       return;
     }
+    this.#text = text;
   }
 
   addSmallText(text) {

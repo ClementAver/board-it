@@ -21,8 +21,8 @@ export default class Pagination extends HTMLElement {
 
     this._internals = this.attachInternals();
 
-    this.page = page ?? this.getAttribute("data-page") ?? this.page;
-    this.maxPage = maxPage ?? this.getAttribute("data-max") ?? this.maxPage;
+    this.page = page ?? this.dataset.page ?? this.page;
+    this.maxPage = maxPage ?? this.dataset.max ?? this.maxPage;
 
     this.setAttribute("role", "menu");
 
@@ -35,6 +35,11 @@ export default class Pagination extends HTMLElement {
     this.previousButton.setAttribute("aria-label", "Page précédente");
     this.nextButton.setAttribute("aria-label", "Page suivante");
     this.lastButton.setAttribute("aria-label", "Dernière page");
+
+    this.firstButton.type = "button";
+    this.previousButton.type = "button";
+    this.nextButton.type = "button";
+    this.lastButton.type = "button";
 
     const pageInfosP = document.createElement("p");
     pageInfosP.display = "inline-block";
@@ -146,8 +151,8 @@ export default class Pagination extends HTMLElement {
 
   set page(page) {
     page = parseInt(page);
-    if (this.getAttribute("data-page") != page) {
-      this.setAttribute("data-page", page);
+    if (this.dataset.page != page) {
+      this.dataset.page = page;
       return;
     }
 
@@ -157,8 +162,8 @@ export default class Pagination extends HTMLElement {
 
   set maxPage(maxPage) {
     maxPage = parseInt(maxPage);
-    if (this.getAttribute("data-max") != maxPage) {
-      this.setAttribute("data-max", maxPage);
+    if (this.dataset.max != maxPage) {
+      this.dataset.max = maxPage;
       return;
     }
 

@@ -26,21 +26,21 @@ export default class Thumbnail extends HTMLElement {
     this._internals = this.attachInternals();
 
     this.alternate =
-      alternate ?? this.getAttribute("data-alternate") ?? this.alternate;
-    this.caption = caption ?? this.getAttribute("data-caption") ?? this.caption;
+      alternate ?? this.dataset.alternate ?? this.alternate;
+    this.caption = caption ?? this.dataset.caption ?? this.caption;
     this.isChecked =
       isChecked ??
-      this.getAttribute("data-is-checked") === "true" ??
+      this.dataset.isChecked === "true" ??
       this.isChecked;
     this.isRounded =
       isRounded ??
-      this.getAttribute("data-is-rounded") === "true" ??
+      this.dataset.isRounded === "true" ??
       this.isRounded;
     this.isSelectable =
       isSelectable ??
-      this.getAttribute("data-is-selectable") === "true" ??
+      this.dataset.isSelectable === "true" ??
       this.isSelectable;
-    this.source = source ?? this.getAttribute("data-source") ?? this.source;
+    this.source = source ?? this.dataset.source ?? this.source;
 
     this.setAttribute("role", "article");
 
@@ -134,21 +134,19 @@ export default class Thumbnail extends HTMLElement {
   }
 
   set alternate(alternate) {
-    if (this.getAttribute("data-alternate") !== alternate) {
-      this.setAttribute("data-alternate", alternate);
+    if (this.dataset.alternate !== alternate) {
+      this.dataset.alternate = alternate;
       return;
     }
-
     this.#alternate = alternate;
     this.image.alt = alternate;
   }
 
   set caption(caption) {
-    if (this.getAttribute("data-caption") !== caption) {
-      this.setAttribute("data-caption", caption);
+    if (this.dataset.caption !== caption) {
+      this.dataset.caption = caption;
       return;
     }
-
     this.#caption = caption;
     this.figcaption.textContent = caption;
   }
@@ -170,8 +168,8 @@ export default class Thumbnail extends HTMLElement {
   }
 
   set isChecked(isChecked) {
-    if (this.getAttribute("data-is-checked") !== isChecked.toString()) {
-      this.setAttribute("data-is-checked", isChecked.toString());
+    if (this.dataset.isChecked !== isChecked.toString()) {
+      this.dataset.isChecked = isChecked.toString();
       return;
     }
 
@@ -187,8 +185,8 @@ export default class Thumbnail extends HTMLElement {
   }
 
   set isRounded(isRounded) {
-    if (this.getAttribute("data-is-rounded") !== isRounded.toString()) {
-      this.setAttribute("data-is-rounded", isRounded.toString());
+    if (this.dataset.isRounded !== isRounded.toString()) {
+      this.dataset.isRounded = isRounded.toString();
       return;
     }
 
@@ -202,8 +200,8 @@ export default class Thumbnail extends HTMLElement {
   }
 
   set isSelectable(isSelectable) {
-    if (this.getAttribute("data-is-selectable") !== isSelectable.toString()) {
-      this.setAttribute("data-is-selectable", isSelectable.toString());
+    if (this.dataset.isSelectable !== isSelectable.toString()) {
+     this.dataset.isSelectable = isSelectable.toString();
       return;
     }
 
@@ -215,8 +213,8 @@ export default class Thumbnail extends HTMLElement {
   }
 
   set source(source) {
-    if (this.getAttribute("data-source") !== source) {
-      this.setAttribute("data-source", source);
+    if (this.dataset.source !== source) {
+      this.dataset.source = source;
       return;
     }
 
