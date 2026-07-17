@@ -9,7 +9,8 @@
       "long": "ce champ doit contenir au maximum {number} caractères",
       "small": "ce champ doit est supérieur à {number}",
       "big": "ce champ doit être inférieur à {number}",
-      "heavy": "la taille du fichier soumis ne doit pas excéder {number} {unit}"
+      "heavy": "la taille du fichier soumis ne doit pas excéder {number} {unit}",
+      "unsupported": "non pris en charge"
     }
   },
   "type_missmatch": "le type {type} a été trouvé en lieu et place du ou des types {types}",

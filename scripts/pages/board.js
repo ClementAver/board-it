@@ -30,4 +30,10 @@ Canvas.resizeWith(rightDrawer);
 const camera = Toolbox.grab("camera");
 camera.initKeyboardActions(Canvas);
 
+const dragAndDrop = document.querySelector("aeee-drag-and-drop");
+dragAndDrop.addEventListener("unsupported", () => {
+  console.log("pouet");
+  dragAndDrop.dropZoneText = "Format de fichier non pris en charge";
+});
+
 debug(WorkFile);
