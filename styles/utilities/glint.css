@@ -7,7 +7,7 @@
     --glint: 100%;
   }
 
-  ::after {
+  &::after {
     content: "";
     background: linear-gradient(
       to right,
@@ -27,7 +27,7 @@
   overflow: hidden;
   position: relative;
 
-  ::after {
+  &::after {
     animation: glint-continuously 10s infinite;
     background: linear-gradient(
       to right,
