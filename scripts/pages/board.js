@@ -4,7 +4,7 @@ import debug from "../utilities/debug.js";
 import Details from "../classes/Details.js";
 import Dialog from "../classes/Dialog.js";
 import DownloadWorkFileForm from "../classes/DownloadWorkFileForm.js";
-import DragAndDrop from "../classes/DragAndDrop.mjs";
+import DragAndDrop from "../classes/DragAndDrop.js";
 import Gallery from "../classes/Gallery.js";
 import initAnchors from "../utilities/initAnchors.js";
 import initDrawers from "../utilities/initDrawer.js";

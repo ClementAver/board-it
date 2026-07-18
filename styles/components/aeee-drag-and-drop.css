@@ -1,18 +1,40 @@
 aeee-drag-and-drop {
+  display: grid;
+  gap: var(--spacing-md);
+  justify-content: space-between;
+  width: 512px;
+
+  &[is-disabled] {
+    opacity: 50%;
+  }
+
   .drop-zone {
-    align-items: center;
     border: 1px dashed var(--text-swath);
     border-radius: var(--spacing-sm);
-    display: flex;
-    height: 100px;
-    justify-content: center;
-    margin-bottom: calc(var(--spacing-sm) * 3);
-    padding: var(--spacing-md);
+    grid-column: 1 / span 2;
+    margin-bottom: var(--spacing-md);
+    max-height: 64px;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+    text-align: center;
     width: 100%;
   }
 
-  label {
+  label,
+  button {
     border-radius: var(--spacing-xs);
-    font-weight: 500;
+    color: var(--text-swath);
+    font-weight: 600;
+    grid-row: 2;
+    height: fit-content;
+    width: fit-content;
+
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  button {
+    justify-self: end;
   }
 }
