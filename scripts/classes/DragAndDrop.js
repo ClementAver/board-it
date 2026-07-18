@@ -164,9 +164,6 @@ export default class DragAndDrop extends HTMLElement {
       this.dataAccept &&
       !Array.from(fileList).every((file) => this.dataAccept.includes(file.type))
     ) {
-      this.#input.dispatchEvent(
-        new CustomEvent("unsupported", { bubbles: true }),
-      );
       throw new Error(
         `at least one file type missmatch: expected ${this.dataAccept.replace(" ", "").split(",").join(" or ")}`,
       );
