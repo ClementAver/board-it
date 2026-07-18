@@ -16,6 +16,7 @@ aeee-drag-and-drop {
     max-height: 64px;
     overflow-y: auto;
     padding: var(--spacing-lg);
+    scrollbar-color: var(--text-swath) transparent;
     text-align: center;
     width: 100%;
   }
