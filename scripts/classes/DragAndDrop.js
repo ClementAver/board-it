@@ -13,7 +13,7 @@ export default class DragAndDrop extends HTMLElement {
   dataMultiple = false;
   dataRequired = false;
   dataResetButtonText = "";
-  dataResetMessage = "";
+  dataWrongFileFormatMessage = "";
 
   constructor() {
     super();
@@ -21,7 +21,7 @@ export default class DragAndDrop extends HTMLElement {
     this.#input.type = "file";
     this.#input.hidden = true;
 
-    ["text-swath", "truncate"].forEach((c) => this.#dropZone.classList.add(c));
+    ["text-swath"].forEach((c) => this.#dropZone.classList.add(c));
     ["button", "swath"].forEach((c) => this.#label.classList.add(c));
     ["swath"].forEach((c) => this.#resetButton.classList.add(c));
   }
@@ -59,10 +59,26 @@ export default class DragAndDrop extends HTMLElement {
     });
     this.#input.addEventListener("change", (e) => {
       if (!(e.target instanceof HTMLInputElement)) return;
-      if (e.target.files && e.target.files.length)
-        this.dropZoneText = Array.from(e.target.files)
+      if (e.target.files && e.target.files.length) {
+        /*
+         * Only one text node
+         * (innerText replace all children)
+         */
+        // this.#dropZone.innerText = Array.from(e.target.files)
+        //   .map((file) => file.name)
+        //   .join("\n");
+
+        /* Multiple spans markups */
+        this.#dropZone.childNodes.forEach((cN) => cN.remove());
+        Array.from(e.target.files)
           .map((file) => file.name)
-          .join("\n");
+          .forEach((n) => {
+            const p = document.createElement("p");
+            p.innerText = n;
+            p.title = n;
+            this.#dropZone.appendChild(p);
+          });
+      }
     });
     this.#resetButton.addEventListener("click", (e) => {
       e.preventDefault();
@@ -85,6 +101,7 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.dropZoneText = dropZoneText;
       return;
     }
+    this.dataDropZoneText = dropZoneText;
     this.#dropZone.innerText = dropZoneText;
   }
 
@@ -94,6 +111,7 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.label = labelText;
       return;
     }
+    this.dataLabel = labelText;
     this.#span.innerText = labelText;
   }
 
@@ -103,6 +121,7 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.id = id;
       return;
     }
+    this.dataId = id;
     this.#input.id = id;
     this.#input.name = id;
   }
@@ -112,6 +131,7 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.disabled = isDisabled.toString();
       return;
     }
+    this.dataDisabled = isDisabled;
     this.#input.disabled = isDisabled === "true";
   }
 
@@ -120,6 +140,7 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.multiple = isMultiple.toString();
       return;
     }
+    this.dataMultiple = isMultiple;
     this.#input.multiple = isMultiple === "true";
   }
 
@@ -128,6 +149,7 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.required = isRequired.toString();
       return;
     }
+    this.dataRequired = isRequired;
     this.#input.required = isRequired === "true";
   }
 
@@ -137,16 +159,18 @@ export default class DragAndDrop extends HTMLElement {
       this.dataset.resetButtonText = resetButtonText;
       return;
     }
+    this.dataResetButtonText = resetButtonText;
     this.#resetButton.innerText = resetButtonText;
   }
 
-  set resetMessage(resetMessage) {
-    resetMessage = resetMessage.toString();
-    if (this.dataset.resetMessage !== resetMessage) {
-      this.dataset.resetMessage = resetMessage;
+  set wrongFileFormatMessage(wrongFileFormatMessage) {
+    wrongFileFormatMessage = wrongFileFormatMessage.toString();
+    if (this.dataset.wrongFileFormatMessage !== wrongFileFormatMessage) {
+      this.dataset.wrongFileFormatMessage = wrongFileFormatMessage;
       return;
     }
-    this.dataResetMessage = resetMessage;
+    this.dataWrongFileFormatMessage = wrongFileFormatMessage;
+    this.dataWrongFileFormatMessage = wrongFileFormatMessage;
   }
 
   /**
@@ -164,6 +188,10 @@ export default class DragAndDrop extends HTMLElement {
       this.dataAccept &&
       !Array.from(fileList).every((file) => this.dataAccept.includes(file.type))
     ) {
+      this.#dropZone.innerText = this.dataWrongFileFormatMessage;
+      setTimeout(() => {
+        this.#dropZone.innerText = this.dataDropZoneText;
+      }, 3000);
       throw new Error(
         `at least one file type missmatch: expected ${this.dataAccept.replace(" ", "").split(",").join(" or ")}`,
       );
@@ -183,7 +211,7 @@ export default class DragAndDrop extends HTMLElement {
     if (this.#input.disabled) return;
     this.#input.files = new DataTransfer().files;
     this.#input.dispatchEvent(new Event("change", { bubbles: true }));
-    this.#dropZone.innerText = this.dataResetMessage;
+    this.#dropZone.innerText = this.dataDropZoneText;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -214,8 +242,8 @@ export default class DragAndDrop extends HTMLElement {
       case "data-reset-button-text":
         this.resetButtonText = newValue;
         break;
-      case "data-reset-message":
-        this.resetMessage = newValue;
+      case "data-wrong-file-format-message":
+        this.wrongFileFormatMessage = newValue;
         break;
       default:
         break;
@@ -231,7 +259,7 @@ export default class DragAndDrop extends HTMLElement {
     "data-multiple",
     "data-required",
     "data-reset-button-text",
-    "data-reset-message",
+    "data-wrong-file-format-message",
   ];
 }
 

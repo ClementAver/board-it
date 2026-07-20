@@ -19,6 +19,12 @@ aeee-drag-and-drop {
     scrollbar-color: var(--text-swath) transparent;
     text-align: center;
     width: 100%;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    } 
   }
 
   label,
