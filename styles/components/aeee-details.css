@@ -34,14 +34,18 @@ aeee-details {
       }
     }
 
-    + * {
-      opacity: 0;
-      transform-origin: center top;
-      
+    + .detail-drawer {
+      display: none;
+
       &[data-open="true"] {
-        animation: drawer var(--duration) forwards;
-        border-bottom: 1px solid var(--text-swath);
-        padding-bottom: var(--spacing-md);
+        display: contents;
+
+        > * {
+          animation: drawer var(--duration) forwards;
+          border-bottom: 1px solid var(--text-swath);
+          padding-bottom: var(--spacing-md);
+          transform-origin: center top;
+        }
       }
     }
   }
@@ -49,10 +53,11 @@ aeee-details {
 
 @keyframes drawer {
   0% {
+    opacity: 0;
     transform: scaleY(0);
   }
   100% {
-    transform: scaleY(1);
     opacity: 1;
+    transform: scaleY(1);
   }
 }

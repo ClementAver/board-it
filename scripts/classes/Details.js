@@ -12,6 +12,7 @@ export default class Details extends HTMLElement {
   connectedCallback() {
     this.title = this.querySelector("[data-summary]") ?? this.title;
     this.drawer = this.title.nextElementSibling ?? this.drawer;
+    if (this.drawer) this.drawer.classList.add("detail-drawer");
     this.title.addEventListener("click", this.toggle.bind(this));
   }
 

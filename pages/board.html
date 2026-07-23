@@ -454,61 +454,65 @@
         <p data-summary class="text-swath medium truncate">
           Téléverser des images
         </p>
-        <form
-          is="aeee-upload-image-form"
-          action="http://127.0.0.1:8698/media"
-          method="post"
-          enctype="multipart/form-data"
-          class="mt-sm mb-md"
-        >
-          <aeee-file-input>
-            <input
-              id="upload-image-input"
-              type="file"
-              accept="image/png, image/jpeg"
-              name="image"
-              tabindex="-1"
-              multiple
-            />
-            <label for="upload-image-input" class="button swath" tabindex="0">
-              <span>Importer des images</span>
-            </label>
-            <p>
-              <small>–</small>
-            </p>
-          </aeee-file-input>
+        <div>
+          <form
+            is="aeee-upload-image-form"
+            action="http://127.0.0.1:8698/media"
+            method="post"
+            enctype="multipart/form-data"
+            class="mt-sm mb-md"
+          >
+            <aeee-file-input>
+              <input
+                id="upload-image-input"
+                type="file"
+                accept="image/png, image/jpeg"
+                name="image"
+                tabindex="-1"
+                multiple
+              />
+              <label for="upload-image-input" class="button swath" tabindex="0">
+                <span>Importer des images</span>
+              </label>
+              <p>
+                <small>–</small>
+              </p>
+            </aeee-file-input>
 
-          <div class="spring-wrapper rounded-xs">
-            <button class="rounded-xs bold swath" type="submit">
-              Importer
-            </button>
-          </div>
-        </form>
+            <div class="spring-wrapper rounded-xs">
+              <button class="rounded-xs bold swath" type="submit">
+                Importer
+              </button>
+            </div>
+          </form>
+        </div>
       </aeee-details>
 
       <aeee-details data-name="right-drawer-details" class="mb-sm">
         <p data-summary class="text-swath medium truncate">
           Téléverser des images
         </p>
-        <form class="mt-sm mb-md flex-col gap-lg">
-          <aeee-drag-and-drop
-            data-accept="image/png"
-            data-disabled="false"
-            data-drop-zone-text="Déposer ou coller votre image ici"
-            data-id="drag-and-drop-file-input"
-            data-label="Sélectionner un fichier"
-            data-multiple="true"
-            data-required="true"
-            data-reset-button-text="réinitialiser"
-            data-wrong-file-format-message="Format de fichier non pris en charge"
-          ></aeee-drag-and-drop>
+        <div>
+          <form class="mt-sm mb-md flex-col gap-lg">
+            <aeee-drag-and-drop
+              data-accept="image/png"
+              data-disabled="false"
+              data-drop-zone-text="Déposer ou coller votre image ici"
+              data-id="drag-and-drop-file-input"
+              data-label="Sélectionner un fichier"
+              data-multiple="true"
+              data-required="true"
+              data-reset-button-text="réinitialiser"
+              data-wrong-file-format-message="Format de fichier non pris en charge"
+            ></aeee-drag-and-drop>
 
-          <div class="spring-wrapper rounded-xs">
-            <button class="rounded-xs bold swath" type="submit">
-              Importer
-            </button>
-          </div>
-        </form>
+            <div class="spring-wrapper rounded-xs">
+              <button class="rounded-xs bold swath" type="submit">
+                Importer
+              </button>
+            </div>
+          </form>
+        </div>
       </aeee-details>
     </menu>
 
