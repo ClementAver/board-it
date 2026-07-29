@@ -1,12 +1,10 @@
-import Unique from "./Unique.js";
-
 export default class Tooltip extends HTMLElement {
   #text = "";
 
   constructor({ text } = {}) {
     super();
 
-    this.id = Unique.getUniqueID();
+    this.id = self.crypto.randomUUID();
     this.setAttribute("role", "tooltip");
     this.popover = "hint";
 
