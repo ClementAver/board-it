@@ -1,9 +1,5 @@
 main#main-board {
-  align-items: center;
   background-color: var(--ternary);
-  display: flex;
   grid-area: main-board;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
+  overflow: auto;
 }

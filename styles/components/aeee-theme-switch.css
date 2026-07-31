@@ -21,7 +21,7 @@ aeee-theme-switch {
       color: var(--theme-switch-background);
 
       &:active {
-        background-color: var(--theme-switch-background);
+        background: var(--accent-beta) 275%;
         border: none;
         color: var(--theme-switch-background);
       }
