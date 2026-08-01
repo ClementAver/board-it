@@ -11,8 +11,12 @@
     display: grid;
     flex: 1 1 max(400px, 40%);
     gap: var(--spacing-sm);
-    grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
     padding: var(--spacing-md);
     place-content: start;
   }
+}
+
+aeee-drag-sorter[draggable="true"]:hover {
+  cursor: move;
 }

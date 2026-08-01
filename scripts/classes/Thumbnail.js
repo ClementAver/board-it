@@ -25,21 +25,14 @@ export default class Thumbnail extends HTMLElement {
 
     this._internals = this.attachInternals();
 
-    this.alternate =
-      alternate ?? this.dataset.alternate ?? this.alternate;
+    this.alternate = alternate ?? this.dataset.alternate ?? this.alternate;
     this.caption = caption ?? this.dataset.caption ?? this.caption;
     this.isChecked =
-      isChecked ??
-      this.dataset.isChecked === "true" ??
-      this.isChecked;
+      isChecked ?? this.dataset.isChecked === "true" ?? this.isChecked;
     this.isRounded =
-      isRounded ??
-      this.dataset.isRounded === "true" ??
-      this.isRounded;
+      isRounded ?? this.dataset.isRounded === "true" ?? this.isRounded;
     this.isSelectable =
-      isSelectable ??
-      this.dataset.isSelectable === "true" ??
-      this.isSelectable;
+      isSelectable ?? this.dataset.isSelectable === "true" ?? this.isSelectable;
     this.source = source ?? this.dataset.source ?? this.source;
 
     this.setAttribute("role", "article");
@@ -71,6 +64,8 @@ export default class Thumbnail extends HTMLElement {
       if (this.source !== this.placeholderImage) {
         this.source = this.placeholderImage;
       }
+
+      this.isSelectable = false;
     };
 
     if (this.checkbox) this.appendChild(this.checkbox);
@@ -201,7 +196,7 @@ export default class Thumbnail extends HTMLElement {
 
   set isSelectable(isSelectable) {
     if (this.dataset.isSelectable !== isSelectable.toString()) {
-     this.dataset.isSelectable = isSelectable.toString();
+      this.dataset.isSelectable = isSelectable.toString();
       return;
     }
 
@@ -225,7 +220,7 @@ export default class Thumbnail extends HTMLElement {
   }
 
   toggleChecked() {
-    this.isChecked = !this.isChecked;
+    if (this.isSelectable) this.isChecked = !this.isChecked;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

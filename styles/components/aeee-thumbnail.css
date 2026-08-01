@@ -1,7 +1,7 @@
 aeee-thumbnail {
   background-color: var(--secondary);
   border-radius: var(--spacing-sm);
-  display: inline-block;
+  display: block;
   max-width: 300px;
   min-width: 100px;
   overflow: hidden;
