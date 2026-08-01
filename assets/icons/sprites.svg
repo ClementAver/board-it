@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+  <symbol
+    id="arrow-left-right"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path d="M8 3 4 7l4 4" />
+    <path d="M4 7h16" />
+    <path d="m16 21 4-4-4-4" />
+    <path d="M20 17H4" />
+  </symbol>
+
+  <symbol
+    id="chevron-first"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path d="m17 18-6-6 6-6" />
+    <path d="M7 6v12" />
+  </symbol>
+
+  <symbol id="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="m18 15-6-6-6 6" />
+  </symbol>
+
+  <symbol
+    id="circle-check"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="m9 12 2 2 4-4" />
+  </symbol>
+
+  <symbol id="file-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path
+      d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+    />
+    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+    <path d="M12 18v-6" />
+    <path d="m9 15 3 3 3-3" />
+  </symbol>
+
+  <symbol
+    id="file-image"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+    />
+    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+    <circle cx="10" cy="12" r="2" />
+    <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
+  </symbol>
+
+  <symbol id="file-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path
+      d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+    />
+    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+    <path d="M12 12v6" />
+    <path d="m15 15-3-3-3 3" />
+  </symbol>
+
+  <symbol
+    id="fullscreen"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+    <rect width="10" height="8" x="7" y="8" rx="1" />
+  </symbol>
+
+  <symbol
+    id="gallery-horizontal-end"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path d="M2 7v10" />
+    <path d="M6 5v14" />
+    <rect width="12" height="18" x="10" y="3" rx="2" />
+  </symbol>
+
+  <symbol id="house" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+    <path
+      d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+    />
+  </symbol>
+
+  <symbol id="menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M4 5h16" />
+    <path d="M4 12h16" />
+    <path d="M4 19h16" />
+  </symbol>
+
+  <symbol
+    id="minimize-2"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path d="m14 10 7-7" />
+    <path d="M20 10h-6V4" />
+    <path d="m3 21 7-7" />
+    <path d="M4 14h6v6" />
+  </symbol>
+
+  <symbol id="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M21 12a9 9 0 1 1-9-9v1a6 6 0 0 0 8 8z" />
+  </symbol>
+
+  <symbol id="move" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M12 2v20" />
+    <path d="m15 19-3 3-3-3" />
+    <path d="m19 9 3 3-3 3" />
+    <path d="M2 12h20" />
+    <path d="m5 9-3 3 3 3" />
+    <path d="m9 5 3-3 3 3" />
+  </symbol>
+
+  <symbol id="octagon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="m15 9-6 6" />
+    <path
+      d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"
+    />
+    <path d="m9 9 6 6" />
+  </symbol>
+
+  <symbol id="save" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path
+      d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"
+    />
+    <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+    <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+  </symbol>
+
+  <symbol id="search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="m21 21-4.34-4.34" />
+    <circle cx="11" cy="11" r="8" />
+  </symbol>
+
+  <symbol
+    id="square-dashed"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <path d="M5 3a2 2 0 0 0-2 2" />
+    <path d="M19 3a2 2 0 0 1 2 2" />
+    <path d="M21 19a2 2 0 0 1-2 2" />
+    <path d="M5 21a2 2 0 0 1-2-2" />
+    <path d="M9 3h1" />
+    <path d="M9 21h1" />
+    <path d="M14 3h1" />
+    <path d="M14 21h1" />
+    <path d="M3 9v1" />
+    <path d="M21 9v1" />
+    <path d="M3 14v1" />
+    <path d="M21 14v1" />
+  </symbol>
+
+  <symbol id="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="4" />
+    <path
+      d="M12 2v2M12 20v2M5 5l1 1M18 18l1 1M2 12h2M20 12h2M6 18l-1 1M19 5l-1 1"
+    />
+  </symbol>
+
+  <symbol id="tag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path
+      d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
+    />
+    <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+  </symbol>
+
+  <symbol id="trash-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M10 11v6" />
+    <path d="M14 11v6" />
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+    <path d="M3 6h18" />
+    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+  </symbol>
+
+  <symbol id="video" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path
+      d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"
+    />
+    <rect x="2" y="6" width="14" height="12" rx="2" />
+  </symbol>
+</svg>

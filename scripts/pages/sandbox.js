@@ -1,6 +1,7 @@
 import debug from "../utilities/debug.js";
 import initDrawers from "../utilities/initDrawer.js";
 import reactive from "../utilities/reactive.js";
+import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Tooltip from "../classes/Tooltip.js";
 

@@ -25,10 +25,10 @@ export default class ThemeSwitch extends HTMLElement {
   }
 
   connectedCallback() {
-    this.moon = this.querySelector("[title = 'theme-moon']") ?? this.moon;
+    this.moon = this.querySelector('[data-href*="moon"] svg') ?? this.moon;
     this.prefersDark =
       window.matchMedia("(prefers-color-scheme: dark)") ?? this.prefersDark;
-    this.sun = this.querySelector("[title = 'theme-sun']") ?? this.sun;
+    this.sun = this.querySelector('[data-href*="sun"] svg') ?? this.sun;
     this.switchBtn =
       this.querySelector("[data-theme-switch]") ?? this.switchBtn;
     this.switchHandle =
