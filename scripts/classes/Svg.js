@@ -1,89 +1,82 @@
 export default class Svg extends HTMLElement {
-  #use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-  #svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  #href = "";
-  #width = "24";
-  #height = "24";
+  #classes = "";
   #fill = "none";
+  #height = "24";
+  #href = "";
   #stroke = "currentColor";
-  #strokeWidth = "2";
   #strokeLinecap = "round";
   #strokeLinejoin = "round";
+  #strokeWidth = "2";
+  #svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  #use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  #width = "24";
 
   constructor({
-    use,
-    svg,
-    href,
-    width,
-    height,
+    classes,
     fill,
+    height,
+    href,
     stroke,
-    strokeWidth,
     strokeLinecap,
     strokeLinejoin,
+    strokeWidth,
+    svg,
+    use,
+    width,
   } = {}) {
     super();
 
     this.style.display = "contents";
-    this.use = use ?? this.use;
-    this.svg = svg ?? this.svg;
-    this.href = href ?? this.dataset.href ?? this.href;
-    this.width = width ?? this.dataset.width ?? this.width;
-    this.height = height ?? this.dataset.height ?? this.height;
+
+    this.classes = classes ?? this.dataset.classes ?? this.classes;
     this.fill = fill ?? this.dataset.fill ?? this.fill;
+    this.height = height ?? this.dataset.height ?? this.height;
+    this.href = href ?? this.dataset.href ?? this.href;
     this.stroke = stroke ?? this.dataset.stroke ?? this.stroke;
-    this.strokeWidth =
-      strokeWidth ?? this.dataset.strokeWidth ?? this.strokeWidth;
     this.strokeLinecap =
       strokeLinecap ?? this.dataset.strokeLinecap ?? this.strokeLinecap;
     this.strokeLinejoin =
       strokeLinejoin ?? this.dataset.strokeLinejoin ?? this.strokeLinejoin;
+    this.strokeWidth =
+      strokeWidth ?? this.dataset.strokeWidth ?? this.strokeWidth;
+    this.svg = svg ?? this.svg;
+    this.use = use ?? this.use;
+    this.width = width ?? this.dataset.width ?? this.width;
   }
 
   connectedCallback() {
-    this.use.setAttribute("href", this.href);
-    this.svg.setAttribute("width", this.width);
-    this.svg.setAttribute("height", this.height);
+    this.svg.setAttribute("class", this.classes);
     this.svg.setAttribute("fill", this.fill);
+    this.svg.setAttribute("height", this.height);
+    this.use.setAttribute("href", this.href);
     this.svg.setAttribute("stroke", this.stroke);
-    this.svg.setAttribute("stroke-width", this.strokeWidth);
     this.svg.setAttribute("stroke-linecap", this.strokeLinecap);
     this.svg.setAttribute("stroke-linejoin", this.strokeLinejoin);
+    this.svg.setAttribute("stroke-width", this.strokeWidth);
+    this.svg.setAttribute("width", this.width);
 
     this.svg.appendChild(this.use);
     this.appendChild(this.svg);
   }
 
-  get use() {
-    return this.#use;
-  }
-
-  get svg() {
-    return this.#svg;
-  }
-
-  get href() {
-    return this.#href;
-  }
-
-  get width() {
-    return this.#width;
-  }
-
-  get height() {
-    return this.#height;
+  get classes() {
+    return this.#classes;
   }
 
   get fill() {
     return this.#fill;
   }
 
-  get stroke() {
-    return this.#stroke;
+  get height() {
+    return this.#height;
   }
 
-  get strokeWidth() {
-    return this.#strokeWidth;
+  get href() {
+    return this.#href;
+  }
+
+  get stroke() {
+    return this.#stroke;
   }
 
   get strokeLinecap() {
@@ -94,42 +87,30 @@ export default class Svg extends HTMLElement {
     return this.#strokeLinejoin;
   }
 
-  set use(use) {
-    this.#use = use;
+  get strokeWidth() {
+    return this.#strokeWidth;
   }
 
-  set svg(svg) {
-    this.#svg = svg;
+  get svg() {
+    return this.#svg;
   }
 
-  set href(href) {
-    if (this.dataset.href != href) {
-      this.dataset.href = href;
+  get use() {
+    return this.#use;
+  }
+
+  get width() {
+    return this.#width;
+  }
+
+  set classes(classes) {
+    if (this.dataset.classes != classes) {
+      this.dataset.classes = classes;
       return;
     }
 
-    this.#href = href;
-    this.use.setAttribute("href", href);
-  }
-
-  set width(width) {
-    if (this.dataset.width != width) {
-      this.dataset.width = width;
-      return;
-    }
-
-    this.#width = width;
-    this.#svg.setAttribute("width", this.width);
-  }
-
-  set height(height) {
-    if (this.dataset.height != height) {
-      this.dataset.height = height;
-      return;
-    }
-
-    this.#height = height;
-    this.#svg.setAttribute("height", this.height);
+    this.#classes = classes;
+    this.#svg.setAttribute("class", classes);
   }
 
   set fill(fill) {
@@ -142,6 +123,26 @@ export default class Svg extends HTMLElement {
     this.#svg.setAttribute("fill", this.fill);
   }
 
+  set height(height) {
+    if (this.dataset.height != height) {
+      this.dataset.height = height;
+      return;
+    }
+
+    this.#height = height;
+    this.#svg.setAttribute("height", this.height);
+  }
+
+  set href(href) {
+    if (this.dataset.href != href) {
+      this.dataset.href = href;
+      return;
+    }
+
+    this.#href = href;
+    this.use.setAttribute("href", href);
+  }
+
   set stroke(stroke) {
     if (this.dataset.stroke != stroke) {
       this.dataset.stroke = stroke;
@@ -150,16 +151,6 @@ export default class Svg extends HTMLElement {
 
     this.#stroke = stroke;
     this.#svg.setAttribute("stroke", this.stroke);
-  }
-
-  set strokeWidth(strokeWidth) {
-    if (this.dataset.strokeWidth != strokeWidth) {
-      this.dataset.strokeWidth = strokeWidth;
-      return;
-    }
-
-    this.#strokeWidth = strokeWidth;
-    this.#svg.setAttribute("stroke-width", strokeWidth);
   }
 
   set strokeLinecap(strokeLinecap) {
@@ -182,27 +173,52 @@ export default class Svg extends HTMLElement {
     this.#svg.setAttribute("stroke-linejoin", strokeLinejoin);
   }
 
+  set strokeWidth(strokeWidth) {
+    if (this.dataset.strokeWidth != strokeWidth) {
+      this.dataset.strokeWidth = strokeWidth;
+      return;
+    }
+
+    this.#strokeWidth = strokeWidth;
+    this.#svg.setAttribute("stroke-width", strokeWidth);
+  }
+
+  set svg(svg) {
+    this.#svg = svg;
+  }
+
+  set use(use) {
+    this.#use = use;
+  }
+
+  set width(width) {
+    if (this.dataset.width != width) {
+      this.dataset.width = width;
+      return;
+    }
+
+    this.#width = width;
+    this.#svg.setAttribute("width", this.width);
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;
 
     switch (name) {
-      case "data-href":
-        this.href = newValue;
-        break;
-      case "data-width":
-        this.width = newValue;
-        break;
-      case "data-height":
-        this.height = newValue;
+      case "data-classes":
+        this.classes = newValue;
         break;
       case "data-fill":
         this.fill = newValue;
         break;
+      case "data-height":
+        this.height = newValue;
+        break;
+      case "data-href":
+        this.href = newValue;
+        break;
       case "data-stroke":
         this.stroke = newValue;
-        break;
-      case "data-stroke-width":
-        this.strokeWidth = newValue;
         break;
       case "data-stroke-linecap":
         this.strokeLinecap = newValue;
@@ -210,20 +226,27 @@ export default class Svg extends HTMLElement {
       case "data-stroke-linejoin":
         this.strokeLinejoin = newValue;
         break;
+      case "data-stroke-width":
+        this.strokeWidth = newValue;
+        break;
+      case "data-width":
+        this.width = newValue;
+        break;
       default:
         break;
     }
   }
 
   static observedAttributes = [
-    "data-href",
-    "data-width",
-    "data-height",
+    "data-classes",
     "data-fill",
+    "data-height",
+    "data-href",
     "data-stroke",
-    "data-stroke-width",
     "data-stroke-linecap",
     "data-stroke-linejoin",
+    "data-stroke-width",
+    "data-width",
   ];
 }
 
