@@ -75,6 +75,8 @@ export default class Thumbnail extends HTMLElement {
     this.appendChild(this.figure);
   }
 
+  // TODO: See why moving a thumbnail break its check feature (connectedMoveCallback?).
+
   connectedCallback() {
     if (this.checkbox)
       this.addEventListener("click", this.toggleChecked.bind(this));

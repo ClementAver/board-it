@@ -9,6 +9,8 @@ export default class DragSorter extends HTMLElement {
     this.addEventListener("drag", throttle(this.drag, 250));
   }
 
+  // TODO: Investigate on cursor on 'drag' events.
+
   drag(event) {
     event.stopImmediatePropagation();
     const dragged = event.target.closest('[draggable="true"]');
@@ -18,9 +20,16 @@ export default class DragSorter extends HTMLElement {
     if (!underneath) return;
     const { x } = getCenterCoords(underneath);
     const where = event.clientX >= x ? "after" : "before";
-  
-    if (dragged.parentElement.parentElement === underneath.parentElement.parentElement)
-    insertSibling(dragged, underneath, where);
+
+    if (
+      dragged.parentElement.parentElement ===
+      underneath.parentElement.parentElement
+    ) {
+      event.dataTransfer.dropEffect = "move";
+      insertSibling(dragged, underneath, where);
+    } else {
+      event.dataTransfer.dropEffect = "none";
+    }
   }
 }
 

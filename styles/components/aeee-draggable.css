@@ -1,11 +1,8 @@
 aeee-draggable {
   background-color: var(--secondary);
   border-radius: var(--spacing-sm);
+  cursor: move;
   height: fit-content;
   padding: var(--spacing-sm);
   width: fit-content;
-
-  &:hover {
-    cursor: move;
-  }
 }
