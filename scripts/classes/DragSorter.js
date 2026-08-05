@@ -1,71 +1,73 @@
-import getCenterCoords from "../utilities/getCenterCoords.js";
+import depthFromAncestor from "../utilities/depthFromAncestor.js";
+import centerCoords from "../utilities/centerCoords.js";
+import elementAtCursor from "../utilities/elementAtCursor.js";
 import insertSibling from "../utilities/insertSibling.js";
 import px from "../utilities/px.js";
 import { throttle } from "../utilities/timing.js";
 
 export default class DragSorter extends HTMLElement {
+  _dragged = null;
+  _rootSorter = null;
+  _draggedDepth = null;
+
   constructor() {
     super();
+
     this.addEventListener("drag", throttle(this.drag.bind(this), 250));
-    this.addEventListener("dragstart", (event) => {
-      event.target.closest('[draggable="true"]')?.classList.add("is-dragged");
-    });
     this.addEventListener("dragover", (event) => {
       event.preventDefault();
     });
+
+    this.addEventListener("dragstart", (event) => {
+      this._dragged = event.target.closest('[draggable="true"]');
+      this._rootSorter = this._dragged.closest(
+        ":not(aeee-drag-sorter) > aeee-drag-sorter",
+      );
+      if (this._dragged) {
+        this._draggedDepth = depthFromAncestor(this._dragged, this._rootSorter);
+        const { clientX, clientY } = event;
+        const { left, top } = this._dragged.getBoundingClientRect();
+        event.dataTransfer.setDragImage(
+          this._dragged,
+          clientX - left,
+          clientY - top,
+        );
+        this._dragged.classList.add("is-dragged");
+      }
+    });
     this.addEventListener("dragend", (event) => {
-      event.target
-        .closest('[draggable="true"]')
-        ?.classList.remove("is-dragged");
+      this._dragged?.classList.remove("is-dragged");
+      this._dragged = null;
+      this._rootSorter = null;
+      this._draggedDepth = null;
     });
   }
 
   drag(event) {
-    const dragged = event.target.closest('[draggable="true"]');
-    const underneath = document
-      .elementFromPoint(event.clientX, event.clientY)
-      .closest('[draggable="true"]');
-    if (!underneath) return;
-    
-    const { x } = getCenterCoords(underneath);
-    const where = event.clientX >= x ? "after" : "before";
-
-    if (
-      dragged.parentElement.parentElement ===
-      underneath.parentElement.parentElement
-    ) {
-      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-      insertSibling(dragged, underneath, where);
-    } else {
+    if (!this._dragged || !this._rootSorter) return;
+    const underneath = elementAtCursor(
+      { x: event.clientX, y: event.clientY },
+      '[draggable="true"]',
+    );
+    if (!underneath || this._dragged === underneath) {
       if (event.dataTransfer) event.dataTransfer.dropEffect = "none";
+      return;
     }
-  }
 
-  drag(event) {
-    const dragged = event.target.closest('[draggable="true"]');
-    const underneath = document
-      .elementFromPoint(event.clientX, event.clientY)
-      .closest('[draggable="true"]');
-    if (!underneath) return;
+    const underneathDepth = depthFromAncestor(underneath, this._rootSorter);
 
-    const { x } = getCenterCoords(underneath);
-    const where = event.clientX >= x ? "after" : "before";
-
-    if (
-      // same generation
-      dragged.parentElement.parentElement ===
-      underneath.parentElement.parentElement
-    ) {
-      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-      insertSibling(dragged, underneath, where);
-    } else if (
-      // one generation gap
-      dragged.parentElement.parentElement === underneath.parentElement
-    ) {
-      underneath.appendChild(dragged);
-    } else {
-      if (event.dataTransfer) event.dataTransfer.dropEffect = "none";
+    if (this._draggedDepth < underneathDepth) {
+      event.dataTransfer.dropEffect = "none";
+      return;
     }
+
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+    if (this._draggedDepth === underneathDepth) {
+      const isBefore = event.clientX < centerCoords(underneath).x;
+      insertSibling(this._dragged, underneath, isBefore ? "before" : "after");
+      return;
+    }
+    underneath.appendChild(this._dragged);
   }
 }
 
