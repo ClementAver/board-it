@@ -14,7 +14,6 @@ export default function depthFromAncestor(descendant, ancestor) {
     depth++;
     parent = parent.parentElement;
   }
-  console.log(depth);
-  
+
   return depth;
 }

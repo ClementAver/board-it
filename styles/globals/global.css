@@ -2,3 +2,7 @@
   opacity: var(--disabled-opacity);
   cursor: not-allowed;
 }
+
+[draggable="true"] {
+  cursor: move;
+}

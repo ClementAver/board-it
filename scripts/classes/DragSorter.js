@@ -6,68 +6,74 @@ import px from "../utilities/px.js";
 import { throttle } from "../utilities/timing.js";
 
 export default class DragSorter extends HTMLElement {
-  _dragged = null;
-  _rootSorter = null;
-  _draggedDepth = null;
+  #_dragged = null;
+  #_draggedDepth = null;
 
   constructor() {
     super();
 
-    this.addEventListener("drag", throttle(this.drag.bind(this), 250));
-    this.addEventListener("dragover", (event) => {
-      event.preventDefault();
-    });
+    this.addEventListener("dragstart", this.dragstart.bind(this));
+    this.addEventListener("drag", throttle(this.drag.bind(this), 100));
+    this.addEventListener("dragover", this.dragover);
+    this.addEventListener("dragend", this.dragend.bind(this));
+  }
 
-    this.addEventListener("dragstart", (event) => {
-      this._dragged = event.target.closest('[draggable="true"]');
-      this._rootSorter = this._dragged.closest(
-        ":not(aeee-drag-sorter) > aeee-drag-sorter",
-      );
-      if (this._dragged) {
-        this._draggedDepth = depthFromAncestor(this._dragged, this._rootSorter);
-        const { clientX, clientY } = event;
-        const { left, top } = this._dragged.getBoundingClientRect();
-        event.dataTransfer.setDragImage(
-          this._dragged,
-          clientX - left,
-          clientY - top,
-        );
-        this._dragged.classList.add("is-dragged");
-      }
-    });
-    this.addEventListener("dragend", (event) => {
-      this._dragged?.classList.remove("is-dragged");
-      this._dragged = null;
-      this._rootSorter = null;
-      this._draggedDepth = null;
-    });
+  get dragged() {
+    return this.#_dragged;
+  }
+
+  get draggedDepth() {
+    return this.#_draggedDepth;
+  }
+
+  set dragged(dragged) {
+    this.#_dragged = dragged;
+  }
+
+  set draggedDepth(draggedDepth) {
+    this.#_draggedDepth = draggedDepth;
+  }
+
+  dragstart(event) {
+    this.dragged = event.target.closest('[draggable="true"]');
+    this.dragged.classList.add("is-dragged");
+    const { clientX, clientY } = event;
+    const { left, top } = this.dragged.getBoundingClientRect();
+    event.dataTransfer.setDragImage(
+      this.dragged,
+      clientX - left,
+      clientY - top,
+    );
+    this.draggedDepth = depthFromAncestor(this.dragged, this);
   }
 
   drag(event) {
-    if (!this._dragged || !this._rootSorter) return;
     const underneath = elementAtCursor(
       { x: event.clientX, y: event.clientY },
       '[draggable="true"]',
     );
-    if (!underneath || this._dragged === underneath) {
-      if (event.dataTransfer) event.dataTransfer.dropEffect = "none";
-      return;
-    }
-
-    const underneathDepth = depthFromAncestor(underneath, this._rootSorter);
-
-    if (this._draggedDepth < underneathDepth) {
-      event.dataTransfer.dropEffect = "none";
-      return;
-    }
-
-    if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-    if (this._draggedDepth === underneathDepth) {
+    if (!underneath) return;
+    const underneathDepth = depthFromAncestor(underneath, this);
+    if (this.draggedDepth === underneathDepth) {
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
       const isBefore = event.clientX < centerCoords(underneath).x;
-      insertSibling(this._dragged, underneath, isBefore ? "before" : "after");
-      return;
+      insertSibling(this.dragged, underneath, isBefore ? "before" : "after");
+    } else if (this.draggedDepth - 1 === underneathDepth) {
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+      underneath.appendChild(this.dragged);
+    } else {
+      event.dataTransfer.dropEffect = "none";
     }
-    underneath.appendChild(this._dragged);
+  }
+
+  dragover(event) {
+    event.preventDefault();
+  }
+
+  dragend() {
+    this.dragged.classList.remove("is-dragged");
+    this.dragged = null;
+    this.draggedDepth = null;
   }
 }
 
