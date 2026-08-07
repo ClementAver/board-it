@@ -1,3 +1,4 @@
+import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
 import Details from "../classes/Details.js";
 import Dialog from "../classes/Dialog.js";

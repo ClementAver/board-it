@@ -10,6 +10,8 @@ export default class Details extends HTMLElement {
   }
 
   connectedCallback() {
+    this.tabIndex = 0;
+    this.addEventListener("keydown", this.keydown);
     this.title = this.querySelector("[data-summary]") ?? this.title;
     this.drawer = this.title.nextElementSibling ?? this.drawer;
     if (this.drawer) this.drawer.classList.add("detail-drawer");
@@ -44,6 +46,11 @@ export default class Details extends HTMLElement {
         if (el.parentElement !== this) el.dataset.open = false;
       });
     }
+  }
+
+  keydown(event) {
+    event.stopPropagation();
+    if (event.code === "Enter" || event.code === "Space") this.toggle();
   }
 }
 

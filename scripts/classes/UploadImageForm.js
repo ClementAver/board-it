@@ -15,6 +15,9 @@ export default class UploadImageForm extends HTMLFormElement {
 
     this.addEventListener("submit", this.upload);
     this.input.addEventListener("change", this.update);
+    this.submitButton.addEventListener("keydown", (event) => {
+      event.stopPropagation();
+    });
   }
 
   get input() {
@@ -38,7 +41,7 @@ export default class UploadImageForm extends HTMLFormElement {
   };
 
   upload = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     this.processFormData();
   };
 

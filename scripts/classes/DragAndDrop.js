@@ -18,9 +18,11 @@ export default class DragAndDrop extends HTMLElement {
   constructor() {
     super();
     this.#dropZone.classList.add("drop-zone");
+    this.#label.tabIndex = 0;
     this.#input.type = "file";
-    this.#input.hidden = true;
-
+    this.#input.tabIndex = -1;
+    this.#input.classList.add("sr-only-extended");
+    this.#resetButton.type = "reset";
     ["text-swath"].forEach((c) => this.#dropZone.classList.add(c));
     ["button", "swath"].forEach((c) => this.#label.classList.add(c));
     ["swath"].forEach((c) => this.#resetButton.classList.add(c));
@@ -33,6 +35,10 @@ export default class DragAndDrop extends HTMLElement {
     this.appendChild(this.#label);
     this.appendChild(this.#resetButton);
 
+    this.#label.addEventListener("keydown", (e) => {
+      e.stopPropagation();
+      if (e.code === "Enter" || e.code === "Space") this.#input.click();
+    });
     ["dragenter", "dragover", "dragleave", "drop"].forEach((type) =>
       this.#dropZone?.addEventListener(type, (e) => {
         e.preventDefault();
@@ -80,9 +86,14 @@ export default class DragAndDrop extends HTMLElement {
           });
       }
     });
+    this.#input.addEventListener("focus", (event) => {
+      this.#label.focus();
+    });
     this.#resetButton.addEventListener("click", (e) => {
-      e.preventDefault();
       this.reset();
+    });
+    this.#resetButton.addEventListener("keydown", (e) => {
+      e.stopPropagation();
     });
   }
 

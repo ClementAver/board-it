@@ -314,15 +314,15 @@
             class="mt-sm mb-md"
           >
             <aeee-file-input>
-              <input
-                id="upload-image-input"
-                type="file"
-                accept="image/png, image/jpeg"
-                name="image"
-                tabindex="-1"
-                multiple
-              />
               <label for="upload-image-input" class="button swath" tabindex="0">
+                <input
+                  id="upload-image-input"
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  name="image"
+                  tabindex="-1"
+                  multiple
+                />
                 <span>Importer des images</span>
               </label>
               <p>
@@ -344,7 +344,13 @@
           Téléverser des images
         </p>
         <div>
-          <form class="mt-sm mb-md flex-col gap-lg">
+          <form
+            is="aeee-upload-image-form"
+            action="http://127.0.0.1:8698/media"
+            method="post"
+            enctype="multipart/form-data"
+            class="mt-sm mb-md flex-col gap-lg"
+          >
             <aeee-drag-and-drop
               data-accept="image/png"
               data-disabled="false"
