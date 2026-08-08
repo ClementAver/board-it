@@ -4,9 +4,9 @@ export default class Thumbnail extends HTMLElement {
   #alternate = "";
   #caption = "";
   #checkbox = null;
-  #figcaption = document.createElement("figcaption");
-  #figure = document.createElement("figure");
-  #image = document.createElement("img");
+  #figcaption = null;
+  #figure = null;
+  #image = null;
   #isChecked = false;
   #isRounded = false;
   #isSelectable = false;
@@ -24,66 +24,17 @@ export default class Thumbnail extends HTMLElement {
     super();
 
     this._internals = this.attachInternals();
-
-    this.alternate = alternate ?? this.dataset.alternate ?? this.alternate;
-    this.caption = caption ?? this.dataset.caption ?? this.caption;
-    this.isChecked =
-      isChecked ?? this.dataset.isChecked === "true" ?? this.isChecked;
-    this.isRounded =
-      isRounded ?? this.dataset.isRounded === "true" ?? this.isRounded;
-    this.isSelectable =
-      isSelectable ?? this.dataset.isSelectable === "true" ?? this.isSelectable;
-    this.source = source ?? this.dataset.source ?? this.source;
-
     this.setAttribute("role", "article");
 
-    if (this.isSelectable) {
-      this.checkbox = document.createElement("input");
-      this.checkbox.type = "checkbox";
-      this.checkbox.name = "thumbnail";
-      this.checkbox.classList.add("sr-only");
-      this.checkbox.value = this.source;
-    }
-
-    this.image.loading = "lazy";
-    this.image.onload = () => {
-      this._internals.states.delete("loading");
-
-      if (this.source !== this.placeholderImage) {
-        this._internals.states.delete("error");
-      }
-    };
-    this.image.onerror = (error) => {
-      this._internals.states.delete("loading");
-      this._internals.states.add("error");
-      handleError({
-        text: `Une Erreur est survenue lors du chargement d'une image.`,
-        error,
-      });
-
-      if (this.source !== this.placeholderImage) {
-        this.source = this.placeholderImage;
-      }
-
-      this.isSelectable = false;
-    };
-
-    if (this.checkbox) this.appendChild(this.checkbox);
-    this.figure.classList.add("glint");
-    this.figure.appendChild(this.image);
-    this.figure.appendChild(this.figcaption);
-    this.appendChild(this.figure);
-  }
-
-  // TODO: See why moving a thumbnail break its check feature (connectedMoveCallback?).
-
-  connectedCallback() {
-    if (this.checkbox)
-      this.addEventListener("click", this.toggleChecked.bind(this));
-  }
-
-  disconnectedCallback() {
-    this.removeEventListener("click", this.toggleChecked);
+    this.setupDOM({
+      source,
+      alternate,
+      caption,
+      isChecked,
+      isRounded,
+      isSelectable,
+    });
+    this.setupEvents();
   }
 
   get alternate() {
@@ -219,6 +170,71 @@ export default class Thumbnail extends HTMLElement {
     this.#source = source;
     this.image.src = source;
     if (this.checkbox) this.checkbox.value = this.source;
+  }
+
+  setupDOM({
+    source,
+    alternate,
+    caption,
+    isChecked,
+    isRounded,
+    isSelectable,
+  } = {}) {
+    this.figure =
+      this.querySelector("figure") ?? document.createElement("figure");
+    this.figure.classList.add("glint");
+    this.figcaption =
+      this.querySelector("figcaption") ?? document.createElement("figcaption");
+    this.image = this.querySelector("img") ?? document.createElement("img");
+    this.image.loading = "lazy";
+    if (!this.figure.contains(this.image)) this.figure.appendChild(this.image);
+    if (!this.figure.contains(this.figcaption))
+      this.figure.appendChild(this.figcaption);
+    if (!this.contains(this.figure)) this.appendChild(this.figure);
+    this.source = source ?? this.dataset.source ?? this.source;
+    this.alternate = alternate ?? this.dataset.alternate ?? this.alternate;
+    this.caption = caption ?? this.dataset.caption ?? this.caption;
+    this.isRounded =
+      isRounded ?? this.dataset.isRounded === "true" ?? this.isRounded;
+    this.isSelectable =
+      isSelectable ?? this.dataset.isSelectable === "true" ?? this.isSelectable;
+
+    if (this.isSelectable) {
+      this.checkbox =
+        this.querySelector("input") ?? document.createElement("input");
+      this.checkbox.type = "checkbox";
+      this.checkbox.name = "thumbnail";
+      this.checkbox.classList.add("sr-only");
+      this.checkbox.value = this.source;
+      if (this.checkbox && !this.contains(this.checkbox))
+        this.appendChild(this.checkbox);
+      this.isChecked =
+        isChecked ?? this.dataset.isChecked === "true" ?? this.isChecked;
+    }
+  }
+
+  setupEvents() {
+    this.image.onload = () => {
+      this._internals.states.delete("loading");
+      if (this.source !== this.placeholderImage) {
+        this._internals.states.delete("error");
+      }
+    };
+    this.image.onerror = (error) => {
+      this._internals.states.delete("loading");
+      this._internals.states.add("error");
+      handleError({
+        text: `Une Erreur est survenue lors du chargement d'une image.`,
+        error,
+      });
+      if (this.source !== this.placeholderImage) {
+        this.source = this.placeholderImage;
+      }
+    };
+
+    if (this.checkbox) {
+      this.addEventListener("click", this.toggleChecked.bind(this));
+    }
   }
 
   toggleChecked() {
