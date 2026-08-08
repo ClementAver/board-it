@@ -16,17 +16,6 @@ aeee-file-input {
     display: none;
   }
 
-  input {
-    clip-path: inset(50%);
-    height: 1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    z-index: -1;
-  }
-
   label {
     border-radius: var(--radius);
     display: flex;
