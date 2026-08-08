@@ -234,12 +234,12 @@
     </header>
 
     <main id="main-board">
-      <aeee-drag-sorter>
-        <aeee-draggable class="drag-board">
+      <aeee-drag-sorter data-drag-level="0">
+        <aeee-draggable data-drag-level="1" class="drag-board">
           <p class="truncate text-swath" style="grid-column: 1/-1">
             Le lion, roi de la jungle
           </p>
-          <aeee-draggable>
+          <aeee-draggable data-drag-level="2">
             <aeee-thumbnail
               data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
               data-alternate="The king of the jungle."
@@ -247,7 +247,7 @@
             ></aeee-thumbnail>
           </aeee-draggable>
 
-          <aeee-draggable>
+          <aeee-draggable data-drag-level="2">
             <aeee-thumbnail
               data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
               data-alternate="The king of the jungle."
@@ -255,7 +255,7 @@
             ></aeee-thumbnail>
           </aeee-draggable>
 
-          <aeee-draggable>
+          <aeee-draggable data-drag-level="2">
             <aeee-thumbnail
               data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
               data-alternate="The king of the jungle."
@@ -264,11 +264,11 @@
           </aeee-draggable>
         </aeee-draggable>
 
-        <aeee-draggable class="drag-board">
+        <aeee-draggable data-drag-level="1" class="drag-board">
           <p class="truncate text-swath" style="grid-column: 1/-1">
             Le chat, roi du monde
           </p>
-          <aeee-draggable>
+          <aeee-draggable data-drag-level="2">
             <aeee-thumbnail
               data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
               data-alternate="The king of the jungle."
@@ -276,7 +276,7 @@
             ></aeee-thumbnail>
           </aeee-draggable>
 
-          <aeee-draggable>
+          <aeee-draggable data-drag-level="2">
             <aeee-thumbnail
               data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
               data-alternate="The king of the jungle."
@@ -284,7 +284,7 @@
             ></aeee-thumbnail>
           </aeee-draggable>
 
-          <aeee-draggable>
+          <aeee-draggable data-drag-level="2">
             <aeee-thumbnail
               data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
               data-alternate="The king of the jungle."
@@ -299,7 +299,7 @@
       data-drawer="right-drawer"
       data-open="true"
       class="right"
-      style="grid-area: right-drawer;"
+      style="grid-area: right-drawer"
     >
       <aeee-details data-name="right-drawer-details" class="mb-sm w-512">
         <p data-summary class="text-swath medium truncate">
@@ -383,11 +383,12 @@
               data-max="999"
             ></aeee-pagination>
 
-            <div
+            <aeee-drag-sorter
+              data-drag-level="1"
               data-gallery-wrapper
               style="grid-template-columns: repeat(3, minmax(100px, 200px))"
             >
-              <aeee-draggable>
+              <aeee-draggable data-drag-level="2">
                 <aeee-thumbnail
                   data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
                   data-alternate="The king of the jungle."
@@ -395,7 +396,7 @@
                 ></aeee-thumbnail>
               </aeee-draggable>
 
-              <aeee-draggable>
+              <aeee-draggable data-drag-level="2">
                 <aeee-thumbnail
                   data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
                   data-alternate="The king of the jungle."
@@ -403,14 +404,14 @@
                 ></aeee-thumbnail>
               </aeee-draggable>
 
-              <aeee-draggable>
+              <aeee-draggable data-drag-level="2">
                 <aeee-thumbnail
                   data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
                   data-alternate="The king of the jungle."
                   data-caption="Lives in the savana."
                 ></aeee-thumbnail>
               </aeee-draggable>
-            </div>
+            </aeee-drag-sorter>
           </aeee-gallery>
         </div>
       </aeee-details>
