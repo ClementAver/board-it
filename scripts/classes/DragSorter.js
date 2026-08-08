@@ -15,6 +15,9 @@ export default class DragSorter extends HTMLElement {
   }
 
   dragstart(event) {
+    if (this.dataset.frozen) {
+      this._clonedNode = event.target.cloneNode(true);
+    }
     event.target.classList.add("is-dragged");
     const { clientX, clientY } = event;
     const { left, top } = event.target.getBoundingClientRect();
@@ -26,11 +29,17 @@ export default class DragSorter extends HTMLElement {
   }
 
   drag(event) {
+    const dragged = this._clonedNode ?? event.target;
     const underneath = elementAtCursor(
       { x: event.clientX, y: event.clientY },
       "[data-drag-level]",
     );
-    if (!underneath || underneath === event.target) return;
+    if (
+      !underneath ||
+      underneath === event.target ||
+      underneath.closest("[data-frozen]")
+    )
+      return;
     [event.target, underneath].forEach((element) => {
       if (!element.dataset.dragLevel) {
         console.error("Missing 'data-drag-level' attribute.", element);
@@ -40,17 +49,18 @@ export default class DragSorter extends HTMLElement {
     const underneathDepth = underneath.dataset.dragLevel;
 
     if (draggedDepth === underneathDepth) {
+      if (this.dataset.frozen && this.contains(underneath)) return;
       if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
       const isBefore = event.clientX < centerCoords(underneath).x;
       if (
-        (isBefore && event.target.nextElementSibling === underneath) ||
-        (!isBefore && event.target.previousElementSibling === underneath)
+        (isBefore && dragged.nextElementSibling === underneath) ||
+        (!isBefore && dragged.previousElementSibling === underneath)
       )
         return;
-      insertSibling(event.target, underneath, isBefore ? "before" : "after");
+      insertSibling(dragged, underneath, isBefore ? "before" : "after");
     } else if (parseInt(draggedDepth) - 1 === parseInt(underneathDepth)) {
       if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-      underneath.appendChild(event.target);
+      underneath.appendChild(dragged);
     } else {
       event.dataTransfer.dropEffect = "none";
     }
@@ -62,6 +72,7 @@ export default class DragSorter extends HTMLElement {
 
   dragend(event) {
     event.target.classList.remove("is-dragged");
+    // this._clonedNode &&= null; <- short circuit the drag event
   }
 }
 
