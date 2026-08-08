@@ -17,7 +17,7 @@ export default class SelectionImageForm extends HTMLFormElement {
       if (key === "thumbnail") thumbnails.push(value);
     }
 
-    console.log(thumbnails);
+    console.info(thumbnails);
   }
 }
 

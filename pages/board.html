@@ -236,7 +236,7 @@
     <main id="main-board">
       <aeee-drag-sorter>
         <aeee-draggable class="drag-board">
-          <p class="truncate" style="grid-column: 1/-1">
+          <p class="truncate text-swath" style="grid-column: 1/-1">
             Le lion, roi de la jungle
           </p>
           <aeee-draggable>
@@ -265,7 +265,7 @@
         </aeee-draggable>
 
         <aeee-draggable class="drag-board">
-          <p class="truncate" style="grid-column: 1/-1">
+          <p class="truncate text-swath" style="grid-column: 1/-1">
             Le chat, roi du monde
           </p>
           <aeee-draggable>
@@ -299,9 +299,9 @@
       data-drawer="right-drawer"
       data-open="true"
       class="right"
-      style="grid-area: right-drawer"
+      style="grid-area: right-drawer;"
     >
-      <aeee-details data-name="right-drawer-details" class="mb-sm">
+      <aeee-details data-name="right-drawer-details" class="mb-sm w-512">
         <p data-summary class="text-swath medium truncate">
           Téléverser des images
         </p>
@@ -311,7 +311,7 @@
             action="http://127.0.0.1:8698/media"
             method="post"
             enctype="multipart/form-data"
-            class="mt-sm mb-md"
+            class="mt-sm w-512"
           >
             <aeee-file-input>
               <input
@@ -341,10 +341,10 @@
 
       <aeee-details data-name="right-drawer-details" class="mb-sm">
         <p data-summary class="text-swath medium truncate">
-          Téléverser des images
+          Glisser-déposer des images
         </p>
         <div>
-          <form class="mt-sm mb-md flex-col gap-lg">
+          <form class="mt-lg flex-col gap-lg">
             <aeee-drag-and-drop
               data-accept="image/png"
               data-disabled="false"
@@ -355,6 +355,7 @@
               data-required="true"
               data-reset-button-text="réinitialiser"
               data-wrong-file-format-message="Format de fichier non pris en charge"
+              class="w-512 max-h-356"
             ></aeee-drag-and-drop>
 
             <div class="spring-wrapper rounded-xs">
@@ -363,6 +364,48 @@
               </button>
             </div>
           </form>
+        </div>
+      </aeee-details>
+
+      <aeee-details data-name="right-drawer-details" class="mb-sm">
+        <p data-summary class="text-swath medium truncate">Mes images</p>
+        <div>
+          <aeee-gallery class="mt-lg w-512 max-h-356">
+            <aeee-pagination
+              class="ml-auto"
+              data-page="1"
+              data-max="999"
+            ></aeee-pagination>
+
+            <div
+              data-gallery-wrapper
+              style="grid-template-columns: repeat(3, minmax(100px, 200px))"
+            >
+              <aeee-draggable>
+                <aeee-thumbnail
+                  data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
+                  data-alternate="The king of the jungle."
+                  data-caption="Lives in the savana."
+                ></aeee-thumbnail>
+              </aeee-draggable>
+
+              <aeee-draggable>
+                <aeee-thumbnail
+                  data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+                  data-alternate="The king of the jungle."
+                  data-caption="Lives in the savana."
+                ></aeee-thumbnail>
+              </aeee-draggable>
+
+              <aeee-draggable>
+                <aeee-thumbnail
+                  data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
+                  data-alternate="The king of the jungle."
+                  data-caption="Lives in the savana."
+                ></aeee-thumbnail>
+              </aeee-draggable>
+            </div>
+          </aeee-gallery>
         </div>
       </aeee-details>
     </menu>
@@ -409,17 +452,6 @@
             </div>
           </div>
         </aeee-gallery>
-
-        <script>
-          const wrapper = document.querySelector("[data-gallery-wrapper]");
-          const thumbnail = document.querySelector("div:has(> aeee-thumbnail)");
-
-          let count = 0;
-          while (count < 10) {
-            wrapper.appendChild(thumbnail.cloneNode(true));
-            count++;
-          }
-        </script>
 
         <div class="spring-wrapper rounded-xs mb-md">
           <button class="rounded-xs bold" type="submit">Importer</button>

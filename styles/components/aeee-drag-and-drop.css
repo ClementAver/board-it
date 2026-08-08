@@ -1,8 +1,8 @@
 aeee-drag-and-drop {
   display: grid;
   gap: var(--spacing-md);
+  grid-template-rows: 1fr auto;
   justify-content: space-between;
-  width: 512px;
 
   &[is-disabled] {
     opacity: 50%;
@@ -13,7 +13,6 @@ aeee-drag-and-drop {
     border-radius: var(--spacing-sm);
     grid-column: 1 / span 2;
     margin-bottom: var(--spacing-md);
-    max-height: 64px;
     overflow-y: auto;
     padding: var(--spacing-lg);
     scrollbar-color: var(--text-swath) transparent;
@@ -24,7 +23,7 @@ aeee-drag-and-drop {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    } 
+    }
   }
 
   label,

@@ -6,7 +6,6 @@ import px from "../utilities/px.js";
 import { throttle } from "../utilities/timing.js";
 
 export default class DragSorter extends HTMLElement {
-  #_dragged = null;
   #_draggedDepth = null;
 
   constructor() {
@@ -18,16 +17,8 @@ export default class DragSorter extends HTMLElement {
     this.addEventListener("dragend", this.dragend.bind(this));
   }
 
-  get dragged() {
-    return this.#_dragged;
-  }
-
   get draggedDepth() {
     return this.#_draggedDepth;
-  }
-
-  set dragged(dragged) {
-    this.#_dragged = dragged;
   }
 
   set draggedDepth(draggedDepth) {
@@ -35,32 +26,37 @@ export default class DragSorter extends HTMLElement {
   }
 
   dragstart(event) {
-    this.dragged = event.target.closest('[draggable="true"]');
-    this.dragged.classList.add("is-dragged");
+    event.target.classList.add("is-dragged");
     const { clientX, clientY } = event;
-    const { left, top } = this.dragged.getBoundingClientRect();
+    const { left, top } = event.target.getBoundingClientRect();
     event.dataTransfer.setDragImage(
-      this.dragged,
+      event.target,
       clientX - left,
       clientY - top,
     );
-    this.draggedDepth = depthFromAncestor(this.dragged, this);
+    this.draggedDepth = depthFromAncestor(event.target, this);
   }
 
   drag(event) {
+    console.log(event);
     const underneath = elementAtCursor(
       { x: event.clientX, y: event.clientY },
       '[draggable="true"]',
     );
-    if (!underneath) return;
+    if (!underneath || underneath === event.target) return;
     const underneathDepth = depthFromAncestor(underneath, this);
     if (this.draggedDepth === underneathDepth) {
       if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
       const isBefore = event.clientX < centerCoords(underneath).x;
-      insertSibling(this.dragged, underneath, isBefore ? "before" : "after");
+      if (
+        (isBefore && event.target.nextElementSibling === underneath) ||
+        (!isBefore && event.target.previousElementSibling === underneath)
+      )
+        return;
+      insertSibling(event.target, underneath, isBefore ? "before" : "after");
     } else if (this.draggedDepth - 1 === underneathDepth) {
       if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-      underneath.appendChild(this.dragged);
+      underneath.appendChild(event.target);
     } else {
       event.dataTransfer.dropEffect = "none";
     }
@@ -70,9 +66,8 @@ export default class DragSorter extends HTMLElement {
     event.preventDefault();
   }
 
-  dragend() {
-    this.dragged.classList.remove("is-dragged");
-    this.dragged = null;
+  dragend(event) {
+    event.target.classList.remove("is-dragged");
     this.draggedDepth = null;
   }
 }

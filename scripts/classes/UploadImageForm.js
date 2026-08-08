@@ -50,7 +50,7 @@ export default class UploadImageForm extends HTMLFormElement {
       if (key === "image") files.push(value);
     }
 
-    console.log(files);
+    console.info(files);
   }
 }
 

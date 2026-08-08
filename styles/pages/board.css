@@ -54,4 +54,8 @@ body {
   overflow: hidden;
   width: 100vw;
   width: 100dvw;
+
+  > main {
+    padding: var(--spacing-md);
+  }
 }

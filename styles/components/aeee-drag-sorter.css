@@ -2,7 +2,6 @@ aeee-drag-sorter {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-  padding: var(--spacing-md);
 
   .drag-board {
     background-color: var(--secondary-darker);
