@@ -17,6 +17,7 @@ export default class DragSorter extends HTMLElement {
   dragstart(event) {
     if (this.dataset.frozen) {
       this._clonedNode = event.target.cloneNode(true);
+      this._clonedNode.classList.add("is-dragged");
     }
     event.target.classList.add("is-dragged");
     const { clientX, clientY } = event;
@@ -72,6 +73,7 @@ export default class DragSorter extends HTMLElement {
 
   dragend(event) {
     event.target.classList.remove("is-dragged");
+    this._clonedNode?.classList.remove("is-dragged");
     // this._clonedNode &&= null; <- short circuit the drag event
   }
 }
