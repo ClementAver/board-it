@@ -5,4 +5,9 @@
 
 [draggable="true"] {
   cursor: move;
+
+  img {
+    user-select: none;
+    pointer-events: none;
+  }
 }

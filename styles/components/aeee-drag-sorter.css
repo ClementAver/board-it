@@ -1,19 +1,6 @@
 aeee-drag-sorter {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: var(--spacing-md);
-
-  .drag-board {
-    background-color: var(--secondary-darker);
-    border-radius: var(--spacing-sm);
-    box-shadow: var(--shadow);
-    display: grid;
-    flex: 1 1 max(400px, 40%);
-    gap: var(--spacing-sm);
-    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
-    padding: var(--spacing-md);
-    place-content: start;
-  }
 
   .is-dragged {
     opacity: 0.5;
