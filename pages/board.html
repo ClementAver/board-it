@@ -233,16 +233,23 @@
       </aeee-tooltip>
     </header>
 
+    <script type="module">
+      // TODO: delete when useless
+      import Board from "../scripts/classes/Board.js";
+      const board = new Board({ title: "pouet" });
+
+      console.log(board.title);
+      document.getElementById("main-board").appendChild(board);
+    </script>
+
     <main id="main-board">
       <aeee-drag-sorter data-drag-level="0">
-        <aeee-board
-          data-title="Le lion, roi de la jungle"
-          draggable="true"
-          data-drag-level="1"
-        >
-          <p class="truncate text-swath" style="grid-column: 1/-1">
-            Le lion, roi de la jungle
-          </p>
+        <aeee-board data-title="" draggable="true" data-drag-level="1">
+          <header>
+            <p data-title class="truncate text-swath" style="grid-column: 1/-1">
+              Le lion, roi de la jungle
+            </p>
+          </header>
           <aeee-thumbnail
             data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
             data-alternate="The king of the jungle."
@@ -270,9 +277,12 @@
           draggable="true"
           data-drag-level="1"
         >
-          <p class="truncate text-swath" style="grid-column: 1/-1">
-            Le chat, roi du monde
-          </p>
+          <!-- TODO: Commented out for test purpose, uncomment when all clear. -->
+          <!-- <header>
+            <p data-title class="truncate text-swath" style="grid-column: 1/-1">
+              Le chat, roi du monde
+            </p>
+          </header> -->
           <aeee-thumbnail
             data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
             data-alternate="The king of the jungle."
