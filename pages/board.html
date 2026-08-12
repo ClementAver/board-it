@@ -233,15 +233,6 @@
       </aeee-tooltip>
     </header>
 
-    <script type="module">
-      // TODO: delete when useless
-      import Board from "../scripts/classes/Board.js";
-      const board = new Board({ title: "pouet" });
-
-      console.log(board.title);
-      document.getElementById("main-board").appendChild(board);
-    </script>
-
     <main id="main-board">
       <aeee-drag-sorter data-drag-level="0">
         <aeee-board data-title="" draggable="true" data-drag-level="1">
@@ -256,6 +247,7 @@
             data-caption="Lives in the savana."
             draggable="true"
             data-drag-level="2"
+            data-is-selectable="true"
           ></aeee-thumbnail>
           <aeee-thumbnail
             data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"

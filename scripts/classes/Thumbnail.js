@@ -14,25 +14,34 @@ export default class Thumbnail extends HTMLElement {
   #source = "";
 
   constructor({
-    source,
     alternate,
     caption,
     isChecked,
     isRounded,
     isSelectable,
+    source,
   } = {}) {
     super();
 
+    this.#alternate = alternate ?? this.#alternate;
+    this.#caption = caption ?? this.#caption;
+    this.#isChecked = isChecked ?? this.#isChecked;
+    this.#isRounded = isRounded ?? this.#isRounded;
+    this.#isSelectable = isSelectable ?? this.#isSelectable;
+    this.#source = source ?? this.#source;
+
     this._internals = this.attachInternals();
     this.setAttribute("role", "article");
+  }
 
+  connectedCallback() {
     this.setupDOM({
-      source,
-      alternate,
-      caption,
-      isChecked,
-      isRounded,
-      isSelectable,
+      source: this.source,
+      alternate: this.alternate,
+      caption: this.caption,
+      isChecked: this.isChecked,
+      isRounded: this.isRounded,
+      isSelectable: this.isSelectable,
     });
     this.setupEvents();
   }
@@ -87,7 +96,7 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
     this.#alternate = alternate;
-    this.image.alt = alternate;
+    if (this.image) this.image.alt = alternate;
   }
 
   set caption(caption) {
@@ -96,7 +105,7 @@ export default class Thumbnail extends HTMLElement {
       return;
     }
     this.#caption = caption;
-    this.figcaption.textContent = caption;
+    if (this.figcaption) this.figcaption.textContent = caption;
   }
 
   set checkbox(checkbox) {
@@ -168,7 +177,7 @@ export default class Thumbnail extends HTMLElement {
 
     this._internals.states.add("loading");
     this.#source = source;
-    this.image.src = source;
+    if (this.image) this.image.src = source;
     if (this.checkbox) this.checkbox.value = this.source;
   }
 
@@ -191,13 +200,14 @@ export default class Thumbnail extends HTMLElement {
     if (!this.figure.contains(this.figcaption))
       this.figure.appendChild(this.figcaption);
     if (!this.contains(this.figure)) this.appendChild(this.figure);
-    this.source = source ?? this.dataset.source ?? this.source;
+
     this.alternate = alternate ?? this.dataset.alternate ?? this.alternate;
     this.caption = caption ?? this.dataset.caption ?? this.caption;
     this.isRounded =
       isRounded ?? this.dataset.isRounded === "true" ?? this.isRounded;
     this.isSelectable =
       isSelectable ?? this.dataset.isSelectable === "true" ?? this.isSelectable;
+    this.source = source ?? this.dataset.source ?? this.source;
 
     if (this.isSelectable) {
       this.checkbox =
@@ -214,6 +224,8 @@ export default class Thumbnail extends HTMLElement {
   }
 
   setupEvents() {
+    if (this._listeners) return;
+    this._listeners = true;
     this.image.onload = () => {
       this._internals.states.delete("loading");
       if (this.source !== this.placeholderImage) {
