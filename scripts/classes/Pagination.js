@@ -82,19 +82,24 @@ export default class Pagination extends HTMLElement {
   debouncedChange = debounce(this.change.bind(this), 1000);
 
   connectedCallback() {
-    this.firstButton.addEventListener("click", this.first.bind(this));
-    this.previousButton.addEventListener("click", this.previous.bind(this));
+    this._first = this.first.bind(this);
+    this._previous = this.previous.bind(this);
+    this._next = this.next.bind(this);
+    this._last = this.last.bind(this);
+
+    this.firstButton.addEventListener("click", this._first);
+    this.previousButton.addEventListener("click", this._previous);
     this.currentInput.addEventListener("change", this.debouncedChange);
-    this.nextButton.addEventListener("click", this.next.bind(this));
-    this.lastButton.addEventListener("click", this.last.bind(this));
+    this.nextButton.addEventListener("click", this._next);
+    this.lastButton.addEventListener("click", this._last);
   }
 
   disconnectedCallback() {
-    this.firstButton.removeEventListener("click", this.first);
-    this.previousButton.removeEventListener("click", this.previous);
+    this.firstButton.removeEventListener("click", this._first);
+    this.previousButton.removeEventListener("click", this._previous);
     this.currentInput.removeEventListener("change", this.debouncedChange);
-    this.nextButton.removeEventListener("click", this.next);
-    this.lastButton.removeEventListener("click", this.last);
+    this.nextButton.removeEventListener("click", this._next);
+    this.lastButton.removeEventListener("click", this._last);
   }
 
   get currentInput() {

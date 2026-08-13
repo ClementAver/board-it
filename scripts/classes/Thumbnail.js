@@ -224,28 +224,38 @@ export default class Thumbnail extends HTMLElement {
   }
 
   setupEvents() {
-    if (this._listeners) return;
-    this._listeners = true;
-    this.image.onload = () => {
-      this._internals.states.delete("loading");
-      if (this.source !== this.placeholderImage) {
-        this._internals.states.delete("error");
-      }
-    };
-    this.image.onerror = (error) => {
-      this._internals.states.delete("loading");
-      this._internals.states.add("error");
-      handleError({
-        text: `Une Erreur est survenue lors du chargement d'une image.`,
-        error,
-      });
-      if (this.source !== this.placeholderImage) {
-        this.source = this.placeholderImage;
-      }
-    };
+    if (!this._listeners) {
+      this._listeners = true;
+
+      this.image.onload = () => {
+        this._internals.states.delete("loading");
+        if (this.source !== this.placeholderImage) {
+          this._internals.states.delete("error");
+        }
+      };
+
+      this.image.onerror = (error) => {
+        this._internals.states.delete("loading");
+        this._internals.states.add("error");
+        handleError({
+          text: `Une Erreur est survenue lors du chargement d'une image.`,
+          error,
+        });
+        if (this.source !== this.placeholderImage) {
+          this.source = this.placeholderImage;
+        }
+      };
+    }
 
     if (this.checkbox) {
-      this.addEventListener("click", this.toggleChecked.bind(this));
+      this._toggleChecked = this.toggleChecked.bind(this);
+      this.addEventListener("click", this._toggleChecked);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this._toggleChecked) {
+      this.removeEventListener("click", this._toggleChecked);
     }
   }
 

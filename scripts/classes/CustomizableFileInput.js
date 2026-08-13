@@ -17,7 +17,8 @@ export default class CustomizableFileInput extends HTMLElement {
     this.paragraph = this.querySelector("p") ?? this.paragraph;
 
     this.input.classList.add("sr-only-extended");
-    this.input.addEventListener("change", this.change.bind(this));
+    this._change =  this.change.bind(this)
+    this.input.addEventListener("change", this._change);
     this.label.addEventListener("keydown", (event) => {
       event.stopPropagation();
       if (event.code === "Enter" || event.code === "Space") this.input.click();
@@ -25,7 +26,7 @@ export default class CustomizableFileInput extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.input.removeEventListener("change", this.change);
+    this.input.removeEventListener("change", this._change);
   }
 
   get input() {

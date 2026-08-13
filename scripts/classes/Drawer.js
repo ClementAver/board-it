@@ -6,7 +6,8 @@ export default class Drawer {
     this.drawer = drawer ?? this.drawer;
     this.toggleButton = toggleButton ?? this.toggleButton;
 
-    this.toggleButton.addEventListener("click", this.toggle.bind(this));
+    this._toggle = this.toggle.bind(this);
+    this.toggleButton.addEventListener("click", this._toggle);
   }
 
   get drawer() {
@@ -36,6 +37,6 @@ export default class Drawer {
   }
 
   removeListener() {
-    this.toggleButton.removeEventListener("click", this.toggle);
+    this.toggleButton.removeEventListener("click", this._toggle);
   }
 }

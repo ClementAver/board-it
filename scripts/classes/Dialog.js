@@ -11,14 +11,15 @@ export default class Dialog extends HTMLDialogElement {
     this.triggers =
       document.querySelectorAll(`[data-trigger="${this.id}"]`) ?? this.triggers;
 
+    this._trigger = this.trigger.bind(this);
     this.triggers.forEach((element) => {
-      element.addEventListener("click", this.trigger.bind(this));
+      element.addEventListener("click", this._trigger);
     });
   }
 
   disconnectedCallback() {
     this.triggers.forEach((element) => {
-      element.removeEventListener("click", this.trigger);
+      element.removeEventListener("click", this._trigger);
     });
   }
 

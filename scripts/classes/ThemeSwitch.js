@@ -36,16 +36,15 @@ export default class ThemeSwitch extends HTMLElement {
 
     this.initTheme();
 
-    this.switchBtn.addEventListener("click", this.toggle.bind(this));
-    this.prefersDark.addEventListener(
-      "change",
-      this.updatePreferredTheme.bind(this),
-    );
+    this._toggle = this.toggle.bind(this);
+    this._updatePreferredTheme = this.updatePreferredTheme.bind(this);
+    this.switchBtn.addEventListener("click", this._toggle);
+    this.prefersDark.addEventListener("change", this._updatePreferredTheme);
   }
 
   disconnectedCallback() {
-    this.switchBtn.removeEventListener("click", this.toggle);
-    this.prefersDark.removeEventListener("change", this.updatePreferredTheme);
+    this.switchBtn.removeEventListener("click", this._toggle);
+    this.prefersDark.removeEventListener("change", this._updatePreferredTheme);
   }
 
   get currentTheme() {
@@ -118,9 +117,7 @@ export default class ThemeSwitch extends HTMLElement {
 
   toggle() {
     this.currentTheme =
-      document.documentElement.dataset.theme === "dark"
-        ? "light"
-        : "dark";
+      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     this.setTheme(this.currentTheme);
   }
 
