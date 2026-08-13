@@ -2,10 +2,12 @@ import Svg from "./Svg.js";
 import insertSibling from "../utilities/insertSibling.js";
 
 export default class Board extends HTMLElement {
+  #deleteButton = null;
+  #deleteSvg = null;
+  #editButton = null;
+  #editSvg = null;
   #title = "";
   #titleElement = null;
-  #edit = null;
-  #delete = null;
 
   constructor({ title } = {}) {
     super();
@@ -15,6 +17,13 @@ export default class Board extends HTMLElement {
 
   connectedCallback() {
     this.setupDOM();
+
+    this._edit = this.edit.bind(this);
+    this.editButton.addEventListener("click", this._edit);
+  }
+
+  disconnectedCallback() {
+    this.editButton.removeEventListener("click", this._edit);
   }
 
   setupDOM() {
@@ -23,38 +32,55 @@ export default class Board extends HTMLElement {
 
     this.titleElement =
       header.querySelector("[data-title]") ?? document.createElement("p");
+    this.titleElement.dataset.title = "";
     this.title =
       this.title || this.dataset.title || this.titleElement.textContent.trim();
     if (!header.contains(this.titleElement))
       header.insertBefore(this.titleElement, header.firstElementChild);
 
-    this.editBtn =
-      header.querySelector('button:has(>[data-href*="#square-pen"])') ??
+    this.editButton =
+      header.querySelector("button[data-edit]") ??
       document.createElement("button");
+    this.editButton.dataset.edit = true;
     this.editSvg =
-      header.querySelector('[data-href*="#square-pen"]') ??
+      this.editButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#square-pen" });
-    if (!this.editBtn.contains(this.editSvg))
-      this.editBtn.appendChild(this.editSvg);
-    if (!header.contains(this.editBtn))
-      insertSibling(this.editBtn, this.titleElement, "after");
+    if (!this.editButton.contains(this.editSvg))
+      this.editButton.appendChild(this.editSvg);
+    if (!header.contains(this.editButton))
+      insertSibling(this.editButton, this.titleElement, "after");
 
-    this.deleteBtn =
-      header.querySelector('button:has(>[data-href*="#trash-2"])') ??
+    this.deleteButton =
+      header.querySelector("button[data-delete]") ??
       document.createElement("button");
+    this.deleteButton.dataset.delete = true;
     this.deleteSvg =
-      header.querySelector('[data-href*="#trash-2"]') ??
+      this.deleteButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#trash-2" });
-    if (!this.deleteBtn.contains(this.deleteSvg))
-      this.deleteBtn.appendChild(this.deleteSvg);
-    if (!header.contains(this.deleteBtn))
-      insertSibling(this.deleteBtn, this.editBtn, "after");
+    if (!this.deleteButton.contains(this.deleteSvg))
+      this.deleteButton.appendChild(this.deleteSvg);
+    if (!header.contains(this.deleteButton))
+      insertSibling(this.deleteButton, this.editButton, "after");
 
     if (!this.contains(header))
       this.insertBefore(header, this.firstElementChild);
   }
 
-  #setupEvents() {}
+  get deleteButton() {
+    return this.#deleteButton;
+  }
+
+  get deleteSvg() {
+    return this.#deleteSvg;
+  }
+
+  get editButton() {
+    return this.#editButton;
+  }
+
+  get editSvg() {
+    return this.#editSvg;
+  }
 
   get title() {
     return this.#title;
@@ -62,6 +88,22 @@ export default class Board extends HTMLElement {
 
   get titleElement() {
     return this.#titleElement;
+  }
+
+  set deleteButton(deleteButton) {
+    this.#deleteButton = deleteButton;
+  }
+
+  set deleteSvg(deleteSvg) {
+    this.#deleteSvg = deleteSvg;
+  }
+
+  set editButton(editButton) {
+    this.#editButton = editButton;
+  }
+
+  set editSvg(editSvg) {
+    this.#editSvg = editSvg;
   }
 
   set title(title) {
@@ -87,6 +129,16 @@ export default class Board extends HTMLElement {
         break;
       default:
         break;
+    }
+  }
+
+  edit() {
+    if (this.editSvg.href.includes("#square-pen")) {
+      const [base, id] = this.editSvg.href.split("#");
+      this.editSvg.href = base + "#save";
+    } else {
+      const [base, id] = this.editSvg.href.split("#");
+      this.editSvg.href = base + "#square-pen";
     }
   }
 
