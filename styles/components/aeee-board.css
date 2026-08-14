@@ -23,6 +23,10 @@ aeee-board {
       white-space: nowrap;
     }
 
+    input {
+      font-weight: 700;
+    }
+
     button {
       border-radius: var(--spacing-xs);
     }

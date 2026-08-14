@@ -6,12 +6,15 @@ export default class Board extends HTMLElement {
   #deleteSvg = null;
   #editButton = null;
   #editSvg = null;
+  #form = null;
+  #input = null;
   #title = "";
   #titleElement = null;
 
   constructor({ title } = {}) {
     super();
 
+    this._formId = self.crypto.randomUUID();
     this.#title = title ?? this.#title;
   }
 
@@ -20,10 +23,13 @@ export default class Board extends HTMLElement {
 
     this._edit = this.edit.bind(this);
     this.editButton.addEventListener("click", this._edit);
+    this._submit = this.submit.bind(this);
+    this.form.addEventListener("submit", this._submit);
   }
 
   disconnectedCallback() {
     this.editButton.removeEventListener("click", this._edit);
+    this.form.removeEventListener("submit", this._submit);
   }
 
   setupDOM() {
@@ -35,12 +41,27 @@ export default class Board extends HTMLElement {
     this.titleElement.dataset.title = "";
     this.title =
       this.title || this.dataset.title || this.titleElement.textContent.trim();
+    this.titleElement.hidden = false;
     if (!header.contains(this.titleElement))
       header.insertBefore(this.titleElement, header.firstElementChild);
+
+    this.form = this.querySelector("form") ?? document.createElement("form");
+    this.form.id = this._formId;
+    this.input = this.querySelector("input") ?? document.createElement("input");
+    this.input.type = "text";
+    this.input.name = "title";
+    if (!this.form.contains(this.input)) {
+      this.form.appendChild(this.input);
+    }
+    this.form.hidden = true;
+    if (!header.contains(this.form)) {
+      header.insertBefore(this.form, header.firstElementChild);
+    }
 
     this.editButton =
       header.querySelector("button[data-edit]") ??
       document.createElement("button");
+    this.editButton.type = "button";
     this.editButton.dataset.edit = true;
     this.editSvg =
       this.editButton.querySelector("aeee-svg") ??
@@ -82,6 +103,14 @@ export default class Board extends HTMLElement {
     return this.#editSvg;
   }
 
+  get form() {
+    return this.#form;
+  }
+
+  get input() {
+    return this.#input;
+  }
+
   get title() {
     return this.#title;
   }
@@ -104,6 +133,14 @@ export default class Board extends HTMLElement {
 
   set editSvg(editSvg) {
     this.#editSvg = editSvg;
+  }
+
+  set form(form) {
+    this.#form = form;
+  }
+
+  set input(input) {
+    this.#input = input;
   }
 
   set title(title) {
@@ -132,14 +169,32 @@ export default class Board extends HTMLElement {
     }
   }
 
-  edit() {
-    if (this.editSvg.href.includes("#square-pen")) {
-      const [base, id] = this.editSvg.href.split("#");
-      this.editSvg.href = base + "#save";
-    } else {
-      const [base, id] = this.editSvg.href.split("#");
-      this.editSvg.href = base + "#square-pen";
-    }
+  edit(event) {
+    console.log("click");
+    if (this.editButton.type === "submit") return;
+    this.input.value = this.title;
+    this.titleElement.hidden = true;
+    this.form.hidden = false;
+    const [base, id] = this.editSvg.href.split("#");
+    this.editSvg.href = base + "#save";
+
+    setTimeout(() => {
+      this.editButton.type = "submit";
+      this.editButton.setAttribute("form", this._formId);
+    }, 0);
+  }
+
+  submit(event) {
+    event.preventDefault();
+    console.log("submit");
+
+    this.title = this.input.value;
+    this.titleElement.hidden = false;
+    this.form.hidden = true;
+    this.editButton.type = "button";
+    this.editButton.removeAttribute("form");
+    const [base, id] = this.editSvg.href.split("#");
+    this.editSvg.href = base + "#square-pen";
   }
 
   static observedAttributes = ["data-title"];
