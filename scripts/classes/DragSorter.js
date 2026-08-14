@@ -61,7 +61,8 @@ export default class DragSorter extends HTMLElement {
       insertSibling(dragged, underneath, isBefore ? "before" : "after");
     } else if (parseInt(draggedDepth) - 1 === parseInt(underneathDepth)) {
       if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-      underneath.appendChild(dragged);
+      if (dragged !== underneath.lastElementChild)
+        underneath.appendChild(dragged);
     } else {
       event.dataTransfer.dropEffect = "none";
     }

@@ -25,11 +25,14 @@ export default class Board extends HTMLElement {
     this.editButton.addEventListener("click", this._edit);
     this._submit = this.submit.bind(this);
     this.form.addEventListener("submit", this._submit);
+    this._delete = this.delete.bind(this);
+    this.deleteButton.addEventListener("click", this._delete);
   }
 
   disconnectedCallback() {
     this.editButton.removeEventListener("click", this._edit);
     this.form.removeEventListener("submit", this._submit);
+    this.deleteButton.removeEventListener("click", this._delete);
   }
 
   setupDOM() {
@@ -42,6 +45,7 @@ export default class Board extends HTMLElement {
     this.title =
       this.title || this.dataset.title || this.titleElement.textContent.trim();
     this.titleElement.hidden = false;
+    this.titleElement.classList.add("text-swath");
     if (!header.contains(this.titleElement))
       header.insertBefore(this.titleElement, header.firstElementChild);
 
@@ -63,6 +67,7 @@ export default class Board extends HTMLElement {
       document.createElement("button");
     this.editButton.type = "button";
     this.editButton.dataset.edit = true;
+    this.editButton.classList.add("border-line-icon");
     this.editSvg =
       this.editButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#square-pen" });
@@ -74,7 +79,9 @@ export default class Board extends HTMLElement {
     this.deleteButton =
       header.querySelector("button[data-delete]") ??
       document.createElement("button");
+    this.deleteButton.type = "button";
     this.deleteButton.dataset.delete = true;
+    this.deleteButton.classList.add("border-line-icon");
     this.deleteSvg =
       this.deleteButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#trash-2" });
@@ -157,18 +164,6 @@ export default class Board extends HTMLElement {
     this.#titleElement = titleElement;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
-
-    switch (name) {
-      case "data-title":
-        this.title = newValue;
-        break;
-      default:
-        break;
-    }
-  }
-
   edit(event) {
     console.log("click");
     if (this.editButton.type === "submit") return;
@@ -195,6 +190,22 @@ export default class Board extends HTMLElement {
     this.editButton.removeAttribute("form");
     const [base, id] = this.editSvg.href.split("#");
     this.editSvg.href = base + "#square-pen";
+  }
+
+  delete() {
+    this.remove();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue) return;
+
+    switch (name) {
+      case "data-title":
+        this.title = newValue;
+        break;
+      default:
+        break;
+    }
   }
 
   static observedAttributes = ["data-title"];

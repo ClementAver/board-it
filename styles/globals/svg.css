@@ -10,3 +10,10 @@ svg {
   min-width: auto;
   width: auto;
 }
+
+.border-line-icon {
+  display: inline-block;
+  padding: calc(
+    var(--spacing-sm) + (1lh - var(--icon-height) + var(--border-width)) / 2
+  );
+}

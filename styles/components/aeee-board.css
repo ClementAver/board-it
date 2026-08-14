@@ -10,6 +10,7 @@ aeee-board {
   place-content: start;
 
   header {
+    align-items: center;
     display: grid;
     gap: var(--spacing-md);
     grid-column: 1/-1;
