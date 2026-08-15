@@ -15,6 +15,12 @@ import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Thumbnail from "../classes/Thumbnail.js";
 import Tooltip from "../classes/Tooltip.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
+import insertSibling from "../utilities/insertSibling.js";
 
 initAnchors();
 initDrawers();
+
+const addBoardButton = document.getElementById("add-board");
+addBoardButton.addEventListener("click", () => {
+  insertSibling(new Board({ dragLevel: 1 }), addBoardButton, "before");
+});

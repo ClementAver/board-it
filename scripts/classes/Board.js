@@ -4,6 +4,7 @@ import insertSibling from "../utilities/insertSibling.js";
 export default class Board extends HTMLElement {
   #deleteButton = null;
   #deleteSvg = null;
+  #dragLevel = 0;
   #editButton = null;
   #editSvg = null;
   #form = null;
@@ -11,11 +12,13 @@ export default class Board extends HTMLElement {
   #title = "";
   #titleElement = null;
 
-  constructor({ title } = {}) {
+  constructor({ title, dragLevel } = {}) {
     super();
 
+    this.draggable = true;
     this._formId = self.crypto.randomUUID();
     this.#title = title ?? this.#title;
+    this.dragLevel = dragLevel ?? this.dataset.dragLevel ?? this.dragLevel;
   }
 
   connectedCallback() {
@@ -102,6 +105,10 @@ export default class Board extends HTMLElement {
     return this.#deleteSvg;
   }
 
+  get dragLevel() {
+    return this.#dragLevel;
+  }
+
   get editButton() {
     return this.#editButton;
   }
@@ -132,6 +139,15 @@ export default class Board extends HTMLElement {
 
   set deleteSvg(deleteSvg) {
     this.#deleteSvg = deleteSvg;
+  }
+
+  set dragLevel(dragLevel) {
+    if (this.dataset.dragLevel != dragLevel) {
+      this.dataset.dragLevel = dragLevel;
+      return;
+    }
+
+    this.#dragLevel = dragLevel;
   }
 
   set editButton(editButton) {
@@ -172,6 +188,7 @@ export default class Board extends HTMLElement {
     this.form.hidden = false;
     const [base, id] = this.editSvg.href.split("#");
     this.editSvg.href = base + "#save";
+    this.input.focus();
 
     setTimeout(() => {
       this.editButton.type = "submit";
@@ -202,6 +219,9 @@ export default class Board extends HTMLElement {
     switch (name) {
       case "data-title":
         this.title = newValue;
+        break;
+      case "data-drag-level":
+        this.dragLevel = newValue;
         break;
       default:
         break;

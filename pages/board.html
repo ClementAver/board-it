@@ -117,25 +117,25 @@
           <li>
             <button
               data-anchor
-              popovertarget="picture-menu"
-              interestfor="picture-menu"
+              popovertarget="quote-menu"
+              interestfor="quote-menu"
               type="button"
               class="mr-auto"
             >
-              Image ↴
+              Un chemin ↴
             </button>
             <div
-              id="picture-menu"
+              id="quote-menu"
               popover
               data-target
               class="dropdown-menu anchor-bottom-sr"
             >
               <button
-                data-trigger="image-upload-dialog"
+                data-trigger="quote-dialog"
                 data-action="showModal"
                 type="button"
               >
-                <span>Importer</span>
+                <span>Le suivre</span>
               </button>
             </div>
           </li>
@@ -235,12 +235,7 @@
 
     <main id="main-board">
       <aeee-drag-sorter data-drag-level="0">
-        <aeee-board data-title="" draggable="true" data-drag-level="1">
-          <header>
-            <p data-title>
-              Le lion, roi de la jungle
-            </p>
-          </header>
+        <aeee-board data-title="Le lion, roi de la jungle" data-drag-level="1">
           <aeee-thumbnail
             data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
             data-alternate="The king of the jungle."
@@ -264,17 +259,7 @@
             data-drag-level="2"
           ></aeee-thumbnail>
         </aeee-board>
-        <aeee-board
-          data-title="Le chat, roi du monde"
-          draggable="true"
-          data-drag-level="1"
-        >
-          <!-- TODO: Commented out for test purpose, uncomment when all clear. -->
-          <!-- <header>
-            <p data-title>
-              Le chat, roi du monde
-            </p>
-          </header> -->
+        <aeee-board data-title="Le chat, roi du monde" data-drag-level="1">
           <aeee-thumbnail
             data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
             data-alternate="The king of the jungle."
@@ -297,6 +282,16 @@
             data-drag-level="2"
           ></aeee-thumbnail>
         </aeee-board>
+
+        <button
+          type="button"
+          id="add-board"
+          draggable="true"
+          data-drag-level="1"
+          class="rounded-xs h-fit"
+        >
+          Ajouter un tableau
+        </button>
       </aeee-drag-sorter>
     </main>
 
@@ -416,11 +411,11 @@
       </aeee-details>
     </menu>
 
-    <dialog is="aeee-dialog" id="image-upload-dialog" autofocus closedby="any">
+    <dialog is="aeee-dialog" id="quote-dialog" class="generic" closedby="any">
       <header>
-        <p>Importer une image</p>
+        <p>Cul-de-Sac</p>
         <button
-          data-trigger="image-upload-dialog"
+          data-trigger="quote-dialog"
           data-action="close"
           type="button"
           aria-label="Fermer la boîte de dialogue modale."
@@ -434,32 +429,34 @@
           <small>Fermer la boîte de dialogue modale.</small>
         </aeee-tooltip>
       </header>
-      <form
-        is="aeee-selection-image-form"
-        action=""
-        enctype="multipart/form-data"
-      >
-        <aeee-gallery class="w-full grow">
-          <aeee-pagination
-            class="ml-auto"
-            data-page="1"
-            data-max="999"
-          ></aeee-pagination>
-          <div data-gallery-wrapper>
-            <div class="spring-wrapper rounded-sm">
-              <aeee-thumbnail
-                data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
-                data-alternate="The king of the jungle."
-                data-caption="Lives in the savana."
-                data-is-selectable="false"
-              ></aeee-thumbnail>
-            </div>
-          </div>
-        </aeee-gallery>
-        <div class="spring-wrapper rounded-xs mb-md">
-          <button class="rounded-xs bold" type="submit">Importer</button>
-        </div>
-      </form>
+
+      <main class="p-lg">
+        <blockquote>
+          <p>
+            Le vaste et confortable smial de Cul-de-Sac fut excavé à
+            Souscolline, sous La Colline, au nord de Hobbiteville, par Bungo
+            Bessac en guise de cadeau pour son épouse, Belladonna Touc. Il passa
+            ensuite à leur fils unique Bilbo Bessac. Après son voyage inattendu
+            aux côtés de Gandalf et de treize Nains, la rumeur voulut que Bilbo
+            ait amassé nombre de trésors dans le trou, ce qui était totalement
+            faux.
+          </p>
+        </blockquote>
+        <br />
+        <p class="text-right">—J.R.R. Tolkien, <cite>Le Hobbit</cite></p>
+      </main>
+
+      <footer class="flex flex-center">
+        <button
+          autofocus
+          type="button"
+          data-trigger="quote-dialog"
+          data-action="close"
+          class="rounded-xs"
+        >
+          Rebrousser chemin
+        </button>
+      </footer>
     </dialog>
   </body>
 </html>

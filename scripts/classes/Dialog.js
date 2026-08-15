@@ -36,15 +36,12 @@ export default class Dialog extends HTMLDialogElement {
       case "showModal":
         this.showModal();
         break;
-
       case "show":
         this.show();
         break;
-
       case "close":
         this.close();
         break;
-
       default:
         break;
     }

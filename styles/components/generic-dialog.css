@@ -1,4 +1,4 @@
-dialog#image-upload-dialog {
+dialog.generic {
   border: none;
   height: fit-content;
   margin: auto;
@@ -45,14 +45,5 @@ dialog#image-upload-dialog {
       border-radius: calc(infinity * 1px);
       transform: scale(0.75);
     }
-  }
-
-  > form {
-    align-items: center;
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    gap: var(--spacing-lg);
-    overflow: auto;
   }
 }

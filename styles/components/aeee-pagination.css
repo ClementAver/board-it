@@ -41,6 +41,7 @@ aeee-pagination {
     border-radius: var(--spacing-xs);
     box-sizing: content-box;
     color: var(--text-swath);
+    padding: unset;
     padding-left: var(--spacing-md);
     text-align: center;
     width: calc(3ch + 1rem);
