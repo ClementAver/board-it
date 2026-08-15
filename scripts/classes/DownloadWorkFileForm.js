@@ -1,5 +1,3 @@
-import WorkFile from "./WorkFile.js";
-
 export default class DownloadWorkFileForm extends HTMLFormElement {
   #anchor = null;
 
@@ -20,9 +18,14 @@ export default class DownloadWorkFileForm extends HTMLFormElement {
   download = (event) => {
     event.preventDefault();
 
-    const blob = new Blob([WorkFile.history.snapshots.slice(-1)[0]], {
-      type: "application/json",
-    });
+    const blob = new Blob(
+      [
+        /* TODO : implement */
+      ],
+      {
+        type: "application/json",
+      },
+    );
 
     const url = URL.createObjectURL(blob);
     this.anchor.href = url;

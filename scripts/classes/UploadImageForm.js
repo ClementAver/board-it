@@ -50,7 +50,8 @@ export default class UploadImageForm extends HTMLFormElement {
 
     const files = [];
     for (var [key, value] of formData.entries()) {
-      if (key === "image") files.push(value);
+      if (key === "image" || key === "drag-and-drop-file-input")
+        files.push(value);
     }
 
     console.info(files);
