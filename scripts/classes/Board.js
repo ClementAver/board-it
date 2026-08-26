@@ -27,6 +27,7 @@ export default class Board extends HTMLElement {
     this._edit = this.edit.bind(this);
     this.editButton.addEventListener("click", this._edit);
     this._submit = this.submit.bind(this);
+    this.input.addEventListener("blur", this._submit);
     this.form.addEventListener("submit", this._submit);
     this._delete = this.delete.bind(this);
     this.deleteButton.addEventListener("click", this._delete);
@@ -36,6 +37,7 @@ export default class Board extends HTMLElement {
     this.editButton.removeEventListener("click", this._edit);
     this.form.removeEventListener("submit", this._submit);
     this.deleteButton.removeEventListener("click", this._delete);
+    this.input.removeEventListener("blur", this._submit);
   }
 
   setupDOM() {
