@@ -4,6 +4,7 @@ import reactive from "../utilities/reactive.js";
 import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Tooltip from "../classes/Tooltip.js";
+import boardAPI from "../classes/BoardApi.js";
 
 initDrawers();
 
@@ -19,3 +20,8 @@ count.addAction = (v) => console.log("click #" + v);
 count.addAction = (v) => (countBtn.textContent = `Cliqué ${v} fois`);
 
 debug(count);
+
+// 🚧🚧🚧🚧🚧
+const { request, cancel } = boardAPI.registered("getBoards");
+request();
+cancel();

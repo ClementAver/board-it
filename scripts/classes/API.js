@@ -1,4 +1,4 @@
-import { debounce, throtle } from "../utilities/timing.js";
+import { debounce, throttle } from "../utilities/timing.js";
 
 export class API {
   #origin = "";
@@ -35,18 +35,12 @@ export class API {
     if (this.registeredEndpoints.has(key)) {
       throw new Error(`function already registered for key: ${key}`);
     }
-    let abortController;
-    let cancel = (message) => {
-      if (abortController) {
-        abortController.abort(message);
-      }
-    };
+    let abortController = new AbortController();
     let request = async ({ body } = {}) => {
       if (noConcurrency) {
-        cancel("concurrent calls are not permitted");
+        abortController?.abort("concurrent calls are not permitted");
       }
-      abortController = new AbortController();
-      return await fetch(pathname, {
+      return await fetch(`${this.origin}${pathname}`, {
         method,
         headers,
         body,
@@ -56,17 +50,15 @@ export class API {
     if (timmingStrategy === "debounce") {
       request = debounce(request, timmingDelay, timmingOptions);
     } else if (timmingStrategy === "throttle") {
-      request = throtle(request, timmingDelay);
+      request = throttle(request, timmingDelay);
     }
     this.registeredEndpoints.set(key, { request, cancel });
   }
 
-  getRegistered(key) {
+  registered(key) {
     if (!this.registeredEndpoints.has(key)) {
       throw new Error(`no function registered for key: ${key}`);
     }
     return this.registeredEndpoints.get(key);
   }
 }
-
-export default new API();
