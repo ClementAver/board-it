@@ -16,7 +16,7 @@ export default function reactive(value) {
           callbacks.forEach((cb) => cb(target.value));
           return true;
         default:
-          throw new Error("Unauthorised assignment of reactive property");
+          throw new Error("unauthorised assignment of reactive property");
       }
       return true;
     },

@@ -50,7 +50,7 @@ export default class ScrollOnDrag {
     const { axis = 'xy' } = options;
 
     if (!['x', 'y', 'xy'].includes(axis)) {
-      throw new Error('Axis must be "x", "y", or "xy"');
+      throw new Error('axis must be "x", "y", or "xy"');
     }
 
     this._element = element;

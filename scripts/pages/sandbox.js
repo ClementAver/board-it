@@ -22,6 +22,7 @@ count.addAction = (v) => (countBtn.textContent = `Cliqué ${v} fois`);
 debug(count);
 
 // 🚧🚧🚧🚧🚧
-const { request, cancel } = boardAPI.registered("getBoards");
+const { request, abort } = boardAPI.registered("getBoards");
+
 request();
-cancel();
+abort("aborted!");

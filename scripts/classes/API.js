@@ -20,31 +20,32 @@ export class API {
     this.#origin = origin;
   }
 
-  async register(
+  async register({
     key,
-    {
-      method = "GET",
-      pathname = "/",
-      headers,
-      noConcurrency = true,
-      timmingStrategy,
-      timmingDelay,
-      timmingOptions,
-    } = {},
-  ) {
+    method = "GET",
+    pathname,
+    headers,
+    noConcurrency,
+    timmingStrategy,
+    timmingDelay,
+    timmingOptions,
+  } = {}) {
+    if (!key) throw new Error('missing "key" parameter');
+    if (!pathname) throw new Error('missing "pathname" parameter');
     if (this.registeredEndpoints.has(key)) {
       throw new Error(`function already registered for key: ${key}`);
     }
-    let abortController = new AbortController();
+    const abortControllerRef = { value: new AbortController() };
     let request = async ({ body } = {}) => {
       if (noConcurrency) {
-        abortController?.abort("concurrent calls are not permitted");
+        abortControllerRef.value?.abort("concurrent calls are not permitted");
       }
+      abortControllerRef.value = new AbortController();
       return await fetch(`${this.origin}${pathname}`, {
         method,
         headers,
         body,
-        signal: abortController.signal,
+        signal: abortControllerRef.value.signal,
       });
     };
     if (timmingStrategy === "debounce") {
@@ -52,7 +53,10 @@ export class API {
     } else if (timmingStrategy === "throttle") {
       request = throttle(request, timmingDelay);
     }
-    this.registeredEndpoints.set(key, { request, cancel });
+    const abort = (message) => {
+      abortControllerRef.value.abort(message);
+    };
+    this.registeredEndpoints.set(key, { request, abort });
   }
 
   registered(key) {

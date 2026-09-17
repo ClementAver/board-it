@@ -1,13 +1,16 @@
 import { API } from "./API.js";
 
-class BoardAPI extends API {
-  constructor({ origin } = {}) {
-    super({ origin });
-  }
-}
+class BoardAPI extends API {}
 
-const boardAPI = new BoardAPI({ origin: "https://perdu.com/" });
+const boardAPI = new BoardAPI({ origin: "http://localhost:3001" });
 
-boardAPI.register("getBoards");
+boardAPI.register({
+  key: "getBoards",
+  pathname: "/api/boards",
+  noConcurrency: true,
+  headers: new Headers({
+    "Content-Type": "application/json",
+  }),
+});
 
 export default boardAPI;
