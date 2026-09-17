@@ -1,3 +1,4 @@
+import formatOrdinal from "../utilities/formatOrdinal.js";
 import { debounce, throttle } from "../utilities/timing.js";
 
 export class API {
@@ -35,10 +36,14 @@ export class API {
     if (this.registeredEndpoints.has(key)) {
       throw new Error(`function already registered for key: ${key}`);
     }
+    let timesCalled = 0;
     const abortControllerRef = { value: new AbortController() };
     let request = async ({ body } = {}) => {
+      timesCalled++;
       if (noConcurrency) {
-        abortControllerRef.value?.abort("concurrent calls are not permitted");
+        abortControllerRef.value?.abort(
+          `concurrent calls are not permitted (${formatOrdinal(timesCalled)})`,
+        );
       }
       abortControllerRef.value = new AbortController();
       return await fetch(`${this.origin}${pathname}`, {
@@ -54,7 +59,9 @@ export class API {
       request = throttle(request, timmingDelay);
     }
     const abort = (message) => {
-      abortControllerRef.value.abort(message);
+      abortControllerRef.value.abort(
+        `${message} ${formatOrdinal(timesCalled)}`,
+      );
     };
     this.registeredEndpoints.set(key, { request, abort });
   }
