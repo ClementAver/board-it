@@ -2,7 +2,7 @@ import { debounce, throtle } from "../utilities/timing.js";
 
 export class API {
   #origin = "";
-  #registered = new Map();
+  #registeredEndpoints = new Map();
 
   constructor({ origin } = {}) {
     this.#origin = origin ?? this.#origin;
@@ -12,8 +12,8 @@ export class API {
     return this.#origin;
   }
 
-  get registered() {
-    return this.#registered;
+  get registeredEndpoints() {
+    return this.#registeredEndpoints;
   }
 
   set origin(origin) {
@@ -22,37 +22,50 @@ export class API {
 
   async register(
     key,
-    { method, pathname, headers, signal, timming, delay, options } = {},
+    {
+      method = "GET",
+      pathname = "/",
+      headers,
+      noConcurrency = true,
+      timmingStrategy,
+      timmingDelay,
+      timmingOptions,
+    } = {},
   ) {
-    if (this.registered.has(key)) {
+    if (this.registeredEndpoints.has(key)) {
       throw new Error(`function already registered for key: ${key}`);
     }
-
-    let fn = async ({ body } = {}) => {
-      const response = await fetch(pathname, {
+    let abortController;
+    let cancel = (message) => {
+      if (abortController) {
+        abortController.abort(message);
+      }
+    };
+    let request = async ({ body } = {}) => {
+      if (noConcurrency) {
+        cancel("concurrent calls are not permitted");
+      }
+      abortController = new AbortController();
+      return await fetch(pathname, {
         method,
         headers,
         body,
-        signal,
+        signal: abortController.signal,
       });
-      if (!response.ok) {
-        throw new Error(`response status: ${response.status}`);
-      }
-      return response;
     };
-
-    if (timming === "debounce") fn = debounce(fn, delay, options);
-    else if (timming === "throttle") fn = throtle(fn, delay);
-
-    this.registered.set(symbol(key), fn);
+    if (timmingStrategy === "debounce") {
+      request = debounce(request, timmingDelay, timmingOptions);
+    } else if (timmingStrategy === "throttle") {
+      request = throtle(request, timmingDelay);
+    }
+    this.registeredEndpoints.set(key, { request, cancel });
   }
 
-  async call(key, { body } = {}) {
-    if (!this.registered.has(key)) {
+  getRegistered(key) {
+    if (!this.registeredEndpoints.has(key)) {
       throw new Error(`no function registered for key: ${key}`);
     }
-    let fn = this.registered.get(key);
-    return await fn(body);
+    return this.registeredEndpoints.get(key);
   }
 }
 
