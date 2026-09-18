@@ -27,9 +27,9 @@ export class API {
     pathname,
     headers,
     noConcurrency,
-    timmingStrategy,
-    timmingDelay,
-    timmingOptions,
+    timingStrategy,
+    timingDelay,
+    timingOptions,
   } = {}) {
     if (!key) throw new Error('missing "key" parameter');
     if (!pathname) throw new Error('missing "pathname" parameter');
@@ -53,10 +53,10 @@ export class API {
         signal: abortControllerRef.value.signal,
       });
     };
-    if (timmingStrategy === "debounce") {
-      request = debounce(request, timmingDelay, timmingOptions);
-    } else if (timmingStrategy === "throttle") {
-      request = throttle(request, timmingDelay);
+    if (timingStrategy === "debounce") {
+      request = debounce(request, timingDelay, timingOptions);
+    } else if (timingStrategy === "throttle") {
+      request = throttle(request, timingDelay);
     }
     const abort = (message) => {
       abortControllerRef.value.abort(
