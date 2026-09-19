@@ -9,7 +9,7 @@ import {
   abortReadBoard,
   readBoards,
   abortReadBoards,
-} from "../classes/BackIt.js";
+} from "../services/BackIt.js";
 
 initDrawers();
 
