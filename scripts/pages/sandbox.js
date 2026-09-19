@@ -4,7 +4,12 @@ import reactive from "../utilities/reactive.js";
 import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Tooltip from "../classes/Tooltip.js";
-import boardAPI from "../classes/BoardApi.js";
+import {
+  readBoard,
+  abortReadBoard,
+  readBoards,
+  abortReadBoards,
+} from "../classes/BackIt.js";
 
 initDrawers();
 
@@ -22,7 +27,16 @@ count.addAction = (v) => (countBtn.textContent = `Cliqué ${v} fois`);
 debug(count);
 
 // 🚧🚧🚧🚧🚧
-const { request, abort } = boardAPI.registered("getBoards");
+readBoards().then((response) => {
+  console.log(response);
+  response.json().then((result) => {
+    console.log(result);
+  });
+});
 
-request();
-abort("aborted!");
+readBoard({ pathname: "/1" }, { immediate: true }).then((response) => {
+  console.log(response);
+  response.json().then((result) => {
+    console.log(result);
+  });
+});

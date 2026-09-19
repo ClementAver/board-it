@@ -21,10 +21,11 @@ export class API {
     this.#origin = origin;
   }
 
-  async register({
+  register({
     key,
     method = "GET",
-    pathname,
+    pathname = "",
+    queries,
     headers,
     noConcurrency,
     timingStrategy,
@@ -32,13 +33,24 @@ export class API {
     timingOptions,
   } = {}) {
     if (!key) throw new Error('missing "key" parameter');
-    if (!pathname) throw new Error('missing "pathname" parameter');
     if (this.registeredEndpoints.has(key)) {
       throw new Error(`function already registered for key: ${key}`);
     }
+    let url = new URL(this.origin);
+    if (pathname) url.pathname = pathname;
+    if (queries) {
+      let searchParams = url.searchParams;
+      for (const [key, value] of Object.entries(queries)) {
+        searchParams.set(key, value);
+      }
+    }
     let timesCalled = 0;
     const abortControllerRef = { value: new AbortController() };
-    let request = async ({ body } = {}) => {
+    let request = async ({
+      pathname: requestPathname,
+      queries: requestQueries,
+      body,
+    } = {}) => {
       timesCalled++;
       if (noConcurrency) {
         abortControllerRef.value?.abort(
@@ -46,7 +58,16 @@ export class API {
         );
       }
       abortControllerRef.value = new AbortController();
-      return await fetch(`${this.origin}${pathname}`, {
+      const requestUrl = new URL(url);
+      if (requestPathname)
+        requestUrl.pathname = requestUrl.pathname + requestPathname;
+      if (requestQueries) {
+        let searchParams = requestUrl.searchParams;
+        for (const [key, value] of Object.entries(requestQueries)) {
+          searchParams.set(key, value);
+        }
+      }
+      return fetch(requestUrl, {
         method,
         headers,
         body,

@@ -8,7 +8,7 @@
 /**
  * Creates a debounced function.
  *
- * Calls the callback function immediately if the 'leading' flag is true;
+ * Calls the callback function immediately if the 'leading' flag is true
  * Calls the callback function after the delay if the 'trailing' flag is true.
  *
  * @param { Function } callback
@@ -22,24 +22,55 @@ export function debounce(
   delay = 0,
   { leading = false, trailing = true } = {},
 ) {
-  let timeoutID;
-  return (args) => {
-    return new Promise(async (resolve, reject) => {
+  let timeoutID = null;
+  let pending = [];
+
+  const resolveAll = (value) => {
+    const list = pending;
+    pending = [];
+    list.forEach(({ resolve }) => resolve(value));
+  };
+
+  const rejectAll = (error) => {
+    const list = pending;
+    pending = [];
+    list.forEach(({ reject }) => reject(error));
+  };
+
+  return (args, { immediate = false } = {}) =>
+    new Promise((resolve, reject) => {
       try {
-        if (!timeoutID) {
-          if (leading) callback.apply(null, [args]);
+        if (immediate) {
+          console.log("immediate");
+
+          clearTimeout(timeoutID);
+          timeoutID = null;
+          const result = callback(args);
+          resolve(result);
+          resolveAll(result);
+          return;
         }
-        if (timeoutID) clearTimeout(timeoutID);
+
+        if (!timeoutID && leading) {
+          resolve(callback(args));
+        } else {
+          pending.push({ resolve, reject });
+        }
+
+        clearTimeout(timeoutID);
         timeoutID = setTimeout(() => {
-          timeoutID = false;
-          if (trailing) callback.apply(null, [args]);
+          timeoutID = null;
+          if (!trailing) return resolveAll(undefined);
+          try {
+            resolveAll(callback(args));
+          } catch (error) {
+            rejectAll(error);
+          }
         }, delay);
-        resolve(true);
       } catch (error) {
         reject(error);
       }
     });
-  };
 }
 
 /**
