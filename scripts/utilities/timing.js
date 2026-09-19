@@ -24,7 +24,7 @@ export function debounce(
 ) {
   let timeoutID = null;
   let pending = [];
-
+  
   const resolveAll = (value) => {
     const list = pending;
     pending = [];
@@ -41,8 +41,6 @@ export function debounce(
     new Promise((resolve, reject) => {
       try {
         if (immediate) {
-          console.log("immediate");
-
           clearTimeout(timeoutID);
           timeoutID = null;
           const result = callback(args);
@@ -80,29 +78,48 @@ export function debounce(
  * @param { number } delay
  */
 export function throttle(callback, delay = 0) {
-  let lastCall;
-  let timeoutID;
+  let lastCall = null;
+  let timeoutID = null;
+  let pending = [];
+
+  const settle = (method, value) => {
+    const list = pending;
+    pending = [];
+    list.forEach((waiter) => waiter[method](value));
+  };
+
+  const run = async (args) => {
+    lastCall = Date.now();
+    return callback(args);
+  };
+
+  const runAndSettle = (args) => {
+    const promise = run(args);
+    promise.then(
+      (value) => settle("resolve", value),
+      (error) => settle("reject", error),
+    );
+    return promise;
+  };
+
   return (args) => {
     const now = Date.now();
-    if (timeoutID) clearTimeout(timeoutID);
-    return new Promise(async (resolve, reject) => {
-      try {
-        if (!lastCall || now >= lastCall + delay) {
-          lastCall = now;
-          await callback.apply(null, [args]);
-        } else {
-          timeoutID = setTimeout(
-            async () => {
-              lastCall = Date.now();
-              await callback.apply(null, [args]);
-            },
-            Math.min(delay - (now - lastCall), delay),
-          );
-        }
-        resolve(true);
-      } catch (error) {
-        reject(error);
-      }
+    clearTimeout(timeoutID);
+    timeoutID = null;
+
+    if (lastCall === null || now - lastCall >= delay) {
+      return runAndSettle(args);
+    }
+
+    return new Promise((resolve, reject) => {
+      pending.push({ resolve, reject });
+      timeoutID = setTimeout(
+        () => {
+          timeoutID = null;
+          runAndSettle(args);
+        },
+        delay - (now - lastCall),
+      );
     });
   };
 }
