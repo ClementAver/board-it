@@ -178,7 +178,6 @@ export default class Board extends HTMLElement {
     }
 
     this.#id = id;
-    this.dataset.id = id;
   }
 
   set input(input) {
