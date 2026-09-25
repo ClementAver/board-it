@@ -46,7 +46,6 @@ const boardEndpoints = [
     headers: new Headers({
       Accept: "application/json",
     }),
-    noConcurrency: true,
     timingStrategy: "debounce",
     timingDelay: 1000,
   },
