@@ -8,17 +8,15 @@ export default class Board extends HTMLElement {
   #editButton = null;
   #editSvg = null;
   #form = null;
-  #id = -1;
   #input = null;
   #title = "";
   #titleElement = null;
 
-  constructor({ id, title, dragLevel } = {}) {
+  constructor({ title, dragLevel } = {}) {
     super();
 
     this.draggable = true;
     this._formId = self.crypto.randomUUID();
-    this.#id = id ?? this.#id;
     this.#title = title ?? this.#title;
     this.dragLevel = dragLevel ?? this.dataset.dragLevel ?? this.dragLevel;
   }
@@ -49,7 +47,6 @@ export default class Board extends HTMLElement {
     this.titleElement =
       header.querySelector("[data-title]") ?? document.createElement("p");
     this.titleElement.dataset.title = "";
-    this.id = this.id || this.dataset.id;
     this.title =
       this.title || this.dataset.title || this.titleElement.textContent.trim();
     this.titleElement.hidden = false;
@@ -126,10 +123,6 @@ export default class Board extends HTMLElement {
     return this.#form;
   }
 
-  get id() {
-    return this.#id;
-  }
-
   get input() {
     return this.#input;
   }
@@ -169,15 +162,6 @@ export default class Board extends HTMLElement {
 
   set form(form) {
     this.#form = form;
-  }
-
-  set id(id) {
-    if (this.dataset.id != id) {
-      this.dataset.id = id;
-      return;
-    }
-
-    this.#id = id;
   }
 
   set input(input) {
@@ -235,9 +219,6 @@ export default class Board extends HTMLElement {
     if (oldValue === newValue) return;
 
     switch (name) {
-      case "data-id":
-        this.id = newValue;
-        break;
       case "data-title":
         this.title = newValue;
         break;

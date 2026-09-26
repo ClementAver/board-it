@@ -7,8 +7,6 @@ const boardEndpoints = [
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
     }),
-    timingStrategy: "debounce",
-    timingDelay: 1000,
   },
   {
     key: "readBoard",
@@ -16,9 +14,6 @@ const boardEndpoints = [
     headers: new Headers({
       Accept: "application/json",
     }),
-    noConcurrency: true,
-    timingStrategy: "debounce",
-    timingDelay: 1000,
   },
   {
     key: "updateBoard",
@@ -28,17 +23,11 @@ const boardEndpoints = [
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
     }),
-    noConcurrency: true,
-    timingStrategy: "debounce",
-    timingDelay: 1000,
   },
   {
     key: "deleteBoard",
     method: "DELETE",
     pathname: "api/board",
-    noConcurrency: true,
-    timingStrategy: "debounce",
-    timingDelay: 1000,
   },
   {
     key: "readBoards",
@@ -46,8 +35,6 @@ const boardEndpoints = [
     headers: new Headers({
       Accept: "application/json",
     }),
-    timingStrategy: "debounce",
-    timingDelay: 1000,
   },
 ];
 

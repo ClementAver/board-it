@@ -28,79 +28,113 @@ addBoardButton.addEventListener("click", () => {
 
 const { request: readBoards } = backIt.registered("readBoards");
 const { request: readBoardEntries } = backIt.registered("readBoardEntries");
+const { request: readImage } = backIt.registered("readImage");
+const { request: readImageBytes } = backIt.registered("readImageBytes");
 
-let boards;
-try {
-  // fetches boards from API
-  const boardResponse = await readBoards(undefined, { immediate: true });
-  boards = await boardResponse.json();
-  boards = boards.boards.sort((a, b) => a.position < b.position);
-} catch (error) {
-  handleError({
-    text: `Une Erreur est survenue lors de la récupération des tableaux.`,
-    error,
-  });
-}
-
-let successfulyInsertedBoards = [];
-boards.forEach(async (board) => {
-  // inserts each board into the DOM
-  let inserted;
+const boards = await new Promise(async (resolve, reject) => {
   try {
-    inserted = insertSibling(
-      new Board({ id: board.id, title: board.title, dragLevel: 1 }),
-      addBoardButton,
-      "before",
-    );
+    const response = await readBoards();
+    const result = await response.json();
+    resolve(result.boards.sort((a, b) => a.position < b.position));
+  } catch (error) {
+    handleError({
+      text: `Une Erreur est survenue lors de la récupération des tableaux.`,
+      error,
+    });
+    reject("couldn't fetch boards");
+  }
+});
+
+console.info(boards);
+
+let insertedBoards = [];
+boards.forEach(async (board) => {
+  try {
+    insertedBoards.push({
+      instance: board,
+      element: insertSibling(
+        new Board({ title: board.title, dragLevel: 1 }),
+        addBoardButton,
+        "before",
+      ),
+    });
   } catch (error) {
     handleError({
       text: `Une erreur est survenue lors de l'insertion du tableau portant l'identifiant n°${board.id} au sein de la page.`,
       error,
     });
   }
-  if (inserted) {
-    successfulyInsertedBoards.push(inserted);
-  }
 });
 
-successfulyInsertedBoards.forEach(async (boardElement) => {
-  // fetches the boardEntries for each board inserted into the DOM
-  let boardEntries;
-  try {
-    const boardEntriesResponse = await readBoardEntries(
-      { queries: { boardId: boardElement.dataset.id } },
-      {
-        immediate: true,
-      },
-    );
-    boardEntries = await boardEntriesResponse.json();
-    boardEntries = boardEntries.boardEntries.sort(
-      (a, b) => a.position < b.position,
-    );
-  } catch (error) {
-    handleError({
-      text: `Une Erreur est survenue lors de la récupération des vignettes.`,
-      error,
-    });
-  }
-  boardEntries.forEach((boardEntry) => {
-    // TODO fetch the image
-    const thumbnail = new Thumbnail({
-      alternate: "en dur",
-      caption: boardEntry.caption,
-      source:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Felis_catus-cat_on_snow.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
-    });
-
-    // inserts a thumbnail into the boardElement based on the boardEntry data
-    let inserted;
+let boardEntries = await new Promise((resolve, reject) => {
+  insertedBoards.forEach(async ({ instance: board }) => {
     try {
-      inserted = boardElement.appendChild(thumbnail);
+      const response = await readBoardEntries({
+        queries: { board_id: board.id },
+      });
+      const result = await response.json();
+      resolve(result.boardEntries.sort((a, b) => a.position < b.position));
     } catch (error) {
       handleError({
-        text: `Une erreur est survenue lors de l'insertion du tableau portant l'identifiant n°${boardEntry.id} au sein de la page.`,
+        text: `Une Erreur est survenue lors de la récupération des vignettes correspondantes aux entrées  du tableau portant l'identifiant n°${board.id}.`,
         error,
       });
+      reject("couldn't fetch boardEntries");
     }
   });
 });
+
+console.info(boardEntries);
+
+let alreadyFetchedIds = new Set();
+const imagePromises = await Promise.allSettled(
+  boardEntries.map(async (boardEntry) => {
+    return new Promise(async (resolve, reject) => {
+      if (alreadyFetchedIds.has(boardEntry.imageId)) {
+        reject("image already fetched");
+      }
+      try {
+        const imageResponse = await readImage({
+          pathname: `/${boardEntry.imageId}`,
+        });
+        alreadyFetchedIds.add(boardEntry.imageId);
+        resolve(await imageResponse.json());
+      } catch (error) {
+        handleError({
+          text: `Une erreur est survenue lors de la récupération de l'image portant l'identifiant n°${boardEntry.imageId}.`,
+          error,
+        });
+        reject("couldn't fetch image");
+      }
+    });
+  }),
+);
+
+const images = imagePromises
+  .filter((it) => it.status === "fulfilled")
+  .map((it) => it.value);
+
+console.info(images);
+
+for (const boardEntry of boardEntries) {
+  const { element: boardElement } = insertedBoards.find(
+    (it) => it.instance.id === boardEntry.imageId,
+  );
+  if (!boardElement) continue;
+  const image = images.find((it) => it.id === boardEntry.imageId);
+  if (!image) continue;
+  const thumbnail = new Thumbnail({
+    alternate: image.alternateText,
+    caption: boardEntry.caption,
+    source: `${backIt.origin}/api/image/bytes/${image.id}`,
+  });
+
+  try {
+    boardElement.appendChild(thumbnail);
+  } catch (error) {
+    handleError({
+      text: `Une erreur est survenue lors de l'insertion de la vignette correspondant à l'entrée portant l'identifiant n°${boardEntry.id} au sein de la page.`,
+      error,
+    });
+  }
+}
