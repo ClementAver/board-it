@@ -128,6 +128,8 @@ for (const boardEntry of boardEntries) {
     caption: boardEntry.caption,
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
   });
+  thumbnail.draggable = true;
+  thumbnail.dataset.dragLevel = 2;
 
   try {
     boardElement.appendChild(thumbnail);
