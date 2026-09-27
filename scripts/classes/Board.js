@@ -182,8 +182,7 @@ export default class Board extends HTMLElement {
     this.#titleElement = titleElement;
   }
 
-  edit(event) {
-    console.log("click");
+  edit() {
     if (this.editButton.type === "submit") return;
     this.input.value = this.title;
     this.titleElement.hidden = true;
@@ -191,7 +190,6 @@ export default class Board extends HTMLElement {
     const [base, id] = this.editSvg.href.split("#");
     this.editSvg.href = base + "#save";
     this.input.focus();
-
     setTimeout(() => {
       this.editButton.type = "submit";
       this.editButton.setAttribute("form", this._formId);
@@ -200,7 +198,13 @@ export default class Board extends HTMLElement {
 
   submit(event) {
     event.preventDefault();
-    console.log("submit");
+
+    // used to cancel blur's double submit
+    if (
+      this.form.hidden === true ||
+      (event.type === "blur" && event.relatedTarget === this.editButton)
+    )
+      return;
 
     this.title = this.input.value;
     this.titleElement.hidden = false;
