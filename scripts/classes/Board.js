@@ -1,7 +1,13 @@
 import Svg from "./Svg.js";
 import insertSibling from "../utilities/insertSibling.js";
+import handleError from "../utilities/handleError.js";
+import backIt from "../api/backIt.js";
+
+const { request: userUpdateBoard } = backIt.registered("userUpdateBoard");
+const { request: deleteBoard } = backIt.registered("deleteBoard");
 
 export default class Board extends HTMLElement {
+  #databaseId = -1;
   #deleteButton = null;
   #deleteSvg = null;
   #dragLevel = 0;
@@ -12,11 +18,12 @@ export default class Board extends HTMLElement {
   #title = "";
   #titleElement = null;
 
-  constructor({ title, dragLevel } = {}) {
+  constructor({ databaseId, title, dragLevel } = {}) {
     super();
 
     this.draggable = true;
     this._formId = self.crypto.randomUUID();
+    this.#databaseId = databaseId ?? this.#databaseId;
     this.#title = title ?? this.#title;
     this.dragLevel = dragLevel ?? this.dataset.dragLevel ?? this.dragLevel;
   }
@@ -97,6 +104,10 @@ export default class Board extends HTMLElement {
 
     if (!this.contains(header))
       this.insertBefore(header, this.firstElementChild);
+  }
+
+  get databaseId() {
+    return this.#databaseId;
   }
 
   get deleteButton() {
@@ -196,27 +207,68 @@ export default class Board extends HTMLElement {
     }, 0);
   }
 
-  submit(event) {
+  async submit(event) {
     event.preventDefault();
-
     // used to cancel blur's double submit
     if (
       this.form.hidden === true ||
       (event.type === "blur" && event.relatedTarget === this.editButton)
     )
       return;
-
-    this.title = this.input.value;
-    this.titleElement.hidden = false;
-    this.form.hidden = true;
-    this.editButton.type = "button";
-    this.editButton.removeAttribute("form");
-    const [base, id] = this.editSvg.href.split("#");
-    this.editSvg.href = base + "#square-pen";
+    const position =
+      Array.from(this.parentElement?.querySelectorAll("aeee-board")).findIndex(
+        (it) => {
+          return it.databaseId === this.databaseId;
+        },
+      ) + 1;
+    const formData = new FormData(this.form);
+    formData.append("position", position);
+    await this.update(formData);
   }
 
-  delete() {
-    this.remove();
+  async update(formData) {
+    try {
+      const response = await userUpdateBoard({
+        pathname: `/${this.databaseId}`,
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok) {
+        if (result.id !== this.databaseId) {
+          throw new Error(`wrong id returned on an update operation`);
+        }
+        this.title = result.title;
+        this.titleElement.hidden = false;
+        this.form.hidden = true;
+        this.editButton.type = "button";
+        this.editButton.removeAttribute("form");
+        const [base, id] = this.editSvg.href.split("#");
+        this.editSvg.href = base + "#square-pen";
+      }
+    } catch (error) {
+      handleError({
+        text: `Une Erreur est survenue lors de la mise à jour du tableau portant l'id ${this.databaseId}.`,
+        error,
+      });
+    }
+  }
+
+  async delete() {
+    try {
+      const response = await deleteBoard({ pathname: `/${this.databaseId}` });
+      const result = await response.json();
+      if (response.ok) {
+        if (result.id !== this.databaseId) {
+          throw new Error(`wrong id returned on a delete operation`);
+        }
+        this.remove();
+      }
+    } catch (error) {
+      handleError({
+        text: `Une Erreur est survenue lors de la suppression du tableau portant l'id ${this.databaseId}.`,
+        error,
+      });
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

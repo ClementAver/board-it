@@ -9,6 +9,17 @@ const boardEndpoints = [
     }),
   },
   {
+    key: "userCreateBoard",
+    method: "POST",
+    pathname: "api/board",
+    headers: new Headers({
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+    }),
+    timigStrategy: "debounce",
+    timingDelay: 1000,
+  },
+  {
     key: "readBoard",
     pathname: "api/board",
     headers: new Headers({
@@ -23,6 +34,17 @@ const boardEndpoints = [
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
     }),
+  },
+  {
+    key: "userUpdateBoard",
+    method: "PUT",
+    pathname: "api/board",
+    headers: new Headers({
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+    }),
+    timigStrategy: "debounce",
+    timingDelay: 1000,
   },
   {
     key: "deleteBoard",

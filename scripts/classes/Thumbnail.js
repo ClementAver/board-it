@@ -4,6 +4,7 @@ export default class Thumbnail extends HTMLElement {
   #alternate = "";
   #caption = "";
   #checkbox = null;
+  #databaseId = -1;
   #figcaption = null;
   #figure = null;
   #image = null;
@@ -16,6 +17,7 @@ export default class Thumbnail extends HTMLElement {
   constructor({
     alternate,
     caption,
+    databaseId,
     isChecked,
     isRounded,
     isSelectable,
@@ -25,6 +27,7 @@ export default class Thumbnail extends HTMLElement {
 
     this.#alternate = alternate ?? this.#alternate;
     this.#caption = caption ?? this.#caption;
+    this.#databaseId = databaseId ?? this.#databaseId;
     this.#isChecked = isChecked ?? this.#isChecked;
     this.#isRounded = isRounded ?? this.#isRounded;
     this.#isSelectable = isSelectable ?? this.#isSelectable;
@@ -56,6 +59,10 @@ export default class Thumbnail extends HTMLElement {
 
   get checkbox() {
     return this.#checkbox;
+  }
+
+  get databaseId() {
+    return this.#databaseId;
   }
 
   get figcaption() {

@@ -76,6 +76,10 @@ export default class DragSorter extends HTMLElement {
     event.target.classList.remove("is-dragged");
     this._clonedNode?.classList.remove("is-dragged");
     // this._clonedNode &&= null; <- short circuit the drag event
+    const onSortedDragEnd = window.onSortedDragEnd;
+    if (!onSortedDragEnd)
+      throw new Error("the 'onSortedDragEnd' method must be defined on window");
+    window.onSortedDragEnd(event);
   }
 }
 

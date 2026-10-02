@@ -21,15 +21,65 @@ import handleError from "../utilities/handleError.js";
 initAnchors();
 initDrawers();
 
-const addBoardButton = document.getElementById("add-board");
-addBoardButton.addEventListener("click", () => {
-  insertSibling(new Board({ dragLevel: 1 }), addBoardButton, "before");
-});
-
+const { request: userCreateBoard } = backIt.registered("userCreateBoard");
 const { request: readBoards } = backIt.registered("readBoards");
 const { request: readBoardEntries } = backIt.registered("readBoardEntries");
 const { request: readImage } = backIt.registered("readImage");
 const { request: readImageBytes } = backIt.registered("readImageBytes");
+
+window.onSortedDragEnd = (event) => {
+  const el = event.target;
+  if (!el.databaseId) return;
+  const position =
+    Array.from(
+      el.parentElement?.querySelectorAll(`${el.nodeName.toLowerCase()}`),
+    ).findIndex((it) => {
+      return it === el;
+    }) + 1;
+  const formData = new FormData();
+  formData.append("position", position);
+  switch (el.nodeName.toLowerCase()) {
+    case "aeee-board":
+      el.update(formData);
+      break;
+    case "aeee-thumbnail":
+      // TODO: update thumbnail position
+      break;
+    default:
+      break;
+  }
+};
+
+const addBoardButton = document.getElementById("add-board");
+addBoardButton.addEventListener("click", async (event) => {
+  let position =
+    Array.from(event.target.parentElement?.children).findIndex((it) => {
+      return it === event.target;
+    }) + 1;
+
+  let formData = new FormData();
+  formData.append("title", "Nouveau tableau");
+  formData.append("position", position);
+
+  try {
+    const response = await userCreateBoard({
+      body: formData,
+    });
+    const result = await response.json();
+    if (response.ok) {
+      insertSibling(
+        new Board({ dragLevel: 1, title: result.title }),
+        addBoardButton,
+        "before",
+      );
+    }
+  } catch (error) {
+    handleError({
+      text: `Une Erreur est survenue lors de la création d'un tableau.`,
+      error,
+    });
+  }
+});
 
 const boards = await new Promise(async (resolve, reject) => {
   try {
@@ -53,7 +103,7 @@ boards.forEach(async (board) => {
     insertedBoards.push({
       instance: board,
       element: insertSibling(
-        new Board({ title: board.title, dragLevel: 1 }),
+        new Board({ databaseId: board.id, title: board.title, dragLevel: 1 }),
         addBoardButton,
         "before",
       ),
@@ -126,6 +176,7 @@ for (const boardEntry of boardEntries) {
   const thumbnail = new Thumbnail({
     alternate: image.alternateText,
     caption: boardEntry.caption,
+    databaseId: boardEntry.id,
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
   });
   thumbnail.draggable = true;
