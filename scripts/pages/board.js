@@ -24,31 +24,55 @@ initDrawers();
 const { request: userCreateBoard } = backIt.registered("userCreateBoard");
 const { request: readBoards } = backIt.registered("readBoards");
 const { request: readBoardEntries } = backIt.registered("readBoardEntries");
+const { request: userUpdateBoardEntry } = backIt.registered(
+  "userUpdateBoardEntry",
+);
 const { request: readImage } = backIt.registered("readImage");
 const { request: readImageBytes } = backIt.registered("readImageBytes");
 
 window.onSortedDragEnd = (event) => {
-  const el = event.target;
-  if (!el.databaseId) return;
+  const element = event.target;
+  if (!element.databaseId) return;
   const position =
     Array.from(
-      el.parentElement?.querySelectorAll(`${el.nodeName.toLowerCase()}`),
+      element.parentElement?.querySelectorAll(`${element.nodeName.toLowerCase()}`),
     ).findIndex((it) => {
-      return it === el;
+      return it === element;
     }) + 1;
   const formData = new FormData();
   formData.append("position", position);
-  switch (el.nodeName.toLowerCase()) {
+  switch (element.nodeName.toLowerCase()) {
     case "aeee-board":
-      el.update(formData);
+      element.update(formData);
       break;
     case "aeee-thumbnail":
-      // TODO: update thumbnail position
+      editBoardEntry(element, formData);
       break;
     default:
       break;
   }
 };
+
+async function editBoardEntry(thumbnail, formData) {
+  if (thumbnail.databaseId)
+  try {
+    const response = await userUpdateBoardEntry({
+      pathname: `/${thumbnail.databaseId}`,
+      body: formData,
+    });
+    const result = await response.json();
+    if (response.ok) {
+      if (result.id !== this.databaseId) {
+        throw new Error(`wrong id returned on an update operation`);
+      }
+    }
+  } catch (error) {
+    handleError({
+      text: `Une Erreur est survenue lors de la mise à jour de la vignette correspondant à l'entrée portant l'identifiant n°${thumbnail.databaseId}.`,
+      error,
+    });
+  }
+}
 
 const addBoardButton = document.getElementById("add-board");
 addBoardButton.addEventListener("click", async (event) => {

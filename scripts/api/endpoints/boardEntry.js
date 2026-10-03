@@ -25,6 +25,17 @@ const boardEntryEndpoints = [
     }),
   },
   {
+    key: "userUpdateBoardEntry",
+    method: "PUT",
+    pathname: "api/board_entry",
+    headers: new Headers({
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+    }),
+    timingStrategy: "debounce",
+    timingDelay: 1000,
+  },
+  {
     key: "deleteBoardEntry",
     method: "DELETE",
     pathname: "api/board_entry",
