@@ -178,6 +178,8 @@ for (const boardEntry of boardEntries) {
     caption: boardEntry.caption,
     databaseId: boardEntry.id,
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
+    isEditable: true,
+    isDeletable: true,
   });
   thumbnail.draggable = true;
   thumbnail.dataset.dragLevel = 2;

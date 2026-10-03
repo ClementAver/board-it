@@ -1,14 +1,20 @@
 import handleError from "../utilities/handleError.js";
+import insertSibling from "../utilities/insertSibling.js";
+import Svg from "./Svg.js";
 
 export default class Thumbnail extends HTMLElement {
   #alternate = "";
   #caption = "";
   #checkbox = null;
   #databaseId = -1;
+  #deleteButton = null;
+  #editButton = null;
   #figcaption = null;
   #figure = null;
   #image = null;
   #isChecked = false;
+  #isEditable = false;
+  #isDeletable = false;
   #isRounded = false;
   #isSelectable = false;
   #placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
@@ -19,6 +25,8 @@ export default class Thumbnail extends HTMLElement {
     caption,
     databaseId,
     isChecked,
+    isEditable,
+    isDeletable,
     isRounded,
     isSelectable,
     source,
@@ -29,6 +37,8 @@ export default class Thumbnail extends HTMLElement {
     this.#caption = caption ?? this.#caption;
     this.#databaseId = databaseId ?? this.#databaseId;
     this.#isChecked = isChecked ?? this.#isChecked;
+    this.#isEditable = isEditable ?? this.#isEditable;
+    this.#isDeletable = isDeletable ?? this.#isDeletable;
     this.#isRounded = isRounded ?? this.#isRounded;
     this.#isSelectable = isSelectable ?? this.#isSelectable;
     this.#source = source ?? this.#source;
@@ -43,6 +53,8 @@ export default class Thumbnail extends HTMLElement {
       alternate: this.alternate,
       caption: this.caption,
       isChecked: this.isChecked,
+      isEditable: this.isEditable,
+      isDeletable: this.isDeletable,
       isRounded: this.isRounded,
       isSelectable: this.isSelectable,
     });
@@ -65,6 +77,14 @@ export default class Thumbnail extends HTMLElement {
     return this.#databaseId;
   }
 
+  get deleteButton() {
+    return this.#deleteButton;
+  }
+
+  get editButton() {
+    return this.#editButton;
+  }
+
   get figcaption() {
     return this.#figcaption;
   }
@@ -79,6 +99,14 @@ export default class Thumbnail extends HTMLElement {
 
   get isChecked() {
     return this.#isChecked;
+  }
+
+  get isEditable() {
+    return this.#isEditable;
+  }
+
+  get isDeletable() {
+    return this.#isDeletable;
   }
 
   get isRounded() {
@@ -119,6 +147,14 @@ export default class Thumbnail extends HTMLElement {
     this.#checkbox = checkbox;
   }
 
+  set deleteButton(deleteButton) {
+    this.#deleteButton = deleteButton;
+  }
+
+  set editButton(editButton) {
+    this.#editButton = editButton;
+  }
+
   set figcaption(figcaption) {
     this.#figcaption = figcaption;
   }
@@ -145,6 +181,36 @@ export default class Thumbnail extends HTMLElement {
     } else {
       this.checkbox.checked = false;
       this._internals.states.delete("checked");
+    }
+  }
+
+  set isEditable(isEditable) {
+    if (this.dataset.isEditable !== isEditable.toString()) {
+      this.dataset.isEditable = isEditable.toString();
+      return;
+    }
+
+    this.#isEditable = isEditable;
+
+    if (isEditable) {
+      this._internals.states.add("editable");
+    } else {
+      this._internals.states.delete("editable");
+    }
+  }
+
+  set isDeletable(isDeletable) {
+    if (this.dataset.isDeletable !== isDeletable.toString()) {
+      this.dataset.isDeletable = isDeletable.toString();
+      return;
+    }
+
+    this.#isDeletable = isDeletable;
+
+    if (isDeletable) {
+      this._internals.states.add("deletable");
+    } else {
+      this._internals.states.delete("deletable");
     }
   }
 
@@ -192,6 +258,8 @@ export default class Thumbnail extends HTMLElement {
     source,
     alternate,
     caption,
+    isDeletable,
+    isEditable,
     isChecked,
     isRounded,
     isSelectable,
@@ -210,24 +278,57 @@ export default class Thumbnail extends HTMLElement {
 
     this.alternate = alternate ?? this.dataset.alternate ?? this.alternate;
     this.caption = caption ?? this.dataset.caption ?? this.caption;
+    this.isDeletable =
+      isDeletable ?? this.dataset.isDeletable === "true" ?? this.isDeletable;
+    this.isEditable =
+      isEditable ?? this.dataset.isEditable === "true" ?? this.isEditable;
     this.isRounded =
       isRounded ?? this.dataset.isRounded === "true" ?? this.isRounded;
     this.isSelectable =
       isSelectable ?? this.dataset.isSelectable === "true" ?? this.isSelectable;
     this.source = source ?? this.dataset.source ?? this.source;
 
-    if (this.isSelectable) {
-      this.checkbox =
-        this.querySelector("input") ?? document.createElement("input");
-      this.checkbox.type = "checkbox";
-      this.checkbox.name = "thumbnail";
-      this.checkbox.classList.add("sr-only");
-      this.checkbox.value = this.source;
-      if (this.checkbox && !this.contains(this.checkbox))
-        this.appendChild(this.checkbox);
-      this.isChecked =
-        isChecked ?? this.dataset.isChecked === "true" ?? this.isChecked;
-    }
+    this.checkbox =
+      this.querySelector("input") ?? document.createElement("input");
+    this.checkbox.type = "checkbox";
+    this.checkbox.name = "thumbnail";
+    this.checkbox.classList.add("sr-only");
+    this.checkbox.value = this.source;
+    if (this.checkbox && !this.contains(this.checkbox))
+      this.appendChild(this.checkbox);
+    this.isChecked =
+      isChecked ?? this.dataset.isChecked === "true" ?? this.isChecked;
+
+    const menu = this.querySelector("menu") ?? document.createElement("menu");
+
+    this.editButton =
+      menu.querySelector("button[data-edit]") ??
+      document.createElement("button");
+    this.editButton.type = "button";
+    this.editButton.dataset.edit = true;
+    this.editButton.classList.add("swath");
+    this.editSvg =
+      this.editButton.querySelector("aeee-svg") ??
+      new Svg({ href: "../assets/icons/sprites.svg#square-pen" });
+    if (!this.editButton.contains(this.editSvg))
+      this.editButton.appendChild(this.editSvg);
+    if (!menu.contains(this.editButton)) menu.appendChild(this.editButton);
+
+    this.deleteButton =
+      menu.querySelector("button[data-delete]") ??
+      document.createElement("button");
+    this.deleteButton.type = "button";
+    this.deleteButton.dataset.delete = true;
+    this.deleteButton.classList.add("swath");
+    this.deleteSvg =
+      this.deleteButton.querySelector("aeee-svg") ??
+      new Svg({ href: "../assets/icons/sprites.svg#trash-2" });
+    if (!this.deleteButton.contains(this.deleteSvg))
+      this.deleteButton.appendChild(this.deleteSvg);
+    if (!menu.contains(this.deleteButton))
+      insertSibling(this.deleteButton, this.editButton, "after");
+
+    if (!this.contains(menu)) this.insertBefore(menu, this.firstElementChild);
   }
 
   setupEvents() {
@@ -258,16 +359,31 @@ export default class Thumbnail extends HTMLElement {
       this._toggleChecked = this.toggleChecked.bind(this);
       this.addEventListener("click", this._toggleChecked);
     }
+
+    this._edit = this.edit.bind(this);
+    this.editButton.addEventListener("click", this._edit);
+    this._delete = this.delete.bind(this);
+    this.deleteButton.addEventListener("click", this._delete);
   }
 
   disconnectedCallback() {
     if (this._toggleChecked) {
       this.removeEventListener("click", this._toggleChecked);
     }
+    this.editButton.removeEventListener("click", this._edit);
+    this.deleteButton.removeEventListener("click", this._delete);
   }
 
   toggleChecked() {
     if (this.isSelectable) this.isChecked = !this.isChecked;
+  }
+
+  edit() {
+    console.log("edit");
+  }
+
+  delete() {
+    console.log("delete");
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -282,6 +398,12 @@ export default class Thumbnail extends HTMLElement {
         break;
       case "data-is-checked":
         this.isChecked = newValue.toString() === "true";
+        break;
+      case "data-is-deletable":
+        this.isDeletable = newValue.toString() === "true";
+        break;
+      case "data-is-editable":
+        this.isEditable = newValue.toString() === "true";
         break;
       case "data-is-rounded":
         this.isRounded = newValue.toString() === "true";
@@ -301,6 +423,8 @@ export default class Thumbnail extends HTMLElement {
     "data-alternate",
     "data-caption",
     "data-is-checked",
+    "data-is-deletable",
+    "data-is-editable",
     "data-is-rounded",
     "data-is-selectable",
     "data-source",

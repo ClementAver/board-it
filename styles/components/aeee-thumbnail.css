@@ -1,7 +1,8 @@
 aeee-thumbnail {
   background-color: var(--secondary);
   border-radius: var(--spacing-sm);
-  display: block;
+  display: grid;
+  grid-template-areas: "thumbnail";
   max-width: 300px;
   min-width: 100px;
   overflow: hidden;
@@ -44,6 +45,18 @@ aeee-thumbnail {
     border-radius: calc(infinity * 1px);
   }
 
+  &:not(:state(editable)) {
+    button[data-edit] {
+      display: none;
+    }
+  }
+
+  &:not(:state(deletable)) {
+    button[data-delete] {
+      display: none;
+    }
+  }
+
   &:state(error)::before {
     color: var(--invalid);
     content: "✘";
@@ -76,9 +89,27 @@ aeee-thumbnail {
     z-index: 2;
   }
 
+  menu {
+    display: flex;
+    gap: var(--spacing-sm);
+    grid-area: thumbnail;
+    height: fit-content;
+    justify-content: flex-end;
+    padding: var(--spacing-md);
+    z-index: 1;
+
+    button {
+      aspect-ratio: 1;
+      border-radius: var(--spacing-xs);
+      box-shadow: var(--shadow);
+      padding: var(--spacing-xs);
+    }
+  }
+
   figure {
     display: grid;
-    grid-template-areas: "main";
+    grid-area: thumbnail;
+    grid-template-areas: "figure";
     height: 100%;
     margin: 0;
     width: 100%;
@@ -86,7 +117,7 @@ aeee-thumbnail {
 
   img {
     aspect-ratio: 1/1;
-    grid-area: main;
+    grid-area: figure;
     height: 100%;
     object-fit: cover;
   }
@@ -100,8 +131,8 @@ aeee-thumbnail {
     border-radius: var(--spacing-sm);
     box-shadow: var(--shadow);
     color: var(--primary);
-    grid-area: main;
-    margin: auto 1rem 1rem auto;
+    grid-area: figure;
+    margin: auto var(--spacing-md) var(--spacing-md) auto;
     max-width: calc(100% - 2rem);
     overflow: hidden;
     padding-inline: var(--spacing-sm);
