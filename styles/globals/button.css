@@ -52,7 +52,6 @@ button,
   &.selected {
     background-color: var(--btn-background-color-selected);
     box-shadow: var(--shadow);
-   
   }
 
   &.swath {
@@ -75,6 +74,58 @@ button,
       }
     }
   }
+
+  &.valid {
+    background-color: var(--valid);
+
+    &:hover,
+    &:focus-visible {
+      background: linear-gradient(
+        var(--valid) 25%,
+        color-mix(var(--valid), hsl(0, 0%, 100%) 30%) 125%
+      );
+      color: var(--text-swath);
+
+      &:active {
+        background: linear-gradient(
+          color-mix(var(--valid), hsl(0, 0%, 0%) 30%) 25%,
+          var(--valid) 275%
+        );
+        color: var(--text-swath);
+      }
+    }
+  }
+
+    &.invalid {
+    background-color: var(--invalid);
+
+    &:hover,
+    &:focus-visible {
+      background: linear-gradient(
+        var(--invalid) 25%,
+        color-mix(var(--invalid), hsl(0, 0%, 100%) 30%) 125%
+      );
+      color: var(--text-swath);
+
+      &:active {
+        background: linear-gradient(
+          color-mix(var(--invalid), hsl(0, 0%, 0%) 30%) 25%,
+          var(--invalid) 275%
+        );
+        color: var(--text-swath);
+      }
+    }
+  }
+}
+
+.spring-wrapper:has(button.valid),
+.spring-wrapper.spring-wrapper:has(.button.valid) {
+  --spring-background: color-mix(var(--valid), hsl(0, 0%, 0%) 30%);
+}
+
+.spring-wrapper:has(button.invalid),
+.spring-wrapper.spring-wrapper:has(.button.invalid) {
+  --spring-background: color-mix(var(--invalid), hsl(0, 0%, 0%) 30%);
 }
 
 /* ⇊ .spring-tile button styles ⇊ */

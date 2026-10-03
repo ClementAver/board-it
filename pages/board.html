@@ -364,7 +364,7 @@
     <dialog
       is="aeee-dialog"
       id="thumbnail-deletion-dialog"
-      class="generic"
+      class="generic fit"
       closedby="any"
     >
       <header>
@@ -385,7 +385,12 @@
         </aeee-tooltip>
       </header>
 
-      <main class="p-lg"></main>
+      <main class="p-lg flex-col items-center gap-lg my-lg">
+        <p>Êtes-vous sûr de vouloir supprimer cette vignette ?</p>
+        <div class="spring-wrapper rounded-xs">
+          <button type="button" class="rounded-xs invalid">Confirmer</button>
+        </div>
+      </main>
 
       <footer class="flex flex-center">
         <button
@@ -403,7 +408,7 @@
     <dialog
       is="aeee-dialog"
       id="thumbnail-edition-dialog"
-      class="generic"
+      class="generic fit"
       closedby="any"
     >
       <header>
@@ -424,7 +429,23 @@
         </aeee-tooltip>
       </header>
 
-      <main class="p-lg"></main>
+      <main class="p-lg my-lg">
+        <form class="flex-col items-center gap-lg">
+          <label>
+            <span class="sr-only">Légende</span>
+            <input
+              type="text"
+              name="caption"
+              id="board-entry-caption-update-input"
+              placeholder="Légende"
+          /></label>
+          <div class="spring-wrapper rounded-xs">
+            <button type="submit" class="rounded-xs valid">
+              Mettre à jour
+            </button>
+          </div>
+        </form>
+      </main>
 
       <footer class="flex flex-center">
         <button

@@ -32,6 +32,8 @@ const { request: readImageBytes } = backIt.registered("readImageBytes");
 
 window.onSortedDragEnd = (event) => {
   const element = event.target;
+  const board = event.target.closest("aeee-board");
+  if (!board) return;
   if (!element.databaseId) return;
   const position =
     Array.from(
@@ -43,6 +45,7 @@ window.onSortedDragEnd = (event) => {
     }) + 1;
   const formData = new FormData();
   formData.append("position", position);
+  formData.append("boardId", board.databaseId);
   switch (element.nodeName.toLowerCase()) {
     case "aeee-board":
       element.update(formData);
@@ -199,9 +202,5 @@ for (const boardEntry of boardEntries) {
   if (!boardElement) continue;
   const image = images.find((it) => it.id === boardEntry.imageId);
   if (!image) continue;
-  const thumbnail = createBoardThumbnail(
-    boardElement,
-    boardEntry,
-    image,
-  );
+  createBoardThumbnail(boardElement, boardEntry, image);
 }
