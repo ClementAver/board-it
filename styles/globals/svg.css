@@ -17,3 +17,8 @@ svg {
     var(--spacing-sm) + (1lh - var(--icon-height) + var(--border-width)) / 2
   );
 }
+
+.smaller-border-line-icon {
+  display: inline-block;
+  padding: calc((1lh - var(--icon-height) + var(--border-width)) / 2);
+}

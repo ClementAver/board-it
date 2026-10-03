@@ -1,5 +1,6 @@
 import handleError from "../utilities/handleError.js";
 import insertSibling from "../utilities/insertSibling.js";
+import manageClasses from "../utilities/manageClasses.js";
 import Svg from "./Svg.js";
 
 export default class Thumbnail extends HTMLElement {
@@ -8,7 +9,9 @@ export default class Thumbnail extends HTMLElement {
   #checkbox = null;
   #databaseId = -1;
   #deleteButton = null;
+  #deleteCallback = () => {};
   #editButton = null;
+  #editCallback = () => {};
   #figcaption = null;
   #figure = null;
   #image = null;
@@ -24,6 +27,8 @@ export default class Thumbnail extends HTMLElement {
     alternate,
     caption,
     databaseId,
+    deleteCallback,
+    editCallback,
     isChecked,
     isEditable,
     isDeletable,
@@ -36,6 +41,8 @@ export default class Thumbnail extends HTMLElement {
     this.#alternate = alternate ?? this.#alternate;
     this.#caption = caption ?? this.#caption;
     this.#databaseId = databaseId ?? this.#databaseId;
+    this.#deleteCallback = deleteCallback ?? this.#deleteCallback;
+    this.#editCallback = editCallback ?? this.#editCallback;
     this.#isChecked = isChecked ?? this.#isChecked;
     this.#isEditable = isEditable ?? this.#isEditable;
     this.#isDeletable = isDeletable ?? this.#isDeletable;
@@ -52,13 +59,15 @@ export default class Thumbnail extends HTMLElement {
       source: this.source,
       alternate: this.alternate,
       caption: this.caption,
+      deleteCallback: this.deleteCallback,
+      editCallback: this.editCallback,
       isChecked: this.isChecked,
       isEditable: this.isEditable,
       isDeletable: this.isDeletable,
       isRounded: this.isRounded,
       isSelectable: this.isSelectable,
     });
-    this.setupEvents();
+    this.setupEvents(this.deleteCallback, this.editCallback);
   }
 
   get alternate() {
@@ -81,8 +90,16 @@ export default class Thumbnail extends HTMLElement {
     return this.#deleteButton;
   }
 
+  get deleteCallback() {
+    return this.#deleteCallback;
+  }
+
   get editButton() {
     return this.#editButton;
+  }
+
+  get editCallback() {
+    return this.#editCallback;
   }
 
   get figcaption() {
@@ -151,8 +168,16 @@ export default class Thumbnail extends HTMLElement {
     this.#deleteButton = deleteButton;
   }
 
+  set deleteCallback(deleteCallback) {
+    this.#deleteCallback = deleteCallback;
+  }
+
   set editButton(editButton) {
     this.#editButton = editButton;
+  }
+
+  set editCallback(editCallback) {
+    this.#editCallback = editCallback;
   }
 
   set figcaption(figcaption) {
@@ -306,7 +331,6 @@ export default class Thumbnail extends HTMLElement {
       document.createElement("button");
     this.editButton.type = "button";
     this.editButton.dataset.edit = true;
-    this.editButton.classList.add("swath");
     this.editSvg =
       this.editButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#square-pen" });
@@ -319,7 +343,6 @@ export default class Thumbnail extends HTMLElement {
       document.createElement("button");
     this.deleteButton.type = "button";
     this.deleteButton.dataset.delete = true;
-    this.deleteButton.classList.add("swath");
     this.deleteSvg =
       this.deleteButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#trash-2" });
@@ -328,10 +351,15 @@ export default class Thumbnail extends HTMLElement {
     if (!menu.contains(this.deleteButton))
       insertSibling(this.deleteButton, this.editButton, "after");
 
+    manageClasses(
+      [this.editButton, this.deleteButton],
+      ["swath", "smaller-border-line-icon"],
+    );
+
     if (!this.contains(menu)) this.insertBefore(menu, this.firstElementChild);
   }
 
-  setupEvents() {
+  setupEvents(deleteCallback, editCallback) {
     if (!this._listeners) {
       this._listeners = true;
 
@@ -360,10 +388,10 @@ export default class Thumbnail extends HTMLElement {
       this.addEventListener("click", this._toggleChecked);
     }
 
-    this._edit = this.edit.bind(this);
-    this.editButton.addEventListener("click", this._edit);
-    this._delete = this.delete.bind(this);
+    this._delete = deleteCallback.bind(this);
     this.deleteButton.addEventListener("click", this._delete);
+    this._edit = editCallback.bind(this);
+    this.editButton.addEventListener("click", this._edit);
   }
 
   disconnectedCallback() {
@@ -376,14 +404,6 @@ export default class Thumbnail extends HTMLElement {
 
   toggleChecked() {
     if (this.isSelectable) this.isChecked = !this.isChecked;
-  }
-
-  edit() {
-    console.log("edit");
-  }
-
-  delete() {
-    console.log("delete");
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

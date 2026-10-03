@@ -45,6 +45,12 @@ aeee-thumbnail {
     border-radius: calc(infinity * 1px);
   }
 
+  &:not(:state(editable)):not(:state(deletable)) {
+    menu {
+      display: none;
+    }
+  }
+
   &:not(:state(editable)) {
     button[data-edit] {
       display: none;

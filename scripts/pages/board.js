@@ -177,6 +177,8 @@ for (const boardEntry of boardEntries) {
     alternate: image.alternateText,
     caption: boardEntry.caption,
     databaseId: boardEntry.id,
+    deleteCallback: () => console.log("delete"),
+    editCallback: () => console.log("edit"),
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
     isEditable: true,
     isDeletable: true,
