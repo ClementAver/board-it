@@ -12,7 +12,7 @@ import initDrawers from "../utilities/initDrawer.js";
 import Pagination from "../classes/Pagination.js";
 import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
-import Thumbnail from "../classes/Thumbnail.js";
+import { createBoardThumbnail } from "../classes/Thumbnail.js";
 import Tooltip from "../classes/Tooltip.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
 import insertSibling from "../utilities/insertSibling.js";
@@ -35,7 +35,9 @@ window.onSortedDragEnd = (event) => {
   if (!element.databaseId) return;
   const position =
     Array.from(
-      element.parentElement?.querySelectorAll(`${element.nodeName.toLowerCase()}`),
+      element.parentElement?.querySelectorAll(
+        `${element.nodeName.toLowerCase()}`,
+      ),
     ).findIndex((it) => {
       return it === element;
     }) + 1;
@@ -55,23 +57,23 @@ window.onSortedDragEnd = (event) => {
 
 async function editBoardEntry(thumbnail, formData) {
   if (thumbnail.databaseId)
-  try {
-    const response = await userUpdateBoardEntry({
-      pathname: `/${thumbnail.databaseId}`,
-      body: formData,
-    });
-    const result = await response.json();
-    if (response.ok) {
-      if (result.id !== this.databaseId) {
-        throw new Error(`wrong id returned on an update operation`);
+    try {
+      const response = await userUpdateBoardEntry({
+        pathname: `/${thumbnail.databaseId}`,
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok) {
+        if (result.id !== this.databaseId) {
+          throw new Error(`wrong id returned on an update operation`);
+        }
       }
+    } catch (error) {
+      handleError({
+        text: `Une Erreur est survenue lors de la mise à jour de la vignette correspondant à l'entrée portant l'identifiant n°${thumbnail.databaseId}.`,
+        error,
+      });
     }
-  } catch (error) {
-    handleError({
-      text: `Une Erreur est survenue lors de la mise à jour de la vignette correspondant à l'entrée portant l'identifiant n°${thumbnail.databaseId}.`,
-      error,
-    });
-  }
 }
 
 const addBoardButton = document.getElementById("add-board");
@@ -197,25 +199,9 @@ for (const boardEntry of boardEntries) {
   if (!boardElement) continue;
   const image = images.find((it) => it.id === boardEntry.imageId);
   if (!image) continue;
-  const thumbnail = new Thumbnail({
-    alternate: image.alternateText,
-    caption: boardEntry.caption,
-    databaseId: boardEntry.id,
-    deleteCallback: () => console.log("delete"),
-    editCallback: () => console.log("edit"),
-    source: `${backIt.origin}/api/image/bytes/${image.id}`,
-    isEditable: true,
-    isDeletable: true,
-  });
-  thumbnail.draggable = true;
-  thumbnail.dataset.dragLevel = 2;
-
-  try {
-    boardElement.appendChild(thumbnail);
-  } catch (error) {
-    handleError({
-      text: `Une erreur est survenue lors de l'insertion de la vignette correspondant à l'entrée portant l'identifiant n°${boardEntry.id} au sein de la page.`,
-      error,
-    });
-  }
+  const thumbnail = createBoardThumbnail(
+    boardElement,
+    boardEntry,
+    image,
+  );
 }

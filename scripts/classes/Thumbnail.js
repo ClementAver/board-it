@@ -1,3 +1,4 @@
+import backIt from "../api/backIt.js";
 import handleError from "../utilities/handleError.js";
 import insertSibling from "../utilities/insertSibling.js";
 import manageClasses from "../utilities/manageClasses.js";
@@ -331,6 +332,8 @@ export default class Thumbnail extends HTMLElement {
       document.createElement("button");
     this.editButton.type = "button";
     this.editButton.dataset.edit = true;
+    this.editButton.dataset.trigger = "thumbnail-edition-dialog";
+    this.editButton.dataset.action = "showModal";
     this.editSvg =
       this.editButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#square-pen" });
@@ -343,6 +346,8 @@ export default class Thumbnail extends HTMLElement {
       document.createElement("button");
     this.deleteButton.type = "button";
     this.deleteButton.dataset.delete = true;
+    this.deleteButton.dataset.trigger = "thumbnail-deletion-dialog";
+    this.deleteButton.dataset.action = "showModal";
     this.deleteSvg =
       this.deleteButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#trash-2" });
@@ -452,3 +457,41 @@ export default class Thumbnail extends HTMLElement {
 }
 
 customElements.define("aeee-thumbnail", Thumbnail);
+
+export function createBoardThumbnail(board, boardEntry, image) {
+  const thumbnail = new Thumbnail({
+    alternate: image.alternateText,
+    caption: boardEntry.caption,
+    databaseId: boardEntry.id,
+    deleteCallback: () => console.log("delete"),
+    editCallback: () => console.log("edit"),
+    source: `${backIt.origin}/api/image/bytes/${image.id}`,
+    isEditable: true,
+    isDeletable: true,
+  });
+  thumbnail.draggable = true;
+  thumbnail.dataset.dragLevel = 2;
+  try {
+    board.appendChild(thumbnail);
+  } catch (error) {
+    handleError({
+      text: `Une erreur est survenue lors de l'insertion de la vignette correspondant à l'entrée portant l'identifiant n°${boardEntry.id} au sein de la page.`,
+      error,
+    });
+  }
+  const deletionDialog = document.getElementById("thumbnail-deletion-dialog");
+  if (!deletionDialog) {
+    console.error(
+      "`dialog#thumbnail-deletion-dialog` hasn't been found on the page.",
+    );
+  }
+  deletionDialog.appendTrigger(thumbnail.deleteButton);
+  const editionDialog = document.getElementById("thumbnail-edition-dialog");
+  if (!editionDialog) {
+    console.error(
+      "`dialog#thumbnail-edition-dialog` hasn't been found on the page.",
+    );
+  }
+  editionDialog.appendTrigger(thumbnail.editButton);
+  return thumbnail;
+}

@@ -116,32 +116,6 @@
 
           <li>
             <button
-              data-anchor
-              popovertarget="quote-menu"
-              interestfor="quote-menu"
-              type="button"
-              class="mr-auto"
-            >
-              Un chemin ↴
-            </button>
-            <div
-              id="quote-menu"
-              popover
-              data-target
-              class="dropdown-menu anchor-bottom-sr"
-            >
-              <button
-                data-trigger="quote-dialog"
-                data-action="showModal"
-                type="button"
-              >
-                <span>Le suivre</span>
-              </button>
-            </div>
-          </li>
-
-          <li>
-            <button
               type="button"
               data-anchor
               popovertarget="interface-menu"
@@ -387,11 +361,16 @@
       </aeee-details>
     </menu>
 
-    <dialog is="aeee-dialog" id="quote-dialog" class="generic" closedby="any">
+    <dialog
+      is="aeee-dialog"
+      id="thumbnail-deletion-dialog"
+      class="generic"
+      closedby="any"
+    >
       <header>
-        <p>Cul-de-Sac</p>
+        <p>Supprimer une vignette</p>
         <button
-          data-trigger="quote-dialog"
+          data-trigger="thumbnail-deletion-dialog"
           data-action="close"
           type="button"
           aria-label="Fermer la boîte de dialogue modale."
@@ -406,31 +385,56 @@
         </aeee-tooltip>
       </header>
 
-      <main class="p-lg">
-        <blockquote>
-          <p>
-            Le vaste et confortable smial de Cul-de-Sac fut excavé à
-            Souscolline, sous La Colline, au nord de Hobbiteville, par Bungo
-            Bessac en guise de cadeau pour son épouse, Belladonna Touc. Il passa
-            ensuite à leur fils unique Bilbo Bessac. Après son voyage inattendu
-            aux côtés de Gandalf et de treize Nains, la rumeur voulut que Bilbo
-            ait amassé nombre de trésors dans le trou, ce qui était totalement
-            faux.
-          </p>
-        </blockquote>
-        <br />
-        <p class="text-right">—J.R.R. Tolkien, <cite>Le Hobbit</cite></p>
-      </main>
+      <main class="p-lg"></main>
 
       <footer class="flex flex-center">
         <button
           autofocus
           type="button"
-          data-trigger="quote-dialog"
+          data-trigger="thumbnail-deletion-dialog"
           data-action="close"
           class="rounded-xs"
         >
-          Rebrousser chemin
+          Fermer
+        </button>
+      </footer>
+    </dialog>
+
+    <dialog
+      is="aeee-dialog"
+      id="thumbnail-edition-dialog"
+      class="generic"
+      closedby="any"
+    >
+      <header>
+        <p>Éditer une vignette</p>
+        <button
+          data-trigger="thumbnail-edition-dialog"
+          data-action="close"
+          type="button"
+          aria-label="Fermer la boîte de dialogue modale."
+          class="no-dash"
+        >
+          <aeee-svg
+            data-href="../assets/icons/sprites.svg#minimize-2"
+          ></aeee-svg>
+        </button>
+        <aeee-tooltip class="m-sm anchor-bottom-sr whitespace-nowrap">
+          <small>Fermer la boîte de dialogue modale.</small>
+        </aeee-tooltip>
+      </header>
+
+      <main class="p-lg"></main>
+
+      <footer class="flex flex-center">
+        <button
+          autofocus
+          type="button"
+          data-trigger="thumbnail-edition-dialog"
+          data-action="close"
+          class="rounded-xs"
+        >
+          Fermer
         </button>
       </footer>
     </dialog>
