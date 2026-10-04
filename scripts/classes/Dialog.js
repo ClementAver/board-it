@@ -8,6 +8,14 @@ export default class Dialog extends HTMLDialogElement {
     this._trigger = this.trigger.bind(this);
   }
 
+  get triggers() {
+    return this.#triggers;
+  }
+
+  set triggers(triggers) {
+    this.#triggers = triggers;
+  }
+
   connectedCallback() {
     this.triggers =
       Array.from(document.querySelectorAll(`[data-trigger="${this.id}"]`)) ??
@@ -25,18 +33,8 @@ export default class Dialog extends HTMLDialogElement {
   }
 
   appendTrigger(trigger) {
-    console.log(trigger);
-    
     this.triggers.push(trigger);
     trigger.addEventListener("click", this._trigger);
-  }
-
-  get triggers() {
-    return this.#triggers;
-  }
-
-  set triggers(triggers) {
-    this.#triggers = triggers;
   }
 
   trigger(event) {

@@ -332,7 +332,7 @@ export default class Thumbnail extends HTMLElement {
       document.createElement("button");
     this.editButton.type = "button";
     this.editButton.dataset.edit = true;
-    this.editButton.dataset.trigger = "thumbnail-edition-dialog";
+    this.editButton.dataset.trigger = "update-board-entry-dialog";
     this.editButton.dataset.action = "showModal";
     this.editSvg =
       this.editButton.querySelector("aeee-svg") ??
@@ -346,7 +346,7 @@ export default class Thumbnail extends HTMLElement {
       document.createElement("button");
     this.deleteButton.type = "button";
     this.deleteButton.dataset.delete = true;
-    this.deleteButton.dataset.trigger = "thumbnail-deletion-dialog";
+    this.deleteButton.dataset.trigger = "delete-board-entry-dialog";
     this.deleteButton.dataset.action = "showModal";
     this.deleteSvg =
       this.deleteButton.querySelector("aeee-svg") ??
@@ -463,12 +463,12 @@ export function createBoardThumbnail(board, boardEntry, image) {
     alternate: image.alternateText,
     caption: boardEntry.caption,
     databaseId: boardEntry.id,
-    deleteCallback: () => console.log("delete"),
-    editCallback: () => console.log("edit"),
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
     isEditable: true,
     isDeletable: true,
   });
+  thumbnail.deleteCallback = () => (window.thumbnail = thumbnail);
+  thumbnail.editCallback = () => (window.thumbnail = thumbnail);
   thumbnail.draggable = true;
   thumbnail.dataset.dragLevel = 2;
   try {
@@ -479,19 +479,19 @@ export function createBoardThumbnail(board, boardEntry, image) {
       error,
     });
   }
-  const deletionDialog = document.getElementById("thumbnail-deletion-dialog");
-  if (!deletionDialog) {
+  const deleteDialog = document.getElementById("delete-board-entry-dialog");
+  if (!deleteDialog) {
     console.error(
-      "`dialog#thumbnail-deletion-dialog` hasn't been found on the page.",
+      "`dialog#delete-board-entry-dialog` hasn't been found on the page.",
     );
   }
-  deletionDialog.appendTrigger(thumbnail.deleteButton);
-  const editionDialog = document.getElementById("thumbnail-edition-dialog");
-  if (!editionDialog) {
+  deleteDialog.appendTrigger(thumbnail.deleteButton);
+  const updateDialog = document.getElementById("update-board-entry-dialog");
+  if (!updateDialog) {
     console.error(
-      "`dialog#thumbnail-edition-dialog` hasn't been found on the page.",
+      "`dialog#update-board-entry-dialog` hasn't been found on the page.",
     );
   }
-  editionDialog.appendTrigger(thumbnail.editButton);
+  updateDialog.appendTrigger(thumbnail.editButton);
   return thumbnail;
 }

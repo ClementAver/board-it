@@ -362,15 +362,15 @@
     </menu>
 
     <dialog
-      is="aeee-dialog"
-      id="thumbnail-deletion-dialog"
+      is="aeee-delete-board-entry-dialog"
+      id="delete-board-entry-dialog"
       class="generic fit"
       closedby="any"
     >
       <header>
         <p>Supprimer une vignette</p>
         <button
-          data-trigger="thumbnail-deletion-dialog"
+          data-trigger="delete-board-entry-dialog"
           data-action="close"
           type="button"
           aria-label="Fermer la boîte de dialogue modale."
@@ -396,7 +396,7 @@
         <button
           autofocus
           type="button"
-          data-trigger="thumbnail-deletion-dialog"
+          data-trigger="delete-board-entry-dialog"
           data-action="close"
           class="rounded-xs"
         >
@@ -406,15 +406,15 @@
     </dialog>
 
     <dialog
-      is="aeee-dialog"
-      id="thumbnail-edition-dialog"
+      is="aeee-update-board-entry-dialog"
+      id="update-board-entry-dialog"
       class="generic fit"
       closedby="any"
     >
       <header>
         <p>Éditer une vignette</p>
         <button
-          data-trigger="thumbnail-edition-dialog"
+          data-trigger="update-board-entry-dialog"
           data-action="close"
           type="button"
           aria-label="Fermer la boîte de dialogue modale."
@@ -430,7 +430,10 @@
       </header>
 
       <main class="p-lg my-lg">
-        <form class="flex-col items-center gap-lg">
+        <form
+          is="aeee-update-board-entry-form"
+          class="flex-col items-center gap-lg"
+        >
           <label>
             <span class="sr-only">Légende</span>
             <input
@@ -451,7 +454,7 @@
         <button
           autofocus
           type="button"
-          data-trigger="thumbnail-edition-dialog"
+          data-trigger="update-board-entry-dialog"
           data-action="close"
           class="rounded-xs"
         >

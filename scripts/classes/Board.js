@@ -4,7 +4,7 @@ import handleError from "../utilities/handleError.js";
 import backIt from "../api/backIt.js";
 
 const { request: userUpdateBoard } = backIt.registered("userUpdateBoard");
-const { request: deleteBoard } = backIt.registered("deleteBoard");
+const { request: userDeleteBoard } = backIt.registered("userDeleteBoard");
 
 export default class Board extends HTMLElement {
   #databaseId = -1;
@@ -255,10 +255,12 @@ export default class Board extends HTMLElement {
 
   async delete() {
     try {
-      const response = await deleteBoard({ pathname: `/${this.databaseId}` });
+      const response = await userDeleteBoard({
+        pathname: `/${this.databaseId}`,
+      });
       const result = await response.json();
       if (response.ok) {
-        if (result.id !== this.databaseId) {
+        if (result !== this.databaseId) {
           throw new Error(`wrong id returned on a delete operation`);
         }
         this.remove();

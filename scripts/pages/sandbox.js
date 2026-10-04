@@ -15,7 +15,7 @@ countBtn.onclick = () => {
   count.value = count.value + 1;
 };
 
-count.addAction = (v) => console.log("click #" + v);
+count.addAction = (v) => console.info("click #" + v);
 count.addAction = (v) => (countBtn.textContent = `Cliqué ${v} fois`);
 
 debug(count);

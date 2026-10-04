@@ -52,6 +52,13 @@ const boardEndpoints = [
     pathname: "api/board",
   },
   {
+    key: "userDeleteBoard",
+    method: "DELETE",
+    pathname: "api/board",
+    timingStrategy: "debounce",
+    timingDelay: 1000,
+  },
+  {
     key: "readBoards",
     pathname: "api/board",
     headers: new Headers({

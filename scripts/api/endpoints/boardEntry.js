@@ -41,6 +41,13 @@ const boardEntryEndpoints = [
     pathname: "api/board_entry",
   },
   {
+    key: "userDeleteBoardEntry",
+    method: "DELETE",
+    pathname: "api/board_entry",
+    timingStrategy: "debounce",
+    timingDelay: 1000,
+  },
+  {
     key: "readBoardEntries",
     pathname: "api/board_entry",
     headers: new Headers({

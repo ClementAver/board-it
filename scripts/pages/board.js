@@ -2,21 +2,23 @@ import backIt from "../api/backIt.js";
 import Board from "../classes/Board.js";
 import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
+import DeleteThumbnailDialog from "../classes/DeleteBoardEntryDialog.js";
 import Details from "../classes/Details.js";
-import Dialog from "../classes/Dialog.js";
 import DragAndDrop from "../classes/DragAndDrop.js";
 import DragSorter from "../classes/DragSorter.js";
 import Gallery from "../classes/Gallery.js";
+import handleError from "../utilities/handleError.js";
 import initAnchors from "../utilities/initAnchors.js";
 import initDrawers from "../utilities/initDrawer.js";
+import insertSibling from "../utilities/insertSibling.js";
 import Pagination from "../classes/Pagination.js";
 import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
-import { createBoardThumbnail } from "../classes/Thumbnail.js";
 import Tooltip from "../classes/Tooltip.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
-import insertSibling from "../utilities/insertSibling.js";
-import handleError from "../utilities/handleError.js";
+import UpdateBoardEntryForm from "../classes/UpdateBoardEntryForm.js";
+import updateBoardEntryDialog from "../classes/UpdateBoardEntryDialog.js";
+import { createBoardThumbnail } from "../classes/Thumbnail.js";
 
 initAnchors();
 initDrawers();
@@ -70,6 +72,7 @@ async function editBoardEntry(thumbnail, formData) {
         if (result.id !== this.databaseId) {
           throw new Error(`wrong id returned on an update operation`);
         }
+        thumbnail.caption = result.caption;
       }
     } catch (error) {
       handleError({
