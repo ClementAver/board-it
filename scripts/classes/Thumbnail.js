@@ -472,7 +472,7 @@ export function createBoardThumbnail(board, boardEntry, image) {
   thumbnail.draggable = true;
   thumbnail.dataset.dragLevel = 2;
   try {
-    board.appendChild(thumbnail);
+    board.insertBefore(thumbnail, board.createButton);
   } catch (error) {
     handleError({
       text: `Une erreur est survenue lors de l'insertion de la vignette correspondant à l'entrée portant l'identifiant n°${boardEntry.id} au sein de la page.`,

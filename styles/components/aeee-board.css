@@ -32,4 +32,10 @@ aeee-board {
       border-radius: var(--spacing-xs);
     }
   }
+
+  button[data-create] {
+    border-radius: var(--spacing-sm);
+    display: flex;
+    place-content: center;
+  }
 }
