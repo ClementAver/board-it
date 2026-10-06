@@ -1,6 +1,6 @@
 dialog {
   background-color: transparent;
-  border-radius: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+  border-radius: var(--spacing-lg);
   box-shadow: var(--shadow);
   opacity: 1;
   overscroll-behavior: contain;

@@ -365,6 +365,7 @@
       is="aeee-delete-board-entry-dialog"
       id="delete-board-entry-dialog"
       class="generic fit"
+      autofocus
       closedby="any"
     >
       <header>
@@ -385,10 +386,14 @@
         </aeee-tooltip>
       </header>
 
-      <main class="p-lg flex-col items-center gap-lg my-lg">
-        <p>Êtes-vous sûr de vouloir supprimer cette vignette ?</p>
+      <main
+        class="p-lg flex-col items-center gap-lg mb-lg"
+      >
+        <p class="semibold">Êtes-vous sûr de vouloir supprimer cette vignette ?</p>
         <div class="spring-wrapper rounded-xs">
-          <button type="button" class="rounded-xs invalid">Confirmer</button>
+          <button type="button" class="rounded-xs bold invalid">
+            Supprimer
+          </button>
         </div>
       </main>
 
@@ -409,6 +414,7 @@
       is="aeee-update-board-entry-dialog"
       id="update-board-entry-dialog"
       class="generic fit"
+      autofocus
       closedby="any"
     >
       <header>
@@ -432,6 +438,7 @@
       <main class="p-lg my-lg">
         <form
           is="aeee-update-board-entry-form"
+          action=""
           class="flex-col items-center gap-lg"
         >
           <label>
@@ -443,9 +450,7 @@
               placeholder="Légende"
           /></label>
           <div class="spring-wrapper rounded-xs">
-            <button type="submit" class="rounded-xs valid">
-              Mettre à jour
-            </button>
+            <button type="submit" class="rounded-xs bold valid">Éditer</button>
           </div>
         </form>
       </main>
@@ -461,6 +466,61 @@
           Fermer
         </button>
       </footer>
+    </dialog>
+
+    <dialog
+      is="aeee-create-board-entry-dialog"
+      id="create-board-entry-dialog"
+      class="generic fit"
+      autofocus
+      closedby="any"
+    >
+      <header>
+        <p>Ajouter une vignette</p>
+        <button
+          data-trigger="create-board-entry-dialog"
+          data-action="close"
+          type="button"
+          aria-label="Fermer la boîte de dialogue modale."
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m14 10 7-7" />
+            <path d="M20 10h-6V4" />
+            <path d="m3 21 7-7" />
+            <path d="M4 14h6v6" />
+          </svg>
+        </button>
+      </header>
+
+      <form
+        is="aeee-selection-image-form"
+        action=""
+        enctype="multipart/form-data"
+      >
+        <aeee-gallery class="w-full grow">
+          <aeee-pagination
+            class="ml-auto"
+            data-page="1"
+            data-max="999"
+          ></aeee-pagination>
+
+          <div data-gallery-wrapper></div>
+        </aeee-gallery>
+
+        <div class="spring-wrapper rounded-xs">
+          <button type="submit" class="rounded-xs bold valid">Éditer</button>
+        </div>
+      </form>
     </dialog>
   </body>
 </html>

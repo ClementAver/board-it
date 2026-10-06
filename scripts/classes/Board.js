@@ -2,6 +2,7 @@ import backIt from "../api/backIt.js";
 import handleError from "../utilities/handleError.js";
 import insertSibling from "../utilities/insertSibling.js";
 import manageClasses from "../utilities/manageClasses.js";
+import CreateBoardEntryDialog from "./CreateBoardEntryDialog.js";
 import Svg from "./Svg.js";
 import Tooltip from "./Tooltip.js";
 
@@ -143,7 +144,7 @@ export default class Board extends HTMLElement {
     this.#tooltipCreate = tooltipCreate;
   }
 
-    connectedCallback() {
+  connectedCallback() {
     this.setupDOM();
 
     this._edit = this.edit.bind(this);
@@ -227,14 +228,27 @@ export default class Board extends HTMLElement {
       header.querySelector("button[data-create]") ??
       document.createElement("button");
     this.createButton.type = "button";
+    this.createButton.setAttribute(
+      "aria-label",
+      "Fermer la boîte de dialogue modale.",
+    );
+    this.createButton.dataset.trigger = "create-board-entry-dialog";
+    this.createButton.dataset.action = "showModal";
     this.createButton.dataset.create = true;
-     manageClasses([this.createButton], ["border-line-icon", "no-dash"]);
+    manageClasses([this.createButton], ["border-line-icon", "no-dash"]);
     this.createSvg =
       this.createButton.querySelector("aeee-svg") ??
       new Svg({ href: "../assets/icons/sprites.svg#image-plus" });
     if (!this.createButton.contains(this.createSvg))
       this.createButton.appendChild(this.createSvg);
     if (!this.contains(this.createButton)) this.appendChild(this.createButton);
+    const createDialog = document.getElementById("create-board-entry-dialog");
+    if (!createDialog) {
+      console.error(
+        "`dialog#create-board-entry-dialog` hasn't been found on the page.",
+      );
+    }
+    createDialog.appendTrigger(this.createButton);
 
     this.tooltipCreate = new Tooltip({ text: "Ajouter une vignette" });
     manageClasses([this.tooltipCreate], ["m-sm", "anchor-bottom-sr"]);

@@ -1,5 +1,6 @@
 import backIt from "../api/backIt.js";
 import Board from "../classes/Board.js";
+import CreateBoardEntryDialog from "../classes/CreateBoardEntryDialog.js";
 import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
 import DeleteThumbnailDialog from "../classes/DeleteBoardEntryDialog.js";
