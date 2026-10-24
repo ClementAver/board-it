@@ -3,7 +3,7 @@ import Board from "../classes/Board.js";
 import CreateBoardEntryDialog from "../classes/CreateBoardEntryDialog.js";
 import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
-import DeleteThumbnailDialog from "../classes/DeleteBoardEntryDialog.js";
+import DeleteThumbnailDialog from "../classes/DeleteThumbnailDialog.js";
 import Details from "../classes/Details.js";
 import DragAndDrop from "../classes/DragAndDrop.js";
 import DragSorter from "../classes/DragSorter.js";
@@ -17,9 +17,9 @@ import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Tooltip from "../classes/Tooltip.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
-import UpdateBoardEntryForm from "../classes/UpdateBoardEntryForm.js";
+import UpdateThumbnailForm from "../classes/UpdateThumbnailForm.js";
 import updateBoardEntryDialog from "../classes/UpdateBoardEntryDialog.js";
-import { createBoardThumbnail } from "../classes/Thumbnail.js";
+import { createThumbnail } from "../classes/Thumbnail.js";
 
 initAnchors();
 initDrawers();
@@ -128,7 +128,7 @@ const boards = await new Promise(async (resolve, reject) => {
   }
 });
 
-console.info(boards);
+console.info("loaded boards at page initialization", boards);
 
 let insertedBoards = [];
 boards.forEach(async (board) => {
@@ -167,7 +167,7 @@ let boardEntries = await new Promise((resolve, reject) => {
   });
 });
 
-console.info(boardEntries);
+console.info("loaded boardEntries at page initialization", boardEntries);
 
 let alreadyFetchedIds = new Set();
 const imagePromises = await Promise.allSettled(
@@ -197,7 +197,7 @@ const images = imagePromises
   .filter((it) => it.status === "fulfilled")
   .map((it) => it.value);
 
-console.info(images);
+console.info("loaded images at page initialization", images);
 
 for (const boardEntry of boardEntries) {
   const { element: boardElement } = insertedBoards.find(
@@ -206,5 +206,5 @@ for (const boardEntry of boardEntries) {
   if (!boardElement) continue;
   const image = images.find((it) => it.id === boardEntry.imageId);
   if (!image) continue;
-  createBoardThumbnail(boardElement, boardEntry, image);
+  createThumbnail(boardElement, boardEntry, image);
 }

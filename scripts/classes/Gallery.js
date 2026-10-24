@@ -1,4 +1,5 @@
 export default class Gallery extends HTMLElement {
+  #size = 9;
   #pagination = null;
   #wrapper = null;
 
@@ -14,12 +15,20 @@ export default class Gallery extends HTMLElement {
     this.wrapper = this.querySelector("[data-gallery-wrapper]") ?? this.wrapper;
   }
 
+  get size() {
+    return this.#size;
+  }
+
   get pagination() {
     return this.#pagination;
   }
 
   get wrapper() {
     return this.#wrapper;
+  }
+
+  set size(size) {
+    this.#size = size;
   }
 
   set pagination(pagination) {

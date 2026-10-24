@@ -2,11 +2,14 @@ import backIt from "../api/backIt.js";
 import Dialog from "./Dialog.js";
 import handleError from "../utilities/handleError.js";
 
+const { request: userDeleteImage } = backIt.registered(
+  "userDeleteImage",
+);
 const { request: userDeleteBoardEntry } = backIt.registered(
   "userDeleteBoardEntry",
 );
 
-export default class DeleteBoardEntryDialog extends Dialog {
+export default class DeleteThumbnailDialog extends Dialog {
   #confirmButton = null;
 
   constructor(parameters) {
@@ -42,9 +45,20 @@ export default class DeleteBoardEntryDialog extends Dialog {
 
   #confirm = async () => {
     try {
-      const response = await userDeleteBoardEntry({
-        pathname: `/${window.thumbnail.databaseId}`,
-      });
+      let response;
+      if (!window.thumbnailMode) {
+        throw new Error(
+          `Invalid value for \`window.thumbnailMode\` (${window.thumbnailMode}). Should either be "image" or "boardEntry".`,
+        );
+      } else if (window.thumbnailMode === "image") {
+        response = await userDeleteImage({
+          pathname: `/${window.thumbnail.databaseId}`,
+        });
+      } else if (window.thumbnailMode === "boardEntry") {
+        response = await userDeleteBoardEntry({
+          pathname: `/${window.thumbnail.databaseId}`,
+        });
+      }
       const result = await response.json();
       if (response.ok) {
         if (result !== window.thumbnail.databaseId) {
@@ -76,14 +90,11 @@ export default class DeleteBoardEntryDialog extends Dialog {
 
   clean() {
     window.thumbnail = null;
+    window.thumbnailMode = null;
     this.close();
   }
 }
 
-customElements.define(
-  "aeee-delete-board-entry-dialog",
-  DeleteBoardEntryDialog,
-  {
-    extends: "dialog",
-  },
-);
+customElements.define("aeee-delete-thumbnail-dialog", DeleteThumbnailDialog, {
+  extends: "dialog",
+});

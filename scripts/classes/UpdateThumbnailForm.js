@@ -1,11 +1,12 @@
 import backIt from "../api/backIt.js";
 import handleError from "../utilities/handleError.js";
 
+const { request: userUpdateImage } = backIt.registered("userUpdateImage");
 const { request: userUpdateBoardEntry } = backIt.registered(
   "userUpdateBoardEntry",
 );
 
-export default class UpdateBoardEntryForm extends HTMLFormElement {
+export default class UpdateThumbnailForm extends HTMLFormElement {
   #input = null;
   #submitButton = null;
 
@@ -40,10 +41,25 @@ export default class UpdateBoardEntryForm extends HTMLFormElement {
     event.preventDefault();
     const formData = new FormData(this);
     try {
-      const response = await userUpdateBoardEntry({
-        pathname: `/${window.thumbnail.databaseId}`,
-        body: formData,
-      });
+      let response;
+
+      if (!window.thumbnailMode) {
+        throw new Error(
+          `Invalid value for \`window.thumbnailMode\` (${window.thumbnailMode}). Should either be "image" or "boardEntry".`,
+        );
+      } else if (window.thumbnailMode === "image") {
+        formData.set("alternateText", formData.get("caption"));
+        formData.delete("caption");
+        response = await userUpdateImage({
+          pathname: `/${window.thumbnail.databaseId}`,
+          body: formData,
+        });
+      } else if (window.thumbnailMode === "boardEntry") {
+        response = await userUpdateBoardEntry({
+          pathname: `/${window.thumbnail.databaseId}`,
+          body: formData,
+        });
+      }
       const result = await response.json();
       if (response.ok) {
         if (result.id !== window.thumbnail.databaseId) {
@@ -64,6 +80,6 @@ export default class UpdateBoardEntryForm extends HTMLFormElement {
   }
 }
 
-customElements.define("aeee-update-board-entry-form", UpdateBoardEntryForm, {
+customElements.define("aeee-update-thumbnail-form", UpdateThumbnailForm, {
   extends: "form",
 });

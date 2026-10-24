@@ -22,7 +22,6 @@ export default class Board extends HTMLElement {
   #input = null;
   #title = "";
   #titleElement = null;
-  #tooltipCreate = null;
 
   constructor({ databaseId, title, dragLevel } = {}) {
     super();
@@ -82,10 +81,6 @@ export default class Board extends HTMLElement {
     return this.#titleElement;
   }
 
-  get tooltipCreate() {
-    return this.#tooltipCreate;
-  }
-
   set createButton(createButton) {
     this.#createButton = createButton;
   }
@@ -140,10 +135,6 @@ export default class Board extends HTMLElement {
     this.#titleElement = titleElement;
   }
 
-  set tooltipCreate(tooltipCreate) {
-    this.#tooltipCreate = tooltipCreate;
-  }
-
   connectedCallback() {
     this.setupDOM();
 
@@ -154,7 +145,7 @@ export default class Board extends HTMLElement {
     this.form.addEventListener("submit", this._submit);
     this._delete = this.delete.bind(this);
     this.deleteButton.addEventListener("click", this._delete);
-    this._create = this.create.bind(this);
+    // this._create = this.create.bind(this);
     this.createButton.addEventListener("click", this._create);
   }
 
@@ -193,6 +184,21 @@ export default class Board extends HTMLElement {
       header.insertBefore(this.form, header.firstElementChild);
     }
 
+    this.createButton =
+      header.querySelector("button[data-create]") ??
+      document.createElement("button");
+    this.createButton.type = "button";
+    this.createButton.dataset.trigger = "create-board-entry-dialog";
+    this.createButton.dataset.action = "showModal";
+    this.createButton.dataset.create = true;
+    this.createSvg =
+      this.createButton.querySelector("aeee-svg") ??
+      new Svg({ href: "../assets/icons/sprites.svg#image-plus" });
+    if (!this.createButton.contains(this.createSvg))
+      this.createButton.appendChild(this.createSvg);
+    if (!header.contains(this.createButton))
+      insertSibling(this.createButton, this.titleElement, "after");
+
     this.editButton =
       header.querySelector("button[data-edit]") ??
       document.createElement("button");
@@ -205,7 +211,7 @@ export default class Board extends HTMLElement {
     if (!this.editButton.contains(this.editSvg))
       this.editButton.appendChild(this.editSvg);
     if (!header.contains(this.editButton))
-      insertSibling(this.editButton, this.titleElement, "after");
+      insertSibling(this.editButton, this.createButton, "after");
 
     this.deleteButton =
       header.querySelector("button[data-delete]") ??
@@ -224,24 +230,28 @@ export default class Board extends HTMLElement {
     if (!this.contains(header))
       this.insertBefore(header, this.firstElementChild);
 
-    this.createButton =
-      header.querySelector("button[data-create]") ??
-      document.createElement("button");
-    this.createButton.type = "button";
-    this.createButton.setAttribute(
-      "aria-label",
-      "Fermer la boîte de dialogue modale.",
+    manageClasses(
+      [this.createButton, this.editButton, this.deleteButton],
+      ["border-line-icon", "no-dash"],
     );
-    this.createButton.dataset.trigger = "create-board-entry-dialog";
-    this.createButton.dataset.action = "showModal";
-    this.createButton.dataset.create = true;
-    manageClasses([this.createButton], ["border-line-icon", "no-dash"]);
-    this.createSvg =
-      this.createButton.querySelector("aeee-svg") ??
-      new Svg({ href: "../assets/icons/sprites.svg#image-plus" });
-    if (!this.createButton.contains(this.createSvg))
-      this.createButton.appendChild(this.createSvg);
-    if (!this.contains(this.createButton)) this.appendChild(this.createButton);
+
+    this._createTooltip = new Tooltip({ text: "Ajouter une vignette" });
+    if (!header.contains(this._createTooltip))
+      insertSibling(this._createTooltip, this.createButton, "after");
+
+    this._editTooltip = new Tooltip({ text: "Éditer le tableau" });
+    if (!header.contains(this._editTooltip))
+      insertSibling(this._editTooltip, this.editButton, "after");
+
+    this._deleteTooltip = new Tooltip({ text: "Supprimer le tableau" });
+    if (!header.contains(this._deleteTooltip))
+      insertSibling(this._deleteTooltip, this.deleteButton, "after");
+
+    manageClasses(
+      [this._createTooltip, this._editTooltip, this._deleteTooltip],
+      ["m-sm", "anchor-bottom-sr"],
+    );
+
     const createDialog = document.getElementById("create-board-entry-dialog");
     if (!createDialog) {
       console.error(
@@ -249,11 +259,6 @@ export default class Board extends HTMLElement {
       );
     }
     createDialog.appendTrigger(this.createButton);
-
-    this.tooltipCreate = new Tooltip({ text: "Ajouter une vignette" });
-    manageClasses([this.tooltipCreate], ["m-sm", "anchor-bottom-sr"]);
-    if (!this.contains(this.tooltipCreate))
-      this.appendChild(this.tooltipCreate);
   }
 
   edit() {
@@ -336,9 +341,9 @@ export default class Board extends HTMLElement {
     }
   }
 
-  async create() {
-    console.log("create");
-  }
+  // async create() {
+  //   console.info("create");
+  // }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;

@@ -41,6 +41,7 @@ export default class updateBoardEntryDialog extends Dialog {
   clean() {
     this.querySelector('input[name="caption"]').value = "";
     window.thumbnail = null;
+    window.thumbnailMode = null;
     this.close();
   }
 }

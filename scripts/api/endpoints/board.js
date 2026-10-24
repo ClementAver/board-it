@@ -18,6 +18,7 @@ const boardEndpoints = [
     }),
     timigStrategy: "debounce",
     timingDelay: 1000,
+    timingOptions: { leading: true, trailing: true },
   },
   {
     key: "readBoard",
@@ -45,6 +46,7 @@ const boardEndpoints = [
     }),
     timigStrategy: "debounce",
     timingDelay: 1000,
+    timingOptions: { leading: true, trailing: true },
   },
   {
     key: "deleteBoard",
@@ -57,6 +59,7 @@ const boardEndpoints = [
     pathname: "api/board",
     timingStrategy: "debounce",
     timingDelay: 1000,
+    timingOptions: { leading: true, trailing: true },
   },
   {
     key: "readBoards",

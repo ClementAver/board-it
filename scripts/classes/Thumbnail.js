@@ -3,6 +3,7 @@ import handleError from "../utilities/handleError.js";
 import insertSibling from "../utilities/insertSibling.js";
 import manageClasses from "../utilities/manageClasses.js";
 import Svg from "./Svg.js";
+import Tooltip from "./Tooltip.js";
 
 export default class Thumbnail extends HTMLElement {
   #alternate = "";
@@ -358,10 +359,23 @@ export default class Thumbnail extends HTMLElement {
 
     manageClasses(
       [this.editButton, this.deleteButton],
-      ["swath", "smaller-border-line-icon"],
+      ["swath", "smaller-border-line-icon", "border-line-icon", "no-dash"],
     );
 
     if (!this.contains(menu)) this.insertBefore(menu, this.firstElementChild);
+
+    this._editTooltip = new Tooltip({ text: "Éditer une vignette" });
+    if (!menu.contains(this._editTooltip))
+      insertSibling(this._editTooltip, this.editButton, "after");
+
+    this._deleteTooltip = new Tooltip({ text: "Supprimer une vignette" });
+    if (!menu.contains(this._deleteTooltip))
+      insertSibling(this._deleteTooltip, this.deleteButton, "after");
+
+    manageClasses(
+      [this._editTooltip, this._deleteTooltip],
+      ["m-sm", "anchor-bottom-sr"],
+    );
   }
 
   setupEvents(deleteCallback, editCallback) {
@@ -458,24 +472,37 @@ export default class Thumbnail extends HTMLElement {
 
 customElements.define("aeee-thumbnail", Thumbnail);
 
-export function createBoardThumbnail(board, boardEntry, image) {
+export function createThumbnail(parentNode, boardEntry, image) {
+  let mode = "image";
+  const caption = boardEntry?.caption ?? image.alternateText;
+  const databaseId = boardEntry?.id ?? image.id;
   const thumbnail = new Thumbnail({
     alternate: image.alternateText,
-    caption: boardEntry.caption,
-    databaseId: boardEntry.id,
+    caption,
+    databaseId,
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
     isEditable: true,
     isDeletable: true,
   });
-  thumbnail.deleteCallback = () => (window.thumbnail = thumbnail);
-  thumbnail.editCallback = () => (window.thumbnail = thumbnail);
-  thumbnail.draggable = true;
-  thumbnail.dataset.dragLevel = 2;
+  if (boardEntry) {
+    mode = "boardEntry";
+    thumbnail.draggable = true;
+    thumbnail.dataset.dragLevel = 2;
+  }
+  thumbnail.deleteCallback = () => {
+    window.thumbnail = thumbnail;
+    window.thumbnailMode = mode;
+  };
+  thumbnail.editCallback = () => {
+    window.thumbnail = thumbnail;
+    window.thumbnailMode = mode;
+  };
+
   try {
-    board.insertBefore(thumbnail, board.createButton);
+    parentNode.appendChild(thumbnail);
   } catch (error) {
     handleError({
-      text: `Une erreur est survenue lors de l'insertion de la vignette correspondant à l'entrée portant l'identifiant n°${boardEntry.id} au sein de la page.`,
+      text: `Une erreur est survenue lors de l'insertion de la vignette correspondant à l'entrée portant l'identifiant n°${databaseId} au sein de la page.`,
       error,
     });
   }

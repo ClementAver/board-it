@@ -1,6 +1,16 @@
+import backIt from "../api/backIt.js";
 import Dialog from "./Dialog.js";
+import Gallery from "./Gallery.js";
+import handleError from "../utilities/handleError.js";
+import { createThumbnail } from "./Thumbnail.js";
+
+const { request: readImagesSelection } = backIt.registered(
+  "readImagesSelection",
+);
 
 export default class CreateBoardEntryDialog extends Dialog {
+  #gallery;
+
   constructor(parameters) {
     super(parameters);
   }
@@ -15,6 +25,8 @@ export default class CreateBoardEntryDialog extends Dialog {
     });
     this._beforeToggle = this.beforeToggle.bind(this);
     this.addEventListener("beforetoggle", this._beforeToggle);
+
+    this.#gallery = this.querySelector("aeee-gallery") ?? new Gallery();
   }
 
   disconnectedCallback() {
@@ -24,14 +36,13 @@ export default class CreateBoardEntryDialog extends Dialog {
     this.removeEventListener("beforetoggle", this._beforeToggle);
   }
 
-  beforeToggle = (event) => {
+  get gallery() {
+    return this.#gallery;
+  }
+
+  beforeToggle = async (event) => {
     if (event.newState === "open") {
-      if (!window.thumbnail) {
-        this.close();
-        throw new Error("property 'thumbnail' missing on window");
-      }
-      this.querySelector('input[name="caption"]').value =
-        window.thumbnail.caption;
+      await this.fetchImages();
     }
     if (event.newState === "closed") {
       this.clean();
@@ -39,9 +50,41 @@ export default class CreateBoardEntryDialog extends Dialog {
   };
 
   clean() {
-    this.querySelector('input[name="caption"]').value = "";
     window.thumbnail = null;
+    window.thumbnailMode = null;
+    Array.from(this.gallery.wrapper.children).forEach((child) =>
+      child.remove(),
+    );
     this.close();
+  }
+
+  async fetchImages() {
+    const bytes = false;
+    const start = (this.gallery.pagination.page - 1) * this.gallery.size;
+    const size = this.gallery.size;
+
+    try {
+      const response = await readImagesSelection({
+        queries: {
+          bytes,
+          start,
+          size,
+        },
+      });
+      const result = await response.json();
+      if (response.ok) {
+        // TODO : use response to instanciate thumbnails (with input to edit alt text) and update gallery pagination maxPage
+        this.gallery.pagination.maxPage = Math.ceil(result.total / result.size);
+        result.images.forEach((image) => {
+          createThumbnail(this.gallery.wrapper, undefined, image);
+        });
+      }
+    } catch (error) {
+      handleError({
+        text: `Une Erreur est survenue lors de la récupération de vos images.`,
+        error,
+      });
+    }
   }
 }
 

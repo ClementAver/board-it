@@ -34,6 +34,7 @@ const boardEntryEndpoints = [
     }),
     timingStrategy: "debounce",
     timingDelay: 1000,
+    timingOptions: { leading: true, trailing: true },
   },
   {
     key: "deleteBoardEntry",
@@ -46,6 +47,7 @@ const boardEntryEndpoints = [
     pathname: "api/board_entry",
     timingStrategy: "debounce",
     timingDelay: 1000,
+    timingOptions: { leading: true, trailing: true },
   },
   {
     key: "readBoardEntries",

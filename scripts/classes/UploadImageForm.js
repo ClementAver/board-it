@@ -54,7 +54,7 @@ export default class UploadImageForm extends HTMLFormElement {
         files.push(value);
     }
 
-    console.info(files);
+    console.info("UploadImageForm.processFormData info: ", files);
   }
 }
 

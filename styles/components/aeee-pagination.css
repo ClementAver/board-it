@@ -1,5 +1,5 @@
 aeee-pagination {
-  align-items: center;
+  align-items: stretch;
   border-radius: var(--spacing-xs);
   display: flex;
   gap: var(--spacing-xs);
@@ -32,7 +32,7 @@ aeee-pagination {
     display: flex;
     gap: var(--spacing-xs);
     margin-inline: auto;
-    padding: var(--spacing-xs);
+    padding-inline: var(--spacing-xs);
   }
 
   & input {
