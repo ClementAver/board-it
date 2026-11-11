@@ -1,3 +1,9 @@
+import backIt from "../api/backIt.js";
+import handleError from "../utilities/handleError.js";
+import status from "../api/status.json" with { type: "json" };
+
+const { request: createImage } = backIt.registered("createImage");
+
 export default class UploadImageForm extends HTMLFormElement {
   #input = null;
   #submitButton = null;
@@ -37,24 +43,42 @@ export default class UploadImageForm extends HTMLFormElement {
   }
 
   update = () => {
-    this.processFormData();
+    // this.processFormData();
   };
 
   upload = (event) => {
     event.preventDefault();
-    this.processFormData();
+    this.processFormData().forEach(async (file) => {
+      try {
+        const body = new FormData();
+        body.append("file", file);
+        body.append("alternateText", file.name);
+        const response = await createImage({
+          body,
+        });
+        if (!response.ok) {
+          throw new Error(
+            `${response.status} \u2013 ${status[response.status]}`,
+          );
+        }
+      } catch (error) {
+        handleError({
+          text: `Une Erreur est survenue lors de la création de l'image correspondante au fichier ${file.name}.`,
+          error,
+        });
+      }
+    });
   };
 
   processFormData() {
-    const formData = new FormData(this);
-
     const files = [];
+    const formData = new FormData(this);
     for (var [key, value] of formData.entries()) {
       if (key === "image" || key === "drag-and-drop-file-input")
         files.push(value);
     }
-
     console.info("UploadImageForm.processFormData info: ", files);
+    return files;
   }
 }
 

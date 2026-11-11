@@ -65,7 +65,7 @@ export default class UpdateThumbnailForm extends HTMLFormElement {
         if (result.id !== window.thumbnail.databaseId) {
           throw new Error(`wrong id returned on an update operation`);
         }
-        window.thumbnail.caption = result.caption;
+        window.thumbnail.caption = result.caption ?? result.alternateText;
       }
     } catch (error) {
       handleError({

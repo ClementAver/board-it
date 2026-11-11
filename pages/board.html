@@ -305,7 +305,7 @@
               data-drop-zone-text="Déposer ou coller votre image ici"
               data-id="drag-and-drop-file-input"
               data-label="Sélectionner un fichier"
-              data-multiple="true"
+              data-multiple="false"
               data-required="true"
               data-reset-button-text="réinitialiser"
               data-wrong-file-format-message="Format de fichier non pris en charge"
@@ -317,46 +317,6 @@
               </button>
             </div>
           </form>
-        </div>
-      </aeee-details>
-      <aeee-details data-name="right-drawer-details" class="mb-sm">
-        <p data-summary class="text-swath medium truncate">Mes images</p>
-        <div>
-          <aeee-gallery class="mt-lg w-512 max-h-356">
-            <aeee-pagination
-              class="ml-auto"
-              data-page="1"
-              data-max="999"
-            ></aeee-pagination>
-            <aeee-drag-sorter
-              data-drag-level="1"
-              data-frozen="true"
-              data-gallery-wrapper
-              style="grid-template-columns: repeat(3, minmax(100px, 200px))"
-            >
-              <aeee-thumbnail
-                data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
-                data-alternate="The king of the jungle."
-                data-caption="Lives in the savana."
-                draggable="true"
-                data-drag-level="2"
-              ></aeee-thumbnail>
-              <aeee-thumbnail
-                data-source="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
-                data-alternate="The king of the jungle."
-                data-caption="Lives in the savana."
-                draggable="true"
-                data-drag-level="2"
-              ></aeee-thumbnail>
-              <aeee-thumbnail
-                data-source="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
-                data-alternate="The king of the jungle."
-                data-caption="Lives in the savana."
-                draggable="true"
-                data-drag-level="2"
-              ></aeee-thumbnail>
-            </aeee-drag-sorter>
-          </aeee-gallery>
         </div>
       </aeee-details>
     </menu>
