@@ -26,96 +26,6 @@
         <menu>
           <li>
             <button
-              data-anchor
-              type="button"
-              popovertarget="file-menu"
-              interestfor="file-menu"
-            >
-              <!-- ⇈ popovertargetaction="file-menu" || interestfor="file-menu" -->
-              Fichier ↴
-            </button>
-            <div
-              id="file-menu"
-              popover
-              data-target
-              class="dropdown-menu anchor-bottom-sr"
-            >
-              <form
-                is="aeee-upload-work-file-form"
-                action=""
-                enctype="multipart/form-data"
-              >
-                <aeee-file-input class="w-full">
-                  <input
-                    id="upload-work-file-input"
-                    name="json"
-                    type="file"
-                    accept="application/JSON"
-                    tabindex="-1"
-                  />
-                  <label
-                    for="upload-work-file-input"
-                    class="button"
-                    tabindex="0"
-                  >
-                    <aeee-svg
-                      data-href="../assets/icons/sprites.svg#file-up"
-                    ></aeee-svg>
-                    <span>Téléverser</span>
-                  </label>
-                </aeee-file-input>
-              </form>
-
-              <form
-                is="aeee-download-workfile-form"
-                action=""
-                enctype="multipart/form-data"
-              >
-                <a
-                  id="download-workfile-anchor"
-                  href="#"
-                  download="file_name.json"
-                  tabindex="-1"
-                  class="sr-only"
-                ></a>
-                <button type="submit">
-                  <aeee-svg
-                    data-href="../assets/icons/sprites.svg#file-down"
-                  ></aeee-svg>
-                  <span>Télécharger</span>
-                </button>
-              </form>
-
-              <button
-                data-anchor
-                type="button"
-                popovertarget="file-menu-more"
-                interestfor="file-menu-more"
-              >
-                <span>Plus d'options ↴</span>
-              </button>
-              <div
-                id="file-menu-more"
-                popover
-                data-target
-                class="dropdown-menu anchor-right-sb"
-              >
-                <button type="button">
-                  <span>Renommer</span>
-                </button>
-
-                <button type="button">
-                  <aeee-svg
-                    data-href="../assets/icons/sprites.svg#trash-2"
-                  ></aeee-svg>
-                  <span>Supprimer</span>
-                </button>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <button
               type="button"
               data-anchor
               popovertarget="interface-menu"
@@ -247,7 +157,7 @@
 
     <menu
       data-drawer="right-drawer"
-      data-open="false"
+      data-open="true"
       class="right"
       style="grid-area: right-drawer"
     >

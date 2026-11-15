@@ -10,8 +10,7 @@ aeee-gallery {
 
   [data-gallery-wrapper] {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+    grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
     gap: var(--spacing-sm);
-    overflow-x: auto;
   }
 }

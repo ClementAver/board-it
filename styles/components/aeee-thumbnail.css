@@ -3,6 +3,8 @@ aeee-thumbnail {
   border-radius: var(--spacing-sm);
   display: grid;
   grid-template-areas: "thumbnail";
+  max-height: 300px;
+  min-height: 100px;
   max-width: 300px;
   min-width: 100px;
   overflow: hidden;
@@ -126,6 +128,9 @@ aeee-thumbnail {
     grid-area: figure;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    width: 100%;
   }
 
   &:state(error) img {

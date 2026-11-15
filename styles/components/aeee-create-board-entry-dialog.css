@@ -1,0 +1,21 @@
+[is="aeee-create-board-entry-dialog"] {
+  > form {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow: hidden;
+  }
+
+  aeee-gallery {
+    margin-bottom: 1rem;
+    width: fit-content;
+
+    [data-gallery-wrapper] {
+      max-width: 75vw;
+      overflow-y: auto;
+    }
+
+    + div {
+      margin-inline: auto;
+    }
+  }
+}
