@@ -206,5 +206,8 @@ for (const boardEntry of boardEntries) {
   if (!boardElement) continue;
   const image = images.find((it) => it.id === boardEntry.imageId);
   if (!image) continue;
-  createThumbnail(boardElement, boardEntry, image);
+  createThumbnail(boardElement, boardEntry, image, {
+    isEditable: true,
+    isDeletable: true,
+  });
 }

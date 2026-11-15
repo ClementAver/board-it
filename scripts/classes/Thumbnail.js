@@ -472,7 +472,18 @@ export default class Thumbnail extends HTMLElement {
 
 customElements.define("aeee-thumbnail", Thumbnail);
 
-export function createThumbnail(parentNode, boardEntry, image) {
+export function createThumbnail(
+  parentNode,
+  boardEntry,
+  image,
+  {
+    isEditable,
+    isDeletable,
+    isChecked,
+    isRounded,
+    isSelectable,
+  } = {},
+) {
   let mode = "image";
   const caption = boardEntry?.caption ?? image.alternateText;
   const databaseId = boardEntry?.id ?? image.id;
@@ -481,8 +492,11 @@ export function createThumbnail(parentNode, boardEntry, image) {
     caption,
     databaseId,
     source: `${backIt.origin}/api/image/bytes/${image.id}`,
-    isEditable: true,
-    isDeletable: true,
+    isEditable,
+    isDeletable,
+    isChecked,
+    isRounded,
+    isSelectable,
   });
   if (boardEntry) {
     mode = "boardEntry";

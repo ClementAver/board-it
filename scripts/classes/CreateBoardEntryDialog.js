@@ -76,7 +76,11 @@ export default class CreateBoardEntryDialog extends Dialog {
         // TODO : use response to instanciate thumbnails (with input to edit alt text) and update gallery pagination maxPage
         this.gallery.pagination.maxPage = Math.ceil(result.total / result.size);
         result.images.forEach((image) => {
-          createThumbnail(this.gallery.wrapper, undefined, image);
+          createThumbnail(this.gallery.wrapper, undefined, image, {
+            isEditable: true,
+            isDeletable: true,
+            isSelectable: true,
+          });
         });
       }
     } catch (error) {
