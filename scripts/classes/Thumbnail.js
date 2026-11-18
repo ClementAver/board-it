@@ -20,6 +20,7 @@ export default class Thumbnail extends HTMLElement {
   #isChecked = false;
   #isEditable = false;
   #isDeletable = false;
+  #isInitialized = false;
   #isRounded = false;
   #isSelectable = false;
   #placeholderImage = `${window.location.origin}/assets/pictures/thumbnail_placehoder.png`;
@@ -54,22 +55,6 @@ export default class Thumbnail extends HTMLElement {
 
     this._internals = this.attachInternals();
     this.setAttribute("role", "article");
-  }
-
-  connectedCallback() {
-    this.setupDOM({
-      source: this.source,
-      alternate: this.alternate,
-      caption: this.caption,
-      deleteCallback: this.deleteCallback,
-      editCallback: this.editCallback,
-      isChecked: this.isChecked,
-      isEditable: this.isEditable,
-      isDeletable: this.isDeletable,
-      isRounded: this.isRounded,
-      isSelectable: this.isSelectable,
-    });
-    this.setupEvents(this.deleteCallback, this.editCallback);
   }
 
   get alternate() {
@@ -281,6 +266,33 @@ export default class Thumbnail extends HTMLElement {
     if (this.checkbox) this.checkbox.value = this.source;
   }
 
+  connectedCallback() {
+    if (!this.#isInitialized) {
+      this.setupDOM({
+        source: this.source,
+        alternate: this.alternate,
+        caption: this.caption,
+        deleteCallback: this.deleteCallback,
+        editCallback: this.editCallback,
+        isChecked: this.isChecked,
+        isEditable: this.isEditable,
+        isDeletable: this.isDeletable,
+        isRounded: this.isRounded,
+        isSelectable: this.isSelectable,
+      });
+      this.setupEvents(this.deleteCallback, this.editCallback);
+      this.#isInitialized = true;
+    }
+  }
+
+  disconnectedCallback() {
+    if (this._toggleChecked) {
+      this.removeEventListener("click", this._toggleChecked);
+    }
+  }
+
+  connectedMoveCallback() {}
+
   setupDOM({
     source,
     alternate,
@@ -305,14 +317,10 @@ export default class Thumbnail extends HTMLElement {
 
     this.alternate = alternate ?? this.dataset.alternate ?? this.alternate;
     this.caption = caption ?? this.dataset.caption ?? this.caption;
-    this.isDeletable =
-      isDeletable ?? this.dataset.isDeletable === "true" ?? this.isDeletable;
-    this.isEditable =
-      isEditable ?? this.dataset.isEditable === "true" ?? this.isEditable;
-    this.isRounded =
-      isRounded ?? this.dataset.isRounded === "true" ?? this.isRounded;
-    this.isSelectable =
-      isSelectable ?? this.dataset.isSelectable === "true" ?? this.isSelectable;
+    this.isDeletable = isDeletable ?? this.isDeletable;
+    this.isEditable = isEditable ?? this.isEditable;
+    this.isRounded = isRounded ?? this.isRounded;
+    this.isSelectable = isSelectable ?? this.isSelectable;
     this.source = source ?? this.dataset.source ?? this.source;
 
     this.checkbox =
@@ -323,8 +331,7 @@ export default class Thumbnail extends HTMLElement {
     this.checkbox.value = this.source;
     if (this.checkbox && !this.contains(this.checkbox))
       this.appendChild(this.checkbox);
-    this.isChecked =
-      isChecked ?? this.dataset.isChecked === "true" ?? this.isChecked;
+    this.isChecked = isChecked ?? this.isChecked;
 
     const menu = this.querySelector("menu") ?? document.createElement("menu");
 
@@ -364,11 +371,11 @@ export default class Thumbnail extends HTMLElement {
 
     if (!this.contains(menu)) this.insertBefore(menu, this.firstElementChild);
 
-    this._editTooltip = new Tooltip({ text: "Éditer une vignette" });
+    this._editTooltip ??= new Tooltip({ text: "Éditer une vignette" });
     if (!menu.contains(this._editTooltip))
       insertSibling(this._editTooltip, this.editButton, "after");
 
-    this._deleteTooltip = new Tooltip({ text: "Supprimer une vignette" });
+    this._deleteTooltip ??= new Tooltip({ text: "Supprimer une vignette" });
     if (!menu.contains(this._deleteTooltip))
       insertSibling(this._deleteTooltip, this.deleteButton, "after");
 
@@ -379,28 +386,24 @@ export default class Thumbnail extends HTMLElement {
   }
 
   setupEvents(deleteCallback, editCallback) {
-    if (!this._listeners) {
-      this._listeners = true;
+    this.image.onload = () => {
+      this._internals.states.delete("loading");
+      if (this.source !== this.placeholderImage) {
+        this._internals.states.delete("error");
+      }
+    };
 
-      this.image.onload = () => {
-        this._internals.states.delete("loading");
-        if (this.source !== this.placeholderImage) {
-          this._internals.states.delete("error");
-        }
-      };
-
-      this.image.onerror = (error) => {
-        this._internals.states.delete("loading");
-        this._internals.states.add("error");
-        handleError({
-          text: `Une Erreur est survenue lors du chargement d'une image.`,
-          error,
-        });
-        if (this.source !== this.placeholderImage) {
-          this.source = this.placeholderImage;
-        }
-      };
-    }
+    this.image.onerror = (error) => {
+      this._internals.states.delete("loading");
+      this._internals.states.add("error");
+      handleError({
+        text: `Une Erreur est survenue lors du chargement d'une image.`,
+        error,
+      });
+      if (this.source !== this.placeholderImage) {
+        this.source = this.placeholderImage;
+      }
+    };
 
     if (this.checkbox) {
       this._toggleChecked = this.toggleChecked.bind(this);
@@ -411,14 +414,6 @@ export default class Thumbnail extends HTMLElement {
     this.deleteButton.addEventListener("click", this._delete);
     this._edit = editCallback.bind(this);
     this.editButton.addEventListener("click", this._edit);
-  }
-
-  disconnectedCallback() {
-    if (this._toggleChecked) {
-      this.removeEventListener("click", this._toggleChecked);
-    }
-    this.editButton.removeEventListener("click", this._edit);
-    this.deleteButton.removeEventListener("click", this._delete);
   }
 
   toggleChecked() {
@@ -476,15 +471,8 @@ export function createThumbnail(
   parentNode,
   boardEntry,
   image,
-  {
-    isEditable,
-    isDeletable,
-    isChecked,
-    isRounded,
-    isSelectable,
-  } = {},
+  { isEditable, isDeletable, isChecked, isRounded, isSelectable } = {},
 ) {
-  let mode = "image";
   const caption = boardEntry?.caption ?? image.alternateText;
   const databaseId = boardEntry?.id ?? image.id;
   const thumbnail = new Thumbnail({
@@ -499,17 +487,20 @@ export function createThumbnail(
     isSelectable,
   });
   if (boardEntry) {
-    mode = "boardEntry";
     thumbnail.draggable = true;
     thumbnail.dataset.dragLevel = 2;
   }
-  thumbnail.deleteCallback = () => {
+  thumbnail.deleteCallback = (event) => {
     window.thumbnail = thumbnail;
-    window.thumbnailMode = mode;
+    window.thumbnailMode = event.target.closest("aeee-board")
+      ? "boardEntry"
+      : "image";
   };
-  thumbnail.editCallback = () => {
+  thumbnail.editCallback = (event) => {
     window.thumbnail = thumbnail;
-    window.thumbnailMode = mode;
+    window.thumbnailMode = event.target.closest("aeee-board")
+      ? "boardEntry"
+      : "image";
   };
 
   try {

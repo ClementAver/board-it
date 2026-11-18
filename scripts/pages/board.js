@@ -19,6 +19,7 @@ import Tooltip from "../classes/Tooltip.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
 import UpdateThumbnailForm from "../classes/UpdateThumbnailForm.js";
 import updateBoardEntryDialog from "../classes/UpdateBoardEntryDialog.js";
+import CreateBoardEntryForm from "../classes/CreateBoardEntryForm.js";
 import { createThumbnail } from "../classes/Thumbnail.js";
 
 initAnchors();
@@ -70,7 +71,7 @@ async function editBoardEntry(thumbnail, formData) {
       });
       const result = await response.json();
       if (response.ok) {
-        if (result.id !== this.databaseId) {
+        if (result.id !== thumbnail.databaseId) {
           throw new Error(`wrong id returned on an update operation`);
         }
         thumbnail.caption = result.caption;
@@ -114,33 +115,27 @@ addBoardButton.addEventListener("click", async (event) => {
   }
 });
 
-const boards = await new Promise(async (resolve, reject) => {
-  try {
-    const response = await readBoards();
-    const result = await response.json();
-    resolve(result.boards.sort((a, b) => a.position < b.position));
-  } catch (error) {
+const boards = await readBoards()
+  .then((response) => response.json())
+  .then((result) => result.boards.sort((a, b) => a.position - b.position))
+  .catch((error) =>
     handleError({
       text: `Une Erreur est survenue lors de la récupération des tableaux.`,
       error,
-    });
-    reject("couldn't fetch boards");
-  }
-});
+    }),
+  );
+console.info("loaded boards at page initialization", JSON.stringify(boards));
 
-console.info("loaded boards at page initialization", boards);
-
-let insertedBoards = [];
-boards.forEach(async (board) => {
+const insertedBoards = boards.map((board) => {
   try {
-    insertedBoards.push({
+    return {
       instance: board,
       element: insertSibling(
         new Board({ databaseId: board.id, title: board.title, dragLevel: 1 }),
         addBoardButton,
         "before",
       ),
-    });
+    };
   } catch (error) {
     handleError({
       text: `Une erreur est survenue lors de l'insertion du tableau portant l'identifiant n°${board.id} au sein de la page.`,
@@ -148,60 +143,57 @@ boards.forEach(async (board) => {
     });
   }
 });
-
-let boardEntries = await new Promise((resolve, reject) => {
-  insertedBoards.forEach(async ({ instance: board }) => {
-    try {
-      const response = await readBoardEntries({
-        queries: { board_id: board.id },
-      });
-      const result = await response.json();
-      resolve(result.boardEntries.sort((a, b) => a.position < b.position));
-    } catch (error) {
-      handleError({
-        text: `Une Erreur est survenue lors de la récupération des vignettes correspondantes aux entrées  du tableau portant l'identifiant n°${board.id}.`,
-        error,
-      });
-      reject("couldn't fetch boardEntries");
-    }
-  });
-});
-
-console.info("loaded boardEntries at page initialization", boardEntries);
-
-let alreadyFetchedIds = new Set();
-const imagePromises = await Promise.allSettled(
-  boardEntries.map(async (boardEntry) => {
-    return new Promise(async (resolve, reject) => {
-      if (alreadyFetchedIds.has(boardEntry.imageId)) {
-        reject("image already fetched");
-      }
-      try {
-        const imageResponse = await readImage({
-          pathname: `/${boardEntry.imageId}`,
-        });
-        alreadyFetchedIds.add(boardEntry.imageId);
-        resolve(await imageResponse.json());
-      } catch (error) {
-        handleError({
-          text: `Une erreur est survenue lors de la récupération de l'image portant l'identifiant n°${boardEntry.imageId}.`,
-          error,
-        });
-        reject("couldn't fetch image");
-      }
-    });
-  }),
+console.info(
+  "inserted boards at page initialization",
+  JSON.stringify(insertedBoards),
 );
 
-const images = imagePromises
-  .filter((it) => it.status === "fulfilled")
-  .map((it) => it.value);
+let boardEntries = await Promise.all(
+  insertedBoards.map(({ instance: board }) =>
+    readBoardEntries({
+      queries: { board_id: board.id },
+    })
+      .then((response) => response.json())
+      .then((result) =>
+        result.boardEntries.sort((a, b) => a.position - b.position),
+      )
+      .catch((error) =>
+        handleError({
+          text: `Une Erreur est survenue lors de la récupération des vignettes correspondantes aux entrées du tableau portant l'identifiant n°${board.id}.`,
+          error,
+        }),
+      ),
+  ),
+).then((response) => response.flat());
+console.info(
+  "loaded boardEntries at page initialization",
+  JSON.stringify(boardEntries),
+);
 
-console.info("loaded images at page initialization", images);
+const imageIds = new Set(boardEntries.map((it) => it.imageId));
+const images = await Promise.allSettled(
+  Array.from(imageIds).map((id) => {
+    return readImage({
+      pathname: `/${id}`,
+    })
+      .then((response) => response.json())
+      .catch((error) =>
+        handleError({
+          text: `Une erreur est survenue lors de la récupération de l'image portant l'identifiant n°${id}.`,
+          error,
+        }),
+      );
+  }),
+).then((result) =>
+  result
+    .filter((result) => result.status === "fulfilled")
+    .map((result) => result.value),
+);
+console.info("loaded images at page initialization", JSON.stringify(images));
 
 for (const boardEntry of boardEntries) {
   const { element: boardElement } = insertedBoards.find(
-    (it) => it.instance.id === boardEntry.imageId,
+    (it) => it.instance.id === boardEntry.boardId,
   );
   if (!boardElement) continue;
   const image = images.find((it) => it.id === boardEntry.imageId);

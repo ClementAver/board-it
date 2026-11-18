@@ -88,6 +88,7 @@ export default class Board extends HTMLElement {
   set createSvg(createSvg) {
     this.#createSvg = createSvg;
   }
+
   set deleteButton(deleteButton) {
     this.#deleteButton = deleteButton;
   }
@@ -145,7 +146,7 @@ export default class Board extends HTMLElement {
     this.form.addEventListener("submit", this._submit);
     this._delete = this.delete.bind(this);
     this.deleteButton.addEventListener("click", this._delete);
-    // this._create = this.create.bind(this);
+    this._create = this.create.bind(this);
     this.createButton.addEventListener("click", this._create);
   }
 
@@ -341,9 +342,9 @@ export default class Board extends HTMLElement {
     }
   }
 
-  // async create() {
-  //   console.info("create");
-  // }
+  async create() {
+    window.board = this;
+  }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;

@@ -50,6 +50,7 @@ export default class CreateBoardEntryDialog extends Dialog {
   };
 
   clean() {
+    window.board = null;
     window.thumbnail = null;
     window.thumbnailMode = null;
     Array.from(this.gallery.wrapper.children).forEach((child) =>
@@ -73,7 +74,6 @@ export default class CreateBoardEntryDialog extends Dialog {
       });
       const result = await response.json();
       if (response.ok) {
-        // TODO : use response to instanciate thumbnails (with input to edit alt text) and update gallery pagination maxPage
         this.gallery.pagination.maxPage = Math.ceil(result.total / result.size);
         result.images.forEach((image) => {
           createThumbnail(this.gallery.wrapper, undefined, image, {

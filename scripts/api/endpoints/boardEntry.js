@@ -38,6 +38,15 @@ const boardEntryEndpoints = [
     key: "readBoardEntries",
     pathname: "api/board_entry",
   },
+  {
+    key: "userCreateBoardEntries",
+    method: "POST",
+    pathname: "api/board_entry/list",
+    headers: { "Content-type": "application/json" },
+    timingStrategy: "debounce",
+    timingDelay: 1000,
+    timingOptions: { leading: true, trailing: true },
+  },
 ];
 
 export default boardEntryEndpoints;
