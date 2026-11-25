@@ -16,13 +16,14 @@ export default class CreateBoardEntryForm extends HTMLFormElement {
       submitButton ??
       this.querySelector('button[type="submit"]') ??
       this.submitButton;
+
+    this._submit = this.submit.bind(this);
   }
 
   connectedCallback() {
     this.submitButton =
       this.querySelector('button[type="submit"]') ?? this.submitButton;
 
-    this._submit = this.submit.bind(this);
     this.addEventListener("submit", this._submit);
   }
 

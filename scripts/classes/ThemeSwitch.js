@@ -22,6 +22,8 @@ export default class ThemeSwitch extends HTMLElement {
     this.sun = sun ?? this.sun;
     this.switchBtn = switchBtn ?? this.switchBtn;
     this.switchHandle = switchHandle ?? this.switchHandle;
+
+    this._toggle = this.toggle.bind(this);
   }
 
   connectedCallback() {
@@ -36,7 +38,6 @@ export default class ThemeSwitch extends HTMLElement {
 
     this.initTheme();
 
-    this._toggle = this.toggle.bind(this);
     this._updatePreferredTheme = this.updatePreferredTheme.bind(this);
     this.switchBtn.addEventListener("click", this._toggle);
     this.prefersDark.addEventListener("change", this._updatePreferredTheme);

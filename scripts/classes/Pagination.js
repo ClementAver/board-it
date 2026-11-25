@@ -77,16 +77,16 @@ export default class Pagination extends HTMLElement {
     insertSibling(tooltipPrevious, this.previousButton);
     insertSibling(tooltipNext, this.nextButton);
     insertSibling(tooltipLast, this.lastButton);
+
+    this._first = this.first.bind(this);
+    this._previous = this.previous.bind(this);
+    this._next = this.next.bind(this);
+    this._last = this.last.bind(this);
   }
 
   debouncedChange = debounce(this.change.bind(this), 1000);
 
   connectedCallback() {
-    this._first = this.first.bind(this);
-    this._previous = this.previous.bind(this);
-    this._next = this.next.bind(this);
-    this._last = this.last.bind(this);
-
     this.firstButton.addEventListener("click", this._first);
     this.previousButton.addEventListener("click", this._previous);
     this.currentInput.addEventListener("change", this.debouncedChange);

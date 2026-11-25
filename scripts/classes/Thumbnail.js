@@ -53,6 +53,10 @@ export default class Thumbnail extends HTMLElement {
     this.#isSelectable = isSelectable ?? this.#isSelectable;
     this.#source = source ?? this.#source;
 
+    this._toggleChecked = this.toggleChecked.bind(this);
+    if (deleteCallback) this._delete = deleteCallback.bind(this);
+    if (editCallback) this._edit = editCallback.bind(this);
+
     this._internals = this.attachInternals();
     this.setAttribute("role", "article");
   }
@@ -157,6 +161,7 @@ export default class Thumbnail extends HTMLElement {
 
   set deleteCallback(deleteCallback) {
     this.#deleteCallback = deleteCallback;
+    this._delete = deleteCallback.bind(this);
   }
 
   set editButton(editButton) {
@@ -165,6 +170,7 @@ export default class Thumbnail extends HTMLElement {
 
   set editCallback(editCallback) {
     this.#editCallback = editCallback;
+    this._edit = editCallback.bind(this);
   }
 
   set figcaption(figcaption) {
@@ -406,13 +412,10 @@ export default class Thumbnail extends HTMLElement {
     };
 
     if (this.checkbox) {
-      this._toggleChecked = this.toggleChecked.bind(this);
       this.addEventListener("click", this._toggleChecked);
     }
 
-    this._delete = deleteCallback.bind(this);
     this.deleteButton.addEventListener("click", this._delete);
-    this._edit = editCallback.bind(this);
     this.editButton.addEventListener("click", this._edit);
   }
 

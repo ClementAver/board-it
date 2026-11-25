@@ -17,7 +17,7 @@ import Svg from "../classes/Svg.js";
 import ThemeSwitch from "../classes/ThemeSwitch.js";
 import Tooltip from "../classes/Tooltip.js";
 import UploadImageForm from "../classes/UploadImageForm.js";
-import UpdateThumbnailForm from "../classes/UpdateThumbnailForm.js";
+import UpdateBoardEntryForm from "../classes/UpdateBoardEntryForm.js";
 import updateBoardEntryDialog from "../classes/UpdateBoardEntryDialog.js";
 import CreateBoardEntryForm from "../classes/CreateBoardEntryForm.js";
 import { createThumbnail } from "../classes/Thumbnail.js";

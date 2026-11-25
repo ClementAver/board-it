@@ -13,6 +13,8 @@ export default class CreateBoardEntryDialog extends Dialog {
 
   constructor(parameters) {
     super(parameters);
+
+    this._beforeToggle = this.beforeToggle.bind(this);
   }
 
   connectedCallback() {
@@ -23,7 +25,6 @@ export default class CreateBoardEntryDialog extends Dialog {
     this.triggers.forEach((element) => {
       element.addEventListener("click", this._trigger);
     });
-    this._beforeToggle = this.beforeToggle.bind(this);
     this.addEventListener("beforetoggle", this._beforeToggle);
 
     this.#gallery = this.querySelector("aeee-gallery") ?? new Gallery();

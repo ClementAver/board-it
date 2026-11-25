@@ -31,6 +31,11 @@ export default class Board extends HTMLElement {
     this.#databaseId = databaseId ?? this.#databaseId;
     this.#title = title ?? this.#title;
     this.dragLevel = dragLevel ?? this.dataset.dragLevel ?? this.dragLevel;
+
+    this._edit = this.edit.bind(this);
+    this._submit = this.submit.bind(this);
+    this._delete = this.delete.bind(this);
+    this._create = this.create.bind(this);
   }
 
   get createButton() {
@@ -139,14 +144,10 @@ export default class Board extends HTMLElement {
   connectedCallback() {
     this.setupDOM();
 
-    this._edit = this.edit.bind(this);
-    this.editButton.addEventListener("click", this._edit);
-    this._submit = this.submit.bind(this);
     this.input.addEventListener("blur", this._submit);
     this.form.addEventListener("submit", this._submit);
-    this._delete = this.delete.bind(this);
+    this.editButton.addEventListener("click", this._edit);
     this.deleteButton.addEventListener("click", this._delete);
-    this._create = this.create.bind(this);
     this.createButton.addEventListener("click", this._create);
   }
 
