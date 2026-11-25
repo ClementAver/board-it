@@ -102,7 +102,7 @@ addBoardButton.addEventListener("click", async (event) => {
     const result = await response.json();
     if (response.ok) {
       insertSibling(
-        new Board({ dragLevel: 1, title: result.title }),
+        new Board({ databaseId: result.id , dragLevel: 1, title: result.title }),
         addBoardButton,
         "before",
       );
