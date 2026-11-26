@@ -208,14 +208,14 @@
     </menu>
 
     <dialog
-      is="aeee-delete-thumbnail-dialog"
+      is="aeee-delete-dialog"
       id="delete-board-entry-dialog"
       class="generic fit"
       autofocus
       closedby="any"
     >
       <header>
-        <p>Supprimer une vignette</p>
+        <p id="delete-title"></p>
         <button
           data-trigger="delete-board-entry-dialog"
           data-action="close"
@@ -233,9 +233,7 @@
       </header>
 
       <main class="p-lg flex-col items-center gap-lg mb-lg">
-        <p class="semibold">
-          Êtes-vous sûr de vouloir supprimer cette vignette ?
-        </p>
+        <p class="semibold" id="delete-message"></p>
         <div class="spring-wrapper rounded-xs">
           <button type="button" class="rounded-xs bold invalid">
             Supprimer

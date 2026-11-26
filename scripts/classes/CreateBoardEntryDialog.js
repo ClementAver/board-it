@@ -53,7 +53,7 @@ export default class CreateBoardEntryDialog extends Dialog {
   clean() {
     window.board = null;
     window.thumbnail = null;
-    window.thumbnailMode = null;
+    window.dialogType = null;
     Array.from(this.gallery.wrapper.children).forEach((child) =>
       child.remove(),
     );

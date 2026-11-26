@@ -7,7 +7,6 @@ import Svg from "./Svg.js";
 import Tooltip from "./Tooltip.js";
 
 const { request: userUpdateBoard } = backIt.registered("userUpdateBoard");
-const { request: userDeleteBoard } = backIt.registered("userDeleteBoard");
 
 export default class Board extends HTMLElement {
   #databaseId = -1;
@@ -215,11 +214,21 @@ export default class Board extends HTMLElement {
     if (!header.contains(this.editButton))
       insertSibling(this.editButton, this.createButton, "after");
 
-    this.deleteButton =
-      header.querySelector("button[data-delete]") ??
-      document.createElement("button");
+    this.deleteButton = header.querySelector("button[data-delete]");
+    if (!this.deleteButton) {
+      this.deleteButton = document.createElement("button");
+      const deleteDialog = document.getElementById("delete-board-entry-dialog");
+      if (!deleteDialog) {
+        console.error(
+          "`dialog#delete-board-entry-dialog` hasn't been found on the page.",
+        );
+      }
+      deleteDialog.appendTrigger(this.deleteButton);
+    }
     this.deleteButton.type = "button";
     this.deleteButton.dataset.delete = true;
+    this.deleteButton.dataset.trigger = "delete-board-entry-dialog";
+    this.deleteButton.dataset.action = "showModal";
     this.deleteButton.classList.add("border-line-icon");
     this.deleteSvg =
       this.deleteButton.querySelector("aeee-svg") ??
@@ -324,23 +333,12 @@ export default class Board extends HTMLElement {
   }
 
   async delete() {
-    try {
-      const response = await userDeleteBoard({
-        pathname: `/${this.databaseId}`,
-      });
-      const result = await response.json();
-      if (response.ok) {
-        if (result !== this.databaseId) {
-          throw new Error(`wrong id returned on a delete operation`);
-        }
-        this.remove();
-      }
-    } catch (error) {
-      handleError({
-        text: `Une Erreur est survenue lors de la suppression du tableau portant l'id ${this.databaseId}.`,
-        error,
-      });
-    }
+    window.board = this;
+    window.dialogType = "board";
+    document.getElementById("delete-title").textContent =
+      "Supprimer le tableau";
+    document.getElementById("delete-message").textContent =
+      "Êtes-vous sûr de vouloir supprimer ce tableau ?";
   }
 
   async create() {

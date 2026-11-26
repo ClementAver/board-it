@@ -155,6 +155,10 @@ export default class Thumbnail extends HTMLElement {
     this.#checkbox = checkbox;
   }
 
+  set databaseId(databaseId) {
+    this.#databaseId = databaseId;
+  }
+
   set deleteButton(deleteButton) {
     this.#deleteButton = deleteButton;
   }
@@ -495,15 +499,23 @@ export function createThumbnail(
   }
   thumbnail.deleteCallback = (event) => {
     window.thumbnail = thumbnail;
-    window.thumbnailMode = event.target.closest("aeee-board")
+    window.dialogType = event.target.closest("aeee-board")
       ? "boardEntry"
       : "image";
+    document.getElementById("delete-title").textContent =
+      "Supprimer la vignette";
+    document.getElementById("delete-message").textContent =
+      "Êtes-vous sûr de vouloir supprimer cette vignette ?";
   };
   thumbnail.editCallback = (event) => {
     window.thumbnail = thumbnail;
-    window.thumbnailMode = event.target.closest("aeee-board")
+    window.dialogType = event.target.closest("aeee-board")
       ? "boardEntry"
       : "image";
+    document.getElementById("delete-title").textContent =
+      "Supprimer la vignette";
+    document.getElementById("delete-message").textContent =
+      "Êtes-vous sûr de vouloir supprimer cette vignette ?";
   };
 
   try {

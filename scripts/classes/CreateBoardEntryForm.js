@@ -64,13 +64,19 @@ export default class CreateBoardEntryForm extends HTMLFormElement {
       const response = await userCreateBoardEntries({
         body: JSON.stringify(body),
       });
-      await response.json();
+      const result = await response.json();
 
       if (response.status === 201) {
         thumbnails.forEach((thumbnail) => {
           thumbnail.isSelectable = false;
           thumbnail.isChecked = false;
           window.board.appendChild(thumbnail);
+          thumbnail.databaseId = result.find(
+            (it) =>
+              it.position ===
+              thumbnail.parentElement.getElementsByTagName("aeee-thumbnail")
+                .length,
+          ).id;
         });
       }
     } catch (error) {

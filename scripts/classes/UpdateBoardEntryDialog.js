@@ -69,18 +69,18 @@ export default class updateBoardEntryDialog extends Dialog {
     try {
       let response;
 
-      if (!window.thumbnailMode) {
+      if (!window.dialogType) {
         throw new Error(
-          `Invalid value for \`window.thumbnailMode\` (${window.thumbnailMode}). Should either be "image" or "boardEntry".`,
+          `Invalid value for \`window.dialogType\` (${window.dialogType}).`,
         );
-      } else if (window.thumbnailMode === "image") {
+      } else if (window.dialogType === "image") {
         formData.set("alternateText", formData.get("caption"));
         formData.delete("caption");
         response = await userUpdateImage({
           pathname: `/${window.thumbnail.databaseId}`,
           body: formData,
         });
-      } else if (window.thumbnailMode === "boardEntry") {
+      } else if (window.dialogType === "boardEntry") {
         response = await userUpdateBoardEntry({
           pathname: `/${window.thumbnail.databaseId}`,
           body: formData,
@@ -105,7 +105,7 @@ export default class updateBoardEntryDialog extends Dialog {
   clean() {
     this.querySelector('input[name="caption"]').value = "";
     window.thumbnail = null;
-    window.thumbnailMode = null;
+    window.dialogType = null;
     this.close();
   }
 }

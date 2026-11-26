@@ -3,7 +3,7 @@ import Board from "../classes/Board.js";
 import CreateBoardEntryDialog from "../classes/CreateBoardEntryDialog.js";
 import CustomizableFileInput from "../classes/CustomizableFileInput.js";
 import debug from "../utilities/debug.js";
-import DeleteThumbnailDialog from "../classes/DeleteThumbnailDialog.js";
+import DeleteDialog from "../classes/DeleteDialog.js";
 import Details from "../classes/Details.js";
 import DragAndDrop from "../classes/DragAndDrop.js";
 import DragSorter from "../classes/DragSorter.js";
@@ -102,7 +102,7 @@ addBoardButton.addEventListener("click", async (event) => {
     const result = await response.json();
     if (response.ok) {
       insertSibling(
-        new Board({ databaseId: result.id , dragLevel: 1, title: result.title }),
+        new Board({ databaseId: result.id, dragLevel: 1, title: result.title }),
         addBoardButton,
         "before",
       );
