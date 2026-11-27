@@ -114,6 +114,9 @@ addBoardButton.addEventListener("click", async (event) => {
     });
   }
 });
+addBoardButton.addEventListener("dragover", (e) => {
+  if (e.dataTransfer) e.dataTransfer.dropEffect = "none";
+});
 
 const boards = await readBoards()
   .then((response) => response.json())

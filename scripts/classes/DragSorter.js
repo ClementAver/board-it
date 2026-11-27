@@ -38,7 +38,8 @@ export default class DragSorter extends HTMLElement {
     if (
       !underneath ||
       underneath === event.target ||
-      underneath.closest("[data-frozen]")
+      underneath.closest("[data-frozen]") ||
+      underneath.id === "add-board"
     )
       return;
     [event.target, underneath].forEach((element) => {
