@@ -70,6 +70,8 @@ export default class CreateBoardEntryForm extends HTMLFormElement {
         thumbnails.forEach((thumbnail) => {
           thumbnail.isSelectable = false;
           thumbnail.isChecked = false;
+          thumbnail.draggable = true;
+          thumbnail.dataset.dragLevel = 2;
           window.board.appendChild(thumbnail);
           thumbnail.databaseId = result.find(
             (it) =>
