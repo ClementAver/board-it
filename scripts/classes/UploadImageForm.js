@@ -61,6 +61,13 @@ export default class UploadImageForm extends HTMLFormElement {
             `${response.status} \u2013 ${status[response.status]}`,
           );
         }
+        let target =
+          this.getElementsByTagName("aeee-file-input")[0] ??
+          this.getElementsByTagName("aeee-drag-and-drop")[0] ??
+          console.error(
+            'missing "aeee-file-input" or "aeee-drag-and-drop" element inside "aeee-upload-image-form"',
+          );
+        target.reset();
       } catch (error) {
         handleError({
           text: `Une Erreur est survenue lors de la création de l'image correspondante au fichier ${file.name}.`,

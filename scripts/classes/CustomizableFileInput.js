@@ -62,6 +62,11 @@ export default class CustomizableFileInput extends HTMLElement {
       } sélectionné${count > 1 ? "s" : ""}`;
     }
   }
+
+  reset() {
+    this.input.value = null;
+    this.paragraph.querySelector("small").textContent = "-"
+  }
 }
 
 customElements.define("aeee-file-input", CustomizableFileInput);
