@@ -78,6 +78,7 @@ export default class CreateBoardEntryForm extends HTMLFormElement {
                 .length,
           ).id;
         });
+        this.closest("dialog")?.close();
       }
     } catch (error) {
       handleError({

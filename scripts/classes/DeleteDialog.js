@@ -89,7 +89,13 @@ export default class DeleteDialog extends Dialog {
             window.board?.remove();
             break;
           case "image":
-            window.thumbnail?.remove();
+            Array.from(document.getElementsByTagName("aeee-thumbnail")).map(
+              (thumbnail) => {
+                if (thumbnail.image.src === window.thumbnail.image.src) {
+                  thumbnail.remove();
+                }
+              },
+            );
             break;
           case "boardEntry":
             window.thumbnail?.remove();
